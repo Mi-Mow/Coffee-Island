@@ -1,0 +1,205 @@
+@charset "UTF-8";
+
+/* css reset */
+* {
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+  font: inherit;
+}
+
+body {
+  font-family: /*西文*/-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
+  /*中文*/ "蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  line-height: 1.2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+/* css reset */
+
+body {
+  background-color: #DEA153;
+}
+
+header {
+  display: flex;
+  height: 65px;
+  padding: 0 20px;
+  justify-content: space-between;
+  /* background-color: burlywood; */
+  align-items: center;
+}
+
+.logo {
+  width: 70px;
+}
+
+nav, ul, .btn-container, .earth-container, main {
+  display: flex;
+  align-items: center;
+}
+
+li {
+  margin: 0 40px;
+  font-size: 18px;
+  color: #155652;
+  font-weight: 700;
+}
+
+.earth-container p {
+  font-size: 20px;
+  padding: 0 10px;
+}
+
+.login-btn {
+  border: #155652 2px solid;
+  color: #155652;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: transparent;
+  border-radius: 5px;
+  width: 120px;
+  padding: 8px 0;
+}
+
+.register-btn {
+  border: #155652 2px solid;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #155652;
+  border-radius: 5px;
+  width: 120px;
+  padding: 8px 0;
+  margin: 0 10px;
+}
+
+main {
+  justify-content: center;
+}
+
+.coffeebean-container img {
+  margin: 12px 0;
+}
+
+.banner {
+  margin: 0 20px;
+  width: 85%;
+  position: relative;
+}
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* need to modify */
+  clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 84%, 69% 95%, 29% 92%, 11% 100%, 0 100%, 0 100%, 0 0);
+  /* clip-path: path('M0,0 H2000 V1300 Q500,380 0,300 Z'); */
+}
+
+.weather {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+
+.hint p {
+  color: #7B3513;
+  font-weight: 800;
+  /* writing-mode: vertical-rl */
+}
+
+.projects {
+  padding: 120px 90px;
+}
+
+.project-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 80px 0;
+}
+
+.project-container .img-box {
+  width: 400px;
+  margin: 0 10px;
+}
+
+.title-en {
+  font-size: 30px;
+  color: #01414F;
+  font-weight: 800;
+}
+
+.title-ch {
+  font-size: 60px;
+  text-shadow: -1px -1px 0 #efe4d1,
+              1px -1px 0 #efe4d1,
+              -1px 1px 0 #efe4d1,
+              1px 1px 0 #efe4d1;
+  color: #01414F;
+  font-weight: 800;
+}
+
+.area:hover {
+  fill: #155652;
+  cursor: pointer;
+}
+
+.lg-map-box {
+  width: 90%;
+  /* position: relative; */
+}
+
+svg {
+  width: 100%;
+}
+
+/* .sm-map-box {
+  position: absolute;
+  top: 18%;
+  right: 27%;
+}
+.sm-map-box svg {
+  width: 100%;
+} */
+
