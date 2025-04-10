@@ -58,7 +58,7 @@ a {
 /* css reset */
 
 body {
-  background-color: #DEA153;
+  background-color: #265B51;
 }
 
 header {
@@ -81,20 +81,21 @@ nav, ul, .btn-container, .earth-container, main {
 
 li {
   margin: 0 40px;
-  font-size: 18px;
-  color: #155652;
+  font-size: 16px;
+  color: #fff;
   font-weight: 700;
 }
 
 .earth-container p {
-  font-size: 20px;
+  font-size: 18px;
   padding: 0 10px;
+  color: #fff;
 }
 
 .login-btn {
-  border: #155652 2px solid;
-  color: #155652;
-  font-size: 18px;
+  border: #fff 2px solid;
+  color: #fff;
+  font-size: 16px;
   font-weight: 700;
   background-color: transparent;
   border-radius: 5px;
@@ -103,9 +104,9 @@ li {
 }
 
 .register-btn {
-  border: #155652 2px solid;
+  border: #fff 2px solid;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   background-color: #155652;
   border-radius: 5px;
