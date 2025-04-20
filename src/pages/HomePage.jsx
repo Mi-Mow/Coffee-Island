@@ -20,6 +20,7 @@ function HomePage() {
   function onClickArea(area) {
     // 依照拿到的area值，更新data
     console.log(area);
+    console.log("test github");
   }
   return (
     <>
