@@ -1,4 +1,4 @@
-import React from 'react'
+import './Monthly.scss'
 
 function Monthly() {
   return (
