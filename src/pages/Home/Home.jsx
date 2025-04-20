@@ -1,50 +1,20 @@
-import React from "react";
-// import logo from "../assets/logo.svg";
-import logo from "../assets/logo-v2.svg";
-// import earth from "../assets/earth-black.svg";
-import earth from "../assets/earth-white.svg";
-import coffeeBeanDark from "../assets/coffeeBeanDark.svg";
-import coffeeBeanLight from "../assets/coffeeBeanLight.svg";
-// import banner from "../assets/main.png";
-import banner from "../assets/banner.svg";
-import projectBackground from "../assets/projectBackground.svg";
-import northerntaiwan from "../assets/northerntaiwan.svg";
-import remove from "../assets/remove.svg";
-import history1 from "../assets/history1.png";
-import history2 from "../assets/history2.png";
-import history3 from "../assets/history3.png";
-import history4 from "../assets/history4.png";
-import arrow from "../assets/arrow.svg";
+import "./Home.scss"
+import coffeeBeanDark from "../../assets/coffeeBeanDark.svg";
+import coffeeBeanLight from "../../assets/coffeeBeanLight.svg";
+import banner from "../../assets/banner.svg";
+import history1 from "../../assets/history1.png";
+import history2 from "../../assets/history2.png";
+import history3 from "../../assets/history3.png";
+import history4 from "../../assets/history4.png";
+import arrow from "../../assets/arrow.svg";
 
-function HomePage() {
+function Home() {
   function onClickArea(area) {
     // 依照拿到的area值，更新data
     console.log(area);
   }
   return (
     <>
-      <header>
-        <a href="#" className="logo">
-          <img src={logo} alt="" />
-        </a>
-        <nav>
-          <ul>
-            <li>地圖</li>
-            <li>找知識</li>
-            <li>找課程</li>
-            <li>限定商品</li>
-            <li>關於我們</li>
-          </ul>
-          <div className="btn-container">
-            <div className="earth-container">
-              <img src={earth} alt="" />
-              <p>EN</p>
-            </div>
-            <button className="login-btn">登入</button>
-            <button className="register-btn">加入我們</button>
-          </div>
-        </nav>
-      </header>
       <main>
         <div className="coffeebean-container">
           <img src={coffeeBeanDark} alt="" />
@@ -65,23 +35,6 @@ function HomePage() {
           </div>
         </div>
       </main>
-      {/* <section className="projects">
-        <div className="title">
-          <div className="title-en">PROJECTS</div>
-          <div className="title-ch">主要計畫</div>
-        </div>
-        <div className="project-container">
-          <div className="img-box">
-            <img src={projectBackground} alt="" />
-          </div>
-          <div className="img-box">
-            <img src={projectBackground} alt="" />
-          </div>
-          <div className="img-box">
-            <img src={projectBackground} alt="" />
-          </div>
-        </div>
-      </section> */}
       <section className="film">
         <svg
           width="1450"
@@ -566,4 +519,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Home;
