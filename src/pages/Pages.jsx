@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home/Home";
-import Map from "./Map";
-import Monthly from './Monthly'
-import Products from './Products'
-import About from './About'
+import Map from "./Map/Map";
+import Monthly from './Monthly/Monthly'
+import Products from './Products/Products'
+import About from './About/About'
 
 function Pages() {
   return (
