@@ -1,5 +1,6 @@
 import React from "react";
-import logo from "../assets/logo.svg";
+// import logo from "../assets/logo.svg";
+import logo from "../assets/logo-v2.svg";
 // import earth from "../assets/earth-black.svg";
 import earth from "../assets/earth-white.svg";
 import coffeeBeanDark from "../assets/coffeeBeanDark.svg";
@@ -13,6 +14,7 @@ import history1 from "../assets/history1.png";
 import history2 from "../assets/history2.png";
 import history3 from "../assets/history3.png";
 import history4 from "../assets/history4.png";
+import arrow from "../assets/arrow.svg";
 
 function HomePage() {
   function onClickArea(area) {
@@ -57,13 +59,10 @@ function HomePage() {
           </div>
         </div>
         <div className="hint">
-          <p>S</p>
-          <p>C</p>
-          <p>R</p>
-          <p>o</p>
-          <p>L</p>
-          <p>L</p>
-          <p>↓</p>
+          <p>向下滾動</p>
+          <div className="arrow-container">
+            <img src={arrow} alt="" />
+          </div>
         </div>
       </main>
       {/* <section className="projects">
@@ -109,41 +108,41 @@ function HomePage() {
             />
           </clipPath>
           <clipPath id="history2">
-          <path
-            d="M427.5 274L395 141.5L437 130L488.5 117L523 108.5L558.5 101L594 95.5L621 91.5L635.5 88.5L638.5 200L617 205.5L578.5 215.5L542 226.5L501 242L468 255.5L427.5 274Z"
-            fill="#A9A9A9"
-            stroke="black"
-            strokeWidth="2"
-            className="history-2"
-          />
+            <path
+              d="M427.5 274L395 141.5L437 130L488.5 117L523 108.5L558.5 101L594 95.5L621 91.5L635.5 88.5L638.5 200L617 205.5L578.5 215.5L542 226.5L501 242L468 255.5L427.5 274Z"
+              fill="#A9A9A9"
+              stroke="black"
+              strokeWidth="2"
+              className="history-2"
+            />
           </clipPath>
           <clipPath id="history3">
-          <path
-            d="M653.5 197V88L692.5 85L723 84H758H792L825.5 85.5L847.5 87.5L834 183.5H814.5H789.5L760.5 185L737.5 186.5L712 189L681.5 193L653.5 197Z"
-            fill="#D9D9D9"
-            stroke="black"
-          />
+            <path
+              d="M653.5 197V88L692.5 85L723 84H758H792L825.5 85.5L847.5 87.5L834 183.5H814.5H789.5L760.5 185L737.5 186.5L712 189L681.5 193L653.5 197Z"
+              fill="#D9D9D9"
+              stroke="black"
+            />
           </clipPath>
           <clipPath id="history4">
-          <path
-            d="M852 184L866.5 89.5L888 91L909 94L928 96.5L953.5 101L978 105.5L1006 112.5L1035 119.5L1059 127L1030 215.5L1017 211.5L994.5 205.5L972.5 200L947 195L921 191L896 187.5L869 185.5L852 184Z"
-            fill="#D9D9D9"
-            stroke="black"
-          />
+            <path
+              d="M852 184L866.5 89.5L888 91L909 94L928 96.5L953.5 101L978 105.5L1006 112.5L1035 119.5L1059 127L1030 215.5L1017 211.5L994.5 205.5L972.5 200L947 195L921 191L896 187.5L869 185.5L852 184Z"
+              fill="#D9D9D9"
+              stroke="black"
+            />
           </clipPath>
           <clipPath id="history5">
-          <path
-            d="M1046 221L1076.5 134.5L1110.5 144.5L1142.5 154.5L1179 166L1219.5 178L1251 187L1274 194.5L1229.5 276L1210 271.5L1187.5 266.5L1167 260.5L1142.5 253.5L1119 246.5L1093 237.5L1068 228.5L1046 221Z"
-            fill="#D9D9D9"
-            stroke="black"
-          />
+            <path
+              d="M1046 221L1076.5 134.5L1110.5 144.5L1142.5 154.5L1179 166L1219.5 178L1251 187L1274 194.5L1229.5 276L1210 271.5L1187.5 266.5L1167 260.5L1142.5 253.5L1119 246.5L1093 237.5L1068 228.5L1046 221Z"
+              fill="#D9D9D9"
+              stroke="black"
+            />
           </clipPath>
           <clipPath id="history6">
-          <path
-            d="M1255.5 280L1241.5 277.5L1272.5 221.5L1276.5 214L1283 203.5L1284.88 200.5L1288.43 197.5L1293.25 196.786L1302 197.5L1311 198.5L1324 200.5L1340.5 201.5H1357L1373 200.5L1387.03 198.165L1343.5 265.5L1338.76 272.04L1334.72 274.995L1329.4 277.162L1321.72 279.132L1310.5 281.5L1298 282.5H1285.5L1270.5 281.5L1255.5 280Z"
-            fill="#D9D9D9"
-            stroke="black"
-          />
+            <path
+              d="M1255.5 280L1241.5 277.5L1272.5 221.5L1276.5 214L1283 203.5L1284.88 200.5L1288.43 197.5L1293.25 196.786L1302 197.5L1311 198.5L1324 200.5L1340.5 201.5H1357L1373 200.5L1387.03 198.165L1343.5 265.5L1338.76 272.04L1334.72 274.995L1329.4 277.162L1321.72 279.132L1310.5 281.5L1298 282.5H1285.5L1270.5 281.5L1255.5 280Z"
+              fill="#D9D9D9"
+              stroke="black"
+            />
           </clipPath>
           <defs>
             <linearGradient

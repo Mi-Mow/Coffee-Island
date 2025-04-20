@@ -25,8 +25,8 @@ time, mark, audio, video {
   font: inherit;
 }
 
-body {
-  font-family: /*西文*/-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
+body, button {
+  font-family: /*西文*/"Noto Serif TC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
   /*中文*/ "蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
   line-height: 1.2;
 }
@@ -71,7 +71,7 @@ header {
 }
 
 .logo {
-  width: 70px;
+  width: 130px;
 }
 
 nav, ul, .btn-container, .earth-container, main {
@@ -139,15 +139,28 @@ main {
 
 .weather {
   position: absolute;
-  bottom: 0;
+  bottom: 5%;
   right: 0;
+}
+
+.hint {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .hint p {
-  color: #7B3513;
+  color: #FFF0C8;
   font-weight: 800;
+  font-size: 16px;
   /* writing-mode: vertical-rl */
+}
+
+.arrow-container {
+  width: 30px;
+  padding: 20px 0;
 }
 
 .projects {
