@@ -30,23 +30,37 @@ header {
     border: #fff 2px solid;
     color: #fff;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 800;
     background-color: transparent;
     border-radius: 8px;
     width: 120px;
     padding: 8px 0;
+    cursor: pointer;
+  }
+
+  .login-btn:hover {
+    color: #265b51;
+    background-color: #fff;
+    transition: .3s;
   }
 
   .register-btn {
     border: #fff 2px solid;
     color: #265b51;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 800;
     background-color: #fff;
     border-radius: 5px;
     width: 120px;
     padding: 8px 0;
     margin-left: 20px;
+    cursor: pointer;
+  }
+
+  .register-btn:hover {
+    color: #fff;
+    background-color: transparent;
+    transition: .3s;
   }
 }
 
