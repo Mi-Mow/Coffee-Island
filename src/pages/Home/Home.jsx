@@ -12,8 +12,6 @@ function Home() {
   function onClickArea(area) {
     // 依照拿到的area值，更新data
     console.log(area);
-    console.log("test1");
-    console.log("test1-2");
   }
   return (
     <>
