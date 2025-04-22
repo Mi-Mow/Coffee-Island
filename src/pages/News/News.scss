@@ -2,11 +2,13 @@
 $bgcolor: #eee;
 $textcolor: #1e1e1e;
 $fontsize: 16px;
-// hover color
+/* hover color */
 $primary_1: #a2b9bc;
+/* h1 color */
 $primary_2: #b2ad7f;
 
-main {
+#news>main {
+  align-self: center;
   display: flex;
   width: 1440px;
   padding: 40px 170px;
@@ -22,7 +24,8 @@ li {
   gap: 24px
 }
 
-#news>h1 {
+// h1
+.title {
   color: $primary_2;
   font-size: 24px;
 
@@ -56,7 +59,7 @@ li {
 
 /* coverstory */
 
-#news>#coverstorys {
+#news>.cover-story {
   display: flex;
   padding: 36px 0px;
   flex-direction: column;
@@ -70,18 +73,74 @@ li {
   border-radius: 2px;
 }
 
+/* feature */
 
-#news>.feature {
+.section-row {
   display: flex;
-  width: 700px;
-  padding-bottom: 36px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 36px;
+  justify-content: space-between; // 讓左右有空間
+  gap: 20px; // 中間間距
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
 }
 
-.feature img {
-  width: 100%;
-  max-width: 700px;
-  border-radius: 2px;
+.section-row > section:first-child {
+  flex: 2; // 左邊：佔 2 份
+}
+
+.section-row > section:last-child {
+  flex: 1; // 右邊：佔 1 份
+}
+
+
+// #news>.section2>.feature {
+//   display: flex;
+//   width: 700px;
+//   padding-bottom: 36px;
+//   flex-direction: column;
+//   align-items: flex-start;
+//   gap: 36px;
+// }
+
+// #news>.section2>.recommendation {
+//   display: flex;
+//   width: 320px;
+//   height: 748px;
+//   padding: 24px;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 12px;
+//   flex-shrink: 0;
+// }
+
+/* feature左 */
+
+.newest {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 三欄
+  gap: 20px; // 欄之間的間距
+  padding: 20px;
+}
+
+.newest>div {
+  background-color: #f2f2f2;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* feature右 */
+
+.recommendation {
+  display: flex;
+  flex-direction: column; // 垂直排
+  gap: 20px; // 每列間距
+  padding: 20px;
+}
+
+.recommendation>div {
+  background-color: #f2f2f2;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
 }
