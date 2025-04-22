@@ -1,7 +1,7 @@
 function Event(){
     return(
         <>
-        <div>
+        <div className="news-content">
             <h1>找活動</h1>
         </div>
         </>

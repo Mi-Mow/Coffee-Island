@@ -1,15 +1,49 @@
 /* define primary colors */
-
 $bgcolor: #eee;
-$textcolor: darkblue;
+$textcolor: #1e1e1e;
 $fontsize: 16px;
 
 $primary_1: #a2b9bc;
 $primary_2: #b2ad7f;
 
-/* use the variables */
-body {
-    background-color: $bgcolor;
-    color: $textcolor;
-    font-size: $fontsize;
-  }                  
+li {
+  list-style: none;
+}
+
+#news {
+  /* use the variables */
+  background-color: $bgcolor;
+  color: $textcolor;
+  font-size: $fontsize;
+
+  display: flex;
+  width: 1440px;
+  padding: 40px 170px;
+  flex-direction: column;
+  align-items: center;
+
+  
+}
+
+
+.news-content {
+  background-color: $bgcolor;
+  color: $textcolor;
+  font-size: $fontsize;
+
+}
+
+/* nav */
+.nav-news {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+
+}
+
+.nav-news ul {
+  display: flex;
+  
+}
