@@ -2,48 +2,86 @@
 $bgcolor: #eee;
 $textcolor: #1e1e1e;
 $fontsize: 16px;
-
+// hover color
 $primary_1: #a2b9bc;
 $primary_2: #b2ad7f;
 
-li {
-  list-style: none;
-}
-
-#news {
-  /* use the variables */
-  background-color: $bgcolor;
-  color: $textcolor;
-  font-size: $fontsize;
-
+main {
   display: flex;
   width: 1440px;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
-
-  
-}
-
-
-.news-content {
   background-color: $bgcolor;
   color: $textcolor;
   font-size: $fontsize;
+}
+
+li {
+  list-style: none;
+  gap: 24px
+}
+
+#news>h1 {
+  color: $primary_2;
+  font-size: 24px;
 
 }
 
 /* nav */
 .nav-news {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 24px;
 
+}
 
+/* a */
+.nav-news a {
+  margin: 10px;
+  padding: 5px 0;
+  border-bottom: 2px solid transparent;
+  transition: all .35s;
+  cursor: pointer;
+}
+
+.nav-news a:hover {
+  color: $primary_1;
+  border-bottom: 2px solid black;
 }
 
 .nav-news ul {
   display: flex;
-  
+}
+
+/* coverstory */
+
+#news>#coverstorys {
+  display: flex;
+  padding: 36px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+
+}
+
+#coverstorys img {
+  width: 100%;
+  border-radius: 2px;
+}
+
+
+#news>.feature {
+  display: flex;
+  width: 700px;
+  padding-bottom: 36px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 36px;
+}
+
+.feature img {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 2px;
 }
