@@ -8,10 +8,12 @@ $primary_1: #a2b9bc;
 $primary_2: #b2ad7f;
 $bordercolor: #FFF1CB;
 $btn-color: #7B4519;
+$tagcolor: #eee;
 
 /* 島嶼月報樣式 */
 * {
-  color: $textcolor
+  color: $textcolor;
+  font-family: "Noto Serif TC";
 }
 
 #news>main {
@@ -35,7 +37,26 @@ li {
 .title {
   font-size: 24px;
 
-  font-family: "Noto Serif TC";
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.84px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+.tagName {
+  align-self: stretch;
+  color: $tagcolor;
+
+
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -119,7 +140,7 @@ li {
 
   .feature {
     color: $textcolor;
-    font-family: "Noto Serif TC";
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -149,10 +170,6 @@ li {
 
     p {
       color: $textcolor;
-
-      font-family: "Noto Serif TC";
-      font-size: 14px;
-      font-style: normal;
       font-weight: 400;
       line-height: normal;
       letter-spacing: 0.84px;
@@ -160,11 +177,6 @@ li {
   }
 
   .newest {
-    // display: grid;
-    // grid-template-columns: repeat(3, 1fr); // 三欄
-    // gap: 20px; // 欄之間的間距
-    // padding: 20px;
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -192,24 +204,11 @@ li {
         }
 
         h3 {
-          align-self: stretch;
-          color: $textcolor;
-
-          font-family: "Noto Serif TC";
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-          letter-spacing: 0.84px;
-        }
-
-        p {
           height: 50px;
           align-self: stretch;
           color: $textcolor;
 
-          font-family: "Noto Serif TC";
-          font-size: 14px;
+          font-size: 16px;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
@@ -243,7 +242,7 @@ li {
   margin-top: 56px;
 
   a {
-      border-bottom: 1px solid $bordercolor;
+    border-bottom: 1px solid $bordercolor;
   }
 
   h2 {
@@ -251,13 +250,13 @@ li {
     color: $textcolor;
 
     text-align: center;
-    font-family: "Noto Serif TC";
-    font-size: 14px;
+
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.84px;
   }
+
 
   .reco-card {
     display: flex;
@@ -265,7 +264,7 @@ li {
     align-items: center;
     gap: 24px;
     align-self: stretch;
-           
+
 
     img {
       height: 88px;
@@ -302,8 +301,99 @@ li {
     color: $btn-color;
     border-radius: 2px;
     border: 3px solid $btn-color;
-    background: url(../../assets/background.png) lightgray 50% / cover no-repeat, #E1BB98;
+    background: url('/paper-texture.png') / cover no-repeat, #E1BB98;
+
+    &:hover {
+      color: $primary_1;
+      border: 2px solid $bordercolor;
+    }
+  }
+
+}
+
+/* Events */
+.events {
+  display: flex;
+  padding: 36px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+  align-self: stretch;
+
+  .event-title {
+    display: flex;
+    padding: 0px 389px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+  }
+
+  .event-cards {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    align-self: stretch;
+
+    .event-card {
+      display: flex;
+      height: 487px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 12px;
+      flex: 1 0 0;
+
+      img {
+        height: 400px;
+        flex-shrink: 0;
+        align-self: stretch;
+      }
+
+      .event-tags {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+      }
+    }
 
   }
 
+  .event-btn {
+    display: flex;
+    padding: 36px 378px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* Top */
+.top-btn {
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 1000;
+
+  svg {
+    width: 40px;
+    height: auto;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+  }
 }
