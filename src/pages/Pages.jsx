@@ -16,8 +16,8 @@ function Pages() {
         <Route path="/monthly" element={<Monthly />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/about" element={<About />}></Route>
-        <Route path="/about" element={<Login />}></Route>
-        <Route path="/about" element={<Register />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
       </Routes>
     </>
   );

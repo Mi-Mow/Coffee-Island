@@ -24,7 +24,7 @@ function Header() {
               <p>EN</p>
             </div>
             <NavLink to={"/login"} ><button className="login-btn">登入</button></NavLink>
-            <button className="register-btn">加入我們</button>
+            <NavLink to={"/register"} ><button className="register-btn">加入我們</button></NavLink>
           </div>
         </nav>
       </header>
