@@ -1,15 +1,19 @@
 /* define primary colors */
 $bgcolor: #eee;
-$textcolor: #1e1e1e;
+$textcolor: #FFF1CB;
 $fontsize: 16px;
 /* hover color */
 $primary_1: #a2b9bc;
 /* h1 color */
 $primary_2: #b2ad7f;
-$bordercolor: black;
+$bordercolor: #FFF1CB;
 $btn-color: #7B4519;
 
 /* 島嶼月報樣式 */
+* {
+  color: $textcolor
+}
+
 #news>main {
   align-self: center;
   display: flex;
@@ -17,7 +21,7 @@ $btn-color: #7B4519;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
-  background-color: $bgcolor;
+  // background-color: $bgcolor;
   color: $textcolor;
   font-size: $fontsize;
 }
@@ -29,15 +33,21 @@ li {
 
 /* h1 */
 .title {
-  color: $primary_2;
   font-size: 24px;
+
+  font-family: "Noto Serif TC";
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.84px;
 }
 
 /* nav */
 .nav-news {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 24px;
 
 }
 
@@ -48,11 +58,17 @@ li {
   border-bottom: 2px solid transparent;
   transition: all .35s;
   cursor: pointer;
-}
+  color: $textcolor;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 9px;
 
-.nav-news a:hover {
-  color: $primary_1;
-  border-bottom: 2px solid $bordercolor;
+  &:hover {
+    color: $primary_1;
+    border-bottom: 2px solid $bordercolor;
+  }
 }
 
 .nav-news ul {
@@ -61,29 +77,32 @@ li {
 
 /* coverstory */
 
-#news>.cover-story {
+.cover-story {
+
   display: flex;
   padding: 36px 0px;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
 
+  div {
+    height: 400px;
+    align-self: stretch;
+  }
+
 }
 
-#coverstorys img {
-  width: 100%;
-  border-radius: 2px;
-}
 
-/* feature */
+/* feature (section2) */
 
 .section-row {
+
   display: flex;
   justify-content: space-between; // 讓左右有空間
-  gap: 20px; // 中間間距
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
+  gap: 20px; // 中間間距  
+
+  height: 840px;
+  align-self: stretch;
 }
 
 .section-row>section:first-child {
@@ -94,56 +113,197 @@ li {
   flex: 1; // 右邊：佔 1 份
 }
 
-/* feature左 */
+/* feature左欄 */
 
-.newest {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); // 三欄
-  gap: 20px; // 欄之間的間距
-  padding: 20px;
+.section-row {
+
+  .feature {
+    color: $textcolor;
+    font-family: "Noto Serif TC";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.84px;
+
+    display: flex;
+    width: 700px;
+    padding-bottom: 36px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+  }
+
+
+  .feature1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+
+    img {
+      height: 300px;
+      align-self: stretch;
+    }
+
+    p {
+      color: $textcolor;
+
+      font-family: "Noto Serif TC";
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.84px;
+    }
+  }
+
+  .newest {
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr); // 三欄
+    // gap: 20px; // 欄之間的間距
+    // padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+
+    .new-cards {
+      display: flex;
+      height: 353px;
+      align-items: center;
+      gap: 35px;
+      align-self: stretch;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+        flex: 1 0 0;
+
+        img {
+          height: 240px;
+          align-self: stretch;
+        }
+
+        h3 {
+          align-self: stretch;
+          color: $textcolor;
+
+          font-family: "Noto Serif TC";
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          letter-spacing: 0.84px;
+        }
+
+        p {
+          height: 50px;
+          align-self: stretch;
+          color: $textcolor;
+
+          font-family: "Noto Serif TC";
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          letter-spacing: 0.84px;
+        }
+      }
+    }
+
+
+  }
 }
 
-.newest div {
-  background-color: #f2f2f2;
-  padding: 16px;
-  border-radius: 8px;
-  text-align: center;
-}
 
-/* feature右 */
+/* feature右欄 */
 
 .recommendation {
-  border: $bordercolor;
-  display: flex;
-  flex-direction: column; // 垂直排
-  gap: 20px; // 每列間距
-  padding: 36px;
-  border: 2px solid $textcolor ;
+  // display: flex;
+  // flex-direction: column; // 垂直排
+  // gap: 20px; // 每列間距
+  // padding: 36px;
+  // border: 2px solid $textcolor ;
+  // display: flex;
+  width: 320px;
+  height: 748px;
+  padding: 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  border: 1px solid $bordercolor;
+  margin-top: 56px;
+
+  a {
+      border-bottom: 1px solid $bordercolor;
+  }
 
   h2 {
     text-align: center;
+    color: $textcolor;
+
+    text-align: center;
+    font-family: "Noto Serif TC";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.84px;
   }
 
   .reco-card {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); // 2欄
-    gap: 20px; // 欄之間的間距
-    border-bottom: 2px solid $bordercolor;
-    padding: 16px;
-    border-radius: 2px;
+    display: flex;
+    padding: 36px 0px;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+           
+
+    img {
+      height: 88px;
+      flex: 1 0 0;
+    }
+
+    .reco-card-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      flex: 1 0 0;
+    }
+  }
+
+  .reco-button {
+    display: flex;
+    padding: 29px 46px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
   }
 
   .reco-button a {
-    font-size: 16px;
-    color: $btn-color;
-    border-radius: 2px;
-    border: 2px solid $btn-color;
-    background: url(../../assets/background.png) lightgray 50% / cover no-repeat, #E1BB98;
     display: flex;
     padding: 15px 60px;
     justify-content: center;
     align-items: center;
     gap: 10px;
+
+    font-size: 16px;
+    color: $btn-color;
+    border-radius: 2px;
+    border: 3px solid $btn-color;
+    background: url(../../assets/background.png) lightgray 50% / cover no-repeat, #E1BB98;
+
   }
 
 }

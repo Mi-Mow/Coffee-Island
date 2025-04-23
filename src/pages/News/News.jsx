@@ -3,6 +3,7 @@ import './News.scss'
 import Article from './Article'
 import story1 from '/news/story1.png'
 import cafe1 from '/news/cafe1.jpg'
+import historyImg1 from '/news/historyImg1.jpg'
 import { useState } from 'react'
 
 function News() {
@@ -26,11 +27,9 @@ function News() {
 
             </div>
           </nav>
-
           <br />
-
           <div className='cover-story'>
-            <img src={story1} alt="封面故事1" />
+            <div><img src={story1} alt="封面故事1" /></div>            
           </div>
 
           <br />
@@ -38,10 +37,10 @@ function News() {
 
           <div className='section-row'>
             {/* 左欄 */}
-            <section>
+            <section>              
+              <div className="feature">
               <h2>老臺北特輯</h2>
-              <div className="feature1">
-                <div className='feature'>
+                <div className='feature1'>
 
                   <a href="#">
                     <div>
@@ -52,31 +51,37 @@ function News() {
 
                 </div>
 
-                <h2>2025 最新文章</h2>
+                
                 <div className="newest">
+                <h2>2025 最新文章</h2>
                   {/* 卡片區 */}
+                  <div className="new-cards">
                   <a href="#">
                     <div>
-                      <img src={story1} alt="" />
+                      <img src={historyImg1} alt="" />
+                      <h3>標籤</h3>
                       <h3>標籤</h3>
                       <p>欄1</p>
                     </div>
                   </a>
                   <a href="#">
                     <div>
-                      <img src={story1} alt="" />
+                      <img src={historyImg1} alt="" />
+                      <h3>標籤</h3>
                       <h3>標籤</h3>
                       <p>欄2</p>
                     </div>
                   </a>
                   <a href="#">
                     <div>
-                      <img src={story1} alt="" />
+                      <img src={historyImg1} alt="" />
+                      <h3>標籤</h3>
                       <h3>標籤</h3>
                       <p>欄3</p>
                     </div>
                   </a>
-
+                  </div>
+                  
 
                 </div >
 
@@ -85,7 +90,7 @@ function News() {
 
             {/* 右欄 */}
             <section>
-              <br />
+              
               <div className="recommendation">
                 <h2>人氣推薦</h2>
                 {/* reco-cards */}
@@ -109,11 +114,10 @@ function News() {
                   <div className='reco-card-text'><p>標籤</p><h3>標題</h3></div>
                 </a>
                 {/* btn */}
-                <a href={Article}>
+                
                   <div className="reco-button">
                     <Link to="/news/article">看更多</Link>
-                  </div>
-                </a>
+                  </div>                
 
 
               </div>
