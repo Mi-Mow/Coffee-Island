@@ -4,6 +4,8 @@ import Map from "./Map/Map";
 import Monthly from './Monthly/Monthly'
 import Products from './Products/Products'
 import About from './About/About'
+import Login from "./Login/Login";
+import Register from "./Register/Register";
 
 function Pages() {
   return (
@@ -14,6 +16,8 @@ function Pages() {
         <Route path="/monthly" element={<Monthly />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/about" element={<Login />}></Route>
+        <Route path="/about" element={<Register />}></Route>
       </Routes>
     </>
   );

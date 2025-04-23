@@ -23,7 +23,7 @@ function Header() {
               <img src={earth} alt="" />
               <p>EN</p>
             </div>
-            <button className="login-btn">登入</button>
+            <NavLink to={"/login"} ><button className="login-btn">登入</button></NavLink>
             <button className="register-btn">加入我們</button>
           </div>
         </nav>

@@ -1,0 +1,115 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    background-color: #1c4d3b;
+}
+
+.login-wrapper {
+    height: 100vh;
+    background-color: #153837;
+    /* 深綠背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+
+    padding: auto;
+    width: 430px;
+    text-align: left;
+}
+
+.sub-title {
+    font-size: 14px;
+    padding: 38px;
+    color: #FFF1CB;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.main-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFF1CB;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.input-label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #FFF1CB;
+}
+
+.login-input {
+
+    outline: 0;
+    width: 430px;
+    height: 60px;
+    padding: 10px 12px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 24px;
+    color: #FFF1CB;
+}
+
+.remember input {
+    margin-right: 6px;
+}
+
+.link1 {
+    color: #A7A7A7;
+    text-align: left;
+
+
+}
+
+.link2 {
+    color: #A7A7A7;
+    text-decoration: none;
+    text-align: center;
+  
+
+}
+
+.login-btn {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 60px;
+    padding: 10px;
+    background-color: #d4b48c;
+    border: 2px solid #8a5c35;
+    color: #8a5c35;
+    font-weight: bold;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-btn:hover {
+    background-color: #c9a878;
+    color: #fff;
+}
+
+.footer {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 24px;
+    color: #FFF1CB;
+}
