@@ -6,7 +6,10 @@ $fontsize: 16px;
 $primary_1: #a2b9bc;
 /* h1 color */
 $primary_2: #b2ad7f;
+$bordercolor: black;
+$btn-color: #7B4519;
 
+/* 島嶼月報樣式 */
 #news>main {
   align-self: center;
   display: flex;
@@ -24,11 +27,10 @@ li {
   gap: 24px
 }
 
-// h1
+/* h1 */
 .title {
   color: $primary_2;
   font-size: 24px;
-
 }
 
 /* nav */
@@ -50,7 +52,7 @@ li {
 
 .nav-news a:hover {
   color: $primary_1;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid $bordercolor;
 }
 
 .nav-news ul {
@@ -84,34 +86,13 @@ li {
   border-radius: 8px;
 }
 
-.section-row > section:first-child {
+.section-row>section:first-child {
   flex: 2; // 左邊：佔 2 份
 }
 
-.section-row > section:last-child {
+.section-row>section:last-child {
   flex: 1; // 右邊：佔 1 份
 }
-
-
-// #news>.section2>.feature {
-//   display: flex;
-//   width: 700px;
-//   padding-bottom: 36px;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   gap: 36px;
-// }
-
-// #news>.section2>.recommendation {
-//   display: flex;
-//   width: 320px;
-//   height: 748px;
-//   padding: 24px;
-//   flex-direction: column;
-//   align-items: center;
-//   gap: 12px;
-//   flex-shrink: 0;
-// }
 
 /* feature左 */
 
@@ -122,7 +103,7 @@ li {
   padding: 20px;
 }
 
-.newest>div {
+.newest div {
   background-color: #f2f2f2;
   padding: 16px;
   border-radius: 8px;
@@ -132,15 +113,37 @@ li {
 /* feature右 */
 
 .recommendation {
+  border: $bordercolor;
   display: flex;
   flex-direction: column; // 垂直排
   gap: 20px; // 每列間距
-  padding: 20px;
-}
+  padding: 36px;
+  border: 2px solid $textcolor ;
 
-.recommendation>div {
-  background-color: #f2f2f2;
-  padding: 16px;
-  border-radius: 8px;
-  text-align: center;
+  h2 {
+    text-align: center;
+  }
+
+  .reco-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // 2欄
+    gap: 20px; // 欄之間的間距
+    border-bottom: 2px solid $bordercolor;
+    padding: 16px;
+    border-radius: 2px;
+  }
+
+  .reco-button a {
+    font-size: 16px;
+    color: $btn-color;
+    border-radius: 2px;
+    border: 2px solid $btn-color;
+    background: url(../../assets/background.png) lightgray 50% / cover no-repeat, #E1BB98;
+    display: flex;
+    padding: 15px 60px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
 }

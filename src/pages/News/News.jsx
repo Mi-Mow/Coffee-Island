@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import './News.scss'
 import Article from './Article'
-import story1 from '../../assets/news/story1.png'
-import cafe1 from '../../assets/news/cafe1.jpg'
+import story1 from '/news/story1.png'
+import cafe1 from '/news/cafe1.jpg'
+import { useState } from 'react'
 
 function News() {
+
+
   return (
     <>
       <div id='news'>
@@ -32,12 +35,14 @@ function News() {
 
           <br />
 
+
           <div className='section-row'>
             {/* 左欄 */}
             <section>
+              <h2>老臺北特輯</h2>
               <div className="feature1">
                 <div className='feature'>
-                  <h2>老臺北特輯</h2>
+
                   <a href="#">
                     <div>
                       <img src={story1} alt="老臺北特輯封面照片" />
@@ -45,37 +50,81 @@ function News() {
                     </div>
                   </a>
 
-
                 </div>
 
                 <h2>2025 最新文章</h2>
                 <div className="newest">
-                  <div>欄位 1</div>
-                  <div>欄位 2</div>
-                  <div>欄位 3</div>
-                </div>
+                  {/* 卡片區 */}
+                  <a href="#">
+                    <div>
+                      <img src={story1} alt="" />
+                      <h3>標籤</h3>
+                      <p>欄1</p>
+                    </div>
+                  </a>
+                  <a href="#">
+                    <div>
+                      <img src={story1} alt="" />
+                      <h3>標籤</h3>
+                      <p>欄2</p>
+                    </div>
+                  </a>
+                  <a href="#">
+                    <div>
+                      <img src={story1} alt="" />
+                      <h3>標籤</h3>
+                      <p>欄3</p>
+                    </div>
+                  </a>
+
+
+                </div >
+
               </div>
             </section>
 
             {/* 右欄 */}
             <section>
+              <br />
               <div className="recommendation">
                 <h2>人氣推薦</h2>
-                <div>
-                  列 1
-                  <img src={cafe1} alt="人氣推薦咖啡廳照片" />
-                </div>
-                <div>列 2</div>
-                <div>列 3</div>
+                {/* reco-cards */}
+                <a href="#" className='reco-card'>
+                  <div >
+                    <img src={cafe1} alt="人氣推薦咖啡廳照片" />
+                  </div>
+                  <div className='reco-card-text'><p>標籤</p><h3>標題</h3></div>
+
+                </a>
+                <a href="#" className='reco-card'>
+                  <div >
+                    <img src={cafe1} alt="人氣推薦咖啡廳照片" />
+                  </div>
+                  <div className='reco-card-text'><p>標籤</p><h3>標題</h3></div>
+                </a>
+                <a href="#" className='reco-card'>
+                  <div >
+                    <img src={cafe1} alt="人氣推薦咖啡廳照片" />
+                  </div>
+                  <div className='reco-card-text'><p>標籤</p><h3>標題</h3></div>
+                </a>
+                {/* btn */}
+                <a href={Article}>
+                  <div className="reco-button">
+                    <Link to="/news/article">看更多</Link>
+                  </div>
+                </a>
+
+
               </div>
             </section>
           </div>
 
 
 
-        </main>
+        </main >
 
-      </div>
+      </div >
 
     </>
   )
