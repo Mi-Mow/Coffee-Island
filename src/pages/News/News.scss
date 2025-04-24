@@ -22,7 +22,6 @@ $tagcolor: #eee;
 #event>main {
   align-self: center;
   display: flex;
-  width: 1440px;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
@@ -44,6 +43,7 @@ li {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.84px;
+  
 }
 
 h2 {
@@ -102,8 +102,7 @@ h3 {
 /* 島嶼月報 */
 #news>main {
   align-self: center;
-  display: flex;
-  width: 1440px;
+  display: flex;  
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
@@ -477,6 +476,7 @@ h3 {
 
     img {
       display: flex;
+      width: 290px;      
       height: 170px;
       align-items: center;
       flex: 1 0 0;
@@ -544,8 +544,7 @@ h3 {
 /* 找活動 */
 #event {
 
-  display: flex;
-  width: 1440px;
+  display: flex;  
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;

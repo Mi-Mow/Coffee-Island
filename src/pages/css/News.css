@@ -13,7 +13,6 @@
 #event > main {
   align-self: center;
   display: flex;
-  width: 1440px;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
@@ -88,7 +87,6 @@ h3 {
 #news > main {
   align-self: center;
   display: flex;
-  width: 1440px;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
@@ -384,6 +382,7 @@ h3 {
 #article .sec1 .articleCard img,
 .sec2 .articleCard img {
   display: flex;
+  width: 290px;
   height: 170px;
   align-items: center;
   flex: 1 0 0;
@@ -440,7 +439,6 @@ h3 {
 /* 找活動 */
 #event {
   display: flex;
-  width: 1440px;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
