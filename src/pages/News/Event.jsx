@@ -47,10 +47,7 @@ function Event() {
               <button className='searchBtn'>請輸入關鍵字</button>
 
             </div>
-
           </section>
-
-         
 
           <div className="events">
             {/* 標題 */}
@@ -148,9 +145,18 @@ function Event() {
 
             </div>
 
-
-
           </div>
+
+
+          {/* 頁碼 */}
+          <div className="pageNumberArea">
+            <div>
+              <p>1</p>
+              <p>2</p>
+              <p>3</p>
+            </div>
+          </div>
+
 
 
 
