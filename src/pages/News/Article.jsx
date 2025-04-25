@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import historyImg1 from '/news/historyImg1.jpg'
 import cafe1 from '/news/cafe1.jpg'
+import article1 from '/news/article1.jpg'
 
 
 function Article() {
@@ -35,7 +35,8 @@ function Article() {
                         {/* 每張文章卡片 */}
                         <div className="articleCard">
                             {/* 圖 */}
-                            <img src={historyImg1} alt="" />
+                            <img src={article1} alt="" />
+                            
                             {/* 文 */}
                             <a href="#">
                                 <div className="articleCardText">
@@ -49,7 +50,7 @@ function Article() {
 
                         <div className="articleCard">
                             {/* 圖 */}
-                            <img src={historyImg1} alt="" />
+                            <img src={article1} alt="" />
                             {/* 文 */}
                             <a href="#">
                                 <div className="articleCardText">
@@ -63,7 +64,7 @@ function Article() {
 
                         <div className="articleCard">
                             {/* 圖 */}
-                            <img src={historyImg1} alt="" />
+                            <img src={article1} alt="" />
                             {/* 文 */}
                             <a href="#">
                                 <div className="articleCardText">

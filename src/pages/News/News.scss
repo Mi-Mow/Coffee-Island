@@ -19,7 +19,7 @@ $tagcolor: #eee;
 
 #news,
 #article,
-#event>main {
+#Findevent>main {
   align-self: center;
   display: flex;
   padding: 40px 170px;
@@ -43,7 +43,7 @@ li {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.84px;
-  
+
 }
 
 h2 {
@@ -102,7 +102,7 @@ h3 {
 /* 島嶼月報 */
 #news>main {
   align-self: center;
-  display: flex;  
+  display: flex;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
@@ -476,15 +476,15 @@ h3 {
 
     img {
       display: flex;
-      width: 290px;      
+      width: 290px;
       height: 170px;
       align-items: center;
-      flex: 1 0 0;
+      // flex: 1 0 0;
     }
 
     .articleCardText {
       display: flex;
-      width: 780px;
+      // width: 780px;
       flex-direction: column;
       align-items: flex-end;
       gap: 20px;
@@ -542,13 +542,12 @@ h3 {
 
 
 /* 找活動 */
-#event {
+#findEvent {
 
-  display: flex;  
+  display: flex;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
-
 
   .filterBar {
 
@@ -588,7 +587,7 @@ h3 {
           p {
             display: flex;
             color: $textcolor;
-              
+
             &:hover {
               color: $primary_1;
             }
@@ -634,7 +633,7 @@ h3 {
     }
   }
 
-  .events {
+  .findEvents {
     display: flex;
     padding: 36px 0px;
     flex-direction: column;

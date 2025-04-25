@@ -10,7 +10,7 @@
 
 #news,
 #article,
-#event > main {
+#Findevent > main {
   align-self: center;
   display: flex;
   padding: 40px 170px;
@@ -385,12 +385,10 @@ h3 {
   width: 290px;
   height: 170px;
   align-items: center;
-  flex: 1 0 0;
 }
 #article .sec1 .articleCard .articleCardText,
 .sec2 .articleCard .articleCardText {
   display: flex;
-  width: 780px;
   flex-direction: column;
   align-items: flex-end;
   gap: 20px;
@@ -437,13 +435,13 @@ h3 {
 }
 
 /* 找活動 */
-#event {
+#findEvent {
   display: flex;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
 }
-#event .filterBar {
+#findEvent .filterBar {
   display: flex;
   padding: 60px 320px;
   flex-direction: column;
@@ -453,20 +451,20 @@ h3 {
   align-self: stretch;
   /* 關鍵字搜尋 */
 }
-#event .filterBar .timeBar {
+#findEvent .filterBar .timeBar {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 36px;
   align-self: stretch;
 }
-#event .filterBar .timeBar div {
+#findEvent .filterBar .timeBar div {
   display: flex;
   width: 363px;
   align-items: center;
   gap: 20px;
 }
-#event .filterBar .timeBar div .time {
+#findEvent .filterBar .timeBar div .time {
   display: flex;
   height: 40px;
   padding: 0px 20px;
@@ -476,24 +474,24 @@ h3 {
   border-radius: 2px;
   border: 1px solid #FFF1CB;
 }
-#event .filterBar .timeBar div .time p {
+#findEvent .filterBar .timeBar div .time p {
   display: flex;
   color: #FFF1CB;
 }
-#event .filterBar .timeBar div .time p:hover {
+#findEvent .filterBar .timeBar div .time p:hover {
   color: #a2b9bc;
 }
-#event .filterBar .timeBar div .time:hover {
+#findEvent .filterBar .timeBar div .time:hover {
   border: 2px solid #a2b9bc;
 }
-#event .filterBar .searchBar {
+#findEvent .filterBar .searchBar {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-self: stretch;
 }
-#event .filterBar .searchBar .searchBtn {
+#findEvent .filterBar .searchBar .searchBtn {
   all: unset;
   cursor: pointer;
   background-color: transparent;
@@ -507,11 +505,11 @@ h3 {
   border-radius: 2px;
   border: 2px solid #FFF1CB;
 }
-#event .filterBar .searchBar .searchBtn:hover {
+#findEvent .filterBar .searchBar .searchBtn:hover {
   color: #a2b9bc;
   border: 2px solid #a2b9bc;
 }
-#event .events {
+#findEvent .findEvents {
   display: flex;
   padding: 36px 0px;
   flex-direction: column;
@@ -520,7 +518,7 @@ h3 {
   gap: 36px;
   align-self: stretch;
 }
-#event .events .event-title {
+#findEvent .findEvents .event-title {
   display: flex;
   padding: 0px 389px;
   flex-direction: column;
@@ -528,13 +526,13 @@ h3 {
   gap: 12px;
   align-self: stretch;
 }
-#event .events .event-cards {
+#findEvent .findEvents .event-cards {
   display: flex;
   align-items: center;
   gap: 36px;
   align-self: stretch;
 }
-#event .events .event-cards .event-card {
+#findEvent .findEvents .event-cards .event-card {
   display: flex;
   height: 487px;
   flex-direction: column;
@@ -543,18 +541,18 @@ h3 {
   gap: 12px;
   flex: 1 0 0;
 }
-#event .events .event-cards .event-card img {
+#findEvent .findEvents .event-cards .event-card img {
   height: 400px;
   flex-shrink: 0;
   align-self: stretch;
 }
-#event .events .event-cards .event-card .event-tags {
+#findEvent .findEvents .event-cards .event-card .event-tags {
   display: flex;
   align-items: center;
   gap: 12px;
   align-self: stretch;
 }
-#event .pageNumberArea {
+#findEvent .pageNumberArea {
   display: flex;
   padding: 36px 0px;
   align-items: center;
@@ -562,7 +560,7 @@ h3 {
   align-self: stretch;
   border-bottom: 1px solid #FFF1CB;
 }
-#event .pageNumberArea div {
+#findEvent .pageNumberArea div {
   display: flex;
   justify-content: center;
   align-items: center;

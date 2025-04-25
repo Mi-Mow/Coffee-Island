@@ -6,7 +6,7 @@ function Event() {
     <>
       <div className="news-content">
         <h1 className='title'>找活動</h1>
-        <main id='event'>
+        <main id='findEvent'>
           <nav>
             <div className='nav-news'>
               <ul
@@ -49,7 +49,7 @@ function Event() {
             </div>
           </section>
 
-          <div className="events">
+          <div className="findEvents">
             {/* 標題 */}
             <div className="event-title">
               <h2>Events</h2>
