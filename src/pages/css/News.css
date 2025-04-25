@@ -10,7 +10,7 @@
 
 #news,
 #article,
-#Findevent > main {
+#Findevent {
   align-self: center;
   display: flex;
   padding: 40px 170px;
@@ -435,11 +435,54 @@ h3 {
 }
 
 /* 找活動 */
-#findEvent {
+#findEvent main {
   display: flex;
   padding: 40px 170px;
   flex-direction: column;
   align-items: center;
+}
+#findEvent main div.events {
+  display: flex;
+  padding: 36px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+  align-self: stretch;
+}
+#findEvent main div.events .event-title {
+  display: flex;
+  padding: 0px 389px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+#findEvent main div.events .event-cards {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  align-self: stretch;
+}
+#findEvent main div.events .event-cards .event-card {
+  display: flex;
+  height: 487px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 0 0;
+}
+#findEvent main div.events .event-cards .event-card img {
+  height: 400px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+#findEvent main div.events .event-cards .event-card .event-tags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
 }
 #findEvent .filterBar {
   display: flex;
@@ -508,49 +551,6 @@ h3 {
 #findEvent .filterBar .searchBar .searchBtn:hover {
   color: #a2b9bc;
   border: 2px solid #a2b9bc;
-}
-#findEvent .findEvents {
-  display: flex;
-  padding: 36px 0px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 36px;
-  align-self: stretch;
-}
-#findEvent .findEvents .event-title {
-  display: flex;
-  padding: 0px 389px;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  align-self: stretch;
-}
-#findEvent .findEvents .event-cards {
-  display: flex;
-  align-items: center;
-  gap: 36px;
-  align-self: stretch;
-}
-#findEvent .findEvents .event-cards .event-card {
-  display: flex;
-  height: 487px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 12px;
-  flex: 1 0 0;
-}
-#findEvent .findEvents .event-cards .event-card img {
-  height: 400px;
-  flex-shrink: 0;
-  align-self: stretch;
-}
-#findEvent .findEvents .event-cards .event-card .event-tags {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  align-self: stretch;
 }
 #findEvent .pageNumberArea {
   display: flex;

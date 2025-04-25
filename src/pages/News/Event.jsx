@@ -4,9 +4,9 @@ import event1 from '/news/event1.png'
 function Event() {
   return (
     <>
-      <div className="news-content">
+      <div id='findEvent'>
         <h1 className='title'>找活動</h1>
-        <main id='findEvent'>
+        <main>
           <nav>
             <div className='nav-news'>
               <ul
@@ -49,7 +49,7 @@ function Event() {
             </div>
           </section>
 
-          <div className="findEvents">
+          <div className="events">
             {/* 標題 */}
             <div className="event-title">
               <h2>Events</h2>
