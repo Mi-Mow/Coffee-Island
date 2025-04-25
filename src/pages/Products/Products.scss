@@ -38,12 +38,11 @@
     display: flex;
     justify-content: flex-end;
     padding: 0 40px;
-    margin-bottom: 30px;
   }
 
   .sorting-wrapper {
     position: relative;
-    width: 120px; /* 統一寬度 */
+    width: 140px; /* 統一寬度 */
 
     .ranking-btn {
       width: 100%;
@@ -96,7 +95,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    padding: 100px;
+    padding: 60px;
 
     @media (max-width: 1024px) {
       grid-template-columns: repeat(2, 1fr);
