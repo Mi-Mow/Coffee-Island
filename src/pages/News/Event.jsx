@@ -1,10 +1,38 @@
 import { Link } from 'react-router-dom'
 import event1 from '/news/event1.png'
 
+const EventCard = ({ imgSrc, tags, date, title }) => (
+  <a href="#" className="eventCard">
+    <div className="event-card">
+      <img src={imgSrc} alt="" />
+      <div className="event-tags">
+        {tags.map((tag, index) => (
+          <p key={index} className="tagName">{tag}</p>
+        ))}
+      </div>
+      <p className="date">{date}</p>
+      <h2>{title}</h2>
+    </div>
+  </a>
+);
+
+
+
 function Event() {
-   
+  const events = [
+    {
+      imgSrc: event1,
+      tags: ['最新企劃', '復古咖啡廳'],
+      date: '2025/04/05~2025/04/05',
+      title: '徐明志｜品一杯草莓果醬味咖啡'
+    },
+    // 可加更多活動資料
+  ];
+
   return (
     <>
+
+
       <div id='findEvent'>
         <h1 className='title'>找活動</h1>
         <main>
@@ -36,8 +64,8 @@ function Event() {
 
             {/* 關鍵字搜尋 */}
             <div className="searchBar">
-            <input type="text" placeholder="請輸入關鍵字" />
-            <button className="searchBtn">搜尋</button>
+              <input type="text" placeholder="請輸入關鍵字" />
+              <button className="searchBtn">搜尋</button>
 
             </div>
           </section>
@@ -57,15 +85,15 @@ function Event() {
 
               {/* 每張卡片 */}
               <a href="#" className="eventCard">
-                <div className="event-card">
-                  <img src={event1} alt="" />
-                  <div className="event-tags">
-                    <p className="tagName">最新企劃</p>
-                    <p className="tagName">復古咖啡廳</p>
-                  </div>
-                  <p className="date">2025/04/05~2025/04/05</p>
-                  <h2>徐明志｜品一杯草莓果醬味咖啡</h2>
-                </div>
+                {events.map((event, index) => (
+                  <EventCard
+                    key={index}
+                    imgSrc={event.imgSrc}
+                    tags={event.tags}
+                    date={event.date}
+                    title={event.title}
+                  />
+                ))}
 
               </a>
 
