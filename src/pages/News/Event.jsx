@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import event1 from '/news/event1.png'
 
 function Event() {
+   
   return (
     <>
       <div id='findEvent'>
@@ -26,25 +27,17 @@ function Event() {
             <div className="timeBar">
               時間
               <div>
-                <div className="time">
-                  <p>今日</p>
-                </div>
-                <div className="time">
-                  <p>明日</p>
-                </div>
-                <div className="time">
-                  <p>當月展覽</p>
-                </div>
-                <div className="time">
-                  <p>即將結束</p>
-                </div>
+                {['今日', '明日', '當月展覽', '即將結束'].map((label, idx) => (
+                  <div key={idx} className="time"><p>{label}</p></div>
+                ))}
               </div>
 
             </div>
 
             {/* 關鍵字搜尋 */}
             <div className="searchBar">
-              <button className='searchBtn'>請輸入關鍵字</button>
+            <input type="text" placeholder="請輸入關鍵字" />
+            <button className="searchBtn">搜尋</button>
 
             </div>
           </section>
