@@ -1,0 +1,715 @@
+/* 島嶼月報 */
+/* define primary colors */
+$bgcolor: #eee;
+$textcolor: #FFF1CB;
+$fontsize: 16px;
+/* hover color */
+$primary_1: #a2b9bc;
+/* h1 color */
+$primary_2: #b2ad7f;
+$bordercolor: #FFF1CB;
+$btn-color: #7B4519;
+$tagcolor: #eee;
+
+
+* {
+  color: $textcolor;
+  font-family: "Noto Serif TC";
+}
+
+#news,
+#article,
+#Findevent {
+  align-self: center;
+  display: flex;
+  padding: 40px 170px;
+  flex-direction: column;
+  align-items: center;
+  // background-color: $bgcolor;
+  color: $textcolor;
+  font-size: $fontsize;
+}
+
+li {
+  list-style: none;
+  gap: 24px
+}
+
+/* h1 */
+.title {
+  font-size: 24px;
+
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.84px;
+
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+.tagName {
+  align-self: stretch;
+  color: $tagcolor;
+
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.84px;
+}
+
+/* nav */
+.nav-news {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+}
+
+/* a */
+.nav-news a {
+  margin: 10px;
+  padding: 5px 0;
+  border-bottom: 2px solid transparent;
+  transition: all .35s;
+  cursor: pointer;
+  color: $textcolor;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 9px;
+
+  &:hover {
+    color: $primary_1;
+    border-bottom: 2px solid $bordercolor;
+  }
+}
+
+.nav-news ul {
+  display: flex;
+}
+
+/* 島嶼月報 */
+#news>main {
+  align-self: center;
+  display: flex;
+  padding: 40px 170px;
+  flex-direction: column;
+  align-items: center;
+  // background-color: $bgcolor;
+  color: $textcolor;
+  font-size: $fontsize;
+
+  /* 封面故事 */
+
+  .cover-story {
+
+    display: flex;
+    padding: 36px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+
+    div {
+      height: 400px;
+      align-self: stretch;
+    }
+
+  }
+
+  /* feature (section) */
+
+  .section-row {
+
+    display: flex;
+    justify-content: space-between; // 讓左右有空間
+    gap: 20px; // 中間間距  
+
+    height: 840px;
+    align-self: stretch;
+  }
+
+  .section-row>section:first-child {
+    flex: 2; // 左邊：佔 2 份
+  }
+
+  .section-row>section:last-child {
+    flex: 1; // 右邊：佔 1 份
+  }
+
+  /* feature左欄 */
+
+  .section-row {
+
+    .feature {
+      color: $textcolor;
+
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.84px;
+
+      display: flex;
+      width: 700px;
+      padding-bottom: 36px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 36px;
+    }
+
+
+    .feature1 {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: stretch;
+
+      img {
+        height: 300px;
+        align-self: stretch;
+      }
+
+      p {
+        color: $textcolor;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.84px;
+      }
+    }
+
+    .newest {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      align-self: stretch;
+
+      .new-cards {
+        display: flex;
+        height: 353px;
+        align-items: center;
+        gap: 35px;
+        align-self: stretch;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 10px;
+          flex: 1 0 0;
+
+          img {
+            height: 240px;
+            align-self: stretch;
+          }
+
+          h3 {
+            height: 50px;
+            align-self: stretch;
+            color: $textcolor;
+
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: 0.84px;
+          }
+        }
+      }
+
+
+    }
+  }
+
+
+  /* feature右欄 */
+
+  .recommendation {
+    // display: flex;
+    // flex-direction: column; // 垂直排
+    // gap: 20px; // 每列間距
+    // padding: 36px;
+    // border: 2px solid $textcolor ;
+    // display: flex;
+    width: 320px;
+    height: 748px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    border: 1px solid $bordercolor;
+    margin-top: 56px;
+
+    a {
+      border-bottom: 1px solid $bordercolor;
+    }
+
+    h2 {
+      text-align: center;
+      color: $textcolor;
+
+      text-align: center;
+
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.84px;
+    }
+
+
+    .reco-card {
+      display: flex;
+      padding: 36px 0px;
+      align-items: center;
+      gap: 24px;
+      align-self: stretch;
+
+
+      img {
+        height: 88px;
+        flex: 1 0 0;
+      }
+
+      .reco-card-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        flex: 1 0 0;
+      }
+    }
+
+    .reco-button {
+      display: flex;
+      padding: 29px 46px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+    }
+
+    .reco-button a {
+      display: flex;
+      padding: 15px 60px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 16px;
+      color: $btn-color;
+      border-radius: 2px;
+      border: 3px solid $btn-color;
+      background: url('/paper-texture.png') / cover no-repeat, #E1BB98;
+
+      &:hover {
+        color: $primary_1;
+        border: 2px solid $bordercolor;
+      }
+    }
+
+  }
+
+  /* Events */
+  .events {
+    display: flex;
+    padding: 36px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+    align-self: stretch;
+
+    .event-title {
+      display: flex;
+      padding: 0px 389px;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      align-self: stretch;
+    }
+
+    .event-cards {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      align-self: stretch;
+
+      .event-card {
+        display: flex;
+        height: 487px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 12px;
+        flex: 1 0 0;
+
+        img {
+          height: 400px;
+          flex-shrink: 0;
+          align-self: stretch;
+        }
+
+        .event-tags {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          align-self: stretch;
+        }
+      }
+
+    }
+
+    .event-btn {
+      display: flex;
+      padding: 36px 378px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+
+
+}
+
+/* Top */
+.top-btn {
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 1000;
+
+  svg {
+    width: 40px;
+    height: auto;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+  }
+}
+
+
+
+
+/* 閱讀文章 */
+#article {
+
+  /* 關鍵字搜尋 */
+  .searchBar {
+    display: flex;
+    padding: 24px 320px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+
+    .searchBtn {
+      all: unset;
+      cursor: pointer;
+      background-color: transparent;
+
+      display: flex;
+      width: 400px;
+      height: 40px;
+      padding: 0px 19px;
+      align-items: center;
+      gap: 10px;
+
+      color: $textcolor;
+      border-radius: 2px;
+      border: 2px solid $bordercolor;
+
+      &:hover {
+        color: $primary_1;
+        border: 2px solid $primary_1;
+      }
+    }
+  }
+}
+
+#article .sec1,
+.sec2 {
+  display: flex;
+  padding: 36px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+
+
+
+  .articleCard {
+    display: flex;
+    padding: 40px 0px;
+    align-items: center;
+    gap: 30px;
+    align-self: stretch;
+
+    border-bottom: 1px solid $bordercolor;
+
+    img {
+      display: flex;
+      width: 290px;
+      height: 170px;
+      align-items: center;
+      // flex: 1 0 0;
+    }
+
+    .articleCardText {
+      display: flex;
+      // width: 780px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 20px;
+
+      h1 {
+        font-size: 32px;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-self: stretch;
+      }
+
+      p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-self: stretch;
+      }
+    }
+
+
+  }
+
+  // 頁碼
+  .pageNumberArea {
+    display: flex;
+    padding: 36px 0px;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+
+    border-bottom: 1px solid $bordercolor;
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex: 1 0 0;
+    }
+  }
+}
+
+#article .sec2 {
+  .title {
+    font-size: 24px;
+  }
+}
+
+
+/* 找活動 */
+#findEvent {
+  main {
+    display: flex;
+    padding: 40px 170px;
+    flex-direction: column;
+    align-items: center;
+
+    .events {
+      
+      display: flex;
+      padding: 36px 0px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      align-self: stretch;
+
+      .event-title {
+        display: flex;
+        padding: 0px 389px;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+      }
+
+      .event-cards {
+        
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        align-self: stretch;
+        
+
+        .event-card {
+          display: flex;
+          height: 487px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 12px;
+          flex: 1 0 0;
+
+          img {
+            height: 400px;
+            flex-shrink: 0;
+            align-self: stretch;
+          }
+
+          .event-tags {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            align-self: stretch;
+          }
+        }
+
+
+      }
+
+    }
+  }
+
+
+  .filterBar {
+
+    display: flex;
+    padding: 60px 320px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+
+    .timeBar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      align-self: stretch;
+
+      div {
+        display: flex;
+        width: 363px;
+        align-items: center;
+        gap: 20px;
+
+        .time {
+
+          display: flex;
+          height: 40px;
+          padding: 0px 20px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+
+          border-radius: 2px;
+          border: 1px solid $bordercolor;
+
+          p {
+            display: flex;
+            color: $textcolor;
+
+            &:hover {
+              color: $primary_1;
+            }
+          }
+
+          &:hover {
+
+            border: 2px solid $primary_1;
+          }
+        }
+      }
+    }
+
+    /* 關鍵字搜尋 */
+    .searchBar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-self: stretch;
+
+      .searchBtn {
+        all: unset;
+        cursor: pointer;
+        background-color: transparent;
+
+        display: flex;
+        width: 400px;
+        height: 40px;
+        padding: 0px 20px;
+        align-items: center;
+        gap: 10px;
+
+        color: $textcolor;
+        border-radius: 2px;
+        border: 2px solid $bordercolor;
+
+        &:hover {
+          color: $primary_1;
+          border: 2px solid $primary_1;
+        }
+      }
+    }
+  }
+
+
+
+  // 頁碼
+  .pageNumberArea {
+    display: flex;
+    padding: 36px 0px;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+
+    border-bottom: 1px solid $bordercolor;
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex: 1 0 0;
+    }
+  }
+
+
+}

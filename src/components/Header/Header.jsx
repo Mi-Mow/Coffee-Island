@@ -14,7 +14,7 @@ function Header() {
         <nav>
           <div className="nav-link">
             <NavLink className="nav-item" to={"/map"}>地圖</NavLink>
-            <NavLink className="nav-item" to={"/monthly"}>島嶼月報</NavLink>
+            <NavLink className="nav-item" to={"/news"}>島嶼月報</NavLink>
             <NavLink className="nav-item" to={"/products"}>限定商品</NavLink>
             <NavLink className="nav-item" to={"/about"}>關於我們</NavLink>
           </div>
