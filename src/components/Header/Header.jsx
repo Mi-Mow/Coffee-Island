@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import s from "./Header.module.scss";
-import logo from "../../assets/logo-v2.svg";
+import logo from "../../assets/logo-lg.svg";
 import earth from "../../assets/earth-white.svg";
 
 function Header() {

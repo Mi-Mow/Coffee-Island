@@ -1,14 +1,14 @@
 import s from "./Home.module.scss";
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import coffeeBeanDark from "../../assets/coffeeBeanDark.svg";
-import coffeeBeanLight from "../../assets/coffeeBeanLight.svg";
-import banner from "../../assets/banner.svg";
+import coffeeBeanDark from "../../assets/home/coffeeBeanDark.svg";
+import coffeeBeanLight from "../../assets/home/coffeeBeanLight.svg";
+import banner from "../../assets/home/banner.svg";
 import history1 from "../../assets/history1.png";
 import history2 from "../../assets/history2.png";
 import history3 from "../../assets/history3.png";
 import history4 from "../../assets/history4.png";
-import arrow from "../../assets/arrow.svg";
+import arrow from "../../assets/home/arrow.svg";
 import hotCoffee from "../../assets/home/hotCoffee.png";
 import greenBlock from "../../assets/home/greenBlock.png";
 import handheld from "../../assets/home/handheld.png";
