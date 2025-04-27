@@ -58,7 +58,6 @@ a {
 /* css reset end */
 
 body {
-  background-color: #002c28;
   position: relative;
 }
 
@@ -70,9 +69,10 @@ body::before {
   width: 100vw;
   height: 100vh;
   background-image: url('/paper-texture.png');
+  background-color: #0f2a27;
   background-repeat: repeat;
   background-size: cover;
-  opacity: 0.2;
+  background-blend-mode: overlay;
   pointer-events: none;
   z-index: -99;
 }

@@ -6,7 +6,10 @@ import Products from './Products/Products'
 import About from './About/About'
 import Article from './News/Article'
 import Event from './News/Event'
-
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import District from "./Map/District/District";
+import ProductPage from "./Products/ProductsPage";
 
 function Pages() {
   return (
@@ -17,8 +20,13 @@ function Pages() {
         <Route path="/news" element={<News />}></Route>
         <Route path="/news/article" element={<Article/>} ></Route>
         <Route path="/news/event" element={<Event/>} ></Route>
+        <Route path="/map/:district" element={<District />}></Route>
+        <Route path="/monthly" element={<Monthly />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
     </>
   );
