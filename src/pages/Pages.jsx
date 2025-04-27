@@ -4,6 +4,8 @@ import Map from "./Map/Map";
 import Monthly from './Monthly/Monthly'
 import Products from './Products/Products'
 import About from './About/About'
+import Login from "./Login/Login";
+import Register from "./Register/Register";
 import District from "./Map/District/District";
 import ProductPage from "./Products/ProductsPage";
 
@@ -17,6 +19,8 @@ function Pages() {
         <Route path="/monthly" element={<Monthly />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
         <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
     </>
