@@ -1,9 +1,30 @@
 header {
   display: flex;
-  height: 100px;
+  height: 80px;
+  width: 100%;
   padding: 0 50px;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  // background-color: #002c28;
+
+  &::before {
+    content: "";
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url("/paper-texture.png");
+    background-color: #0f2a27;
+    background-repeat: repeat;
+    background-size: cover;
+    background-blend-mode: overlay;
+    z-index: -10;
+  }
 
   .logo {
     width: 130px;
@@ -73,4 +94,12 @@ nav,
 main {
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 1140px) {
+  nav {
+    display: none;
+  }
+
+  // 還要再加新增漢堡選單
 }
