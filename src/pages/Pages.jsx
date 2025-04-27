@@ -5,6 +5,7 @@ import Monthly from './Monthly/Monthly'
 import Products from './Products/Products'
 import About from './About/About'
 import District from "./Map/District/District";
+import ProductPage from "./Products/ProductsPage";
 
 function Pages() {
   return (
@@ -16,6 +17,7 @@ function Pages() {
         <Route path="/monthly" element={<Monthly />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
     </>
   );
