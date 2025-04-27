@@ -21,7 +21,6 @@ function Pages() {
         <Route path="/news/article" element={<Article/>} ></Route>
         <Route path="/news/event" element={<Event/>} ></Route>
         <Route path="/map/:district" element={<District />}></Route>
-        <Route path="/monthly" element={<Monthly />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/login" element={<Login />}></Route>

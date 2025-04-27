@@ -30,10 +30,10 @@ header {
     width: 130px;
   }
 
-  .nav-link {
+  .navLink {
     margin-right: 30px;
 
-    .nav-item {
+    .navItem {
       margin: 0 30px;
       font-size: 18px;
       color: #fff;
@@ -41,7 +41,7 @@ header {
     }
   }
 
-  .earth-container {
+  .earthContainer {
     cursor: pointer;
     p {
       font-size: 16px;
@@ -50,7 +50,7 @@ header {
     }
   }
 
-  .login-btn {
+  .loginBtn {
     border: #fff 2px solid;
     color: #fff;
     font-size: 16px;
@@ -62,13 +62,13 @@ header {
     cursor: pointer;
   }
 
-  .login-btn:hover {
+  .loginBtn:hover {
     color: #265b51;
     background-color: #fff;
     transition: 0.3s;
   }
 
-  .register-btn {
+  .registerBtn {
     border: #fff 2px solid;
     color: #265b51;
     font-size: 16px;
@@ -81,7 +81,7 @@ header {
     cursor: pointer;
   }
 
-  .register-btn:hover {
+  .registerBtn:hover {
     color: #fff;
     background-color: transparent;
     transition: 0.3s;
@@ -89,8 +89,8 @@ header {
 }
 
 nav,
-.btn-container,
-.earth-container,
+.btnContainer,
+.earthContainer,
 main {
   display: flex;
   align-items: center;
@@ -101,5 +101,5 @@ main {
     display: none;
   }
 
-  // 還要再加新增漢堡選單
+  // 還要再新增漢堡選單
 }

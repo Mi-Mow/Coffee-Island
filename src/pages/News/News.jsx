@@ -141,7 +141,7 @@ function News() {
             <div className="event-title">
               <h2>Events</h2>
               <svg xmlns="http://www.w3.org/2000/svg" width="321" height="3" viewBox="0 0 321 3" fill="none">
-                <path d="M0.5 1.47754H320.5" stroke="#FFF1CB" stroke-width="2" />
+                <path d="M0.5 1.47754H320.5" stroke="#FFF1CB" strokeWidth="2" />
               </svg>
             </div>
 
