@@ -35,9 +35,20 @@ header {
 
     .navItem {
       margin: 0 30px;
+      padding-bottom: 10px;
       font-size: 18px;
       color: #fff;
       font-weight: 800;
+      border-bottom: transparent 2px solid;
+      transition: all 0.3s ease-out;
+
+      &:hover {
+        border-bottom: #fff 2px solid;
+      }
+    }
+
+    .active {
+      border-bottom: #fff 2px solid;
     }
   }
 
