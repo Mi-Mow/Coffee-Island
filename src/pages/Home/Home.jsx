@@ -70,7 +70,7 @@ function Home() {
   // 向下滾動 arrow
   const carouselRef = useRef(null);
   const scrollDown = () => {
-    carouselRef.current?.scrollIntoView({ behavior: "smooth" });
+    carouselRef.current?.scrollIntoView();
   };
 
   const carRef = useRef(null);
@@ -81,7 +81,7 @@ function Home() {
     if (location.hash === "#map") {
       const mapSection = document.getElementById("map");
       if (mapSection) {
-        mapSection.scrollIntoView({ bahavior: "smooth" });
+        mapSection.scrollIntoView();
       }
     }
   }, [location]);
