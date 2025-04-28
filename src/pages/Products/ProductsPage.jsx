@@ -1,7 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./ProductsPage.scss";
-import productImage from "../../assets/history2.png"; // 換成你的圖片
+import history1 from "../../assets/history2.png";
+import history2 from "../../assets/history2.png";
+import history3 from "../../assets/history2.png";
 
 const mockProduct = {
   name: "泰摩咖啡 Bricks電動家用磨豆機 黑色",
@@ -12,7 +14,8 @@ const mockProduct = {
     "一鍵啟動，使用簡單又便利",
     "可選擇杯份磨豆"
   ],
-  colors: ["#000000", "#ffffff", "#a0522d"], // 黑 白 棕
+  colors: ["#000000", "#ffffff", "#a0522d"],
+  images: [history1, history2, history3],
 };
 
 function ProductPage() {
@@ -20,6 +23,7 @@ function ProductPage() {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(mockProduct.colors[0]);
+  const [currentImage, setCurrentImage] = useState(0);
 
   const handleBuyNow = () => {
     navigate("/cart");
@@ -28,34 +32,40 @@ function ProductPage() {
   return (
     <div className="product-detail-page">
       <div className="left">
-        <img src={productImage} alt="product" />
+        <div className="carousel">
+          <img src={mockProduct.images[currentImage]} alt="product" />
+          <div className="carousel-controls">
+            <button onClick={() => setCurrentImage((currentImage - 1 + mockProduct.images.length) % mockProduct.images.length)}>&lt;</button>
+            <button onClick={() => setCurrentImage((currentImage + 1) % mockProduct.images.length)}>&gt;</button>
+          </div>
+        </div>
+        <div className="dots">
+          {mockProduct.images.map((_, i) => (
+            <span
+              key={i}
+              className={currentImage === i ? "active" : ""}
+              onClick={() => setCurrentImage(i)}
+            />
+          ))}
+        </div>
       </div>
+
       <div className="right">
-        <h2>{mockProduct.name}</h2>
+        <h2>
+          <span className="highlight">泰摩咖啡</span>{" "}
+          Bricks電動家用磨豆機 黑色
+        </h2>
+
         <ul className="description">
           {mockProduct.description.map((line, i) => (
             <li key={i}>• {line}</li>
           ))}
         </ul>
 
-        <div className="colors">
-          <p>顏色</p>
-          <div className="color-options">
-            {mockProduct.colors.map((color, i) => (
-              <span
-                key={i}
-                className={`dot ${selectedColor === color ? "selected" : ""}`}
-                style={{ backgroundColor: color }}
-                onClick={() => setSelectedColor(color)}
-              />
-            ))}
-          </div>
-        </div>
-
         <div className="quantity">
-          <button onClick={() => setQuantity(q => Math.max(1, q - 1))}>－</button>
+          <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>－</button>
           <span>{quantity}</span>
-          <button onClick={() => setQuantity(q => q + 1)}>＋</button>
+          <button onClick={() => setQuantity((q) => q + 1)}>＋</button>
         </div>
 
         <div className="price">
@@ -71,5 +81,16 @@ function ProductPage() {
     </div>
   );
 }
+<div className="product-extra-info">
+
+{/* 商品規格(我還不知道要怎麼設計QQ) */}
+<section className="product-specs">
+  <div className="empty-block">
+    {/* 商品規格區塊（這裡留空，未來可以填內容） */}
+  </div>
+</section>
+
+</div>
+
 
 export default ProductPage;

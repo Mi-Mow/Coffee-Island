@@ -1,102 +1,257 @@
 .product-detail-page {
   display: flex;
-  gap: 2rem;
-  padding: 2rem;
-  font-family: sans-serif;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
 
-  .left img {
-    width: 400px;
-    border-radius: 10px;
+  .left {
+    flex: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .carousel {
+      position: relative;
+      width: 80%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: block;
+      }
+
+      .carousel-controls {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem;
+        pointer-events: none;
+
+        button {
+          pointer-events: all;
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          width: 40px;
+          height: 40px;
+          font-size: 1.5rem;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.3s;
+
+          &:hover {
+            background: #7F7E5E;
+          }
+        }
+      }
+    }
   }
 
   .right {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem;
+
     h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+      color: #FFF1CB;
     }
 
     .description {
-      margin-bottom: 1rem;
-      li {
-        line-height: 1.6;
-      }
-    }
-
-    .colors {
-      margin-bottom: 1rem;
-      .color-options {
-        display: flex;
-        gap: 10px;
-        margin-top: 0.5rem;
-        .dot {
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          border: 2px solid #aaa;
-          cursor: pointer;
-        }
-        .selected {
-          border: 3px solid #333;
-        }
-      }
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #FFF;
     }
 
     .quantity {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin: 1rem 0;
+      justify-content: center;
+      gap: 0;
+      background: #eee;
+      border-radius: 8px;
+      padding: 0.3rem 0.5rem;
+      width: fit-content;
+      margin: 1.5rem 0;
+
       button {
-        background: #e0e0e0;
+        background: transparent;
         border: none;
-        padding: 0.3rem 1rem;
         font-size: 1.2rem;
-        border-radius: 5px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
+        color: #000;
       }
+
       span {
-        font-size: 1.1rem;
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
       }
     }
 
     .price {
-      margin: 1rem 0;
-      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      color: #FFF1CB;
+
       .highlight {
         color: #d9534f;
+        font-weight: bold;
         margin-left: 0.5rem;
       }
+
       .old {
-        margin-left: 1rem;
-        text-decoration: line-through;
-        color: gray;
         font-size: 1rem;
+        color: #FFF;
+        text-decoration: line-through;
+        margin-left: 0.8rem;
       }
     }
 
     .actions {
       display: flex;
       gap: 1rem;
-      margin-top: 1rem;
+
+      .buy, .add {
+        flex: 1;
+        padding: 1rem 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        border: none;
+        box-shadow: none;
+      }
 
       .buy {
-        background: #bfa76f;
-        border: none;
-        color: white;
-        padding: 0.6rem 1.5rem;
-        border-radius: 6px;
-        cursor: pointer;
+        background: #7F7E5E;
+        color: #fff;
+
+        &:hover {
+          background: #6f6e4f;
+        }
       }
 
       .add {
         background: transparent;
-        border: 1px solid #bfa76f;
-        color: #bfa76f;
-        padding: 0.6rem 1.5rem;
-        border-radius: 6px;
-        cursor: pointer;
+        border: 2px solid #7F7E5E;
+        color: #7F7E5E;
+
+        &:hover {
+          background: #7F7E5E;
+          color: #fff;
+        }
       }
+    }
+  }
+
+  // RWD 手機版
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+
+    .left {
+      width: 100%;
+
+      .carousel {
+        width: 90%;
+      }
+    }
+
+    .right {
+      width: 100%;
+      padding: 2rem 1.5rem;
+
+      h2 {
+        font-size: 1.6rem;
+        text-align: center;
+      }
+
+      .description {
+        font-size: 1rem;
+        text-align: left;
+      }
+
+      .quantity {
+        margin: 1rem auto;
+      }
+
+      .price {
+        font-size: 1.3rem;
+        text-align: center;
+
+        .highlight {
+          font-size: 1.4rem;
+        }
+
+        .old {
+          font-size: 0.9rem;
+        }
+      }
+
+      .actions {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+
+        .buy, .add {
+          width: 100%;
+          padding: 0.8rem 0;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+.product-extra-info {
+  width: 100%;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  .product-specs {
+    width: 100%;
+    height: 300px; // 占位高度，可以調整
+    background: #2f4f4f; // 深灰綠色，明顯知道這裡留空
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+
+    .empty-block {
+      text-align: center;
     }
   }
 }
