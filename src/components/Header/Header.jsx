@@ -13,10 +13,8 @@ function Header() {
         <nav>
           <div className={s.navLink}>
             <NavLink
-              to={"/map"}
-              className={({ isActive }) =>
-                isActive ? `${s.navItem} ${s.active}` : s.navItem
-              }
+              to={"/#map"}
+              className={s.navItem}
             >
               地圖
             </NavLink>

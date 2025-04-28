@@ -1,6 +1,6 @@
 import s from "./Home.module.scss";
 import { useRef, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import coffeeBeanDark from "../../assets/home/coffeeBeanDark.svg";
 import coffeeBeanLight from "../../assets/home/coffeeBeanLight.svg";
 import banner from "../../assets/home/banner.svg";
@@ -45,19 +45,19 @@ gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 const carouselImages = [
   {
     img: carousel1,
-    link: '/products',
-    text: "限定商品"
-  }, 
+    link: "/products",
+    text: "限定商品",
+  },
   {
     img: carousel2,
-    link: '/news/event',
-    text: "找活動"
-  }, 
+    link: "/news/event",
+    text: "找活動",
+  },
   {
     img: carousel3,
-    link: '/news/article',
-    text: "閱讀文章"
-  }
+    link: "/news/article",
+    text: "閱讀文章",
+  },
 ];
 
 function Home() {
@@ -73,10 +73,20 @@ function Home() {
     carouselRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // 車車動畫，維修中
   const carRef = useRef(null);
   const pathRef = useRef(null);
+  const location = useLocation();
 
+  useEffect(() => {
+    if (location.hash === "#map") {
+      const mapSection = document.getElementById("map");
+      if (mapSection) {
+        mapSection.scrollIntoView({ bahavior: "smooth" });
+      }
+    }
+  }, [location]);
+
+  // not working
   useEffect(() => {
     const path = pathRef.current;
     const car = carRef.current;
@@ -284,7 +294,10 @@ function Home() {
             </div>
             <div className={s.imageContainer}>
               <Link to={carouselImages[currentCarouselIndex].link}>
-                <img src={carouselImages[currentCarouselIndex].img} alt="carousel" />
+                <img
+                  src={carouselImages[currentCarouselIndex].img}
+                  alt="carousel"
+                />
                 <div className={s.textBg}>
                   <img src={textBg} alt="" />
                   <p>{carouselImages[currentCarouselIndex].text}</p>
@@ -442,7 +455,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className={s.map}>
+      <section className={s.map} id="map">
         <div className={s.mapBox}>
           <div className={s.northTwContainer}>
             <div className={s.northBox}>

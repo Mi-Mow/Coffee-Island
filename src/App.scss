@@ -57,6 +57,10 @@ a {
 
 /* css reset end */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   position: relative;
 }
