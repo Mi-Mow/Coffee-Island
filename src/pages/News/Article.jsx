@@ -6,14 +6,14 @@ import article1 from '/news/article1.jpg'
 function Article() {
     return (
         <>
-            <div className="news-content">
+            <div id='findArticles'>
                 <h1 className='title'>閱讀文章</h1>
 
                 <main id='article'>
                     <nav>
                         <div className='nav-news'>
-                            <ul
-                            ><li>
+                            <ul>
+                                <li>
                                     <Link to="/news/article">閱讀文章</Link>
                                 </li>
                                 <li>
@@ -29,14 +29,14 @@ function Article() {
                     <section className="sec1">
                         {/* 關鍵字搜尋 */}
                         <div className="searchBar">
-                            <button className='searchBtn'>請輸入關鍵字</button>
-
+                            <input type="search" placeholder="請輸入關鍵字" />
+                            {/* <button className='searchBtn'>搜尋</button> */}
                         </div>
                         {/* 每張文章卡片 */}
                         <div className="articleCard">
                             {/* 圖 */}
                             <img src={article1} alt="" />
-                            
+
                             {/* 文 */}
                             <a href="#">
                                 <div className="articleCardText">
