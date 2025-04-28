@@ -27,7 +27,7 @@ function Register() {
                     </label>
                 </div>
 
-                <button className="login-btn1">登入</button>
+                <button className="login-btn">登入</button>
             </div>
         </div>
     );
