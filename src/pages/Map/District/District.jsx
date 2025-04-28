@@ -77,9 +77,9 @@ function District() {
   const districtName = districtMap[district].name;
   const districtImg = districtMap[district].img;
 
-  const downRef = useRef(null);
+  const filterRef = useRef(null);
   const scrollDown = () => {
-    downRef.current?.scrollIntoView({ behavior: 'smooth' });
+    filterRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (
@@ -145,8 +145,8 @@ function District() {
           </div>
         </div>
       </section>
-      <section className={s.filter} ref={downRef}>
-        aaa
+      <section className={s.filter} ref={filterRef}>
+        filter section
       </section>
     </>
   );

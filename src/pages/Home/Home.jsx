@@ -1,6 +1,6 @@
 import s from "./Home.module.scss";
 import { useRef, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import coffeeBeanDark from "../../assets/home/coffeeBeanDark.svg";
 import coffeeBeanLight from "../../assets/home/coffeeBeanLight.svg";
 import banner from "../../assets/home/banner.svg";
@@ -12,6 +12,12 @@ import arrow from "../../assets/home/arrow.svg";
 import hotCoffee from "../../assets/home/hotCoffee.png";
 import greenBlock from "../../assets/home/greenBlock.png";
 import handheld from "../../assets/home/handheld.png";
+import carousel1 from "../../assets/home/carousel1.png";
+import carousel2 from "../../assets/home/carousel2.png";
+import carousel3 from "../../assets/home/carousel3.png";
+import arrowLeft from "../../assets/home/arrowLeft.svg";
+import arrowRight from "../../assets/home/arrowRight.svg";
+import textBg from "../../assets/home/textBg.png";
 import north from "../../assets/home/northTW.svg";
 import beitou from "../../assets/home/district/beitou.svg";
 import daan from "../../assets/home/district/daan.svg";
@@ -36,6 +42,24 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // 註冊 GSAP MotionPathPlugin
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
+const carouselImages = [
+  {
+    img: carousel1,
+    link: '/products',
+    text: "限定商品"
+  }, 
+  {
+    img: carousel2,
+    link: '/news/event',
+    text: "找活動"
+  }, 
+  {
+    img: carousel3,
+    link: '/news/article',
+    text: "閱讀文章"
+  }
+];
+
 function Home() {
   const navigate = useNavigate();
 
@@ -43,10 +67,10 @@ function Home() {
     navigate(`/map/${area}`);
   }
 
-  // 向下滾動動畫
-  const downRef = useRef(null);
+  // 向下滾動 arrow
+  const carouselRef = useRef(null);
   const scrollDown = () => {
-    downRef.current?.scrollIntoView({ behavior: "smooth" });
+    carouselRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   // 車車動畫，維修中
@@ -159,6 +183,20 @@ function Home() {
     { id: "xinyi", img: xinyi },
   ];
 
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentCarouselIndex((prevIndex) =>
+      prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentCarouselIndex(
+      (prevIndex) => (prevIndex + 1) % carouselImages.length
+    );
+  };
+
   return (
     <>
       <main>
@@ -206,7 +244,7 @@ function Home() {
           </div>
         </div>
       </main>
-      <section className={s.carousel} ref={downRef}>
+      <section className={s.carousel} ref={carouselRef}>
         <div className={s.greatTime}>
           <div className={s.greenBlockContainer}>
             <img src={greenBlock} alt="" />
@@ -238,7 +276,27 @@ function Home() {
             現在就讓我們來一起踏上咖啡之旅吧!
           </div>
         </div>
-        <div className={s.mainCarousel}>{/* carousel 寫這裡 */}</div>
+        {/* 待優化 */}
+        <div className={s.mainCarousel}>
+          <div className={s.carousel}>
+            <div className={s.arrowContainer}>
+              <img src={arrowLeft} onClick={handlePrev} alt="" />
+            </div>
+            <div className={s.imageContainer}>
+              <Link to={carouselImages[currentCarouselIndex].link}>
+                <img src={carouselImages[currentCarouselIndex].img} alt="carousel" />
+                <div className={s.textBg}>
+                  <img src={textBg} alt="" />
+                  <p>{carouselImages[currentCarouselIndex].text}</p>
+                </div>
+              </Link>
+            </div>
+            <div className={s.arrowContainer}>
+              <img src={arrowRight} onClick={handleNext} alt="" />
+            </div>
+          </div>
+        </div>
+        {/* 待優化 */}
       </section>
       <section className={s.film}>
         <div className={s.filmContainer}>
