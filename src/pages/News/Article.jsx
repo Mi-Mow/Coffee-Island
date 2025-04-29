@@ -1,9 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import cafe1 from '/news/cafe1.jpg'
 import article1 from '/news/article1.jpg'
 
 
 function Article() {
+    const navigate = useNavigate();
+
+    function onClickArea(parameter) {
+        navigate(`/news/article/${parameter}`);
+    }
+
+    
+
     return (
         <>
             <div id='findArticles'>
