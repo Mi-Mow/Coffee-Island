@@ -1,22 +1,6 @@
 import { Link } from 'react-router-dom'
 import event1 from '/news/event1.png'
-
-const EventCard = ({ imgSrc, tags, date, title }) => (
-  <a href="#" className="eventCard">
-    <div className="event-card">
-      <img src={imgSrc} alt="" />
-      <div className="event-tags">
-        {tags.map((tag, index) => (
-          <p key={index} className="tagName">{tag}</p>
-        ))}
-      </div>
-      <p className="date">{date}</p>
-      <h2>{title}</h2>
-    </div>
-  </a>
-);
-
-
+import EventCard from './components/EventCard';
 
 function Event() {
   const events = [
@@ -24,15 +8,28 @@ function Event() {
       imgSrc: event1,
       tags: ['最新企劃', '復古咖啡廳'],
       date: '2025/04/05~2025/04/05',
-      title: '徐明志｜品一杯草莓果醬味咖啡'
+      title: '徐明志｜品一杯草莓果醬味咖啡',
+      link: "/news/event/1" // 活動內容頁面
     },
-    // 可加更多活動資料
+    {
+      imgSrc: event1,
+      tags: ['最新企劃', '復古咖啡廳'],
+      date: '2025/04/05~2025/04/05',
+      title: '徐明志｜品一杯草莓果醬味咖啡',
+      link: "/news/event/1" // 活動內容頁面
+    },
+    {
+      imgSrc: event1,
+      tags: ['最新企劃', '復古咖啡廳'],
+      date: '2025/04/05~2025/04/05',
+      title: '徐明志｜品一杯草莓果醬味咖啡',
+      link: "/news/event/1" // 活動內容頁面
+    },
+    // 更多資料...
   ];
 
   return (
     <>
-
-
       <div id='findEvent'>
         <h1 className='title'>找活動</h1>
         <main>
@@ -53,7 +50,7 @@ function Event() {
           <section className='filterBar'>
             {/* 時間列 */}
             <div className="timeBar">
-              時間
+              <p>時間</p>
               <div>
                 {['今日', '明日', '當月展覽', '即將結束'].map((label, idx) => (
                   <div key={idx} className="time"><p>{label}</p></div>
@@ -66,7 +63,6 @@ function Event() {
             <div className="searchBar">
               <input type="text" placeholder="請輸入關鍵字" />
               <button className="searchBtn">搜尋</button>
-
             </div>
           </section>
 
@@ -84,7 +80,7 @@ function Event() {
             <div className="event-cards">
 
               {/* 每張卡片 */}
-              <a href="#" className="eventCard">
+              <div className="event-cards">
                 {events.map((event, index) => (
                   <EventCard
                     key={index}
@@ -92,34 +88,10 @@ function Event() {
                     tags={event.tags}
                     date={event.date}
                     title={event.title}
+                    link={event.link}
                   />
                 ))}
-
-              </a>
-
-              <a href="#" className="eventArea">
-                <div className="event-card">
-                  <img src={event1} alt="" />
-                  <div className="event-tags">
-                    <p className="tagName">最新企劃</p>
-                    <p className="tagName">復古咖啡廳</p>
-                  </div>
-                  <p className="date">2025/04/05~2025/04/05</p>
-                  <h2>徐明志｜品一杯草莓果醬味咖啡</h2>
-                </div>
-              </a>
-
-              <a href="#" className="eventArea">
-                <div className="event-card">
-                  <img src={event1} alt="" />
-                  <div className="event-tags">
-                    <p className="tagName">最新企劃</p>
-                    <p className="tagName">復古咖啡廳</p>
-                  </div>
-                  <p className="date">2025/04/05~2025/04/05</p>
-                  <h2>徐明志｜品一杯草莓果醬味咖啡</h2>
-                </div>
-              </a>
+              </div>
 
             </div>
 
