@@ -130,7 +130,7 @@ function Event() {
                     }}
                     style={{ cursor: 'pointer',
                       fontWeight: filterTime === label ? 'bold' : 'normal',
-                      backgroundColor: filterTime === label ? '#fff' : '',
+                      backgroundColor: filterTime === label ? '#333' : '',
                     }}
                   >
                     <p>{label}</p>
@@ -143,7 +143,7 @@ function Event() {
             {/* 關鍵字搜尋 */}
             <div className="searchBar">
               <input type="text" placeholder="請輸入關鍵字" />
-              <button className="searchBtn">搜尋</button>
+              {/* <button className="searchBtn">搜尋</button> */}
             </div>
           </section>
 
