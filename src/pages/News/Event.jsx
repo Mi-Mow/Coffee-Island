@@ -122,9 +122,9 @@ function Event() {
                   <div
                     key={idx}
                     // 點擊切換className名稱
-                    className={`time ${filterTime === label ? 'active' : ''}`}
+                    className="time"
                     onClick={() => {
-                      console.log(`filterTime=${filterTime}, label=${label}`)
+                      // console.log(`filterTime=${filterTime}, label=${label}`)
                       // 如果點到同一個就清除（回到「全部」），否則就設定新篩選
                       setFilterTime(filterTime === label ? '全部' : label);
                     }}
