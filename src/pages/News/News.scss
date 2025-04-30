@@ -454,7 +454,7 @@ $tagcolor: #a1b8bb;
     }
   }
 
-  
+
 
   .sec1,
   .sec2 {
@@ -573,15 +573,27 @@ $tagcolor: #a1b8bb;
       }
 
       .event-cards {
-
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* 桌機：每列4欄 */
         align-items: center;
-        gap: 36px;
+        gap: 54px 36px;
         align-self: stretch;
+
+        @media screen and (max-width: 1024px) {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 54px 24px;
+          /* 平板：3欄 */
+        }
+
+        @media screen and (max-width: 600px) {
+          grid-template-columns: repeat(1, 1fr);
+          gap: 54px 24px;
+          /* 手機：1欄 */
+        }
 
 
         .event-card {
-          display: flex;
           height: 487px;
           flex-direction: column;
           justify-content: center;
@@ -657,6 +669,12 @@ $tagcolor: #a1b8bb;
           &:hover {
 
             border: 2px solid $primary_1;
+          }
+
+          .active {
+            background-color: #333;
+            color: white;
+            border-color: #333;
           }
         }
       }
