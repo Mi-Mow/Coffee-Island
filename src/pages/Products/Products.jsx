@@ -1,6 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import "./Products.scss";
-import history2 from "../../assets/history2.png";
+import gooseneck1 from "../../assets/products/gooseneck1.png";
+import gooseneck2 from "../../assets/products/gooseneck2.png";
+import gooseneck3 from "../../assets/products/gooseneck3.png";
+import gooseneckHover1 from "../../assets/products/gooseneck1.jpg";
+import gooseneckHover2 from "../../assets/products/gooseneck2.jpg";
+import gooseneckHover3 from "../../assets/products/gooseneck3.jpg";
+import coffeeFilter1 from "../../assets/products/coffeeFilter1.png";
+import coffeeFilter2 from "../../assets/products/coffeeFilter2.png";
+import coffeeFilterHover1 from "../../assets/products/coffeeFilter1.jpg";
+import coffeeFilterHover2 from "../../assets/products/coffeeFilter2.jpg";
 import { useNavigate } from "react-router-dom";
 
 const products = [
@@ -12,7 +21,8 @@ const products = [
     tag: "優選",
     isNew: false,
     category: "kettle",
-    image: history2,
+    image: gooseneck1,
+    hoverImage: gooseneckHover1,
   },
   {
     id: "1-2",
@@ -22,7 +32,8 @@ const products = [
     tag: "優選",
     isNew: false,
     category: "kettle",
-    image: history2,
+    image: gooseneck2,
+    hoverImage: gooseneckHover2,
   },
   {
     id: "1-3",
@@ -32,7 +43,8 @@ const products = [
     tag: "優選",
     isNew: false,
     category: "kettle",
-    image: history2,
+    image: gooseneck3,
+    hoverImage: gooseneckHover3,
   },
   {
     id: "2-1",
@@ -42,7 +54,8 @@ const products = [
     tag: "經典",
     isNew: false,
     category: "filter",
-    image: history2,
+    image: coffeeFilter1,
+    hoverImage: coffeeFilterHover1,
   },
   {
     id: "2-2",
@@ -52,7 +65,8 @@ const products = [
     tag: "經典",
     isNew: false,
     category: "filter",
-    image: history2,
+    image: coffeeFilter2,
+    hoverImage: coffeeFilterHover2,
   },
   {
     id: "3-1",
@@ -62,7 +76,8 @@ const products = [
     tag: "熱銷",
     isNew: true,
     category: "beans",
-    image: history2,
+    image: gooseneck1,
+    hoverImage: gooseneckHover1,
   },
   {
     id: "3-2",
@@ -72,7 +87,8 @@ const products = [
     tag: "熱銷",
     isNew: true,
     category: "beans",
-    image: history2,
+    image: gooseneck1,
+    hoverImage: gooseneckHover1,
   },
 ];
 
@@ -82,6 +98,8 @@ function ProductList() {
   const [dropdownOpen, setDropdownOpen] = useState(false);  //預設下拉選單目前有沒有打開
   const dropdownRef = useRef(); //	用來指向下拉選單的區域，幫忙偵測是否點在外面，點選就關掉
   const navigate = useNavigate();//用來導向productpage
+
+  const [hoveredId, setHoveredId] = useState(null); // ⬅️ 新增：追蹤 hover 卡片
 
   //篩選下拉選單，第一步設定：如果點擊下拉選單以外的地方，就會為false
   useEffect(() => {
@@ -143,8 +161,7 @@ function ProductList() {
           <ul className="sorting-options">
             {["熱門商品", "最新商品", "價錢高到低", "價錢低到高"].map((type) => (
               <li
-                key={type}onClick={() => {setSortType(type);setDropdownOpen(false);
-                }}
+                key={type} onClick={() => {setSortType(type);setDropdownOpen(false);}}
               >
                 {type}
               </li>
@@ -161,11 +178,16 @@ function ProductList() {
               className="product-card"
               key={item.id}
               onClick={() => navigate(`/product/${item.id}`)}
+              onMouseEnter={() => setHoveredId(item.id)} // ⬅️ 進入 hover
+              onMouseLeave={() => setHoveredId(null)}     // ⬅️ 離開 hover
               style={{ cursor: "pointer" }}
             >
               {/* 卡片內要顯示的資料 */}
               <div className="tag">{item.tag}</div>
-              <img src={item.image} alt={item.name} />
+              <img
+                src={hoveredId === item.id && item.hoverImage ? item.hoverImage : item.image}
+                alt={item.name}
+              />
               {item.isNew && <div className="new-tag">NEW</div>}
               <div className="info">
                 <p className="name">{item.name}</p>
