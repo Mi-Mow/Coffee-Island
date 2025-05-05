@@ -6,11 +6,52 @@ import article1 from '/news/article1.jpg'
 function Article() {
     const navigate = useNavigate();
 
-    function onClickArea(parameter) {
-        navigate(`/news/article/${parameter}`);
+    function onClickArea(id) {
+        navigate(`/news/article/${id}`);
     }
 
-    
+    // 資料區
+    const articles = [
+        {
+            id: 1,
+            title: '明星咖啡館與那個年代：台北文人的思想日常',
+            content: '在1960年代末的台北街頭，思想的自由仍在重重邊界之中遊走。學運、文藝、國際思潮交織而來，卻在某些地方悄然發酵──那不是課堂，也不是報社，而是街角的咖啡館。像是「明星咖啡館」這樣的空間，對當時的文青而言，不只是喝咖啡的場所，而是一種「精神的流浪地」。他們窩在藤椅裡，口中談論薩特、卡繆與尼采，筆記本裡寫下詩句、政治抒懷、未完成的小說，試圖在那一壺濃黑之中釋放內心的幽微躁動。',
+            image: article1
+        },
+        {
+            id: 2,
+            title: '文青與現代城市：空間與記憶的重疊',
+            content: '在青田街的午後，陽光灑落在老屋斑駁的牆面，時間彷彿變得遲緩。文學青年們聚在一間無招牌的咖啡館，桌上攤著《現代詩》與翻譯的龐德選集。香煙繚繞，話題從馬克思跳到波赫士，又繞回台灣文學的未來。他們並不刻意對抗體制，而是以創作為武器，在沉默中累積力量。這些討論，也許從未寫進報章雜誌，卻在那張舊藤椅上，發酵成未來的文化火種。這不僅是一段回憶，更是一種生活方式——用詩意，對抗現實的粗糙。',
+            image: article1
+        },
+        {
+            id: 3,
+            title: '地下藝文場景與思想解放',
+            content: '牯嶺街口的老書店旁，一家新開的咖啡館成為學生口耳相傳的聚點。木質窗櫺內，是一群穿著寬鬆白襯衫、眼神堅定的青年。他們手中捧著黑咖啡與薄本小冊子，嘴裡念的是左岸的浪漫與東亞的未竟理想。這裡不是演講廳，卻句句有聲；不是抗議場，卻句句帶火。他們不喝甜膩的飲料，只要一壺苦澀的現煮，彷彿可以沖淡當時社會的壓抑。這樣的場所，不只是一間店，而是一場無聲的革命，在日常對話中默默成形。',
+            image: article1
+        }
+    ];
+
+    const hotArticles = [
+        {
+            id: 101,
+            title: '大稻埕最美秘境，預約制老宅咖啡館AKA café！',
+            content: 'AKA café 藏身於大稻埕的百年老宅中，老屋紅磚與現代設計交織出懷舊又摩登的氛圍。推開木門，陽光灑落在磨石子地板上，老傢俱搭配極簡美學，彷彿時光暫停。這裡不只是喝咖啡的地方，更像一場舊時光與當代品味的對話。',
+            image: cafe1
+        },
+        {
+            id: 102,
+            title: '隱藏在巷弄的復古咖啡館推薦',
+            content: 'AKA café 藏身於大稻埕的百年老宅中，老屋紅磚與現代設計交織出懷舊又摩登的氛圍。推開木門，陽光灑落在磨石子地板上，老傢俱搭配極簡美學，彷彿時光暫停。這裡不只是喝咖啡的地方，更像一場舊時光與當代品味的對話。',
+            image: cafe1
+        },
+        {
+            id: 103,
+            title: '台北10大人氣咖啡館TOP推薦',
+            content: 'AKA café 藏身於大稻埕的百年老宅中，老屋紅磚與現代設計交織出懷舊又摩登的氛圍。推開木門，陽光灑落在磨石子地板上，老傢俱搭配極簡美學，彷彿時光暫停。這裡不只是喝咖啡的地方，更像一場舊時光與當代品味的對話。',
+            image: cafe1
+        }
+    ];
 
     return (
         <>
@@ -32,7 +73,7 @@ function Article() {
                         </div>
                     </nav>
 
-                    {/* section1 */}
+                    {/* Section 1: 文章列表 */}
 
                     <section className="sec1">
                         {/* 關鍵字搜尋 */}
@@ -40,49 +81,20 @@ function Article() {
                             <input type="search" placeholder="請輸入關鍵字" />
                             {/* <button className='searchBtn'>搜尋</button> */}
                         </div>
-                        {/* 每張文章卡片 */}
-                        <div className="articleCard">
-                            {/* 圖 */}
-                            <img src={article1} alt="" />
-
-                            {/* 文 */}
-                            <a href="#">
+                        {/* 每張卡片 */}
+                        {articles.map((article) => (
+                            <div
+                                className="articleCard"
+                                key={article.id}
+                                onClick={() => onClickArea(article.id)}
+                            >
+                                <img src={article.image} alt={article.title} />
                                 <div className="articleCardText">
-                                    <h1>明星咖啡館與那個年代：台北文人的思想日常</h1>
-                                    <p className="articleContent">在1960年代末的台北街頭，思想的自由仍在重重邊界之中遊走。學運、文藝、國際思潮交織而來，卻在某些地方悄然發酵──那不是課堂，也不是報社，而是街角的咖啡館。
-                                        像是「明星咖啡館」這樣的空間，對當時的文青而言，不只是喝咖啡的場所，而是一種「精神的流浪地」。他們窩在藤椅裡，口中談論薩特、卡繆與尼采，筆記本裡寫下詩句、政治抒懷、未完成的小說，試圖在那一壺濃黑之中釋放內心的幽微躁動。</p>
-
+                                    <h1>{article.title}</h1>
+                                    <p className="articleContent">{article.content}</p>
                                 </div>
-                            </a>
-                        </div>
-
-                        <div className="articleCard">
-                            {/* 圖 */}
-                            <img src={article1} alt="" />
-                            {/* 文 */}
-                            <a href="#">
-                                <div className="articleCardText">
-                                    <h1>明星咖啡館與那個年代：台北文人的思想日常</h1>
-                                    <p className="articleContent">在1960年代末的台北街頭，思想的自由仍在重重邊界之中遊走。學運、文藝、國際思潮交織而來，卻在某些地方悄然發酵──那不是課堂，也不是報社，而是街角的咖啡館。
-                                        像是「明星咖啡館」這樣的空間，對當時的文青而言，不只是喝咖啡的場所，而是一種「精神的流浪地」。他們窩在藤椅裡，口中談論薩特、卡繆與尼采，筆記本裡寫下詩句、政治抒懷、未完成的小說，試圖在那一壺濃黑之中釋放內心的幽微躁動。</p>
-
-                                </div>
-                            </a>
-                        </div>
-
-                        <div className="articleCard">
-                            {/* 圖 */}
-                            <img src={article1} alt="" />
-                            {/* 文 */}
-                            <a href="#">
-                                <div className="articleCardText">
-                                    <h1>明星咖啡館與那個年代：台北文人的思想日常</h1>
-                                    <p className="articleContent">在1960年代末的台北街頭，思想的自由仍在重重邊界之中遊走。學運、文藝、國際思潮交織而來，卻在某些地方悄然發酵──那不是課堂，也不是報社，而是街角的咖啡館。
-                                        像是「明星咖啡館」這樣的空間，對當時的文青而言，不只是喝咖啡的場所，而是一種「精神的流浪地」。他們窩在藤椅裡，口中談論薩特、卡繆與尼采，筆記本裡寫下詩句、政治抒懷、未完成的小說，試圖在那一壺濃黑之中釋放內心的幽微躁動。</p>
-
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                        ))}
 
                         {/* 頁碼 */}
                         <div className="pageNumberArea">
@@ -100,49 +112,19 @@ function Article() {
                     <section className="sec2">
                         <h1 className='title'>Hotest｜人氣推薦</h1>
                         {/* 每張卡片 */}
-                        <div className="articleCard">
-                            {/* 圖 */}
-                            <img src={cafe1} alt="" />
-                            {/* 文 */}
-                            <a href="#">
+                        {hotArticles.map((article) => (
+                            <div className="articleCard"
+                                key={article.id}
+                                onClick={() => onClickArea(article.id)}
+                            >
+                                <img src={article.image} alt={article.title} />
                                 <div className="articleCardText">
-                                    <h1>大稻埕最美秘境，預約制老宅咖啡館AKA café！</h1>
-                                    <p className="articleContent">在1960年代末的台北街頭，思想的自由仍在重重邊界之中遊走。學運、文藝、國際思潮交織而來，卻在某些地方悄然發酵──那不是課堂，也不是報社，而是街角的咖啡館。
-                                        像是「明星咖啡館」這樣的空間，對當時的文青而言，不只是喝咖啡的場所，而是一種「精神的流浪地」。他們窩在藤椅裡，口中談論薩特、卡繆與尼采，筆記本裡寫下詩句、政治抒懷、未完成的小說，試圖在那一壺濃黑之中釋放內心的幽微躁動。</p>
-
+                                    <h1>{article.title}</h1>
+                                    <p className="articleContent">{article.content}</p>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        ))}
 
-                        {/* 每張卡片 */}
-                        <div className="articleCard">
-                            {/* 圖 */}
-                            <img src={cafe1} alt="" />
-                            {/* 文 */}
-                            <a href="#">
-                                <div className="articleCardText">
-                                    <h1>大稻埕最美秘境，預約制老宅咖啡館AKA café！</h1>
-                                    <p className="articleContent">在1960年代末的台北街頭，思想的自由仍在重重邊界之中遊走。學運、文藝、國際思潮交織而來，卻在某些地方悄然發酵──那不是課堂，也不是報社，而是街角的咖啡館。
-                                        像是「明星咖啡館」這樣的空間，對當時的文青而言，不只是喝咖啡的場所，而是一種「精神的流浪地」。他們窩在藤椅裡，口中談論薩特、卡繆與尼采，筆記本裡寫下詩句、政治抒懷、未完成的小說，試圖在那一壺濃黑之中釋放內心的幽微躁動。</p>
-
-                                </div>
-                            </a>
-                        </div>
-
-                        {/* 每張卡片 */}
-                        <div className="articleCard">
-                            {/* 圖 */}
-                            <img src={cafe1} alt="" />
-                            {/* 文 */}
-                            <a href="#">
-                                <div className="articleCardText">
-                                    <h1>大稻埕最美秘境，預約制老宅咖啡館AKA café！</h1>
-                                    <p className="articleContent">在1960年代末的台北街頭，思想的自由仍在重重邊界之中遊走。學運、文藝、國際思潮交織而來，卻在某些地方悄然發酵──那不是課堂，也不是報社，而是街角的咖啡館。
-                                        像是「明星咖啡館」這樣的空間，對當時的文青而言，不只是喝咖啡的場所，而是一種「精神的流浪地」。他們窩在藤椅裡，口中談論薩特、卡繆與尼采，筆記本裡寫下詩句、政治抒懷、未完成的小說，試圖在那一壺濃黑之中釋放內心的幽微躁動。</p>
-
-                                </div>
-                            </a>
-                        </div>
                     </section>
 
                     {/* TOP按鈕 */}

@@ -299,6 +299,22 @@
   gap: 36px;
   align-self: stretch;
 }
+@media screen and (max-width: 1024px) {
+  #news > main .events .event-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 54px 24px;
+    /* 平板：2欄 */
+  }
+}
+@media screen and (max-width: 600px) {
+  #news > main .events .event-cards {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 54px 24px;
+    /* 手機：1欄 */
+  }
+}
 #news > main .events .event-cards .event-card {
   display: flex;
   height: 487px;
@@ -636,5 +652,46 @@
     width: 100%;
     height: auto;
     margin-top: 36px;
+  }
+}
+@media screen and (max-width: 640px) {
+  #news > main .new-cards {
+    flex-direction: column;
+    height: auto;
+  }
+  #news > main .new-cards div {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 640px) {
+  #article .articleCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #article .articleCard img {
+    width: 100%;
+    height: auto;
+  }
+  #article .articleCard .articleCardText {
+    align-items: flex-start;
+  }
+}
+@media screen and (max-width: 640px) {
+  #article .searchBar,
+  #findEvent .filterBar {
+    padding: 0 20px;
+  }
+  #article .searchBar input,
+  #findEvent .filterBar input {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .top-btn {
+    bottom: 20px;
+    right: 20px;
+  }
+  .top-btn svg {
+    width: 30px;
   }
 }
