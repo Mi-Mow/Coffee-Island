@@ -80,7 +80,7 @@
       align-items: center;
       justify-content: center;
       gap: 0;
-      background: #eee;
+      background: #FFF1CB;
       border-radius: 8px;
       padding: 5px 8px;
       margin: 24px 0;
@@ -342,17 +342,16 @@
     font-size: 32px;
     color: #FFF1CB;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: flex-start;
     max-width: 1240px;
     width: 100%;
     padding: 0 20px;
     margin-bottom: 32px;
-    gap: 32px;
 
     .prodRecoMs {
-      width: 120px;
-      height: 80px;
+      width: 250px;
+      height: 100px;
       object-fit: contain;
     }
   }
