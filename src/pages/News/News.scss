@@ -24,7 +24,8 @@ $media-576: "max-width:576px";
 
 #news,
 #findArticles,
-#findEvent {
+#findEvent,
+.article-detail-page {
   align-self: center;
   display: flex;
   padding: 100px 0px;
@@ -33,84 +34,85 @@ $media-576: "max-width:576px";
   font-size: $fontsize;
   width: 100%;
 
-  main{
+  main {
     @media ($media-820) {
       padding: 40px 10px;
-    }  
+    }
+
     @media ($media-640) {
       padding: 30px 20px;
     }
   }
 
 
-li {
-  // list-style: none;
-  gap: 24px
-}
+  li {
+    // list-style: none;
+    gap: 24px
+  }
 
-* {
-  color: $textcolor;
-}
-
-/* h1 */
-.title {
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0.84px;
-  // 置左
-  width: 100%;
-  text-align: left;
-  padding: 0 50px;
-}
-
-h2 {
-  font-size: 24px;
-}
-
-h3 {
-  font-size: 16px;
-}
-
-.tagName {
-  align-self: stretch;
-  color: $tagcolor;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.84px;
-}
-
-/* nav */
-.nav-news {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-
-  a {
-    margin: 10px;
-    padding: 5px 0;
-    border-bottom: 2px solid transparent;
-    transition: all .35s;
-    cursor: pointer;
+  * {
     color: $textcolor;
+  }
+
+  /* h1 */
+  .title {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.84px;
+    // 置左
+    width: 100%;
+    text-align: left;
+    padding: 0 50px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  .tagName {
+    align-self: stretch;
+    color: $tagcolor;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.84px;
+  }
+
+  /* nav */
+  .nav-news {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    gap: 9px;
+    align-items: center;
+    gap: 24px;
 
-    &:hover {
-      color: $primary_1;
-      border-bottom: 2px solid $bordercolor;
+    a {
+      margin: 10px;
+      padding: 5px 0;
+      border-bottom: 2px solid transparent;
+      transition: all .35s;
+      cursor: pointer;
+      color: $textcolor;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 9px;
+
+      &:hover {
+        color: $primary_1;
+        border-bottom: 2px solid $bordercolor;
+      }
     }
-  }
 
-  ul {
-    display: flex;
-  }
+    ul {
+      display: flex;
+    }
 
-}
+  }
 }
 
 /* 島嶼月報 */
@@ -578,6 +580,23 @@ h3 {
   }
 }
 
+/* 文章內頁 */
+.article-detail-page {
+  color: $textcolor;
+  button {
+    all: unset;
+    display: flex;
+    width: 200px;
+    height: 80px;
+    padding: 20px 0px;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    border: #7B4519;
+    
+  }
+}
 
 /* 找活動 */
 #findEvent {
@@ -771,7 +790,7 @@ h3 {
 }
 
 @media screen and (max-width: 820px) {
-  #news > main .section-row {
+  #news>main .section-row {
     flex-direction: column;
     height: auto;
 
@@ -794,7 +813,7 @@ h3 {
 }
 
 @media screen and (max-width: 640px) {
-  #news > main .new-cards {
+  #news>main .new-cards {
     flex-direction: column;
     height: auto;
 
@@ -821,6 +840,7 @@ h3 {
 }
 
 @media screen and (max-width: 640px) {
+
   #article .searchBar,
   #findEvent .filterBar {
     padding: 0 20px;

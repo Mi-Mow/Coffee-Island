@@ -5,7 +5,8 @@
 /* h1 color */
 #news,
 #findArticles,
-#findEvent {
+#findEvent,
+.article-detail-page {
   align-self: center;
   display: flex;
   padding: 100px 0px;
@@ -19,30 +20,35 @@
 @media (max-width:820px) {
   #news main,
   #findArticles main,
-  #findEvent main {
+  #findEvent main,
+  .article-detail-page main {
     padding: 40px 10px;
   }
 }
 @media (max-width:640px) {
   #news main,
   #findArticles main,
-  #findEvent main {
+  #findEvent main,
+  .article-detail-page main {
     padding: 30px 20px;
   }
 }
 #news li,
 #findArticles li,
-#findEvent li {
+#findEvent li,
+.article-detail-page li {
   gap: 24px;
 }
 #news *,
 #findArticles *,
-#findEvent * {
+#findEvent *,
+.article-detail-page * {
   color: #FFF1CB;
 }
 #news .title,
 #findArticles .title,
-#findEvent .title {
+#findEvent .title,
+.article-detail-page .title {
   font-size: 24px;
   font-weight: 400;
   letter-spacing: 0.84px;
@@ -52,17 +58,20 @@
 }
 #news h2,
 #findArticles h2,
-#findEvent h2 {
+#findEvent h2,
+.article-detail-page h2 {
   font-size: 24px;
 }
 #news h3,
 #findArticles h3,
-#findEvent h3 {
+#findEvent h3,
+.article-detail-page h3 {
   font-size: 16px;
 }
 #news .tagName,
 #findArticles .tagName,
-#findEvent .tagName {
+#findEvent .tagName,
+.article-detail-page .tagName {
   align-self: stretch;
   color: #a1b8bb;
   font-size: 14px;
@@ -72,7 +81,8 @@
 }
 #news .nav-news,
 #findArticles .nav-news,
-#findEvent .nav-news {
+#findEvent .nav-news,
+.article-detail-page .nav-news {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,7 +90,8 @@
 }
 #news .nav-news a,
 #findArticles .nav-news a,
-#findEvent .nav-news a {
+#findEvent .nav-news a,
+.article-detail-page .nav-news a {
   margin: 10px;
   padding: 5px 0;
   border-bottom: 2px solid transparent;
@@ -95,13 +106,15 @@
 }
 #news .nav-news a:hover,
 #findArticles .nav-news a:hover,
-#findEvent .nav-news a:hover {
+#findEvent .nav-news a:hover,
+.article-detail-page .nav-news a:hover {
   color: #a2b9bc;
   border-bottom: 2px solid #FFF1CB;
 }
 #news .nav-news ul,
 #findArticles .nav-news ul,
-#findEvent .nav-news ul {
+#findEvent .nav-news ul,
+.article-detail-page .nav-news ul {
   display: flex;
 }
 
@@ -479,6 +492,22 @@
 #article #article .sec2 .title {
   font-size: 24px;
   padding: 0%;
+}
+
+/* 文章內頁 */
+.article-detail-page {
+  color: #FFF1CB;
+}
+.article-detail-page button {
+  all: unset;
+  display: flex;
+  width: 200px;
+  height: 80px;
+  padding: 20px 0px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: #7B4519;
 }
 
 /* 找活動 */
