@@ -39,7 +39,8 @@ h6 {
 }
 
 ul,
-ol {
+ol,
+li {
   list-style: none;
 }
 
@@ -54,8 +55,11 @@ a {
 }
 
 /* css reset end */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: #002c28;
   position: relative;
 }
 
@@ -67,9 +71,10 @@ body::before {
   width: 100vw;
   height: 100vh;
   background-image: url("/paper-texture.png");
+  background-color: #122f30;
   background-repeat: repeat;
   background-size: cover;
-  opacity: 0.2;
+  background-blend-mode: overlay;
   pointer-events: none;
   z-index: -99;
 }
