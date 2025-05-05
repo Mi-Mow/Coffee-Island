@@ -11,6 +11,7 @@ import Login from "./Login/Login";
 import Register from "./Register/Register";
 import District from "./Map/District/District";
 import ProductPage from "./Products/ProductsPage";
+import CartPage from "./Products/CartPage";
 
 
 function Pages() {
@@ -29,6 +30,8 @@ function Pages() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        
       </Routes>
     </>
   );
