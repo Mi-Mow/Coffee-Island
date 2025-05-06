@@ -8,7 +8,7 @@ $primary_1: #a2b9bc;
 /* h1 color */
 $primary_2: #b2ad7f;
 $bordercolor: #FFF1CB;
-$btn-color: #7B4519;
+$btn-color: #904118;
 $tagcolor: #a1b8bb;
 
 // RWD斷點
@@ -21,6 +21,7 @@ $media-768: "max-width:768px";
 // 小
 $media-640: "max-width:640px";
 $media-576: "max-width:576px";
+
 
 #news,
 #findArticles,
@@ -319,14 +320,12 @@ $media-576: "max-width:576px";
       display: flex;
       padding: 15px 60px;
       justify-content: center;
-      align-items: center;
-      gap: 10px;
 
       font-size: 16px;
       color: $btn-color;
       border-radius: 2px;
       border: 3px solid $btn-color;
-      background: url('/paper-texture.png') / cover no-repeat, #E1BB98;
+      background: #E1BB98 url('/paper-texture.png') no-repeat center / cover;
 
       &:hover {
         color: $primary_1;
@@ -400,17 +399,20 @@ $media-576: "max-width:576px";
 
     }
 
-    .event-btn {
+    .event-btn a {
       display: flex;
-      padding: 36px 378px;
-      flex-direction: column;
+      padding: 15px 60px;
       justify-content: center;
-      align-items: center;
-      gap: 10px;
-      align-self: stretch;
-      transition: transform 0.2s;
+
+      font-size: 16px;
+      color: $btn-color;
+      border-radius: 2px;
+      border: 3px solid $btn-color;
+      background: #E1BB98 url('/paper-texture.png') no-repeat center / cover;
 
       &:hover {
+        color: $primary_1;
+        border: 2px solid $bordercolor;
         transform: scale(1.1);
       }
     }

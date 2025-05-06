@@ -277,13 +277,11 @@
   display: flex;
   padding: 15px 60px;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
   font-size: 16px;
-  color: #7B4519;
+  color: #904118;
   border-radius: 2px;
-  border: 3px solid #7B4519;
-  background: url("/paper-texture.png")/cover no-repeat, #E1BB98;
+  border: 3px solid #904118;
+  background: #E1BB98 url("/paper-texture.png") no-repeat center/cover;
 }
 #news > main .recommendation .reco-button a:hover {
   color: #a2b9bc;
@@ -348,17 +346,19 @@
   gap: 12px;
   align-self: stretch;
 }
-#news > main .events .event-btn {
+#news > main .events .event-btn a {
   display: flex;
-  padding: 36px 378px;
-  flex-direction: column;
+  padding: 15px 60px;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-  transition: transform 0.2s;
+  font-size: 16px;
+  color: #904118;
+  border-radius: 2px;
+  border: 3px solid #904118;
+  background: #E1BB98 url("/paper-texture.png") no-repeat center/cover;
 }
-#news > main .events .event-btn:hover {
+#news > main .events .event-btn a:hover {
+  color: #a2b9bc;
+  border: 2px solid #FFF1CB;
   transform: scale(1.1);
 }
 
@@ -723,4 +723,4 @@
   .top-btn svg {
     width: 30px;
   }
-}
+}/*# sourceMappingURL=News.css.map */

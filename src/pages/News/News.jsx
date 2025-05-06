@@ -234,7 +234,7 @@ function News() {
 
             {/* 按鈕 */}
             <div className="event-btn">
-              <Link to="/news/event"><img src={eventBtn} alt="看更多最新活動" /></Link>
+              <Link to="/news/event">看更多最新活動</Link>
 
             </div>
 

@@ -12,13 +12,13 @@ main .banner {
   margin: 0 20px;
   width: 85%;
 }
+main .banner .bannerContainerSm {
+  display: none;
+}
 main .banner img {
   width: 100%;
   height: auto;
   display: block;
-  /* need to modify */
-  clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 84%, 69% 95%, 29% 92%, 11% 100%, 0 100%, 0 100%, 0 0);
-  /* clip-path: path('M0,0 H2000 V1300 Q500,380 0,300 Z'); */
 }
 main .weather {
   position: absolute;
@@ -26,42 +26,45 @@ main .weather {
   right: 0;
   display: flex;
 }
-main .weather .todayDate, main .weather .todayTemp, main .weather .tomorrowDate, main .weather .tomorrowTemp {
+main .weather .todayDate,
+main .weather .todayTemp,
+main .weather .tomorrowDate,
+main .weather .tomorrowTemp {
   display: flex;
   flex-direction: column;
   justify-content: end;
   padding-left: 20px;
 }
 main .weather .title {
-  color: #FFF0C8;
+  color: #fff0c8;
   font-weight: 700;
 }
 main .weather .todayDate .title {
-  font-size: 2.5rem;
+  font-size: 32px;
 }
 main .weather .todayTemp .title {
-  font-size: 2rem;
+  font-size: 28px;
 }
 main .weather .tomorrowDate .title {
-  font-size: 1.5rem;
+  font-size: 24px;
 }
 main .weather .tomorrowTemp .title {
-  font-size: 1rem;
+  font-size: 20px;
 }
 main .weather .data {
   color: #fff;
 }
 main .weather .todayDate .data {
-  font-size: 2rem;
+  font-size: 32px;
 }
 main .weather .todayTemp .data {
-  font-size: 1.5rem;
+  font-size: 28px;
 }
 main .weather .tomorrowDate .data {
-  font-size: 1rem;
+  font-size: 24px;
 }
 main .weather .tomorrowTemp .data {
-  font-size: 0.5rem;
+  font-size: 20px;
 }
 main .bg-mask {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
@@ -86,95 +89,115 @@ main .arrowContainer {
   cursor: pointer;
 }
 
-.carousel {
+.carouselSection {
   height: 650px;
   position: relative;
   margin: 40px 0;
 }
-.carousel .greatTime {
+.carouselSection .greatTime {
   position: absolute;
-  right: 100px;
-  top: 0;
+  right: 150px;
+  top: 5%;
 }
-.carousel .greatTime .textContainer {
+.carouselSection .greatTime .greenBlockContainer {
+  width: 600px;
+}
+.carouselSection .greatTime .textContainer {
   position: absolute;
-  top: 25%;
+  top: 30%;
   left: 20%;
 }
-.carousel .greatTime .textContainer .title {
+.carouselSection .greatTime .textContainer .deco {
+  position: absolute;
+  top: -50px;
+  width: 70px;
+}
+.carouselSection .greatTime .textContainer .title {
   font-size: 20px;
-  text-shadow: -1px -1px 0 #A4320E, 1px -1px 0 #A4320E, -1px 1px 0 #A4320E, 1px 1px 0 #A4320E;
-  color: #FFF1CB;
+  text-shadow: -2px -2px 0 #a4320e, 2px -2px 0 #a4320e, -2px 2px 0 #a4320e, 2px 2px 0 #a4320e;
+  color: #fff1cb;
   font-weight: 800;
   margin-bottom: 10px;
 }
-.carousel .greatTime .textContainer .content {
-  color: #FFF1CB;
+.carouselSection .greatTime .textContainer .content {
+  color: #fff1cb;
   line-height: 2;
-  font-size: 14px;
-  letter-spacing: 2px;
+  font-size: 16px;
+  letter-spacing: 3px;
 }
-.carousel .greatTime .handheldContainer {
+.carouselSection .greatTime .handheldContainer {
   position: absolute;
   width: 250px;
-  top: 0;
-  right: 10%;
+  top: 5%;
+  right: 0;
 }
-.carousel .greatTime .hotCoffeeContainer {
+.carouselSection .greatTime .hotCoffeeContainer {
   position: absolute;
   width: 220px;
   top: 0;
-  right: -100px;
+  right: -150px;
 }
-.carousel .coffeeIsland {
+.carouselSection .maskContainer {
+  width: 300px;
   position: absolute;
-  top: 30%;
+  left: -13%;
+  top: 5%;
+}
+.carouselSection .coffeeIsland {
+  position: absolute;
+  top: 28%;
   left: 15%;
 }
-.carousel .coffeeIsland .title {
+.carouselSection .coffeeIsland .deco {
+  width: 70px;
+  position: absolute;
+  left: -50px;
+  top: -50px;
+}
+.carouselSection .coffeeIsland .title {
   font-size: 24px;
-  text-shadow: -1px -1px 0 #A4320E, 1px -1px 0 #A4320E, -1px 1px 0 #A4320E, 1px 1px 0 #A4320E;
-  color: #FFF1CB;
+  text-shadow: -2px -2px 0 #a4320e, 2px -2px 0 #a4320e, -2px 2px 0 #a4320e, 2px 2px 0 #a4320e;
+  color: #fff1cb;
   font-weight: 800;
   margin-bottom: 10px;
 }
-.carousel .coffeeIsland .content {
-  color: #FFF1CB;
+.carouselSection .coffeeIsland .content {
+  color: #fff1cb;
   line-height: 2;
   font-size: 16px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
-.carousel .mainCarousel {
+.carouselSection .mainCarousel {
   position: absolute;
-  top: 15%;
+  top: 45%;
   right: 0;
 }
-.carousel .mainCarousel .carousel {
+.carouselSection .mainCarousel .carousel {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin: 0 auto;
 }
-.carousel .mainCarousel .carousel .arrowContainer {
+.carouselSection .mainCarousel .carousel .arrowContainer {
   width: 48px;
   cursor: pointer;
 }
-.carousel .mainCarousel .carousel .imageContainer {
+.carouselSection .mainCarousel .carousel .imageContainer {
   width: 400px;
   overflow: hidden;
   position: relative;
 }
-.carousel .mainCarousel .carousel .imageContainer img {
+.carouselSection .mainCarousel .carousel .imageContainer img {
   object-fit: cover;
 }
-.carousel .mainCarousel .carousel .imageContainer .textBg {
+.carouselSection .mainCarousel .carousel .imageContainer .textBg {
   position: absolute;
   right: 10px;
   bottom: 5px;
   width: 140px;
 }
-.carousel .mainCarousel .carousel .imageContainer .textBg p {
+.carouselSection .mainCarousel .carousel .imageContainer .textBg p {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -190,6 +213,37 @@ main .arrowContainer {
 .filmContainer .filmSvg {
   height: 450px;
 }
+.filmContainer .filmSvg .filmGroup {
+  cursor: pointer;
+}
+.filmContainer .filmSvg .filmGroup .filmImg {
+  transition: all 0.4s ease;
+  transform-origin: center;
+}
+.filmContainer .filmSvg .filmGroup .filmMask,
+.filmContainer .filmSvg .filmGroup .filmTitle {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.filmContainer .filmSvg .filmGroup text {
+  font-size: 16px;
+}
+.filmContainer .filmSvg .filmGroup:hover .filmImg {
+  width: 400px;
+  height: 400px;
+}
+.filmContainer .filmSvg .filmGroup:hover .filmMask,
+.filmContainer .filmSvg .filmGroup:hover .filmTitle {
+  opacity: 1;
+}
+.filmContainer .filmSvg .filmTitle {
+  fill: white;
+  font-size: 28px;
+}
+.filmContainer .filmSvg .filmImg:hover .filmMask {
+  opacity: 1;
+}
 .filmContainer .titleContainer {
   position: absolute;
   top: 5%;
@@ -199,10 +253,10 @@ main .arrowContainer {
   display: flex;
 }
 .filmContainer .titleContainer .title p {
-  background-color: #A84E12;
-  border: #E9C02C 1px solid;
+  background-color: #a84e12;
+  border: #e9c02c 1px solid;
   font-size: 24px;
-  color: #FFF1CB;
+  color: #fff1cb;
   font-weight: 800;
   line-height: 40px;
   width: 40px;
@@ -212,20 +266,20 @@ main .arrowContainer {
   margin: 0 -3px;
 }
 .filmContainer .titleContainer .subtitle {
-  color: #FFD96C;
+  color: #ffd96c;
   font-weight: 700;
   margin-top: 10px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 .filmContainer .description {
   position: absolute;
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #FFF1CB;
+  color: #fff1cb;
   line-height: 2;
   font-size: 16px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 
 .bg-mask {
@@ -254,7 +308,6 @@ main .arrowContainer {
 
 .map {
   margin-top: 100px;
-  height: 110vh;
   position: relative;
 }
 .map .mapBox {
@@ -287,12 +340,6 @@ main .arrowContainer {
   stroke: #d3d3d3;
   stroke-width: 5;
 }
-.map .mapBox .districtContainer {
-  position: absolute;
-  width: 40%;
-  top: 25%;
-  left: 30%;
-}
 .map .textBox {
   position: absolute;
   top: 5%;
@@ -305,12 +352,12 @@ main .arrowContainer {
   display: flex;
 }
 .map .textBox .title .titleEn {
-  color: #FFF1CB;
+  color: #fff1cb;
   font-size: 32px;
   font-weight: 700;
 }
 .map .textBox .title .titleCh {
-  color: #FFF1CB;
+  color: #fff1cb;
   font-size: 40px;
   font-weight: 700;
 }
@@ -318,15 +365,15 @@ main .arrowContainer {
   margin-left: 10px;
 }
 .map .textBox .hint {
-  color: #FFD96C;
+  color: #ffd96c;
   font-size: 18px;
   font-weight: 700;
   margin-top: 10px;
   line-height: 2;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 .map .textBox .list {
-  width: 80px;
+  width: 100px;
   text-align: center;
 }
 .map .textBox .list p {
@@ -336,7 +383,7 @@ main .arrowContainer {
   line-height: 2.3;
   cursor: pointer;
   transition: all 0.3s ease-out;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 .map .textBox .list p:hover {
   color: #fff4d6;
@@ -350,13 +397,13 @@ main .arrowContainer {
 }
 
 .contact {
-  margin: 100px 0 60px;
+  margin-bottom: 60px;
   padding: 0 80px;
 }
 .contact .title {
   font-size: 40px;
-  text-shadow: -1px -1px 0 #A4320E, 1px -1px 0 #A4320E, -1px 1px 0 #A4320E, 1px 1px 0 #A4320E;
-  color: #FFF1CB;
+  text-shadow: -2px -2px 0 #a4320e, 2px -2px 0 #a4320e, -2px 2px 0 #a4320e, 2px 2px 0 #a4320e;
+  color: #fff1cb;
   font-weight: 800;
   text-align: center;
   z-index: 10;
@@ -365,47 +412,78 @@ main .arrowContainer {
   display: flex;
   padding: 20px 0;
 }
-.contact .description p {
+.contact .description .text {
   padding-right: 40px;
   color: #fff;
   font-size: 18px;
   line-height: 2;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 .contact .description .team {
   display: flex;
 }
 .contact .description .team .avatar {
   margin-left: 20px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contact .description .team .avatar .avatarContainer {
+  width: 100px;
+}
+.contact .description .team .avatar p {
+  font-size: 16px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 2;
+  letter-spacing: 3px;
 }
 .contact .viceBanner {
   position: relative;
 }
-.contact .viceBanner p {
+.contact .viceBanner::after {
+  content: "";
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  letter-spacing: 2px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
-.contact .viceBanner .registerButton {
+.contact .viceBanner .textContainer {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #261C1A;
-  color: #FBF7F4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 2;
+}
+.contact .viceBanner .textContainer p {
+  color: #fff;
+  letter-spacing: 3px;
+  line-height: 1.5;
+}
+.contact .viceBanner .textContainer .registerButton {
+  background-color: #29453b;
+  color: #fbf7f4;
   width: 200px;
   height: 40px;
   border-radius: 5px;
   border: none;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   cursor: pointer;
   transition: all 0.3s ease-out;
 }
-.contact .viceBanner .registerButton:hover {
-  background-color: #282828;
+.contact .viceBanner .textContainer .registerButton:hover {
+  background-color: #253731;
 }
 
 svg {
@@ -414,30 +492,300 @@ svg {
 
 .road {
   position: absolute;
-  top: 650px;
+  top: 570px;
   left: 0;
   z-index: -88;
+  width: 1160px;
 }
 
 .car {
-  width: 100px;
+  position: absolute;
+  width: 80px;
+  z-index: -80;
 }
 
-/* .sm-map-box {
-    position: absolute;
-    top: 18%;
-    right: 27%;
+@media (min-width: 1650px) {
+  .carouselSection {
+    height: 900px;
+    margin-top: 50px;
   }
-  .sm-map-box svg {
+  .carouselSection .greatTime .greenBlockContainer {
+    width: 800px;
+  }
+  .carouselSection .greatTime .textContainer .deco {
+    top: -70px;
+    width: 100px;
+  }
+  .carouselSection .greatTime .textContainer .title {
+    font-size: 24px;
+  }
+  .carouselSection .greatTime .textContainer .content {
+    font-size: 18px;
+  }
+  .carouselSection .greatTime .handheldContainer {
+    width: 350px;
+    right: 5%;
+  }
+  .carouselSection .greatTime .hotCoffeeContainer {
+    width: 300px;
+  }
+  .carouselSection .maskContainer {
+    width: 400px;
+  }
+  .carouselSection .coffeeIsland {
+    left: 20%;
+  }
+  .carouselSection .coffeeIsland .title {
+    font-size: 24px;
+  }
+  .carouselSection .coffeeIsland .content {
+    font-size: 18px;
+  }
+  .carouselSection .mainCarousel .carousel .imageContainer {
+    width: 600px;
+  }
+  .road,
+  .car {
+    display: none;
+  }
+}
+@media (min-width: 1470px) {
+  .road {
+    width: 1400px;
+  }
+}
+@media (max-width: 1200px) {
+  .carouselSection .greatTime .greenBlockContainer {
+    width: 500px;
+  }
+  .carouselSection .greatTime .handheldContainer {
+    width: 200px;
+    right: -8%;
+  }
+  .carouselSection .greatTime .hotCoffeeContainer {
+    width: 180px;
+  }
+  .road {
+    top: 530px;
+    width: 1100px;
+  }
+}
+@media (max-width: 1150px) {
+  .carouselSection {
+    height: 900px;
+    margin-top: 50px;
+  }
+  .carouselSection .greatTime .greenBlockContainer {
+    display: none;
+  }
+  .carouselSection .greatTime .textContainer {
+    display: none;
+  }
+  .carouselSection .greatTime .handheldContainer {
+    width: 230px;
+    right: -40px;
+  }
+  .carouselSection .maskContainer {
+    width: 300px;
+    transform: scaleX(-1);
+  }
+  .carouselSection .coffeeIsland {
+    top: 15%;
+    left: 30%;
+  }
+  .carouselSection .mainCarousel {
+    top: 50%;
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 70%;
+  }
+  .carouselSection .mainCarousel .carousel .imageContainer {
     width: 100%;
-  } */
-@media (min-width: 1800px) {
-  .road {
+  }
+  .contact .description {
+    flex-direction: column;
+  }
+  .contact .description .text {
+    order: 1;
+    padding: 0;
+    font-size: 14px;
+  }
+  .contact .description .team {
+    justify-content: center;
+    padding: 20px 0;
+  }
+  .contact .description .team .avatar {
+    margin: 0 15px;
+  }
+  .road,
+  .car {
     display: none;
   }
 }
-@media (max-width: 1250px) {
-  .road {
+@media (max-width: 1000px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 0 0;
+    position: relative;
+  }
+  main .coffeebeanContainer {
     display: none;
   }
+  main .banner {
+    width: 100%;
+    margin: 0;
+  }
+  main .banner img {
+    clip-path: none;
+  }
+  main .banner .weather {
+    right: 20px;
+  }
+  main .banner .weather .todayDate .title {
+    font-size: 22px;
+  }
+  main .banner .weather .todayTemp .title {
+    font-size: 18px;
+  }
+  main .banner .weather .tomorrowDate .title {
+    font-size: 14px;
+  }
+  main .banner .weather .tomorrowTemp .title {
+    font-size: 12px;
+  }
+  main .banner .weather .todayDate .data {
+    font-size: 22px;
+  }
+  main .banner .weather .todayTemp .data {
+    font-size: 18px;
+  }
+  main .banner .weather .tomorrowDate .data {
+    font-size: 14px;
+  }
+  main .banner .weather .tomorrowTemp .data {
+    font-size: 12px;
+  }
+  main .hint {
+    position: absolute;
+    bottom: -50px;
+  }
+  .carouselSection {
+    height: 680px;
+    margin-top: 50px;
+  }
+  .carouselSection .maskContainer {
+    left: -25%;
+  }
+  .carouselSection .coffeeIsland {
+    left: 18%;
+  }
+  .contact {
+    padding-top: 80px;
+  }
 }
+@media (max-width: 800px) {
+  main .banner .bannerContainer {
+    display: none;
+  }
+  main .banner .bannerContainerSm {
+    display: block;
+  }
+  main .banner .weather {
+    display: none;
+  }
+  .carouselSection {
+    height: 600px;
+  }
+  .carouselSection .maskContainer {
+    display: none;
+  }
+  .carouselSection .coffeeIsland {
+    top: 10%;
+    left: 10%;
+  }
+  .carouselSection .mainCarousel {
+    top: 50%;
+  }
+}
+@media (max-width: 430px) {
+  .carouselSection {
+    height: 450px;
+  }
+  .carouselSection .greatTime .handheldContainer {
+    display: none;
+  }
+  .carouselSection .greatTime .hotCoffeeContainer {
+    width: 140px;
+    top: -30px;
+  }
+  .carouselSection .coffeeIsland .deco {
+    display: none;
+  }
+  .carouselSection .coffeeIsland .title {
+    font-size: 18px;
+  }
+  .carouselSection .coffeeIsland .content {
+    font-size: 14px;
+  }
+  .carouselSection .mainCarousel {
+    top: 65%;
+  }
+  .map {
+    margin-top: 0;
+    height: 500px;
+  }
+  .map .mapBox .northTwContainer .northBox {
+    display: none;
+  }
+  .map .mapBox .northTwContainer .districtsContainer {
+    width: 80%;
+    top: 50px;
+    left: 5%;
+  }
+  .map .textBox {
+    top: 0;
+  }
+  .map .textBox .title .titleEn {
+    font-size: 20px;
+  }
+  .map .textBox .title .titleCh {
+    font-size: 22px;
+  }
+  .map .textBox .title .logo {
+    width: 60px;
+  }
+  .map .textBox .hint {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  .map .textBox .list p {
+    font-size: 14px;
+  }
+  .contact {
+    padding: 0 40px;
+  }
+  .contact .title {
+    font-size: 24px;
+  }
+  .contact .description .text {
+    font-size: 14px;
+  }
+  .contact .description .team .avatar .avatarContainer {
+    width: 50px;
+  }
+  .contact .description .team .avatar p {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
+  .contact .viceBanner .textContainer p {
+    display: none;
+  }
+  .contact .viceBanner .textContainer .registerButton {
+    width: 150px;
+    height: 35px;
+    font-size: 12px;
+  }
+}/*# sourceMappingURL=Home.module.css.map */
