@@ -126,7 +126,6 @@ function District() {
         ? prev.filter((id) => id !== tagId)
         : [...prev, tagId]
     );
-    console.log("selected: ", selectedTags);
   };
 
   const filterRef = useRef(null);
