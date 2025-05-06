@@ -1,28 +1,6 @@
-/* 島嶼月報 */
-/* define primary colors */
-$bgcolor: #eee;
-$textcolor: #FFF1CB;
-$fontsize: 16px;
-/* hover color */
-$primary_1: #a2b9bc;
-/* h1 color */
-$primary_2: #b2ad7f;
-$bordercolor: #FFF1CB;
-$btn-color: #904118;
-$tagcolor: #a1b8bb;
+@use "variable" as *;
 
-// RWD斷點
-// 大型設備，設定min-width
-$media--993: "min-width:993px";
-$media-1024: "max-width:1024px";
-// 中
-$media-820: "max-width:820px";
-$media-768: "max-width:768px";
-// 小
-$media-640: "max-width:640px";
-$media-576: "max-width:576px";
-
-
+/* 島嶼月報 all */
 #news,
 #findArticles,
 #findEvent,
@@ -585,19 +563,117 @@ $media-576: "max-width:576px";
 /* 文章內頁 */
 .article-detail-page {
   color: $textcolor;
-  button {
-    all: unset;
+  padding: 100px 40px;
+
+  .title-container {
     display: flex;
-    width: 200px;
-    height: 80px;
-    padding: 20px 0px;
+    padding: 24px 0px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 12px;
+    align-self: stretch;
 
-    cursor: pointer;
-    border: #7B4519;
-    
+    p {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.224px;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.512px;
+    }
+
+    // 封面圖
+    figure {
+      width: 100%;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+      }
+    }
   }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+    padding: 36px 0px;
+
+    p {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.24px;
+    }
+
+    figure {
+      height: 32vh;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+  }
+
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+
+    .info-text-container {
+      display: flex;
+      width: 100%;
+      height: 50%;
+      padding: 36px 0px;
+      align-items: center;
+      gap: 24px;
+    }
+  }
+
+  .article-buttonGroup-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    .article-button-container {
+      button {
+        border-radius: 2px;
+        border: 3px solid $textcolor;
+        background-color: transparent;
+
+        display: flex;
+        width: 200px;
+        height: 80px;
+        padding: 20px 0px;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+
+        &:hover {
+          color: $primary_1;
+          border: 2px solid $bordercolor;
+        }
+      }
+
+    }
+  }
+
 }
 
 /* 找活動 */
