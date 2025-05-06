@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import s from "./District.module.scss";
 import beitou from "../../../assets/home/district/beitou.svg";
@@ -14,13 +14,15 @@ import xinyi from "../../../assets/home/district/xinyi.svg";
 import nangang from "../../../assets/home/district/nangang.svg";
 import wenshan from "../../../assets/home/district/wenshan.svg";
 import shopImg from "../../../assets/map/1-1.jpg";
+import cross from "../../../assets/map/cross.svg";
+import CafeMap from "../../../components/CafeMap/CafeMap";
+import CafeCard from "../../../components/CafeCard/CafeCard";
 
 function District() {
   useEffect(() => {
     // start at (0, 0)
     window.scrollTo(0, 0);
   }, []);
-
 
   const { district } = useParams();
 
@@ -77,14 +79,64 @@ function District() {
   const districtName = districtMap[district].name;
   const districtImg = districtMap[district].img;
 
+  const allTags = [
+    {
+      id: "wifi",
+      zh: "wifi",
+      en: "wifi",
+    },
+    {
+      id: "plug",
+      zh: "插座",
+      en: "Power Outlet",
+    },
+    {
+      id: "special",
+      zh: "特色咖啡",
+      en: "Special",
+    },
+    {
+      id: "latteArt",
+      zh: "拉花",
+      en: "Latte art",
+    },
+    {
+      id: "handbrew",
+      zh: "職人手沖",
+      en: "Hand Brew",
+    },
+    {
+      id: "roaster",
+      zh: "自家烘焙",
+      en: "In-house Roaster",
+    },
+    {
+      id: "noTimeLimit",
+      zh: "不限時間",
+      en: "No Time Limit",
+    },
+  ];
+
+  // let selectedTags = [];
+
+  const [selectedTags, setSelectedTags] = useState([]);
+  const toggleTag = (tagId) => {
+    setSelectedTags((prev) =>
+      prev.includes(tagId)
+        ? prev.filter((id) => id !== tagId)
+        : [...prev, tagId]
+    );
+    console.log("selected: ", selectedTags);
+  };
+
   const filterRef = useRef(null);
   const scrollDown = () => {
-    filterRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
+    filterRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
-      <section className={s.main}>
+      <section className={s.recommend}>
         <div className={s.content}>
           {/* Left side */}
           <div className={s.districtImg}>
@@ -146,7 +198,42 @@ function District() {
         </div>
       </section>
       <section className={s.filter} ref={filterRef}>
-        filter section
+        <div className={s.main}>
+          <div className={s.tags}>
+            {allTags.map((tag) => (
+              <button
+                key={tag.id}
+                className={`${s.tag} ${
+                  selectedTags.includes(tag.id) ? s.active : ""
+                }`}
+                onClick={() => toggleTag(tag.id)}
+              >
+                {tag.zh}
+                {selectedTags.includes(tag.id) ? (
+                  <div className={s.cross}>
+                    <img src={cross} alt="" />
+                  </div>
+                ) : (
+                  ""
+                )}
+              </button>
+            ))}
+          </div>
+          <div className={s.content}>
+            <div className={s.cards}>
+              <CafeCard />
+              <CafeCard />
+              <CafeCard />
+              <CafeCard />
+              <CafeCard />
+              <CafeCard />
+              <CafeCard />
+            </div>
+            <div className={s.map}>
+              <CafeMap />
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );

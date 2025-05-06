@@ -1,0 +1,28 @@
+.card {
+  width: 200px;
+  // margin-right: 20px;
+  cursor: pointer;
+  .imgContainer img {
+    border-radius: 3px 3px 0 0;
+  }
+  .text {
+    background-color: #fff;
+    padding: 10px 15px;
+    border-radius: 0 0 3px 3px;
+  }
+  .cardTitle {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  .description {
+    color: #090909;
+    font-size: 14px;
+    margin-top: 15px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+}

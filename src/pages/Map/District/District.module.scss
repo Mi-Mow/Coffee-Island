@@ -1,4 +1,4 @@
-.main {
+.recommend {
   // margin-top: 120px;
   padding: 120px 70px 0;
   height: 100vh;
@@ -20,6 +20,10 @@
     background-color: #4d8477;
     opacity: 0.8;
     z-index: -1;
+  }
+
+  @media (max-width: 1250px) {
+    height: auto;
   }
 
   .content {
@@ -108,6 +112,8 @@
   }
 }
 
+
+// section filter
 .filter {
   height: calc(100vh - 80px);
   background-image: url("/paper-texture.png");
@@ -115,10 +121,62 @@
   background-size: cover;
   background-color: #122f30;
   background-blend-mode: overlay;
+  padding: 0 80px;
+  padding-top: 20px;
+
+  .main {
+    .tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      .tag {
+        background-color: #904118;
+        border: #BC7C33 1px solid;
+        color: #FFF1CB;
+        font-weight: bold;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        &.active {
+          border: #F2DAB2 4px solid;
+        }
+
+        .cross {
+          width: 24px;
+          padding-left: 8px;
+        }
+      }
+    }
+    .content {
+      display: flex;
+      justify-content: space-between;
+      height: 70vh;
+      overflow: hidden;
+      padding-top: 30px;
+      gap: 20px;
+
+      .cards {
+        width: 60%;
+        height: 100%;
+        gap: 10px;
+        overflow-y: auto;
+        scrollbar-color: #FFF1CB transparent;
+
+      }
+
+      .map {
+        width: 40%;
+        height: 100%;
+      }
+    }
+  }
+
 }
 
-@media (max-width: 1250px) {
-  .main {
-    height: auto;
-  }
+.cards {
+  display: flex;
+  flex-wrap: wrap;
 }

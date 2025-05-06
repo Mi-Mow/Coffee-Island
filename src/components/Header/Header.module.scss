@@ -1,3 +1,8 @@
+// Breakpoint
+$media-sm: "max-width: 640px";
+$media-md: "max-width: 820px";
+$media-lg: "max-width: 1024px";
+
 header {
   display: flex;
   height: 80px;
@@ -9,7 +14,9 @@ header {
   z-index: 10;
   top: 0;
   left: 0;
-  // background-color: #002c28;
+  @media ($media-lg) {
+    padding: 0 20px;
+  }
 
   &::before {
     content: "";
@@ -52,12 +59,16 @@ header {
     }
   }
 
-  .earthContainer {
+  .language {
     cursor: pointer;
+    .earthContainer {
+      width: 36px;
+    }
     p {
       font-size: 16px;
       padding: 0 20px 0 15px;
       color: #fff;
+      font-weight: 500;
     }
   }
 
@@ -101,7 +112,7 @@ header {
 
 nav,
 .btnContainer,
-.earthContainer,
+.language,
 main {
   display: flex;
   align-items: center;
