@@ -5,11 +5,14 @@ import News from './News/News'
 import Products from './Products/Products'
 import About from './About/About'
 import Article from './News/Article'
+import ArticlePage from './News/ArticlePage'
 import Event from './News/Event'
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import District from "./Map/District/District";
 import ProductPage from "./Products/ProductsPage";
+import CartPage from "./Products/CartPage";
+
 
 function Pages() {
   return (
@@ -19,6 +22,7 @@ function Pages() {
         <Route path="/map" element={<Map />}></Route>
         <Route path="/news" element={<News />}></Route>
         <Route path="/news/article" element={<Article/>} ></Route>
+        <Route path="/news/article/:id" element={<ArticlePage />}></Route>
         <Route path="/news/event" element={<Event/>} ></Route>
         <Route path="/map/:district" element={<District />}></Route>
         <Route path="/products" element={<Products />}></Route>
@@ -26,6 +30,8 @@ function Pages() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        
       </Routes>
     </>
   );

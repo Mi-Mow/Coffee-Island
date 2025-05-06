@@ -1,0 +1,93 @@
+.product-detail-page {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+.product-detail-page .left img {
+  width: 400px;
+  border-radius: 10px;
+}
+.product-detail-page .right {
+  flex: 1;
+}
+.product-detail-page .right h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.product-detail-page .right .description {
+  margin-bottom: 1rem;
+}
+.product-detail-page .right .description li {
+  line-height: 1.6;
+}
+.product-detail-page .right .colors {
+  margin-bottom: 1rem;
+}
+.product-detail-page .right .colors .color-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+.product-detail-page .right .colors .color-options .dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
+  cursor: pointer;
+}
+.product-detail-page .right .colors .color-options .selected {
+  border: 3px solid #333;
+}
+.product-detail-page .right .quantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.product-detail-page .right .quantity button {
+  background: #e0e0e0;
+  border: none;
+  padding: 0.3rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.product-detail-page .right .quantity span {
+  font-size: 1.1rem;
+}
+.product-detail-page .right .price {
+  margin: 1rem 0;
+  font-size: 1.3rem;
+}
+.product-detail-page .right .price .highlight {
+  color: #d9534f;
+  margin-left: 0.5rem;
+}
+.product-detail-page .right .price .old {
+  margin-left: 1rem;
+  text-decoration: line-through;
+  color: gray;
+  font-size: 1rem;
+}
+.product-detail-page .right .actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.product-detail-page .right .actions .buy {
+  background: #bfa76f;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.product-detail-page .right .actions .add {
+  background: transparent;
+  border: 1px solid #bfa76f;
+  color: #bfa76f;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
