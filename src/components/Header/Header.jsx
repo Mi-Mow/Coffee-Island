@@ -2,8 +2,18 @@ import { NavLink } from "react-router-dom";
 import s from "./Header.module.scss";
 import logo from "../../assets/logo-lg.svg";
 import earth from "../../assets/earth-white.svg";
+import { useTranslation } from "react-i18next";
 
 function Header() {
+  const { i18n, t } = useTranslation();
+  const toggleLang = () => {
+    const currentLang = i18n.language;
+    const newLang = currentLang === "zh-TW" ? "en" : "zh-TW";
+    i18n.changeLanguage(newLang);
+    localStorage.setItem("lang", newLang);
+  };
+  const nextLang = i18n.language === "zh-TW" ? "繁中" : "EN";
+
   return (
     <div>
       <header>
@@ -12,11 +22,8 @@ function Header() {
         </NavLink>
         <nav>
           <div className={s.navLink}>
-            <NavLink
-              to={"/#map"}
-              className={s.navItem}
-            >
-              地圖
+            <NavLink to={"/#map"} className={s.navItem}>
+              {t(`header.map`)}
             </NavLink>
             <NavLink
               to={"/news"}
@@ -24,7 +31,7 @@ function Header() {
                 isActive ? `${s.navItem} ${s.active}` : s.navItem
               }
             >
-              島嶼月報
+              {t(`header.news`)}
             </NavLink>
             <NavLink
               to={"/products"}
@@ -32,7 +39,7 @@ function Header() {
                 isActive ? `${s.navItem} ${s.active}` : s.navItem
               }
             >
-              限定商品
+              {t(`header.products`)}
             </NavLink>
             <NavLink
               to={"/about"}
@@ -40,19 +47,21 @@ function Header() {
                 isActive ? `${s.navItem} ${s.active}` : s.navItem
               }
             >
-              關於我們
+              {t(`header.about`)}
             </NavLink>
           </div>
           <div className={s.btnContainer}>
-            <div className={s.earthContainer}>
-              <img src={earth} alt="" />
-              <p>EN</p>
+            <div className={s.language} onClick={toggleLang}>
+              <div className={s.earthContainer}>
+                <img src={earth} alt="" />
+              </div>
+              <p>{nextLang}</p>
             </div>
             <NavLink to={"/login"}>
-              <button className={s.loginBtn}>登入</button>
+              <button className={s.loginBtn}>{t(`header.login`)}</button>
             </NavLink>
             <NavLink to={"/register"}>
-              <button className={s.registerBtn}>加入我們</button>
+              <button className={s.registerBtn}>{t(`header.register`)}</button>
             </NavLink>
           </div>
         </nav>

@@ -3,12 +3,16 @@ import { useRef, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import coffeeBeanDark from "../../assets/home/coffeeBeanDark.svg";
 import coffeeBeanLight from "../../assets/home/coffeeBeanLight.svg";
-import banner from "../../assets/home/banner.svg";
+import bannerSm from "../../assets/home/banner.svg";
+import banner from "../../assets/home/bannerPath.svg";
 import history1 from "../../assets/history1.png";
 import history2 from "../../assets/history2.png";
 import history3 from "../../assets/history3.png";
 import history4 from "../../assets/history4.png";
 import arrow from "../../assets/home/arrow.svg";
+import coffeeBeanDeco1 from "../../assets/home/coffeeBeanDeco1.svg";
+import coffeeBeanDeco2 from "../../assets/home/coffeeBeanDeco2.svg";
+import coffeeBeanMask from "../../assets/home/coffeeBeanMask.svg";
 import hotCoffee from "../../assets/home/hotCoffee.png";
 import greenBlock from "../../assets/home/greenBlock.png";
 import handheld from "../../assets/home/handheld.png";
@@ -33,11 +37,13 @@ import zhongshan from "../../assets/home/district/zhongshan.svg";
 import zhongzheng from "../../assets/home/district/zhongzheng.svg";
 import avatar from "../../assets/home/avatar.png";
 import viceBanner from "../../assets/home/viceBanner.png";
-import carImg from "../../assets/home/car-little.svg";
+import carImg from "../../assets/home/scooter-little.svg";
 import { gsap } from "gsap";
-// import { motion } from "framer-motion";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CONFIG } from "../../config";
+import { useTranslation } from "react-i18next";
+const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 // 註冊 GSAP MotionPathPlugin
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
@@ -60,7 +66,36 @@ const carouselImages = [
   },
 ];
 
+const today = new Date();
+const todayMonth = today.getMonth() + 1;
+const todayDate = today.getDate();
+const todayDay = today.getDay();
+const tomorrow = new Date();
+tomorrow.setDate(today.getDate() + 1);
+const tomorrowMonth = tomorrow.getMonth() + 1;
+const tomorrowDate = tomorrow.getDate();
+const tomorrowDay = tomorrow.getDay();
+
 function Home() {
+  const { t } = useTranslation();
+  const [weatherData, setWeatherData] = useState(null);
+
+  useEffect(() => {
+    const fetchWeather = async () => {
+      try {
+        const url = `${CONFIG.url_base}datastore/${CONFIG.datastore}?Authorization=${WEATHER_API_KEY}&format=${CONFIG.format}&locationName=${CONFIG.locationName}&elementName=${CONFIG.elementName}`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+        setWeatherData(data.records.location[0]);
+        // console.log("weather: ", data.records.location[0]);
+      } catch (error) {
+        console.log("Fetch weather error: ", error);
+      }
+    };
+    fetchWeather();
+  }, []);
+
   const navigate = useNavigate();
 
   function onClickArea(area) {
@@ -86,23 +121,23 @@ function Home() {
     }
   }, [location]);
 
-  // not working
   useEffect(() => {
     const path = pathRef.current;
     const car = carRef.current;
 
     gsap.to(car, {
       scrollTrigger: {
-        // trigger: ".scrollContainer",
-        start: "top 25%",
+        trigger: ".road",
+        start: "top 300px",
+        end: "bottom -1400px",
         scrub: 1,
       },
-      // motionPath: {
-      //   path: path,
-      //   align: path,
-      //   autoRotate: 90,
-      //   alignOrigin: [0.5, 0.5],
-      // },
+      motionPath: {
+        path: path,
+        align: path,
+        autoRotate: 90,
+        alignOrigin: [0.3, 0.5],
+      },
       ease: "none",
     });
   }, []);
@@ -224,26 +259,41 @@ function Home() {
           <div className={s.bannerContainer}>
             <img src={banner} alt="" />
           </div>
+          <div className={s.bannerContainerSm}>
+            <img src={bannerSm} alt="" />
+          </div>
           <div className={s.weather}>
             <div className={s.todayDate}>
               <div className={s.title}>今日</div>
               <div className={s.data}>
-                04/22<span>(二)</span>
+                {todayMonth}/{todayDate}{" "}
+                <span>{t(`home.days.${todayDay}`)}</span>
               </div>
             </div>
             <div className={s.todayTemp}>
               <div className={s.title}>溫度</div>
-              <div className={s.data}>25 /17℃</div>
+              <div className={s.data}>
+                {weatherData?.weatherElement[1].time[0].parameter.parameterName}{" "}
+                /
+                {weatherData?.weatherElement[0].time[1].parameter.parameterName}
+                ℃
+              </div>
             </div>
             <div className={s.tomorrowDate}>
               <div className={s.title}>明日</div>
               <div className={s.data}>
-                04/22<span>(二)</span>
+                {tomorrowMonth}/{tomorrowDate}{" "}
+                <span>{t(`home.days.${tomorrowDay}`)}</span>
               </div>
             </div>
             <div className={s.tomorrowTemp}>
               <div className={s.title}>溫度</div>
-              <div className={s.data}>28 /17℃</div>
+              <div className={s.data}>
+                {weatherData?.weatherElement[1].time[2].parameter.parameterName}{" "}
+                /
+                {weatherData?.weatherElement[0].time[2].parameter.parameterName}
+                ℃
+              </div>
             </div>
           </div>
         </div>
@@ -254,17 +304,20 @@ function Home() {
           </div>
         </div>
       </main>
-      <section className={s.carousel} ref={carouselRef}>
+      <section className={s.carouselSection} ref={carouselRef}>
         <div className={s.greatTime}>
           <div className={s.greenBlockContainer}>
             <img src={greenBlock} alt="" />
           </div>
           <div className={s.textContainer}>
+            <div className={s.deco}>
+              <img src={coffeeBeanDeco2} alt="" />
+            </div>
             <div className={s.title}>美好年代</div>
             <div className={s.content}>
-              記得那年夏天，光透過窗簾。
+              用一杯好咖啡，回到過去，
               <br />
-              那畫面在夢境仍舊清晰可見，
+              重溫台北的復古風情。
             </div>
           </div>
           <div className={s.handheldContainer}>
@@ -274,16 +327,24 @@ function Home() {
             <img src={hotCoffee} alt="" />
           </div>
         </div>
+        <div className={s.maskContainer}>
+          <img src={coffeeBeanMask} alt="" />
+        </div>
         <div className={s.coffeeIsland}>
+          <div className={s.deco}>
+            <img src={coffeeBeanDeco1} alt="" />
+          </div>
           <div className={s.title}>咖啡島 COFFEE ISLAND</div>
           <div className={s.content}>
-            提供咖啡知識與熱門復古咖啡廳，
+            在這裡，咖啡不僅是飲品，
             <br />
-            利用咖啡地圖找到適合自己的店家。
+            更是探索台灣咖啡歷史的窗口。
             <br />
-            還有限定商品讓您在家也可以品嚐好咖啡，
+            選購專業濾杯、手沖壺，
             <br />
-            現在就讓我們來一起踏上咖啡之旅吧!
+            並透過我們的地圖發掘台北的復古咖啡廳，
+            <br />
+            每一杯咖啡都是一次文化之旅。
           </div>
         </div>
         {/* 待優化 */}
@@ -340,7 +401,7 @@ function Home() {
             />
             <clipPath id="history1">
               <path
-                d="M161.5 458L64 303L111.5 272L157.5 243L203.5 218L244 199L280 184.5L365.5 152L402 285.5L315.5 333.5L274.5 360.5L230.5 394L195.5 424L161.5 458Z"
+                d="M161.46 460.921L64.6074 303L87.3166 285.92L111.261 270.009L133.788 255.674L157.405 242.341L203.297 216.654L244.57 196.739L281.607 182.5L323.107 167L345.119 157.976L366.065 149.92L403.607 285L395.607 290.5L360.857 309.25L320.19 334.124L283.246 358.657L255.538 377.995L234.18 394.735L215.419 410.898L197.607 426L161.46 460.921Z"
                 fill="#A9A9A9"
                 stroke="black"
                 strokeWidth="2"
@@ -348,7 +409,7 @@ function Home() {
             </clipPath>
             <clipPath id="history2">
               <path
-                d="M427.5 274L395 141.5L437 130L488.5 117L523 108.5L558.5 101L594 95.5L621 91.5L635.5 88.5L638.5 200L617 205.5L578.5 215.5L542 226.5L501 242L468 255.5L427.5 274Z"
+                d="M474 254L427.376 274.028L425.296 265.205L394.599 141.267L437 130L462.455 123.089L475.142 119.736L488 116.5L505.958 111.967L523.953 107.445L558.529 100.097L586.133 95.2919L604.598 92.5597L622 90.5L635.5 89L639 200L617 205.5L578.5 215.5L542.5 228L500 243.5L474 254Z"
                 fill="#A9A9A9"
                 stroke="black"
                 strokeWidth="2"
@@ -357,28 +418,28 @@ function Home() {
             </clipPath>
             <clipPath id="history3">
               <path
-                d="M653.5 197V88L692.5 85L723 84H758H792L825.5 85.5L847.5 87.5L834 183.5H814.5H789.5L760.5 185L737.5 186.5L712 189L681.5 193L653.5 197Z"
+                d="M652.5 197.5V87.5L692.5 85L723 84L731.919 83.8242H739.237H744.837L751.018 83.8242H758.519L792 84L825.5 85.5L848.669 87.5916L841.334 135.796L838.274 160.185L836.195 173.179L834.635 184.656H825.159H814.251H802.181H789.933L760.5 185L737.5 186.5L712 189L681.5 193L652.5 197.5Z"
                 fill="#D9D9D9"
                 stroke="black"
               />
             </clipPath>
             <clipPath id="history4">
               <path
-                d="M852 184L866.5 89.5L888 91L909 94L928 96.5L953.5 101L978 105.5L1006 112.5L1035 119.5L1059 127L1030 215.5L1017 211.5L994.5 205.5L972.5 200L947 195L921 191L896 187.5L869 185.5L852 184Z"
+                d="M851.5 184.5L867 89L888 91L909 94L928 96.5L953.5 101L978 105.5L1006 112.5L1035 119.5L1059 127L1030 215.5L1017 211.5L994.5 205.5L972.231 200.494L946.626 195.499L921 191L896 187.5L869 185.5L851.5 184.5Z"
                 fill="#D9D9D9"
                 stroke="black"
               />
             </clipPath>
             <clipPath id="history5">
               <path
-                d="M1046 221L1076.5 134.5L1110.5 144.5L1142.5 154.5L1179 166L1219.5 178L1251 187L1274 194.5L1229.5 276L1210 271.5L1187.5 266.5L1167 260.5L1142.5 253.5L1119 246.5L1093 237.5L1068 228.5L1046 221Z"
+                d="M1046 221L1076 134L1110.5 144.5L1142.5 154.5L1179 166L1219.5 178L1251 187L1274 194.5L1229 276.5L1210 272.5L1187.5 266.5L1165 260.5L1142.5 253.5L1119 246.5L1093 237.5L1068 228.5L1046 221Z"
                 fill="#D9D9D9"
                 stroke="black"
               />
             </clipPath>
             <clipPath id="history6">
               <path
-                d="M1255.5 280L1241.5 277.5L1272.5 221.5L1276.5 214L1283 203.5L1284.88 200.5L1288.43 197.5L1293.25 196.786L1302 197.5L1311 198.5L1324 200.5L1340.5 201.5H1357L1373 200.5L1387.03 198.165L1343.5 265.5L1338.76 272.04L1334.72 274.995L1329.4 277.162L1321.72 279.132L1310.5 281.5L1298 282.5H1285.5L1270.5 281.5L1255.5 280Z"
+                d="M1255.5 280L1240.5 278L1272.5 221.5L1276.5 214L1280.5 207L1283.5 202L1285 200L1286.5 198.5L1288.43 197.5L1291.5 196.5H1296L1303 197.5L1311 198.5L1324 200.5L1340.5 201.5H1357L1373 200.5L1388 197.5L1343.5 265.5L1339.5 272L1335 275.5L1329 277.5L1321.72 279.132L1310.5 281.5L1298 282.5H1285.5L1270.5 281.5L1255.5 280Z"
                 fill="#D9D9D9"
                 stroke="black"
               />
@@ -396,62 +457,140 @@ function Home() {
                 <stop offset="1" stopColor="white" stopOpacity="0.66" />
               </linearGradient>
             </defs>
-            <image
-              className={s.historyImg}
-              href={history1}
-              width="400"
-              height="400"
-              x={50}
-              y={80}
-              clipPath="url(#history1)"
-            />
-            {/* <div
-              className="bg-mask"
-              style={{ position: "absolute", top: "0", left: "0" }}
-            ></div> */}
-            <image
-              href={history2}
-              width="300"
-              height="300"
-              x={350}
-              clipPath="url(#history2)"
-            />
-            <image
-              href={history3}
-              width="250"
-              height="250"
-              x={600}
-              clipPath="url(#history3)"
-            />
-            <image
-              href={history4}
-              width="300"
-              height="300"
-              x={800}
-              clipPath="url(#history4)"
-            />
-            <image
-              href={history2}
-              width="300"
-              height="300"
-              x={1000}
-              clipPath="url(#history5)"
-            />
-            <image
-              href={history1}
-              width="300"
-              height="300"
-              x={1200}
-              clipPath="url(#history6)"
-            />
+            <g className={s.filmGroup}>
+              <image
+                className={s.filmImg}
+                href={history1}
+                width="350"
+                height="350"
+                x={50}
+                y={110}
+                clipPath="url(#history1)"
+              />
+              <rect
+                className={s.filmMask}
+                width="350"
+                height="350"
+                x={50}
+                y={110}
+                clipPath="url(#history1)"
+                fill="rgba(0,0,0,0.5)"
+              />
+              <text className={s.filmTitle} x="180" y="300">
+                台灣咖啡興衰史
+              </text>
+            </g>
+            <g className={s.filmGroup}>
+              <image
+                className={s.filmImg}
+                href={history2}
+                width="350"
+                height="350"
+                x={350}
+                clipPath="url(#history2)"
+              />
+              <rect
+                className={s.filmMask}
+                width="350"
+                height="350"
+                x={350}
+                clipPath="url(#history2)"
+                fill="rgba(0,0,0,0.5)"
+              />
+              <text className={s.filmTitle} x="470" y="180">
+                台灣咖啡興衰史
+              </text>
+            </g>
+            <g className={s.filmGroup}>
+              <image
+                className={s.filmImg}
+                href={history3}
+                width="350"
+                height="350"
+                x={600}
+                clipPath="url(#history3)"
+              />
+              <rect
+                className={s.filmMask}
+                width="350"
+                height="350"
+                x={600}
+                clipPath="url(#history3)"
+                fill="rgba(0,0,0,0.5)"
+              />
+              <text className={s.filmTitle} x="690" y="140">
+                台灣咖啡興衰史
+              </text>
+            </g>
+            <g className={s.filmGroup}>
+              <image
+                className={s.filmImg}
+                href={history4}
+                width="350"
+                height="350"
+                x={800}
+                clipPath="url(#history4)"
+              />
+              <rect
+                className={s.filmMask}
+                width="350"
+                height="350"
+                x={800}
+                clipPath="url(#history4)"
+                fill="rgba(0,0,0,0.5)"
+              />
+              <text className={s.filmTitle} x="890" y="160">
+                台灣咖啡興衰史
+              </text>
+            </g>
+            <g className={s.filmGroup}>
+              <image
+                className={s.filmImg}
+                href={history2}
+                width="350"
+                height="350"
+                x={1000}
+                clipPath="url(#history5)"
+              />
+              <rect
+                className={s.filmMask}
+                width="350"
+                height="350"
+                x={1000}
+                clipPath="url(#history5)"
+                fill="rgba(0,0,0,0.5)"
+              />
+              <text className={s.filmTitle} x="1090" y="210">
+                台灣咖啡興衰史
+              </text>
+            </g>
+            <g className={s.filmGroup}>
+              <image
+                className={s.filmImg}
+                href={history1}
+                width="350"
+                height="350"
+                x={1200}
+                clipPath="url(#history6)"
+              />
+              <rect
+                className={s.filmMask}
+                width="350"
+                height="350"
+                x={1200}
+                clipPath="url(#history6)"
+                fill="rgba(0,0,0,0.5)"
+              />
+              <text className={s.filmTitle} x="1260" y="250">
+                台灣咖啡興衰史
+              </text>
+            </g>
           </svg>
           {/* Film Image End */}
           <div className={s.description}>
-            時間安靜流去，不留痕跡。
+            每一杯咖啡都是故事的開端，
             <br />
-            帶走了最重要的事情，
-            <br />
-            回想不起快樂的定義，
+            讓我們一起追溯台灣咖啡的歷史。
           </div>
         </div>
       </section>
@@ -682,46 +821,57 @@ function Home() {
       <section className={s.contact}>
         <div className={s.title}>聯絡我們</div>
         <div className={s.description}>
-          <p>
-            我們是個致力於打造咖啡平台的團隊。我們是個致力於打造咖啡平台的團隊。
-            我們是個致力於打造咖啡平台的團隊。
-            我們是個致力於打造咖啡平台的團隊。
-            我們是個致力於打造咖啡平台的團隊。
+          <p className={s.text}>
+            我們是一群熱愛咖啡與復古文化的創作者，致力於將台灣的咖啡歷史與特色呈現給每一位喜愛咖啡的人。在這片懷舊的氛圍中，品味時光，邀你一同感受復古咖啡的魅力。
           </p>
           <div className={s.team}>
             <div className={s.avatar}>
-              <img src={avatar} alt="" />
+              <div className={s.avatarContainer}>
+                <img src={avatar} alt="" />
+              </div>
+              <p>Ling</p>
             </div>
             <div className={s.avatar}>
-              <img src={avatar} alt="" />
+              <div className={s.avatarContainer}>
+                <img src={avatar} alt="" />
+              </div>
+              <p>Eve</p>
             </div>
             <div className={s.avatar}>
-              <img src={avatar} alt="" />
+              <div className={s.avatarContainer}>
+                <img src={avatar} alt="" />
+              </div>
+              <p>Dasper</p>
             </div>
             <div className={s.avatar}>
-              <img src={avatar} alt="" />
+              <div className={s.avatarContainer}>
+                <img src={avatar} alt="" />
+              </div>
+              <p>Hsin</p>
             </div>
           </div>
         </div>
         <div className={s.viceBanner}>
           <img src={viceBanner} alt="" />
-          <p>收藏精選店家、限定商品販售、即時職人工作坊及文章。</p>
-          <button className={s.registerButton}>創建您的帳戶</button>
+          <div className={s.textContainer}>
+            <p>收藏精選店家、限定商品販售、即時職人工作坊及文章。</p>
+            <button className={s.registerButton}>創建您的帳戶</button>
+          </div>
         </div>
       </section>
       {/* Road */}
       <div className={s.scrollContainer}>
         <svg
-          ref={pathRef}
+          className={s.road}
           width="1313"
           height="1950"
           viewBox="0 0 1313 1950"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
-          className={s.road}
         >
           <path
+            ref={pathRef}
             fillRule="evenodd"
             clipRule="evenodd"
             d="M185.258 92.4789C165.796 72.2986 158 45.3698 158 13H188C188 40.6302 194.572 58.92 206.852 71.6537C219.459 84.7258 240.253 94.2331 273.53 99.3957C340.607 109.802 448.634 101.294 612.297 82.5969C808.004 60.239 968.738 82.6836 1086.65 129.325C1204.06 175.764 1281.02 247.141 1304.73 324.002C1316.68 362.721 1314.88 402.384 1298.1 439.597C1281.4 476.644 1250.31 510.295 1205.22 538.238C1115.3 593.951 967.744 628.285 756.974 621.993L756.975 621.969C668.984 616.486 530.187 612.832 412.802 632.555C354.003 642.434 301.908 657.975 264.404 681.138C227.32 704.04 205.786 733.438 204.072 771.844C203.058 794.555 212.888 816.899 233.943 839.339C255.12 861.908 286.765 883.552 326.762 904.134C406.705 945.27 516.483 980.409 632.239 1010.53C747.805 1040.61 868.338 1065.44 969.484 1086.25L973.456 1087.07C1071.17 1107.16 1151.88 1123.77 1189.93 1137.79C1230.27 1151.21 1265.08 1169.96 1284.66 1192.87C1294.66 1204.56 1301.44 1218.26 1301.69 1233.47C1301.95 1248.87 1295.47 1263.37 1283.65 1276.38C1260.76 1301.58 1215.33 1324.05 1144.02 1343.17C1072 1362.47 971.128 1378.96 834.551 1390.4C495.563 1418.8 340.943 1507.95 279.203 1594.6C217.948 1680.56 245.87 1767.03 279.371 1800.31C293.026 1813.88 314.523 1827.43 341.488 1840.41C368.24 1853.28 399.417 1865.15 431.634 1875.71C496.076 1896.84 563.633 1912.39 606.02 1920.2L600.578 1949.71C557.131 1941.69 488.239 1925.84 422.289 1904.22C389.31 1893.41 356.806 1881.07 328.476 1867.44C300.359 1853.9 275.373 1838.63 258.227 1821.6C214.729 1778.38 184.65 1675.6 254.771 1577.19C324.405 1479.46 490.536 1389.11 832.047 1360.51C967.671 1349.15 1066.61 1332.86 1136.26 1314.19C1206.62 1295.33 1244.71 1274.62 1261.45 1256.21C1269.44 1247.41 1271.8 1240 1271.7 1233.97C1271.59 1227.75 1268.83 1220.51 1261.86 1212.36C1247.54 1195.61 1218.88 1179.03 1180.33 1166.21L1180.33 1166.22C1144.99 1153 1065.34 1136.6 963.439 1115.63C862.397 1094.85 741.117 1069.87 624.684 1039.57C508.44 1009.32 396.031 973.516 313.036 930.809C271.565 909.469 236.553 885.964 212.066 859.866C187.457 833.638 172.615 803.794 174.101 770.505C176.387 719.311 205.895 682.012 248.64 655.613C290.964 629.474 347.485 613.109 407.831 602.97C528.733 582.656 670.345 586.512 758.855 592.028L758.854 592.036C966.294 598.107 1106.74 563.963 1189.42 512.736C1230.68 487.168 1257.05 457.679 1270.76 427.268C1284.39 397.022 1285.96 364.909 1276.06 332.845C1256.11 268.138 1188.62 201.92 1075.62 157.222C963.127 112.726 807.496 90.4922 615.703 112.403C453.313 130.955 340.839 140.197 268.93 129.041C232.714 123.423 204.393 112.321 185.258 92.4789Z"
@@ -755,7 +905,7 @@ function Home() {
             />
           </defs>
         </svg>
-        {/* <img ref={carRef} src={carImg} alt="Car" className={s.car} /> */}
+        <img ref={carRef} src={carImg} alt="Car" className={s.car} />
       </div>
     </>
   );
