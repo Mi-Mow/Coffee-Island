@@ -1,9 +1,18 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home/Home";
 import Map from "./Map/Map";
-import Monthly from './Monthly/Monthly'
+import News from './News/News'
 import Products from './Products/Products'
 import About from './About/About'
+import Article from './News/Article'
+import ArticlePage from './News/ArticlePage'
+import Event from './News/Event'
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import District from "./Map/District/District";
+import ProductPage from "./Products/ProductsPage";
+import CartPage from "./Products/CartPage";
+
 
 function Pages() {
   return (
@@ -11,9 +20,18 @@ function Pages() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/map" element={<Map />}></Route>
-        <Route path="/monthly" element={<Monthly />}></Route>
+        <Route path="/news" element={<News />}></Route>
+        <Route path="/news/article" element={<Article/>} ></Route>
+        <Route path="/news/article/:id" element={<ArticlePage />}></Route>
+        <Route path="/news/event" element={<Event/>} ></Route>
+        <Route path="/map/:district" element={<District />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        
       </Routes>
     </>
   );

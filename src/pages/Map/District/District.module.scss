@@ -1,0 +1,124 @@
+.main {
+  // margin-top: 120px;
+  padding: 120px 70px 0;
+  height: 100vh;
+  // height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 80px);
+    background-image: url("../../../assets/map/distBg.svg");
+    background-repeat: repeat;
+    background-size: 25px 25px;
+    background-color: #4d8477;
+    opacity: 0.8;
+    z-index: -1;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+  }
+
+  .districtImg {
+    width: 400px;
+  }
+
+  .popular {
+    padding-left: 40px;
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+      color: #fff;
+      padding-bottom: 20px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+
+      .card {
+        width: 200px;
+        margin: 20px 20px 0 0;
+        cursor: pointer;
+        .imgContainer img {
+          border-radius: 3px 3px 0 0;
+        }
+        .text {
+          background-color: #fff;
+          padding: 10px 15px;
+          border-radius: 0 0 3px 3px;
+        }
+        .cardTitle {
+          display: flex;
+          justify-content: space-between;
+          font-weight: bold;
+        }
+        .description {
+          color: #090909;
+          font-size: 14px;
+          margin-top: 15px;
+          line-height: 1.5;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
+        }
+      }
+    }
+    .btn {
+      margin: 20px 0;
+      .btnBg {
+        background-color: #d19666;
+        height: 50px;
+        width: 150px;
+        display: block;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: all 0.3s ease-out;
+
+        &:hover {
+          background-color: #f0b07c;
+        }
+
+        button {
+          margin: auto;
+          background-color: transparent;
+          color: #7b4519;
+          font-size: 24px;
+          font-weight: 800;
+          border: 3px solid #7b4519;
+          width: 140px;
+          height: 40px;
+          cursor: pointer;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+}
+
+.filter {
+  height: calc(100vh - 80px);
+  background-image: url("/paper-texture.png");
+  background-repeat: repeat;
+  background-size: cover;
+  background-color: #122f30;
+  background-blend-mode: overlay;
+}
+
+@media (max-width: 1250px) {
+  .main {
+    height: auto;
+  }
+}

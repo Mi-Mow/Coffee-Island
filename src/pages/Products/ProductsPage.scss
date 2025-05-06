@@ -1,0 +1,443 @@
+//第一部分：商品大圖加入購物車...等
+.product-detail-page {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  .left {
+    flex: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .carousel {
+      position: relative;
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+        object-fit: contain;
+        border-radius: 12px;
+      }
+
+      .carousel-controls {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        padding: 0 16px;
+        pointer-events: none;
+
+        button {
+          pointer-events: all;
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          width: 40px;
+          height: 40px;
+          font-size: 24px;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: background 0.3s;
+
+          &:hover {
+            background: #7F7E5E;
+          }
+        }
+      }
+    }
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 48px;
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 24px;
+      color: #FFF1CB;
+    }
+
+    .description {
+      font-size: 18px;
+      margin-bottom: 24px;
+      color: #FFF;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      background: #FFF1CB;
+      border-radius: 8px;
+      padding: 5px 8px;
+      margin: 24px 0;
+      width: fit-content;
+
+      button,
+      span {
+        width: 32px;
+        height: 32px;
+        font-size: 19px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      button {
+        background: transparent;
+        border: none;
+        color: #000;
+        cursor: pointer;
+      }
+
+      span {
+        color: #000;
+      }
+    }
+
+    .price {
+      margin-bottom: 32px;
+      font-size: 24px;
+      color: #FFF1CB;
+
+      .highlight {
+        color: #d9534f;
+        font-weight: bold;
+        margin-left: 8px;
+      }
+
+      .old {
+        font-size: 16px;
+        color: #FFF;
+        text-decoration: line-through;
+        margin-left: 13px;
+      }
+    }
+
+    .actions {
+      display: flex;
+      gap: 16px;
+
+      .buy,
+      .add {
+        flex: 1;
+        padding: 16px 0;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        border: none;
+        box-shadow: none;
+      }
+
+      .buy {
+        background: #FFF1CB;
+        color: #5e5e5e;
+
+        &:hover {
+          background: #FFF1CB;
+        }
+      }
+
+      .add {
+        background: transparent;
+        border: 2px solid #FFF1CB;
+        color: #FFF1CB;
+
+        &:hover {
+          background: #FFF1CB;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  //第一部分：商品大圖加入購物車...等 der RWD
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .left,
+    .right {
+      width: 100%;
+    }
+
+    .carousel {
+      width: 90%;
+    }
+
+    .right {
+      padding: 32px 24px;
+      text-align: center;
+
+      .description {
+        text-align: left;
+      }
+
+      .quantity {
+        margin: 16px auto;
+      }
+
+      .price {
+        font-size: 21px;
+
+        .highlight {
+          font-size: 22px;
+        }
+
+        .old {
+          font-size: 14px;
+        }
+      }
+
+      .actions {
+        flex-direction: column;
+        gap: 13px;
+      }
+    }
+  }
+}
+
+// 第二部分：商品規格留白，我還沒想好要怎麼寫！！！！！！！
+
+// 第三部分：商品簡介輪播圖
+.product-description-carousel {
+  position: relative;
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .arrow-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+
+    &.left {
+      left: -60px; // 左箭頭內縮
+    }
+
+    &.right {
+      right: -60px; // 右箭頭內縮
+    }
+
+    .arrow {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      background: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: #ffd85d;
+      }
+    }
+  }
+
+  .carousel-viewport {
+    max-width: 1310px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .carousel-card {
+    flex-shrink: 0;
+    width: 370px;
+    margin: 0 35px;
+    text-align: center;
+
+    img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    h4 {
+      font-size: 20px;
+      color: #fff1cb;
+      margin: 10px 0 4px;
+    }
+
+    p {
+      font-size: 16px;
+      color: white;
+    }
+  }
+
+  // 第三部分：RWD 手機版
+  @media (max-width: 768px) {
+    padding: 32px 0;
+
+    .arrow-wrapper {
+      &.left {
+        left: -32px;
+      }
+
+      &.right {
+        right: -32px;
+      }
+
+      .arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+      }
+    }
+
+    .carousel-card {
+      width: 240px;
+      margin: 0 8px;
+
+      img {
+        max-width: 200px;
+      }
+
+      h4 {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+
+
+// 第四部分：推薦商品區
+.recommended-products {
+  width: 100%;
+  margin-top: 200px;
+
+  // 讓整個區塊靠右
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+
+  .recommend-title {
+    font-size: 32px;
+    color: #FFF1CB;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    max-width: 1240px;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 32px;
+
+    .prodRecoMs {
+      width: 250px;
+      height: 100px;
+      object-fit: contain;
+    }
+  }
+
+
+  .recommend-cards {
+    width: 100%;
+    max-width: 1240px;
+    display: flex;
+    gap: 70px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0 20px; // 跟 title 對齊
+  }
+
+
+  .product-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    width: 350px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    &:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: black;
+      color: white;
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: 4px;
+    }
+
+    .info {
+      margin-top: 10px;
+
+      .name {
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .price {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        .new-price {
+          font-size: 24px;
+          font-weight: bold;
+          color: #000;
+        }
+
+        .old-price {
+          font-size: 16px;
+          color: gray;
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+}
+
+// 第四部分：推薦商品區 der RWD
+@media (max-width: 768px) {
+  .recommend-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
