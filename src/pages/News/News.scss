@@ -752,14 +752,15 @@
           gap: 12px;
           flex: 1 0 0;
 
-          border: 1px solid $textcolor;
-          border-radius: 16px;
+          // border: 1px solid $textcolor;
+          // border-radius: 16px;
           padding: 32px 24px;
-          background-color: rgb(104, 50, 5);
+          // background-color: rgb(104, 50, 5);
 
           figure {
-            // display: block;
-            display: flex;
+            display: block;
+            width: 100%;
+            // display: flex;
             justify-content: center;
             align-items: center;
             height: 280px;
@@ -770,6 +771,7 @@
 
             img {
               object-fit:contain;
+
               height: 100%;
               border-radius: 4px;
             }
