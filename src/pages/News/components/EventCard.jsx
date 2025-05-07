@@ -11,7 +11,8 @@ const EventCard = ({ imgSrc, tags, date, title, link = "#" }) => (
       ))}
     </div>
     <p className="date">{date}</p>
-    <h2>{title}</h2>
+    <div className='title-container'><h2>{title}</h2></div>
+    
   </Link>
 );
 

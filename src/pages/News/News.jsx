@@ -5,8 +5,9 @@ import story1 from '/news/story1.png'
 import cafe1 from '/news/cafe1.jpg'
 import historyImg1 from '/news/historyImg1.jpg'
 import event1 from '/news/event1.png'
-import eventBtn from '/news/seemoreevent.png'
 import { useState } from 'react'
+import { events } from './Event'
+import EventCard from './components/EventCard'
 
 function News() {
 
@@ -48,7 +49,7 @@ function News() {
                   <a href="#">
                     <div>
                       <img src={story1} alt="老臺北特輯封面照片" />
-                      <p>明星咖啡館與那個年代：台北文人的思想日常</p>
+                      <h3>明星咖啡館與那個年代：台北文人的思想日常</h3>
                     </div>
                   </a>
 
@@ -144,13 +145,14 @@ function News() {
                 <path d="M0.5 1.47754H320.5" stroke="#FFF1CB" strokeWidth="2" />
               </svg>
             </div>
-            
+
             {/* 卡片區 */}
             {/* 一列3欄 */}
             <div className="event-cards">
               {/* 每張卡片 */}
-              {filterEventDates.map((event, index) => (
+              {events.map((event, index) => (
                 <EventCard
+                  className="event-card"
                   key={index}
                   imgSrc={event.imgSrc}
                   tags={event.tags}
@@ -159,93 +161,6 @@ function News() {
                   link={event.link}
                 />
               ))}
-            </div>
-
-            {/* 卡片區 */}
-            {/* 一列3欄 */}
-            <div className="event-cards">
-
-              {/* 每張卡片 */}
-              <a href="#" className="eventCard">
-                <div className="event-card">
-                  <img src={event1} alt="" />
-                  <div className="event-tags">
-                    <p className="tagName">最新企劃</p>
-                    <p className="tagName">復古咖啡廳</p>
-                  </div>
-                  <p className="date">2025/04/05~2025/04/05</p>
-                  <h2>徐明志｜品一杯草莓果醬味咖啡</h2>
-                </div>
-
-              </a>
-
-              <a href="#" className="eventArea">
-                <div className="event-card">
-                  <img src={event1} alt="" />
-                  <div className="event-tags">
-                    <p className="tagName">最新企劃</p>
-                    <p className="tagName">復古咖啡廳</p>
-                  </div>
-                  <p className="date">2025/04/05~2025/04/05</p>
-                  <h2>徐明志｜品一杯草莓果醬味咖啡</h2>
-                </div>
-              </a>
-
-              <a href="#" className="eventArea">
-                <div className="event-card">
-                  <img src={event1} alt="" />
-                  <div className="event-tags">
-                    <p className="tagName">最新企劃</p>
-                    <p className="tagName">復古咖啡廳</p>
-                  </div>
-                  <p className="date">2025/04/05~2025/04/05</p>
-                  <h2>徐明志｜品一杯草莓果醬味咖啡</h2>
-                </div>
-              </a>
-
-            </div>
-
-            {/* 一列3欄 */}
-            <div className="event-cards">
-
-              {/* 每張卡片 */}
-              <a href="#" className="eventCard">
-                <div className="event-card">
-                  <img src={event1} alt="" />
-                  <div className="event-tags">
-                    <p className="tagName">最新企劃</p>
-                    <p className="tagName">復古咖啡廳</p>
-                  </div>
-                  <p className="date">2025/04/05~2025/04/05</p>
-                  <h2>徐明志｜品一杯草莓果醬味咖啡</h2>
-                </div>
-
-              </a>
-
-              <a href="#" className="eventArea">
-                <div className="event-card">
-                  <img src={event1} alt="" />
-                  <div className="event-tags">
-                    <p className="tagName">最新企劃</p>
-                    <p className="tagName">復古咖啡廳</p>
-                  </div>
-                  <p className="date">2025/04/05~2025/04/05</p>
-                  <h2>徐明志｜品一杯草莓果醬味咖啡</h2>
-                </div>
-              </a>
-
-              <a href="#" className="eventArea">
-                <div className="event-card">
-                  <img src={event1} alt="" />
-                  <div className="event-tags">
-                    <p className="tagName">最新企劃</p>
-                    <p className="tagName">復古咖啡廳</p>
-                  </div>
-                  <p className="date">2025/04/05~2025/04/05</p>
-                  <h2>徐明志｜品一杯草莓果醬味咖啡</h2>
-                </div>
-              </a>
-
             </div>
 
             {/* 按鈕 */}

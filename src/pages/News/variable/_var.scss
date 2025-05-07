@@ -9,7 +9,7 @@ $primary_1: #a2b9bc;
 $primary_2: #b2ad7f;
 $bordercolor: #FFF1CB;
 $btn-color: #904118;
-$tagcolor: #a1b8bb;
+$tagcolor: #fff;
 
 // RWD斷點
 // 大型設備，設定min-width
@@ -21,3 +21,8 @@ $media-768: "max-width:768px";
 // 小
 $media-640: "max-width:640px";
 $media-576: "max-width:576px";
+
+// letter-spacing
+$letter-spacing-s: 0.2rem;
+$letter-spacing-m: 0.8rem;
+$letter-spacing-l: 1.6rem;

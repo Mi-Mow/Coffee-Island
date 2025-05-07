@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import EventCard from './components/EventCard';
 import { useState } from 'react';
 import event1 from '../../assets/news/activities/1.jpg';
@@ -9,12 +9,10 @@ import event5 from '../../assets/news/activities/5.jpg';
 import event6 from '../../assets/news/activities/6.jpg';
 import event7 from '../../assets/news/activities/7.jfif';
 
-
-
-function Event() {
   // data陣列
-  const events = [
+  export const events = [
     {
+      id: 1,
       imgSrc: event1,
       tags: ['外部活動', '咖啡展'],
       date: '2025/11/14~2025/11/17',
@@ -79,6 +77,15 @@ function Event() {
     },
     // 更多資料...
   ];
+
+function Event() {
+
+  const navigate = useNavigate();
+
+    function onClickArea(id) {
+        navigate(`/news/event/${id}`);
+    }
+
 
   // setFilter
   const [filterTime, setFilterTime] = useState('全部');

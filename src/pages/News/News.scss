@@ -4,14 +4,15 @@
 #news,
 #findArticles,
 #findEvent,
-.article-detail-page {
-  align-self: center;
+.article-detail-page,
+.event-detail-page {
+  max-width: 1920px;
   display: flex;
-  padding: 100px 0px;
+  padding: 100px 170px;
   flex-direction: column;
-  align-items: center;
   font-size: $fontsize;
   width: 100%;
+  align-self: center;
 
   main {
     @media ($media-820) {
@@ -37,19 +38,28 @@
   .title {
     font-size: 24px;
     font-weight: 400;
-    letter-spacing: 0.84px;
-    // 置左
+    letter-spacing: 32px;
+    // 置右
     width: 100%;
+    text-align: right;
+    line-height: 1.6rem;
+  }
+  h1 {
     text-align: left;
-    padding: 0 50px;
   }
 
   h2 {
     font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 8px;
+
   }
 
   h3 {
     font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+
   }
 
   .tagName {
@@ -57,8 +67,8 @@
     color: $tagcolor;
     font-size: 14px;
     font-weight: 400;
-    line-height: normal;
     letter-spacing: 0.84px;
+    line-height: 0.8rem;
   }
 
   /* nav */
@@ -98,10 +108,10 @@
 
 /* 島嶼月報 */
 #news>main {
+  padding: 0px;
   align-self: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   @media ($media-820) {
     // padding: 0;
@@ -110,15 +120,17 @@
   /* 封面故事 */
 
   .cover-story {
-
+    // max-width: 1280px;
+    width: 100%;
     display: flex;
-    padding: 36px 0px;
+    padding: 48px 0px;
     flex-direction: column;
     align-items: flex-start;
-    align-self: stretch;
+    overflow: hidden;
 
     div {
-      height: 400px;
+      object-fit: cover;
+      // height: 400px;
       align-self: stretch;
     }
 
@@ -130,7 +142,7 @@
 
     display: flex;
     justify-content: space-between; // 讓左右有空間
-    gap: 20px; // 中間間距  
+    gap: 64px; // 中間間距  
 
     height: 840px;
     align-self: stretch;
@@ -143,7 +155,7 @@
   .section-row>section:last-child {
     display: flex;
     flex: 1; // 右邊：佔 1 份
-    align-items: flex-end;
+    align-items: flex-start;
   }
 
   /* feature左欄 */
@@ -160,7 +172,7 @@
       letter-spacing: 0.84px;
 
       display: flex;
-      width: 700px;
+      // width: 700px;
       padding-bottom: 36px;
       flex-direction: column;
       align-items: flex-start;
@@ -176,7 +188,7 @@
       align-self: stretch;
 
       img {
-        height: 300px;
+        // height: 300px;
         align-self: stretch;
       }
 
@@ -184,7 +196,7 @@
         color: $textcolor;
         font-weight: 400;
         line-height: normal;
-        letter-spacing: 0.84px;
+        letter-spacing: 1.6px;
       }
     }
 
@@ -200,7 +212,6 @@
         height: 353px;
         align-items: center;
         gap: 35px;
-        align-self: stretch;
 
         div {
           display: flex;
@@ -218,18 +229,9 @@
           h3 {
             height: 50px;
             align-self: stretch;
-            color: $textcolor;
-
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            letter-spacing: 0.84px;
           }
         }
       }
-
-
     }
   }
 
@@ -237,11 +239,11 @@
   /* feature右欄 */
 
   .recommendation {
-    width: 320px;
+    display: flex;
+    width: 100%;
     height: 748px;
     padding: 24px;
     flex-direction: column;
-    align-items: flex-end;
     gap: 12px;
     flex-shrink: 0;
     border: 1px solid $bordercolor;
@@ -260,12 +262,14 @@
       font-style: normal;
       font-weight: 400;
       line-height: normal;
-      letter-spacing: 0.84px;
+      letter-spacing: 24px;
     }
 
 
     .reco-card {
       display: flex;
+      width: 100%;
+      max-height: 200px;
       padding: 36px 0px;
       align-items: center;
       gap: 24px;
@@ -314,14 +318,14 @@
 
   }
 
-  /* Events */
+  /* 月報Events */
   .events {
     display: flex;
-    padding: 36px 0px;
+    padding: 48px 0px 48px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 36px;
+    gap: 32px;
 
     .event-title {
       display: flex;
@@ -332,10 +336,11 @@
     }
 
     .event-cards {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      /* 桌機：每列3欄 */
       align-items: center;
-      gap: 36px;
-      align-self: stretch;
+      gap: 64px 36px;
 
       @media screen and (max-width: 1024px) {
         display: grid;
@@ -353,22 +358,28 @@
 
       .event-card {
         display: flex;
-        height: 487px;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         gap: 12px;
         flex: 1 0 0;
 
+        // 顯示3張，第4張以後不顯示
+        &:nth-child(n+4) {
+          display: none;
+        }
+
         figure {
           display: block;
-          height: 400px;
+          height: 300px;
           flex-shrink: 0;
           overflow: hidden;
 
           img {
             object-fit: contain;
-            height: 100%;
+            width: 200px;
+            // height: 100%;
+            border-radius: 4px;
           }
         }
 
@@ -432,12 +443,10 @@
 
 /* 閱讀文章 */
 #article {
-  align-self: center;
   display: flex;
-  padding: 40px 170px;
+  padding: 0px;
   flex-direction: column;
-  align-items: center;
-  font-size: $fontsize;
+
 
   /* 關鍵字搜尋 */
   .searchBar {
@@ -515,6 +524,7 @@
 
         h1 {
           font-size: 32px;
+          letter-spacing: $letter-spacing-s;
 
           display: -webkit-box;
           -webkit-box-orient: vertical;
@@ -525,6 +535,8 @@
         }
 
         p {
+          line-height: 2rem;
+
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 3;
@@ -686,23 +698,23 @@
 #findEvent {
   main {
     display: flex;
-    padding: 40px 170px;
+    padding: 0px;
     flex-direction: column;
     align-items: center;
 
     .events {
 
       display: flex;
-      padding: 36px 0px;
+      // padding: 36px 0px;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 36px;
+      gap: 48px;
       align-self: stretch;
 
       .event-title {
         display: flex;
-        padding: 0px 389px;
+        padding-bottom: 48px;
         flex-direction: column;
         align-items: center;
         gap: 12px;
@@ -711,19 +723,21 @@
 
       .event-cards {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        /* 桌機：每列4欄 */
+        grid-template-columns: repeat(3, 1fr);
+        /* 桌機：每列3欄 */
         align-items: center;
-        gap: 54px 36px;
-        align-self: stretch;
+        gap: 64px 36px;
+        // padding-top: 48px;
 
         @media screen and (max-width: 1024px) {
-          grid-template-columns: repeat(3, 1fr);
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
           gap: 54px 24px;
-          /* 平板：3欄 */
+          /* 平板：2欄 */
         }
 
         @media screen and (max-width: 600px) {
+          display: grid;
           grid-template-columns: repeat(1, 1fr);
           gap: 54px 24px;
           /* 手機：1欄 */
@@ -731,17 +745,38 @@
 
 
         .event-card {
-          height: 487px;
+          display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: flex-start;
           gap: 12px;
           flex: 1 0 0;
 
-          img {
-            height: 400px;
+          border: 1px solid $textcolor;
+          border-radius: 16px;
+          padding: 32px 24px;
+          background-color: rgb(104, 50, 5);
+
+          figure {
+            // display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 280px;
             flex-shrink: 0;
-            align-self: stretch;
+            overflow: hidden;
+            // border: 1px solid red;
+
+
+            img {
+              object-fit:contain;
+              height: 100%;
+              border-radius: 4px;
+            }
+          }
+
+          .title-container {
+            height: 90px;
           }
 
           .event-tags {
@@ -762,7 +797,7 @@
   .filterBar {
 
     display: flex;
-    padding: 60px 320px;
+    padding: 48px 320px 24px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
