@@ -144,6 +144,22 @@ function News() {
                 <path d="M0.5 1.47754H320.5" stroke="#FFF1CB" strokeWidth="2" />
               </svg>
             </div>
+            
+            {/* 卡片區 */}
+            {/* 一列3欄 */}
+            <div className="event-cards">
+              {/* 每張卡片 */}
+              {filterEventDates.map((event, index) => (
+                <EventCard
+                  key={index}
+                  imgSrc={event.imgSrc}
+                  tags={event.tags}
+                  date={event.date}
+                  title={event.title}
+                  link={event.link}
+                />
+              ))}
+            </div>
 
             {/* 卡片區 */}
             {/* 一列3欄 */}
