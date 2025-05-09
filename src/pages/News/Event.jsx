@@ -1,13 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import EventCard from './components/EventCard';
 import { useState } from 'react';
-import event1 from '../../assets/news/activities/1.jpg';
-import event2 from '../../assets/news/activities/2.jpg';
+import event1 from '../../assets/news/activities/01.jpg';
+import event2 from '../../assets/news/activities/02.jpg';
 import event3 from '../../assets/news/activities/3.png';
 import event4 from '../../assets/news/activities/4.jpg';
 import event5 from '../../assets/news/activities/5.jpg';
 import event6 from '../../assets/news/activities/6.jpg';
-import event7 from '../../assets/news/activities/7-1.jfif';
+import event7 from '../../assets/news/activities/7.jpg';
 
   // data陣列
   export const events = [
