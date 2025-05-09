@@ -4,7 +4,7 @@ import "./ProductsPage.scss";
 import gooseneck1 from "../../assets/products/gooseneck1.png";
 import gooseneck2 from "../../assets/products/gooseneck2.png";
 import gooseneck3 from "../../assets/products/gooseneck3.png";
-import prodRecoMs from "../../assets/products/prodRecoMs.png"
+import prodRecoMs from "../../assets/products/prodRecoMs.png";
 
 // 假資料區
 const mockProduct = {
@@ -48,7 +48,18 @@ function ProductPage() {
     return () => clearInterval(interval);
   }, []);
 
+  // 直接購買，帶入購物車並跳轉
   const handleBuyNow = () => {
+    // 組新商品物件
+    const newItem = {
+      ...mockProduct,
+      quantity,
+      selectedColor,
+    };
+    // 先儲存到 localStorage（累積，不重複觸發）
+    const existing = JSON.parse(localStorage.getItem("cartItems")) || [];
+    localStorage.setItem("cartItems", JSON.stringify([...existing, newItem]));
+    // 直接跳轉，不再帶 state
     navigate("/cart");
   };
 
@@ -115,15 +126,11 @@ function ProductPage() {
 
         {/* 第三步份：商品描述輪播 */}
         <section className="product-description-carousel">
-
-        <div className="arrow-wrapper left">
-              <button className="arrow" onClick={handlePrev}>&lt;</button>
-            </div>
+          <div className="arrow-wrapper left">
+            <button className="arrow" onClick={handlePrev}>&lt;</button>
+          </div>
 
           <div className="carousel-viewport">
-            {/* 向左箭頭 */}
-
-
             <div className="carousel-track">
               {visibleCards.map((item, idx) => (
                 <div className="carousel-card" key={idx}>
@@ -133,14 +140,11 @@ function ProductPage() {
                 </div>
               ))}
             </div>
-
-
           </div>
-              {/* 向右箭頭 */}
-              <div className="arrow-wrapper right">
-              <button className="arrow" onClick={handleNext}>&gt;</button>
-            </div>
 
+          <div className="arrow-wrapper right">
+            <button className="arrow" onClick={handleNext}>&gt;</button>
+          </div>
         </section>
 
         {/* 第四部分：推薦商品區塊 */}
@@ -149,9 +153,8 @@ function ProductPage() {
             咖啡人還會這樣搭配
             <img src={prodRecoMs} alt="薦" className="prodRecoMs" />
           </div>
-              
+
           <div className="recommend-cards">
-            
             {recommendData.map((item, idx) => (
               <div className="product-card" key={idx}>
                 <span className="tag">優惠</span>
