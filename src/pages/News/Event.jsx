@@ -7,7 +7,7 @@ import event3 from '../../assets/news/activities/3.png';
 import event4 from '../../assets/news/activities/4.jpg';
 import event5 from '../../assets/news/activities/5.jpg';
 import event6 from '../../assets/news/activities/6.jpg';
-import event7 from '../../assets/news/activities/7.jfif';
+import event7 from '../../assets/news/activities/7-1.jfif';
 
   // data陣列
   export const events = [

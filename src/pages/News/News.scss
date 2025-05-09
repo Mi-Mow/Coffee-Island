@@ -8,25 +8,30 @@
 .event-detail-page {
   max-width: 1920px;
   display: flex;
-  padding: 100px 170px;
   flex-direction: column;
   font-size: $fontsize;
   width: 100%;
   align-self: center;
 
-  main {
-    @media ($media-820) {
-      padding: 40px 10px;
-    }
+  @media ($media-1920) {
 
-    @media ($media-640) {
-      padding: 30px 20px;
-    }
+    padding: 100px 170px;
   }
 
+  @media ($media-820) {
+    padding: 80px 48px;
+  }
+
+  @media ($media-640) {
+    padding: 80px 24px;
+  }
+
+  nav {
+    display: flex;
+    align-self: center;
+  }
 
   li {
-    // list-style: none;
     gap: 24px
   }
 
@@ -44,6 +49,7 @@
     text-align: right;
     line-height: 1.6rem;
   }
+
   h1 {
     text-align: left;
   }
@@ -73,12 +79,9 @@
 
   /* nav */
   .nav-news {
-    position: sticky;
+    // position: sticky;
     top: 80px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
 
     a {
       margin: 10px;
@@ -91,7 +94,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      gap: 9px;
+      gap: 16px;
 
       &:hover {
         color: $primary_1;
@@ -101,26 +104,56 @@
 
     ul {
       display: flex;
+      gap: 24px;
     }
 
   }
 }
 
+.event-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+
+  figure {
+    display: block;
+    height: 400px;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      height: 100%;
+      border-radius: 4px;
+    }
+  }
+
+  .event-tags {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+  }
+
+  .title-container {
+    height: 2rem;
+  }
+}
+
 /* 島嶼月報 */
 #news>main {
+  width: 100%;
   padding: 0px;
   align-self: center;
   display: flex;
   flex-direction: column;
 
-  @media ($media-820) {
-    // padding: 0;
-  }
-
   /* 封面故事 */
 
   .cover-story {
-    // max-width: 1280px;
     width: 100%;
     display: flex;
     padding: 48px 0px;
@@ -128,10 +161,12 @@
     align-items: flex-start;
     overflow: hidden;
 
-    div {
+    img {
+      width: 100%;
       object-fit: cover;
-      // height: 400px;
+      height: 400px;
       align-self: stretch;
+
     }
 
   }
@@ -144,7 +179,7 @@
     justify-content: space-between; // 讓左右有空間
     gap: 64px; // 中間間距  
 
-    height: 840px;
+    width: 100%;
     align-self: stretch;
   }
 
@@ -320,6 +355,7 @@
 
   /* 月報Events */
   .events {
+    width: 100%;
     display: flex;
     padding: 48px 0px 48px;
     flex-direction: column;
@@ -357,41 +393,12 @@
       }
 
       .event-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 12px;
-        flex: 1 0 0;
 
         // 顯示3張，第4張以後不顯示
         &:nth-child(n+4) {
           display: none;
         }
-
-        figure {
-          display: block;
-          height: 300px;
-          flex-shrink: 0;
-          overflow: hidden;
-
-          img {
-            object-fit: contain;
-            width: 200px;
-            // height: 100%;
-            border-radius: 4px;
-          }
-        }
-
-
-        .event-tags {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          align-self: stretch;
-        }
       }
-
     }
 
     .event-btn a {
@@ -744,48 +751,48 @@
         }
 
 
-        .event-card {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
-          gap: 12px;
-          flex: 1 0 0;
+        // .event-card {
+        //   display: flex;
+        //   flex-direction: column;
+        //   justify-content: center;
+        //   align-items: flex-start;
+        //   gap: 12px;
+        //   flex: 1 0 0;
 
-          border: 1px solid $textcolor;
-          border-radius: 16px;
-          padding: 32px 24px;
-          background-color: rgb(104, 50, 5);
+        //   border: 1px solid $textcolor;
+        //   border-radius: 16px;
+        //   padding: 32px 24px;
+        //   background-color: rgb(104, 50, 5);
 
-          figure {
-            // display: block;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 280px;
-            flex-shrink: 0;
-            overflow: hidden;
-            // border: 1px solid red;
+        //   figure {
+        //     // display: block;
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: center;
+        //     height: 280px;
+        //     flex-shrink: 0;
+        //     overflow: hidden;
+        //     // border: 1px solid red;
 
 
-            img {
-              object-fit:contain;
-              height: 100%;
-              border-radius: 4px;
-            }
-          }
+        //     img {
+        //       object-fit: contain;
+        //       height: 100%;
+        //       border-radius: 4px;
+        //     }
+        //   }
 
-          .title-container {
-            height: 90px;
-          }
+        //   .title-container {
+        //     height: 90px;
+        //   }
 
-          .event-tags {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            align-self: stretch;
-          }
-        }
+        //   .event-tags {
+        //     display: flex;
+        //     align-items: center;
+        //     gap: 12px;
+        //     align-self: stretch;
+        //   }
+        // }
 
 
       }

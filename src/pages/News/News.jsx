@@ -17,24 +17,22 @@ function News() {
       <div id='news'>
         <h1 className='title'>島嶼月報</h1>
         <main>
-          {/* nav */}
-          <nav>
-            <div className='nav-news'>
-              <ul
-              ><li>
-                  <Link to="/news/article">閱讀文章</Link>
-                </li>
-                <li>
-                  <Link to="/news/event">找活動</Link>
-                </li>
-              </ul>
+          {/* nav-news */}
+          <div className='nav-news'>
+            <ul
+            ><li>
+                <Link to="/news/article">閱讀文章</Link>
+              </li>
+              <li>
+                <Link to="/news/event">找活動</Link>
+              </li>
+            </ul>
 
-            </div>
-          </nav>
+          </div>
 
           {/* 封面故事 */}
           <div className='cover-story'>
-            <div><img src={story1} alt="封面故事1" /></div>
+            <img src={story1} alt="封面故事1" />
           </div>
 
           {/* 老臺北特輯 */}
