@@ -161,7 +161,8 @@
     align-items: flex-start;
     overflow: hidden;
 
-    img {
+    .cover-img {
+      border: 1px solid $textcolor;
       width: 100%;
       object-fit: cover;
       height: 400px;
@@ -177,7 +178,7 @@
 
     display: flex;
     justify-content: space-between; // 讓左右有空間
-    gap: 64px; // 中間間距  
+    gap: 80px; // 中間間距  
 
     width: 100%;
     align-self: stretch;
@@ -274,6 +275,7 @@
   /* feature右欄 */
 
   .recommendation {
+    width: 100%;
     display: flex;
     width: 100%;
     height: 748px;
@@ -313,6 +315,7 @@
 
       img {
         height: 88px;
+        width: 132px;
         flex: 1 0 0;
       }
 
@@ -326,8 +329,9 @@
     }
 
     .reco-button {
+      width: 100%;
       display: flex;
-      padding: 29px 46px;
+      margin: auto;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -335,19 +339,38 @@
     }
 
     .reco-button a {
+      position: relative;
       display: flex;
       padding: 15px 60px;
       justify-content: center;
 
-      font-size: 16px;
+      font-weight: 900;
       color: $btn-color;
       border-radius: 2px;
       border: 3px solid $btn-color;
-      background: #E1BB98 url('/paper-texture.png') no-repeat center / cover;
+      background-color: #E1BB98;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      z-index: 1;
+
+      // 疊上透明背景圖（紙張材質）
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url('/paper-texture.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        opacity: 0.3; // 材質透明度 30%
+        z-index: 1;
+        transition: background-color 0.3s, opacity 0.3s;
+      }
 
       &:hover {
-        color: $primary_1;
+        color: $textcolor;
         border: 2px solid $bordercolor;
+        background-color: #7B4519;
       }
     }
 
@@ -402,20 +425,38 @@
     }
 
     .event-btn a {
+      position: relative;
       display: flex;
       padding: 15px 60px;
       justify-content: center;
 
-      font-size: 16px;
+      font-weight: 900;
       color: $btn-color;
       border-radius: 2px;
       border: 3px solid $btn-color;
-      background: #E1BB98 url('/paper-texture.png') no-repeat center / cover;
+      background-color: #E1BB98;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      z-index: 1;
+
+      // 疊上透明背景圖（紙張材質）
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url('/paper-texture.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        opacity: 0.3; // 材質透明度 30%
+        z-index: 1;
+        transition: background-color 0.3s, opacity 0.3s;
+      }
 
       &:hover {
-        color: $primary_1;
+        color: $textcolor;
         border: 2px solid $bordercolor;
-        transform: scale(1.1);
+        background-color: #7B4519;
       }
     }
   }
@@ -751,75 +792,75 @@
         }
 
 
-//         // .event-card {
-//         //   display: flex;
-//         //   flex-direction: column;
-//         //   justify-content: center;
-//         //   align-items: flex-start;
-//         //   gap: 12px;
-//         //   flex: 1 0 0;
+        //         // .event-card {
+        //         //   display: flex;
+        //         //   flex-direction: column;
+        //         //   justify-content: center;
+        //         //   align-items: flex-start;
+        //         //   gap: 12px;
+        //         //   flex: 1 0 0;
 
-// <<<<<<< HEAD
-//         //   border: 1px solid $textcolor;
-//         //   border-radius: 16px;
-//         //   padding: 32px 24px;
-//         //   background-color: rgb(104, 50, 5);
+        // <<<<<<< HEAD
+        //         //   border: 1px solid $textcolor;
+        //         //   border-radius: 16px;
+        //         //   padding: 32px 24px;
+        //         //   background-color: rgb(104, 50, 5);
 
-//         //   figure {
-//         //     // display: block;
-//         //     display: flex;
-//         //     justify-content: center;
-//         //     align-items: center;
-//         //     height: 280px;
-//         //     flex-shrink: 0;
-//         //     overflow: hidden;
-//         //     // border: 1px solid red;
-
-
-//         //     img {
-//         //       object-fit: contain;
-//         //       height: 100%;
-//         //       border-radius: 4px;
-//         //     }
-//         //   }
-// =======
-//           // border: 1px solid $textcolor;
-//           // border-radius: 16px;
-//           padding: 32px 24px;
-//           // background-color: rgb(104, 50, 5);
-
-//           figure {
-//             display: block;
-//             width: 100%;
-//             // display: flex;
-//             justify-content: center;
-//             align-items: center;
-//             height: 280px;
-//             flex-shrink: 0;
-//             overflow: hidden;
-//             // border: 1px solid red;
+        //         //   figure {
+        //         //     // display: block;
+        //         //     display: flex;
+        //         //     justify-content: center;
+        //         //     align-items: center;
+        //         //     height: 280px;
+        //         //     flex-shrink: 0;
+        //         //     overflow: hidden;
+        //         //     // border: 1px solid red;
 
 
-//             img {
-//               object-fit:contain;
+        //         //     img {
+        //         //       object-fit: contain;
+        //         //       height: 100%;
+        //         //       border-radius: 4px;
+        //         //     }
+        //         //   }
+        // =======
+        //           // border: 1px solid $textcolor;
+        //           // border-radius: 16px;
+        //           padding: 32px 24px;
+        //           // background-color: rgb(104, 50, 5);
 
-//               height: 100%;
-//               border-radius: 4px;
-//             }
-//           }
-// >>>>>>> 332eda41000914ed522d0a37ed04bc41f670c1c7
+        //           figure {
+        //             display: block;
+        //             width: 100%;
+        //             // display: flex;
+        //             justify-content: center;
+        //             align-items: center;
+        //             height: 280px;
+        //             flex-shrink: 0;
+        //             overflow: hidden;
+        //             // border: 1px solid red;
 
-//         //   .title-container {
-//         //     height: 90px;
-//         //   }
 
-//         //   .event-tags {
-//         //     display: flex;
-//         //     align-items: center;
-//         //     gap: 12px;
-//         //     align-self: stretch;
-//         //   }
-//         // }
+        //             img {
+        //               object-fit:contain;
+
+        //               height: 100%;
+        //               border-radius: 4px;
+        //             }
+        //           }
+        // >>>>>>> 332eda41000914ed522d0a37ed04bc41f670c1c7
+
+        //         //   .title-container {
+        //         //     height: 90px;
+        //         //   }
+
+        //         //   .event-tags {
+        //         //     display: flex;
+        //         //     align-items: center;
+        //         //     gap: 12px;
+        //         //     align-self: stretch;
+        //         //   }
+        //         // }
 
 
       }

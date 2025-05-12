@@ -57,7 +57,7 @@ function ArticlePage() {
     return (
         <div className="article-detail-page">
             <main className="article-detail-page">
-                <nav>
+                {/* <nav>
                     <div className='nav-news'>
                         <ul>
                             <li>
@@ -69,7 +69,7 @@ function ArticlePage() {
                         </ul>
 
                     </div>
-                </nav>
+                </nav> */}
 
                 {/* 標題區 */}
                 <div className="title-container">

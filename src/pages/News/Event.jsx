@@ -25,8 +25,8 @@ import event7 from '../../assets/news/activities/7.jpg';
       imgSrc: event2,
       tags: ['最新企劃', '復古咖啡廳'],
       date: '2025/04/30~2025/04/30',
-      startDate: new Date('2025-04-30'),
-      endDate: new Date('2025-04-30'),
+      startDate: new Date('2025-06-30'),
+      endDate: new Date('2025-06-30'),
       title: '徐明志｜品一杯草莓果醬味咖啡',
       link: "/news/event/1" // 活動內容頁面
     },
