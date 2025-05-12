@@ -3,11 +3,14 @@ import './News.scss'
 import Article from './Article'
 import story1 from '/news/story1.png'
 import cafe1 from '/news/cafe1.jpg'
+import cafe2 from '../../assets/news/coffeeshop/Tinytailcoffee/Tinytailcoffee1.jpg'
+import cafe3 from '../../assets/news/coffeeshop/Ura219/Ura2191.jpeg'
 import historyImg1 from '/news/historyImg1.jpg'
 import event1 from '/news/event1.png'
 import { useState } from 'react'
 import { events } from './Event'
 import EventCard from './components/EventCard'
+import Coverstory from './components/Coverstory'
 
 function News() {
 
@@ -31,9 +34,7 @@ function News() {
           </div>
 
           {/* 封面故事 */}
-          <div className='cover-story'>
-            <img src={story1} alt="封面故事1" />
-          </div>
+          <Coverstory/>
 
           {/* 老臺北特輯 */}
 
@@ -71,7 +72,7 @@ function News() {
                         <img src={historyImg1} alt="" />
                         <p className="tagName">老臺北特輯</p>
                         <p className="tagName">封面故事</p>
-                        <h3>川先生｜那些年，台灣喝的咖啡是什麼味？</h3>
+                        <h3>劉千如｜那些年，台灣喝的咖啡是什麼味？</h3>
                       </div>
                     </a>
                     <a href="#">
@@ -106,20 +107,20 @@ function News() {
                 </a>
                 <a href="#" className='reco-card'>
                   <div >
-                    <img src={cafe1} alt="人氣推薦咖啡廳照片" />
+                    <img src={cafe2} alt="人氣推薦咖啡廳照片" />
                   </div>
                   <div className='reco-card-text'>
                     <p className="tagName">特色咖啡廳</p>
-                    <h3>大稻埕最美秘境，預約制老宅咖啡館AKA café！</h3>
+                    <h3>種蘭花的溫室改造而成！大稻埕「小尾咖啡」隱身二樓老宅，明亮採光包覆空間</h3>
                   </div>
                 </a>
                 <a href="#" className='reco-card'>
                   <div >
-                    <img src={cafe1} alt="人氣推薦咖啡廳照片" />
+                    <img src={cafe3} alt="人氣推薦咖啡廳照片" />
                   </div>
                   <div className='reco-card-text'>
                     <p className="tagName">特色咖啡廳</p>
-                    <h3>大稻埕最美秘境，預約制老宅咖啡館AKA café！</h3>
+                    <h3>隱身大稻埕迪化街的老宅秘境！「裏 Ura.219」</h3>
                   </div>
                 </a>
                 {/* btn */}

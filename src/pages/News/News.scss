@@ -161,7 +161,7 @@
     align-items: flex-start;
     overflow: hidden;
 
-    img {
+    .cover-img {
       width: 100%;
       object-fit: cover;
       height: 400px;
@@ -177,7 +177,7 @@
 
     display: flex;
     justify-content: space-between; // 讓左右有空間
-    gap: 64px; // 中間間距  
+    gap: 80px; // 中間間距  
 
     width: 100%;
     align-self: stretch;
@@ -314,6 +314,7 @@
 
       img {
         height: 88px;
+        width: 132px;
         flex: 1 0 0;
       }
 
@@ -329,7 +330,7 @@
     .reco-button {
       width: 100%;
       display: flex;
-      padding: auto;
+      margin: auto;
       flex-direction: column;
       justify-content: center;
       align-items: center;
