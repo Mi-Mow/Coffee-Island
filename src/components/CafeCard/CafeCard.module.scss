@@ -1,9 +1,16 @@
 .card {
-  width: 200px;
-  // margin-right: 20px;
+  // width: 210px;
+  width: 30%;
   cursor: pointer;
-  .imgContainer img {
-    border-radius: 3px 3px 0 0;
+  .imgContainer {
+    height: 150px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 3px 3px 0 0;
+      object-fit: cover;
+      object-position: center;
+    }
   }
   .text {
     background-color: #fff;
@@ -14,12 +21,23 @@
     display: flex;
     justify-content: space-between;
     font-weight: bold;
+    letter-spacing: 0.5px;
+    height: 30px;
+    .name {
+      font-size: 16px;
+      flex: 1;
+    }
+    .rating {
+      font-size: 15px;
+      padding-left: 5px;
+    }
   }
   .description {
     color: #090909;
     font-size: 14px;
     margin-top: 15px;
     line-height: 1.5;
+    letter-spacing: 0.5px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;

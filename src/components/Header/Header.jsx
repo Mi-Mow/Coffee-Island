@@ -1,8 +1,12 @@
 import { NavLink } from "react-router-dom";
 import s from "./Header.module.scss";
 import logo from "../../assets/logo-lg.svg";
-import earth from "../../assets/earth-white.svg";
+import earth from "../../assets/header/earth-white.svg";
+import cart from "../../assets/header/cart.svg";
+import profile from "../../assets/header/profile.svg";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 function Header() {
   const { i18n, t } = useTranslation();
@@ -12,7 +16,10 @@ function Header() {
     i18n.changeLanguage(newLang);
     localStorage.setItem("lang", newLang);
   };
-  const nextLang = i18n.language === "zh-TW" ? "繁中" : "EN";
+  const nextLang = i18n.language === "zh-TW" ? "EN" : "繁中";
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // setIsLoggedIn(localStorage.getItem("isLoggedIn"));
+  const { isLoggedIn } = useAuth();
 
   return (
     <div>
@@ -57,12 +64,31 @@ function Header() {
               </div>
               <p>{nextLang}</p>
             </div>
-            <NavLink to={"/login"}>
-              <button className={s.loginBtn}>{t(`header.login`)}</button>
-            </NavLink>
-            <NavLink to={"/register"}>
-              <button className={s.registerBtn}>{t(`header.register`)}</button>
-            </NavLink>
+            {isLoggedIn ? (
+              <>
+                <NavLink to={"/cart"}>
+                  <div className={s.cartContainer}>
+                    <img src={cart} alt="" />
+                  </div>
+                </NavLink>
+                <NavLink to={"/profile"}>
+                  <div className={s.profileContainer}>
+                    <img src={profile} alt="" />
+                  </div>
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink to={"/login"}>
+                  <button className={s.loginBtn}>{t(`header.login`)}</button>
+                </NavLink>
+                <NavLink to={"/register"}>
+                  <button className={s.registerBtn}>
+                    {t(`header.register`)}
+                  </button>
+                </NavLink>
+              </>
+            )}
           </div>
         </nav>
       </header>
