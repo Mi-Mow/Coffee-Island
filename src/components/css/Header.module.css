@@ -10,6 +10,11 @@ header {
   top: 0;
   left: 0;
 }
+@media (max-width: 1024px) {
+  header {
+    padding: 0 20px;
+  }
+}
 header::before {
   content: "";
   height: 80px;
@@ -45,13 +50,17 @@ header .navLink .navItem:hover {
 header .navLink .active {
   border-bottom: #fff 2px solid;
 }
-header .earthContainer {
+header .language {
   cursor: pointer;
 }
-header .earthContainer p {
+header .language .earthContainer {
+  width: 36px;
+}
+header .language p {
   font-size: 16px;
   padding: 0 20px 0 15px;
   color: #fff;
+  font-weight: 500;
 }
 header .loginBtn {
   border: #fff 2px solid;
@@ -89,7 +98,7 @@ header .registerBtn:hover {
 
 nav,
 .btnContainer,
-.earthContainer,
+.language,
 main {
   display: flex;
   align-items: center;

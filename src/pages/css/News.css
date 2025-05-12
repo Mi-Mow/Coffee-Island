@@ -1,97 +1,133 @@
 @charset "UTF-8";
-/* 島嶼月報 */
 /* define primary colors */
 /* hover color */
 /* h1 color */
+/* 島嶼月報 all */
 #news,
 #findArticles,
 #findEvent,
-.article-detail-page {
-  align-self: center;
+.article-detail-page,
+.event-detail-page {
+  max-width: 1920px;
   display: flex;
-  padding: 100px 0px;
   flex-direction: column;
-  align-items: center;
   font-size: 16px;
   width: 100%;
+  align-self: center;
   /* h1 */
   /* nav */
 }
+@media (max-width:1920px) {
+  #news,
+  #findArticles,
+  #findEvent,
+  .article-detail-page,
+  .event-detail-page {
+    padding: 100px 170px;
+  }
+}
 @media (max-width:820px) {
-  #news main,
-  #findArticles main,
-  #findEvent main,
-  .article-detail-page main {
-    padding: 40px 10px;
+  #news,
+  #findArticles,
+  #findEvent,
+  .article-detail-page,
+  .event-detail-page {
+    padding: 80px 48px;
   }
 }
 @media (max-width:640px) {
-  #news main,
-  #findArticles main,
-  #findEvent main,
-  .article-detail-page main {
-    padding: 30px 20px;
+  #news,
+  #findArticles,
+  #findEvent,
+  .article-detail-page,
+  .event-detail-page {
+    padding: 80px 24px;
   }
+}
+#news nav,
+#findArticles nav,
+#findEvent nav,
+.article-detail-page nav,
+.event-detail-page nav {
+  display: flex;
+  align-self: center;
 }
 #news li,
 #findArticles li,
 #findEvent li,
-.article-detail-page li {
+.article-detail-page li,
+.event-detail-page li {
   gap: 24px;
 }
 #news *,
 #findArticles *,
 #findEvent *,
-.article-detail-page * {
+.article-detail-page *,
+.event-detail-page * {
   color: #FFF1CB;
 }
 #news .title,
 #findArticles .title,
 #findEvent .title,
-.article-detail-page .title {
+.article-detail-page .title,
+.event-detail-page .title {
   font-size: 24px;
   font-weight: 400;
-  letter-spacing: 0.84px;
+  letter-spacing: 32px;
   width: 100%;
+  text-align: right;
+  line-height: 1.6rem;
+}
+#news h1,
+#findArticles h1,
+#findEvent h1,
+.article-detail-page h1,
+.event-detail-page h1 {
   text-align: left;
-  padding: 0 50px;
 }
 #news h2,
 #findArticles h2,
 #findEvent h2,
-.article-detail-page h2 {
+.article-detail-page h2,
+.event-detail-page h2 {
   font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 8px;
 }
 #news h3,
 #findArticles h3,
 #findEvent h3,
-.article-detail-page h3 {
+.article-detail-page h3,
+.event-detail-page h3 {
   font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.8px;
 }
 #news .tagName,
 #findArticles .tagName,
 #findEvent .tagName,
-.article-detail-page .tagName {
+.article-detail-page .tagName,
+.event-detail-page .tagName {
   align-self: stretch;
-  color: #a1b8bb;
+  color: #fff;
   font-size: 14px;
   font-weight: 400;
-  line-height: normal;
   letter-spacing: 0.84px;
+  line-height: 0.8rem;
 }
 #news .nav-news,
 #findArticles .nav-news,
 #findEvent .nav-news,
-.article-detail-page .nav-news {
+.article-detail-page .nav-news,
+.event-detail-page .nav-news {
+  top: 80px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
 }
 #news .nav-news a,
 #findArticles .nav-news a,
 #findEvent .nav-news a,
-.article-detail-page .nav-news a {
+.article-detail-page .nav-news a,
+.event-detail-page .nav-news a {
   margin: 10px;
   padding: 5px 0;
   border-bottom: 2px solid transparent;
@@ -102,50 +138,86 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 9px;
+  gap: 16px;
 }
 #news .nav-news a:hover,
 #findArticles .nav-news a:hover,
 #findEvent .nav-news a:hover,
-.article-detail-page .nav-news a:hover {
+.article-detail-page .nav-news a:hover,
+.event-detail-page .nav-news a:hover {
   color: #a2b9bc;
   border-bottom: 2px solid #FFF1CB;
 }
 #news .nav-news ul,
 #findArticles .nav-news ul,
 #findEvent .nav-news ul,
-.article-detail-page .nav-news ul {
+.article-detail-page .nav-news ul,
+.event-detail-page .nav-news ul {
   display: flex;
+  gap: 24px;
+}
+
+.event-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+}
+.event-card figure {
+  display: block;
+  height: 400px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.event-card figure img {
+  object-fit: cover;
+  height: 100%;
+  border-radius: 4px;
+}
+.event-card .event-tags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+.event-card .title-container {
+  height: 2rem;
 }
 
 /* 島嶼月報 */
 #news > main {
+  width: 100%;
+  padding: 0px;
   align-self: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   /* 封面故事 */
   /* feature (section) */
   /* feature左欄 */
   /* feature右欄 */
-  /* Events */
+  /* 月報Events */
 }
 #news > main .cover-story {
+  width: 100%;
   display: flex;
-  padding: 36px 0px;
+  padding: 48px 0px;
   flex-direction: column;
   align-items: flex-start;
-  align-self: stretch;
+  overflow: hidden;
 }
-#news > main .cover-story div {
+#news > main .cover-story img {
+  width: 100%;
+  object-fit: cover;
   height: 400px;
   align-self: stretch;
 }
 #news > main .section-row {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  height: 840px;
+  gap: 64px;
+  width: 100%;
   align-self: stretch;
 }
 #news > main .section-row > section:first-child {
@@ -154,7 +226,7 @@
 #news > main .section-row > section:last-child {
   display: flex;
   flex: 1;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 #news > main .section-row .feature {
   color: #FFF1CB;
@@ -164,7 +236,6 @@
   line-height: normal;
   letter-spacing: 0.84px;
   display: flex;
-  width: 700px;
   padding-bottom: 36px;
   flex-direction: column;
   align-items: flex-start;
@@ -178,14 +249,13 @@
   align-self: stretch;
 }
 #news > main .section-row .feature1 img {
-  height: 300px;
   align-self: stretch;
 }
 #news > main .section-row .feature1 p {
   color: #FFF1CB;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: 0.84px;
+  letter-spacing: 1.6px;
 }
 #news > main .section-row .newest {
   display: flex;
@@ -199,7 +269,6 @@
   height: 353px;
   align-items: center;
   gap: 35px;
-  align-self: stretch;
 }
 #news > main .section-row .newest .new-cards div {
   display: flex;
@@ -216,19 +285,14 @@
 #news > main .section-row .newest .new-cards div h3 {
   height: 50px;
   align-self: stretch;
-  color: #FFF1CB;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.84px;
 }
 #news > main .recommendation {
-  width: 320px;
+  width: 100%;
+  display: flex;
+  width: 100%;
   height: 748px;
   padding: 24px;
   flex-direction: column;
-  align-items: flex-end;
   gap: 12px;
   flex-shrink: 0;
   border: 1px solid #FFF1CB;
@@ -244,10 +308,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: 0.84px;
+  letter-spacing: 24px;
 }
 #news > main .recommendation .reco-card {
   display: flex;
+  width: 100%;
+  max-height: 200px;
   padding: 36px 0px;
   align-items: center;
   gap: 24px;
@@ -265,38 +331,53 @@
   flex: 1 0 0;
 }
 #news > main .recommendation .reco-button {
+  width: 100%;
   display: flex;
-  padding: 29px 46px;
+  padding: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  align-self: stretch;
 }
 #news > main .recommendation .reco-button a {
+  position: relative;
   display: flex;
   padding: 15px 60px;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
+  font-weight: 900;
   color: #7B4519;
   border-radius: 2px;
   border: 3px solid #7B4519;
-  background: url("/paper-texture.png")/cover no-repeat, #E1BB98;
+  background-color: #E1BB98;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
+}
+#news > main .recommendation .reco-button a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/paper-texture.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: 1;
+  transition: background-color 0.3s, opacity 0.3s;
 }
 #news > main .recommendation .reco-button a:hover {
-  color: #a2b9bc;
+  color: #FFF1CB;
   border: 2px solid #FFF1CB;
+  background-color: #7B4519;
 }
 #news > main .events {
+  width: 100%;
   display: flex;
-  padding: 36px 0px;
+  padding: 48px 0px 48px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 36px;
-  align-self: stretch;
+  gap: 32px;
 }
 #news > main .events .event-title {
   display: flex;
@@ -304,13 +385,13 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  align-self: stretch;
 }
 #news > main .events .event-cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 桌機：每列3欄 */
   align-items: center;
-  gap: 36px;
-  align-self: stretch;
+  gap: 64px 36px;
 }
 @media screen and (max-width: 1024px) {
   #news > main .events .event-cards {
@@ -328,38 +409,39 @@
     /* 手機：1欄 */
   }
 }
-#news > main .events .event-cards .event-card {
+#news > main .events .event-cards .event-card:nth-child(n+4) {
+  display: none;
+}
+#news > main .events .event-btn a {
+  position: relative;
   display: flex;
-  height: 487px;
-  flex-direction: column;
+  padding: 15px 60px;
   justify-content: center;
-  align-items: flex-start;
-  gap: 12px;
-  flex: 1 0 0;
+  font-weight: 900;
+  color: #7B4519;
+  border-radius: 2px;
+  border: 3px solid #7B4519;
+  background-color: #E1BB98;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
 }
-#news > main .events .event-cards .event-card img {
-  height: 400px;
-  flex-shrink: 0;
-  align-self: stretch;
+#news > main .events .event-btn a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/paper-texture.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: 1;
+  transition: background-color 0.3s, opacity 0.3s;
 }
-#news > main .events .event-cards .event-card .event-tags {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  align-self: stretch;
-}
-#news > main .events .event-btn {
-  display: flex;
-  padding: 36px 378px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-  transition: transform 0.2s;
-}
-#news > main .events .event-btn:hover {
-  transform: scale(1.1);
+#news > main .events .event-btn a:hover {
+  color: #FFF1CB;
+  border: 2px solid #FFF1CB;
+  background-color: #7B4519;
 }
 
 /* Top */
@@ -382,12 +464,9 @@
 
 /* 閱讀文章 */
 #article {
-  align-self: center;
   display: flex;
-  padding: 40px 170px;
+  padding: 0px;
   flex-direction: column;
-  align-items: center;
-  font-size: 16px;
   /* 關鍵字搜尋 */
 }
 #article .searchBar {
@@ -456,6 +535,7 @@
 #article .sec1 .articleCard .articleCardText h1,
 #article .sec2 .articleCard .articleCardText h1 {
   font-size: 32px;
+  letter-spacing: 0.2rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -465,6 +545,7 @@
 }
 #article .sec1 .articleCard .articleCardText p,
 #article .sec2 .articleCard .articleCardText p {
+  line-height: 2rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -497,9 +578,84 @@
 /* 文章內頁 */
 .article-detail-page {
   color: #FFF1CB;
+  padding: 100px 40px;
 }
-.article-detail-page button {
-  all: unset;
+.article-detail-page .title-container {
+  display: flex;
+  padding: 24px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+.article-detail-page .title-container p {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 160%;
+  letter-spacing: 0.224px;
+}
+.article-detail-page .title-container h2 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 160%;
+  letter-spacing: 0.512px;
+}
+.article-detail-page .title-container figure {
+  width: 100%;
+  overflow: hidden;
+}
+.article-detail-page .title-container figure img {
+  object-fit: cover;
+  height: 100%;
+}
+.article-detail-page .content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+  padding: 36px 0px;
+}
+.article-detail-page .content-container p {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 160%;
+  letter-spacing: 0.24px;
+}
+.article-detail-page .content-container figure {
+  height: 32vh;
+  overflow: hidden;
+}
+.article-detail-page .content-container figure img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.article-detail-page .info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+.article-detail-page .info-container .info-text-container {
+  display: flex;
+  width: 100%;
+  height: 50%;
+  padding: 36px 0px;
+  align-items: center;
+  gap: 24px;
+}
+.article-detail-page .article-buttonGroup-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.article-detail-page .article-buttonGroup-container .article-button-container button {
+  border-radius: 2px;
+  border: 3px solid #FFF1CB;
+  background-color: transparent;
   display: flex;
   width: 200px;
   height: 80px;
@@ -507,28 +663,30 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: #7B4519;
+}
+.article-detail-page .article-buttonGroup-container .article-button-container button:hover {
+  color: #a2b9bc;
+  border: 2px solid #FFF1CB;
 }
 
 /* 找活動 */
 #findEvent main {
   display: flex;
-  padding: 40px 170px;
+  padding: 0px;
   flex-direction: column;
   align-items: center;
 }
 #findEvent main .events {
   display: flex;
-  padding: 36px 0px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 36px;
+  gap: 48px;
   align-self: stretch;
 }
 #findEvent main .events .event-title {
   display: flex;
-  padding: 0px 389px;
+  padding-bottom: 48px;
   flex-direction: column;
   align-items: center;
   gap: 12px;
@@ -536,48 +694,30 @@
 }
 #findEvent main .events .event-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  /* 桌機：每列4欄 */
+  grid-template-columns: repeat(3, 1fr);
+  /* 桌機：每列3欄 */
   align-items: center;
-  gap: 54px 36px;
-  align-self: stretch;
+  gap: 64px 36px;
 }
 @media screen and (max-width: 1024px) {
   #findEvent main .events .event-cards {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 54px 24px;
-    /* 平板：3欄 */
+    /* 平板：2欄 */
   }
 }
 @media screen and (max-width: 600px) {
   #findEvent main .events .event-cards {
+    display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 54px 24px;
     /* 手機：1欄 */
   }
 }
-#findEvent main .events .event-cards .event-card {
-  height: 487px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 12px;
-  flex: 1 0 0;
-}
-#findEvent main .events .event-cards .event-card img {
-  height: 400px;
-  flex-shrink: 0;
-  align-self: stretch;
-}
-#findEvent main .events .event-cards .event-card .event-tags {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  align-self: stretch;
-}
 #findEvent .filterBar {
   display: flex;
-  padding: 60px 320px;
+  padding: 48px 320px 24px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
