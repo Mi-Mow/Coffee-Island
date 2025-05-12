@@ -129,9 +129,9 @@ function Home() {
 
     gsap.to(car, {
       scrollTrigger: {
-        trigger: ".road",
-        start: "top 300px",
-        end: "bottom -1400px",
+        trigger: ".scrollContainer",
+        start: "top 330px",
+        end: "bottom -1500px",
         scrub: 1,
       },
       motionPath: {
