@@ -1,6 +1,9 @@
+import { useAuth } from "../../context/AuthContext";
 import "./Login.scss"
 
 function Login() {
+  const { login } = useAuth();
+
     return (
         <>
                <div className="login-wrapper">
@@ -22,7 +25,7 @@ function Login() {
           <a className="link1" href="#">忘記密碼？</a>
         </div>
 
-        <button className="login-btn">登入</button>
+        <button className="login-btn" onClick={login}>登入</button>
 
         <div className="footer">
           <p>還不是會員？</p>

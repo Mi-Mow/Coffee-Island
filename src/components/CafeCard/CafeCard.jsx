@@ -1,20 +1,28 @@
 import s from './CafeCard.module.scss'
-import shopImg from "../../assets/map/1-1.jpg";
+import cafeImages from '../../../public/cafe/CafeImages';
+import { useNavigate } from 'react-router-dom';
 
-function CafeCard() {
+function CafeCard({title, desc, rating, img, id, district}) {
+  const cafeSrc = cafeImages[img];
+  const imgPath = cafeSrc?.slice(7);
+
+  const navigate = useNavigate();
+  // console.log("imgPath", imgPath);
   return (
     <>
-      <div className={s.card}>
+      <div className={s.card} onClick={() => {
+        navigate(`/map/${district}/cafe/${id}`)
+      }}>
         <div className={s.imgContainer}>
-          <img src={shopImg} alt="" />
+          <img src={imgPath} alt="" />
         </div>
         <div className={s.text}>
           <div className={s.cardTitle}>
-            <div className={s.name}>島上咖啡廳</div>
-            <div className={s.score}>4.7(32)</div>
+            <div className={s.name}>{title}</div>
+            <div className={s.rating}>★ {rating}</div>
           </div>
           <div className={s.description}>
-            內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文內文
+            {desc}
           </div>
         </div>
       </div>

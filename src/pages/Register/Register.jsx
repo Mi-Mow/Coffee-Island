@@ -1,7 +1,9 @@
+import { useAuth } from '../../context/AuthContext';
 import './Register.scss';
 
 
 function Register() {
+    const { login } = useAuth();
     return (
         <div className="login-wrapper">
             <div className="login-card">
@@ -27,7 +29,7 @@ function Register() {
                     </label>
                 </div>
 
-                <button className="login-btn">登入</button>
+                <button className="login-btn" onClick={login}>註冊</button>
             </div>
         </div>
     );

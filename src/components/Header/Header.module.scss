@@ -45,7 +45,7 @@ header {
       padding-bottom: 10px;
       font-size: 18px;
       color: #fff;
-      font-weight: 800;
+      font-weight: 600;
       border-bottom: transparent 2px solid;
       transition: all 0.3s ease-out;
 
@@ -62,7 +62,7 @@ header {
   .language {
     cursor: pointer;
     .earthContainer {
-      width: 36px;
+      width: 28px;
     }
     p {
       font-size: 16px;
@@ -70,6 +70,14 @@ header {
       color: #fff;
       font-weight: 500;
     }
+  }
+
+  .cartContainer {
+    width: 48px;
+  }
+
+  .profileContainer {
+    width: 48px;
   }
 
   .loginBtn {

@@ -1,34 +1,238 @@
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import { useState } from 'react';
+import {
+  GoogleMap,
+  LoadScript,
+  LoadScriptNext,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
+import { useCallback, useEffect, useState } from "react";
 const GOOGLE_MAP_API = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+import { useCafeData } from "../../components/CafeContext";
 
 const containerStyle = {
-  width: '100%',
-  height: '100%',
+  width: "100%",
+  height: "100%",
 };
 
 const center = {
-  lat: 25.0330,
-  lng: 121.5654,
+  lat: 25.058,
+  lng: 121.545,
 };
 
-// 咖啡廳資料
-const cafeLocations = [
-  { id: 1, name: '復古咖啡 A', lat: 25.0335, lng: 121.5650 },
-  { id: 2, name: '復古咖啡 B', lat: 25.0320, lng: 121.5675 },
+const mapStyles = [
+  {
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#1d4a40", // 非街道的大面積區塊
+      },
+    ],
+  },
+  {
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#faf4d9", // 大區域非街道的地名字
+      },
+    ],
+  },
+  {
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        color: "#666666", // 所有字的外框
+      },
+    ],
+  },
+  {
+    featureType: "administrative.land_parcel",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#bdbdbd",
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#1d4a40", // 一些區塊
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#757575",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#1d4a40", // 街道
+      },
+    ],
+  },
+  {
+    featureType: "road.arterial",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#757575",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#8d8f8e", // 高速公路
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#616161",
+      },
+    ],
+  },
+  {
+    featureType: "transit",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#8d8f8e", // 道路
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#1d4a40", // 水域
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    elementType: "labels",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "poi.school",
+    elementType: "labels",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  // {
+  //     "featureType": "landmarks",
+  //     "elementType": "labels",
+  //     "stylers": [
+  //       {
+  //         "visibility": "off"
+  //       }
+  //     ]
+  // },
+  {
+    featureType: "road.local",
+    elementType: "labels",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "labels",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
 ];
 
-const CafeMap = () => {
-    const [selectedLocation, setSelectedLocation] = useState(null);
+const CafeMap = ({filtered}) => {
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [customIcon, setCustomIcon] = useState(null);
+  const [animation, setAnimation] = useState(null);
+  const { cafes } = useCafeData();
+  // console.log(cafes);
+
+  const onMapLoad = useCallback(() => {
+    const icon = {
+      url: "/logo-sm.svg",
+      scaledSize: new window.google.maps.Size(30, 30), // 圖標尺寸
+      origin: new window.google.maps.Point(0, 0), // 起點座標
+      anchor: new window.google.maps.Point(15, 30), // 錨點（圖標的底部中心
+    };
+    setCustomIcon(icon);
+  }, []);
+
+  useEffect(() => {
+    if (window.google) {
+      setAnimation(window.google.Animation?.DROP);
+    }
+  }, [])
+
+  // 咖啡廳資料
+  const cafeLocations = filtered;
+
   return (
-    <LoadScript googleMapsApiKey={GOOGLE_MAP_API}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={14}>
-        {cafeLocations.map(cafe => (
+    <LoadScriptNext googleMapsApiKey={GOOGLE_MAP_API}>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={12}
+        options={{
+          // styles: mapStyles,
+          colorScheme: "DARK",
+          zoomControl: true,
+          disableDefaultUI: true,
+          keyboardShortcuts: false
+          // scaleControl: false,
+          // mapTypeControl: false,
+          // streetViewControl: false,
+          // rotateControl: false,
+        }}
+        onLoad={onMapLoad}
+      >
+        {cafeLocations.map((cafe) => (
           <Marker
             key={cafe.id}
             position={{ lat: cafe.lat, lng: cafe.lng }}
             title={cafe.name}
             onClick={() => setSelectedLocation(cafe)}
+            icon={customIcon}
+            animation={animation}
           />
         ))}
         {/* 顯示 InfoWindow */}
@@ -38,13 +242,14 @@ const CafeMap = () => {
             onCloseClick={() => setSelectedLocation(null)}
           >
             <div>
-              <h3>{selectedLocation.name}</h3>
+              <h3>{selectedLocation.name_zh}</h3>
+              <h3>{selectedLocation.name_en}</h3>
             </div>
           </InfoWindow>
         )}
       </GoogleMap>
-    </LoadScript>
+    </LoadScriptNext>
   );
-}
+};
 
 export default CafeMap;

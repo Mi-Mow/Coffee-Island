@@ -5,6 +5,7 @@ import coffeeBeanDark from "../../assets/home/coffeeBeanDark.svg";
 import coffeeBeanLight from "../../assets/home/coffeeBeanLight.svg";
 import bannerSm from "../../assets/home/banner.svg";
 import banner from "../../assets/home/bannerPath.svg";
+import bannerGif from "../../assets/home/banner.gif";
 import history1 from "../../assets/history1.png";
 import history2 from "../../assets/history2.png";
 import history3 from "../../assets/history3.png";
@@ -101,6 +102,7 @@ function Home() {
   function onClickArea(area) {
     navigate(`/map/${area}`);
   }
+
 
   // 向下滾動 arrow
   const carouselRef = useRef(null);
@@ -257,7 +259,29 @@ function Home() {
         </div>
         <div className={s.banner}>
           <div className={s.bannerContainer}>
-            <img src={banner} alt="" />
+            <svg
+              viewBox="0 0 1002 669"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <clipPath id="mask">
+              <path
+                d="M1 666V1L1001 1.5V549.5C994.333 556.167 975.5 571.1 953.5 577.5C926 585.5 882.5 575 838 575C793.5 575 777.5 601 738 614.5C698.5 628 665.5 610.5 628 609.5C590.5 608.5 539 653 501.5 653C464 653 426 619.5 375.5 644C325 668.5 295 663 277 663C259 663 196 633 144.5 657C103.3 676.2 31.6667 671 1 666Z"
+                fill="#A9A9A9"
+                stroke="black"
+                strokeWidth="2"
+              />
+            </clipPath>
+            <g>
+            <image
+                href={bannerGif}
+                width="1002"
+                // height="669"
+                clipPath="url(#mask)"
+              />
+            </g>
+            </svg>
+            {/* <img src={bannerGif} alt="" className={s.gif}/> */}
           </div>
           <div className={s.bannerContainerSm}>
             <img src={bannerSm} alt="" />
@@ -855,7 +879,9 @@ function Home() {
           <img src={viceBanner} alt="" />
           <div className={s.textContainer}>
             <p>收藏精選店家、限定商品販售、即時職人工作坊及文章。</p>
-            <button className={s.registerButton}>創建您的帳戶</button>
+            <button className={s.registerButton} onClick={() => {
+              navigate('/register')
+            }}>創建您的帳戶</button>
           </div>
         </div>
       </section>
