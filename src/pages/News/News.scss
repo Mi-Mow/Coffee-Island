@@ -162,6 +162,7 @@
     overflow: hidden;
 
     .cover-img {
+      border: 1px solid $textcolor;
       width: 100%;
       object-fit: cover;
       height: 400px;
