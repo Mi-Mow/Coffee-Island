@@ -6,6 +6,7 @@ import About from "./About/About";
 import Article from "./News/Article";
 import ArticlePage from "./News/ArticlePage";
 import Event from "./News/Event";
+import EventPage from './News/EventPage'
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import District from "./Map/District/District";
@@ -25,6 +26,7 @@ function Pages() {
         <Route path="/news/article" element={<Article />} />
         <Route path="/news/article/:id" element={<ArticlePage />} />
         <Route path="/news/event" element={<Event />} />
+		<Route path="/news/event/:id" element={<EventPage/>} />
         <Route path="/map/:district" element={<District />} />
         <Route path="/map/:district/cafe/:id" element={<Cafe />} />
         <Route path="/products" element={<Products />} />

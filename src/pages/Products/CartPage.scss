@@ -1,171 +1,354 @@
 .cart-page {
-    padding: 40px;
+  padding: 150px 100px;
+  color: #fff1cb;
+  font-family: inherit;
 
-    color: #fff1cb;
-    font-family: inherit;
-  
-    .step-progress {
+  // 第一部分：上方 step 區域
+  .step-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    max-width: 880px;
+    margin-inline: auto;
+
+    .step-wrapper {
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 40px;
-      .step {
-        flex: 1;
-        text-align: center;
-        padding: 10px;
-        border-bottom: 2px solid #ccc;
-        position: relative;
-        &.active {
-          color: #fff1cb;
-          font-weight: bold;
-          border-bottom: 2px solid #fff1cb;
-        }
-        &::before {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: 0;
-          width: 100%;
-          height: 1px;
-          background: #ccc;
-          z-index: -1;
+      align-items: center;
+      gap: 12px;
+      padding: 0 8px;
+
+      .circle {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid #fff1cb;
+        background: transparent;
+        color: #fff1cb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .label {
+        font-size: 18px;
+        color: #fff1cb;
+        white-space: nowrap;
+      }
+
+      &.active {
+        .circle {
+          background: #fff1cb;
+          color: #14423d;
         }
       }
     }
-  
-    .cart-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #fff1cb;
-      padding-bottom: 10px;
+  }
+
+  // 第二部分：預定區訂單
+  .cart-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+    border-bottom: 4px solid #fff1cb;
+    padding-bottom: 8px;
+    text-align: center;
+  }
+
+  .cart-content {
+    display: flex;
+    gap: 40px;
+
+    .cart-list,
+    .form-list {
+      flex: 2;
     }
-  
-    .cart-content {
-      display: flex;
-      gap: 40px;
-  
-      .cart-list {
-        flex: 2;
-  
-        .cart-header {
-          display: grid;
-          grid-template-columns: 2fr 1fr 1fr;
-          padding: 12px 0;
-          border-bottom: 2px solid #fff1cb;
-          font-weight: bold;
+
+    // step1 商品資訊
+    .cart-list:not(.form-list) {
+      .cart-header,
+      .cart-item {
+        display: grid;
+        grid-template-columns: 100px 1fr 160px 36px 105px;;
+        column-gap: 45px;
+        align-items: center;
+      }
+
+      .cart-header {
+        padding: 16px 0;
+        border-bottom: 2px solid #fff1cb;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .cart-item {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 241, 203, 0.2);
+
+        img {
+          width: 80px;
+          height: 80px;
+          border-radius: 8px;
+          object-fit: cover;
         }
-  
-        .cart-item {
-          display: grid;
-          grid-template-columns: 80px 1fr 100px 140px 40px;
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .name {
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 20px;
+          }
+
+          .spec {
+            font-size: 14px;
+          }
+        }
+
+        .price {
+          text-align: left;
+          font-size: 20px;
+          color: #fff1cb;
+        }
+
+        .quantity-control {
+          display: flex;
           align-items: center;
-          padding: 20px 0;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  
-          img {
-            width: 80px;
-            border-radius: 8px;
-          }
-  
-          .info {
-            .name {
-              font-weight: bold;
-              margin-bottom: 6px;
-            }
-            .spec {
-              font-size: 14px;
-            }
-          }
-  
-          .price {
-            font-size: 20px;
-            color: #fff1cb;
-          }
-  
-          .quantity-control {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-  
-            button {
-              background: transparent;
-              border: 1px solid #fff1cb;
-              color: #fff1cb;
-              width: 32px;
-              height: 32px;
-              font-size: 16px;
-              cursor: pointer;
-            }
-          }
-  
-          .remove {
+          justify-content: center;
+          gap: 8px;
+
+          button {
+            width: 32px;
+            height: 32px;
             background: transparent;
-            border: none;
-            font-size: 20px;
+            border: 1px solid #fff1cb;
             color: #fff1cb;
             cursor: pointer;
           }
+
+          span {
+            display: inline-block;
+            width: 24px;
+            text-align: center;
+          }
+        }
+
+        .remove {
+          justify-self: end;
+          background: transparent;
+          border: none;
+          font-size: 20px;
+          color: #fff1cb;
+          cursor: pointer;
         }
       }
-  
-      .cart-summary {
-        flex: .5;
-        background: #1a2b29;
-        padding: 24px;
-        border-radius: 12px;
-  
-        .summary-title {
-          font-size: 20px;
-          margin-bottom: 25px;
-        }
-  
-        .summary-line {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 12px;
-          font-size: 16px;
-        }
-  
-        .total-line {
-          margin-bottom: 100px;
-        }
-  
-        .total-price {
+    }
+
+    // step2 表單
+    .form-list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 40px;
+
+      hr {
+        border-color: #fff1cb;
+        opacity: 0.3;
+        margin: 0;
+      }
+
+      .form-section {
+        display: flex;
+        flex-direction: column;
+        row-gap: 32px;
+
+        .form-title {
           font-size: 22px;
           font-weight: bold;
-          text-align: right;
+          color: #fff1cb;
         }
-  
-        .red {
-          color: #ff4a4a;
-        }
-  
-        .button-group {
+
+        .radio-group {
           display: flex;
           flex-direction: column;
           gap: 16px;
         }
-  
+
+        .radio-with-input {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          align-items: center;
+          gap: 12px;
+
+          input[type="text"] {
+            padding: 8px 12px;
+            border: 1px solid #fff1cb;
+            border-radius: 2px;
+            background: transparent;
+            color: #fff1cb;
+            font-size: 16px;
+            width: 100%;
+          }
+        }
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: #fff1cb;
+          font-size: 16px;
+
+          input[type="radio"] {
+            accent-color: #fff1cb;
+          }
+
+          span {
+            font-size: 14px;
+            color: rgba(255, 241, 203, 0.8);
+          }
+        }
+
+        .recipient-info {
+          display: grid;
+          grid-template-columns: 100px 1fr;
+          row-gap: 24px;
+          column-gap: 35px;
+          align-items: center;
+
+          label {
+            display: contents;
+          }
+
+          input[type="text"],
+          input[type="email"],
+          select {
+            background-color: transparent;
+            color: #fff1cb;
+            border: 1px solid #fff1cb;
+            padding: 8px 12px;
+            font-size: 16px;
+            appearance: none;
+            width: 100%;
+            min-width: 260px;
+            border-radius: 2px;
+          }
+        }
+      }
+    }
+
+    // step3 顯示使用者資料區塊
+    .order-info {
+      margin-top: 40px;
+      padding: 32px;
+      border: 1px solid #fff1cb;
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      row-gap: 20px;
+      column-gap: 16px;
+      font-size: 20px;
+      color: #fff1cb;
+    
+      .label {
+        font-weight: bold;
+        font-size: 16px;
+        white-space: nowrap;
+      }
+    
+      .value {
+        //word-break: break-word;
+        font-size: 14px;
+      }
+    }
+
+    // 右側摘要
+    .cart-summary {
+      align-self: flex-start;
+      flex: 0.5;
+      background: #1a2b29;
+      padding: 24px;
+      border-radius: 12px;
+
+      .summary-title {
+        font-size: 20px;
+        margin-bottom: 25px;
+      }
+
+      .summary-line {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        font-size: 16px;
+      }
+
+      .total-line {
+        margin-bottom: 24px;
+      }
+
+      .total-price {
+        font-size: 22px;
+        font-weight: bold;
+        text-align: right;
+      }
+
+      .red {
+        color: #ff4a4a;
+      }
+
+      .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
         .next,
         .keep {
           width: 100%;
           padding: 12px;
           font-size: 16px;
+          border: 1px solid #fff1cb;
           border-radius: 4px;
-          border: none;
-          cursor: pointer;
-        }
-  
-        .next {
-          background: #4d6e6a;
-          color: white;
-        }
-  
-        .keep {
           background: transparent;
           color: #fff1cb;
-          border: 1px solid #fff1cb;
+          cursor: pointer;
+
+          &:hover {
+            background: #5e7d79;
+          }
         }
       }
     }
   }
+
+  // step4：預定完成
+  .order-complete {
+    text-align: center;
+    padding: 80px 40px;
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    button.keep {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: 1px solid #fff1cb;
+      border-radius: 4px;
+      background: transparent;
+      color: #fff1cb;
+      cursor: pointer;
+
+      &:hover {
+        background: #5e7d79;
+      }
+    }
+  }
+}

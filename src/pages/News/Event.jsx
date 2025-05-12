@@ -1,31 +1,37 @@
-import { Link } from 'react-router-dom'
-import event1 from '/news/event1.png'
+import { Link, useNavigate } from 'react-router-dom';
 import EventCard from './components/EventCard';
 import { useState } from 'react';
+import event1 from '../../assets/news/activities/01.jpg';
+import event2 from '../../assets/news/activities/02.jpg';
+import event3 from '../../assets/news/activities/3.png';
+import event4 from '../../assets/news/activities/4.jpg';
+import event5 from '../../assets/news/activities/5.jpg';
+import event6 from '../../assets/news/activities/6.jpg';
+import event7 from '../../assets/news/activities/7.jpg';
 
-function Event() {
   // data陣列
-  const events = [
+  export const events = [
     {
+      id: 1,
       imgSrc: event1,
-      tags: ['最新企劃', '復古咖啡廳'],
-      date: '2025/04/05~2025/04/05',
-      startDate: new Date('2025-04-05'),
-      endDate: new Date('2025-04-05'),
-      title: '徐明志｜品一杯草莓果醬味咖啡',
+      tags: ['外部活動', '咖啡展'],
+      date: '2025/11/14~2025/11/17',
+      startDate: new Date('2025-11-14'),
+      endDate: new Date('2025-11-17'),
+      title: '2025台灣國際咖啡展',
       link: "/news/event/1" // 活動內容頁面
     },
     {
-      imgSrc: event1,
+      imgSrc: event2,
       tags: ['最新企劃', '復古咖啡廳'],
       date: '2025/04/30~2025/04/30',
-      startDate: new Date('2025-04-30'),
-      endDate: new Date('2025-04-30'),
+      startDate: new Date('2025-06-30'),
+      endDate: new Date('2025-06-30'),
       title: '徐明志｜品一杯草莓果醬味咖啡',
       link: "/news/event/1" // 活動內容頁面
     },
     {
-      imgSrc: event1,
+      imgSrc: event3,
       tags: ['最新企劃', '復古咖啡廳'],
       date: '2025/05/30~2025/05/30',
       startDate: new Date('2025-05-30'),
@@ -34,7 +40,7 @@ function Event() {
       link: "/news/event/1" // 活動內容頁面
     },
     {
-      imgSrc: event1,
+      imgSrc: event4,
       tags: ['最新企劃', '復古咖啡廳'],
       date: '2025/05/30~2025/05/30',
       startDate: new Date('2025-05-30'),
@@ -43,7 +49,7 @@ function Event() {
       link: "/news/event/1" // 活動內容頁面
     },
     {
-      imgSrc: event1,
+      imgSrc: event5,
       tags: ['最新企劃', '復古咖啡廳'],
       date: '2025/05/30~2025/05/30',
       startDate: new Date('2025-05-30'),
@@ -52,16 +58,34 @@ function Event() {
       link: "/news/event/1" // 活動內容頁面
     },
     {
-      imgSrc: event1,
-      tags: ['最新企劃', '復古咖啡廳'],
-      date: '2025/04/05~2025/04/05',
-      startDate: new Date('2025-05-30'),
-      endDate: new Date('2025-05-30'),
-      title: '徐明志｜品一杯草莓果醬味咖啡',
+      imgSrc: event6,
+      tags: ['外部活動', '咖啡講座'],
+      date: '2025/05/19~2025/05/19',
+      startDate: new Date('2025-05-19'),
+      endDate: new Date('2025-05-19'),
+      title: 'Things about coffee《台灣埔里尋豆記》',
+      link: "/news/event/1" // 活動內容頁面
+    },
+    {
+      imgSrc: event7,
+      tags: ['外部活動', '咖啡課程'],
+      date: '2025/06/07~2025/06/28',
+      startDate: new Date('2025-06-07'),
+      endDate: new Date('2025-06-28'),
+      title: '95究極烘豆班-單品豆烘焙(初階)',
       link: "/news/event/1" // 活動內容頁面
     },
     // 更多資料...
   ];
+
+function Event() {
+
+  const navigate = useNavigate();
+
+    function onClickArea(id) {
+        navigate(`/news/event/${id}`);
+    }
+
 
   // setFilter
   const [filterTime, setFilterTime] = useState('全部');
