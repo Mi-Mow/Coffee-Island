@@ -3,14 +3,18 @@ import './News.scss'
 import Article from './Article'
 import story1 from '/news/story1.png'
 import cafe1 from '/news/cafe1.jpg'
-import cafe2 from '../../assets/news/coffeeshop/Tinytailcoffee/Tinytailcoffee1.jpg'
+import cafe2 from '../../assets/news/coffeeshop/Tinytailcoffee/1.jpg'
 import cafe3 from '../../assets/news/coffeeshop/Ura219/Ura2191.jpeg'
 import historyImg1 from '/news/historyImg1.jpg'
 import event1 from '/news/event1.png'
+// 匯入別的元件的DATA
 import { useState } from 'react'
 import { events } from './Event'
+import {articles} from './Article'
+import {hotArticles} from './Article'
 import EventCard from './components/EventCard'
 import Coverstory from './components/Coverstory'
+
 
 function News() {
 
@@ -45,7 +49,7 @@ function News() {
                 <h2>老臺北特輯</h2>
                 <div className='feature1'>
 
-                  <a href="#">
+                  <a href="`/news/article/${article.id}`">
                     <div>
                       <img src={story1} alt="老臺北特輯封面照片" />
                       <h3>明星咖啡館與那個年代：台北文人的思想日常</h3>
@@ -59,7 +63,7 @@ function News() {
                   <h2>2025 最新文章</h2>
                   {/* 卡片區 */}
                   <div className="new-cards">
-                    <a href="#">
+                    <a href="`/news/article/${article.id}`">
                       <div>
                         <img src={historyImg1} alt="" />
                         <p className="tagName">老臺北特輯</p>
@@ -67,7 +71,7 @@ function News() {
                         <h3>川先生｜那些年，台灣喝的咖啡是什麼味？</h3>
                       </div>
                     </a>
-                    <a href="#">
+                    <a href="`/news/article/${article.id}`">
                       <div>
                         <img src={historyImg1} alt="" />
                         <p className="tagName">老臺北特輯</p>
@@ -75,7 +79,7 @@ function News() {
                         <h3>劉千如｜那些年，台灣喝的咖啡是什麼味？</h3>
                       </div>
                     </a>
-                    <a href="#">
+                    <a href="`/news/article/${article.id}`">
                       <div>
                         <img src={historyImg1} alt="" />
                         <p className="tagName">老臺北特輯</p>
@@ -95,7 +99,7 @@ function News() {
               <div className="recommendation">
                 <h2>人氣推薦</h2>
                 {/* reco-cards */}
-                <a href="#" className='reco-card'>
+                <a href="`/news/article/${article.id}`" className='reco-card'>
                   <div >
                     <img src={cafe1} alt="人氣推薦咖啡廳照片" />
                   </div>
@@ -105,7 +109,7 @@ function News() {
                   </div>
 
                 </a>
-                <a href="#" className='reco-card'>
+                <a href="`/news/article/${article.id}`" className='reco-card'>
                   <div >
                     <img src={cafe2} alt="人氣推薦咖啡廳照片" />
                   </div>
@@ -114,7 +118,7 @@ function News() {
                     <h3>種蘭花的溫室改造而成！大稻埕「小尾咖啡」隱身二樓老宅，明亮採光包覆空間</h3>
                   </div>
                 </a>
-                <a href="#" className='reco-card'>
+                <a href="`/news/article/${article.id}`" className='reco-card'>
                   <div >
                     <img src={cafe3} alt="人氣推薦咖啡廳照片" />
                   </div>
