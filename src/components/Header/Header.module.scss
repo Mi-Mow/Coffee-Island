@@ -116,6 +116,11 @@ header {
     background-color: transparent;
     transition: 0.3s;
   }
+
+  .hamburgerContainer {
+    width: 48px;
+    cursor: pointer;
+  }
 }
 
 nav,
@@ -124,12 +129,4 @@ nav,
 main {
   display: flex;
   align-items: center;
-}
-
-@media (max-width: 1140px) {
-  nav {
-    display: none;
-  }
-
-  // 還要再新增漢堡選單
 }

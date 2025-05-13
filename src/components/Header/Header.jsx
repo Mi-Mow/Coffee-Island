@@ -21,6 +21,14 @@ function Header() {
   // setIsLoggedIn(localStorage.getItem("isLoggedIn"));
   const { isLoggedIn } = useAuth();
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1140);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1140);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div>
       <header>
@@ -28,68 +36,82 @@ function Header() {
           <img src={logo} alt="" />
         </NavLink>
         <nav>
-          <div className={s.navLink}>
-            <NavLink to={"/#map"} className={s.navItem}>
-              {t(`header.map`)}
-            </NavLink>
-            <NavLink
-              to={"/news"}
-              className={({ isActive }) =>
-                isActive ? `${s.navItem} ${s.active}` : s.navItem
-              }
-            >
-              {t(`header.news`)}
-            </NavLink>
-            <NavLink
-              to={"/products"}
-              className={({ isActive }) =>
-                isActive ? `${s.navItem} ${s.active}` : s.navItem
-              }
-            >
-              {t(`header.products`)}
-            </NavLink>
-            <NavLink
-              to={"/about"}
-              className={({ isActive }) =>
-                isActive ? `${s.navItem} ${s.active}` : s.navItem
-              }
-            >
-              {t(`header.about`)}
-            </NavLink>
-          </div>
-          <div className={s.btnContainer}>
-            <div className={s.language} onClick={toggleLang}>
-              <div className={s.earthContainer}>
-                <img src={earth} alt="" />
+          {isMobile ? (
+            <>
+            <div className={s.hamburger}>
+              <div className={s.hamburgerContainer}>
+                <img src="/hamburger.svg" alt="" />
               </div>
-              <p>{nextLang}</p>
             </div>
-            {isLoggedIn ? (
-              <>
-                <NavLink to={"/cart"}>
-                  <div className={s.cartContainer}>
-                    <img src={cart} alt="" />
+            </>
+          ) : (
+            <>
+              <div className={s.navLink}>
+                <NavLink to={"/#map"} className={s.navItem}>
+                  {t(`header.map`)}
+                </NavLink>
+                <NavLink
+                  to={"/news"}
+                  className={({ isActive }) =>
+                    isActive ? `${s.navItem} ${s.active}` : s.navItem
+                  }
+                >
+                  {t(`header.news`)}
+                </NavLink>
+                <NavLink
+                  to={"/products"}
+                  className={({ isActive }) =>
+                    isActive ? `${s.navItem} ${s.active}` : s.navItem
+                  }
+                >
+                  {t(`header.products`)}
+                </NavLink>
+                <NavLink
+                  to={"/about"}
+                  className={({ isActive }) =>
+                    isActive ? `${s.navItem} ${s.active}` : s.navItem
+                  }
+                >
+                  {t(`header.about`)}
+                </NavLink>
+              </div>
+              <div className={s.btnContainer}>
+                <div className={s.language} onClick={toggleLang}>
+                  <div className={s.earthContainer}>
+                    <img src={earth} alt="" />
                   </div>
-                </NavLink>
-                <NavLink to={"/profile"}>
-                  <div className={s.profileContainer}>
-                    <img src={profile} alt="" />
-                  </div>
-                </NavLink>
-              </>
-            ) : (
-              <>
-                <NavLink to={"/login"}>
-                  <button className={s.loginBtn}>{t(`header.login`)}</button>
-                </NavLink>
-                <NavLink to={"/register"}>
-                  <button className={s.registerBtn}>
-                    {t(`header.register`)}
-                  </button>
-                </NavLink>
-              </>
-            )}
-          </div>
+                  <p>{nextLang}</p>
+                </div>
+                {isLoggedIn ? (
+                  <>
+                    <NavLink to={"/cart"}>
+                      <div className={s.cartContainer}>
+                        <img src={cart} alt="" />
+                      </div>
+                    </NavLink>
+                    <NavLink to={"/profile"}>
+                      <div className={s.profileContainer}>
+                        <img src={profile} alt="" />
+                      </div>
+                    </NavLink>
+                  </>
+                ) : (
+                  <>
+                    <NavLink to={"/login"}>
+                      <button className={s.loginBtn}>
+                        {t(`header.login`)}
+                      </button>
+                    </NavLink>
+                    <NavLink to={"/register"}>
+                      <button className={s.registerBtn}>
+                        {t(`header.register`)}
+                      </button>
+                    </NavLink>
+                  </>
+                )}
+              </div>
+            </>
+          )}
         </nav>
       </header>
     </div>
