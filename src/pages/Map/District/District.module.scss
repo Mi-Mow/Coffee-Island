@@ -53,7 +53,7 @@
     .btn {
       margin: 20px 0;
       .btnBg {
-        background-color: #d19666;
+        background-color: #7B4519;
         height: 50px;
         width: 150px;
         display: block;
@@ -65,20 +65,25 @@
         transition: all 0.3s ease-out;
 
         &:hover {
-          background-color: #f0b07c;
+          background-color: #EEB17E;
         }
 
         button {
           margin: auto;
           background-color: transparent;
-          color: #7b4519;
-          font-size: 24px;
-          font-weight: 800;
-          border: 3px solid #7b4519;
+          color: #FFF1CB;
+          font-size: 16px;
+          font-weight: bold;
+          border: 3px solid #EEB17E;
           width: 140px;
           height: 40px;
           cursor: pointer;
           border-radius: 2px;
+          transition: all 0.3s ease-out;
+          &:hover {
+            color: #7B4519;
+            border: 3px solid #7B4519;
+          }
         }
       }
     }

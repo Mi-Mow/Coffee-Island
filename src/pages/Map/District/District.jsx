@@ -244,14 +244,13 @@ function District() {
                   desc={cafe.description}
                   rating={cafe.rating}
                   img={`${cafe.district_id}_${cafe?.id}_1`}
-                  id={cafe.id}
-                  district={cafe.district_id}
+                  cafe={cafe}
                 />
               ))}
             </div>
             <div className={s.btn}>
               <div className={s.btnBg} onClick={scrollDown}>
-                <button>see more</button>
+                <button>查看更多</button>
               </div>
             </div>
           </div>
@@ -390,8 +389,7 @@ function District() {
                   desc={cafe.description}
                   rating={cafe.rating}
                   img={`${cafe.district_id}_${cafe?.id}_1`}
-                  id={cafe.id}
-                  district={cafe.district_id}
+                  cafe={cafe}
                 />
               ))}
             </div>
