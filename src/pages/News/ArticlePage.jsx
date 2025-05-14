@@ -26,7 +26,7 @@ function ArticlePage() {
     return (
         <div>
             <main className="article-detail-page">
-                {/* <nav>
+                <nav>
                     <div className='nav-news'>
                         <ul>
                             <li>
@@ -38,52 +38,56 @@ function ArticlePage() {
                         </ul>
 
                     </div>
-                </nav> */}
+                </nav>
 
-                {/* 標題區 */}
-                <div className="title-container">
-                    <p>咖啡島 老臺北特輯</p>
-                    <h2>{article.title}</h2>
-                    <p>文 陳誠成 攝 郭董郭</p>
-                    <figure>
-                        <img src={article.image} alt={article.title} />
-                    </figure>
-                </div>
-                {/* 內文區 */}
-                <div className="content-container">
-                    <p>{article.content}</p>
-                    {/* 根據 hotArticles 的格式渲染段落與圖片 */}
-                    {article.paragraphs && (
-                        <div className="article-paragraphs">
-                            {Object.values(article.paragraphs).map((p, idx) => {
-                                const smImages = article.smImg || [];
-                                const hasImage = smImages[idx];
-
-                                return (
-                                    <div className="paragraph-block" key={idx}>
-                                        {hasImage && (
-                                            <figure>
-                                                <img src={smImages[idx]} alt={`段落圖片 ${idx + 1}`} />
-                                            </figure>
-                                        )}
-                                        <p>{p}</p>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
-
-                {/* 資訊區 */}
-                <div className="info-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="315" height="2" viewBox="0 0 315 2" fill="none">
-                        <path d="M0 1.47754H315" stroke="#FFF1CB" />
-                    </svg>
-                    <div className="info-text-container">
-                        <p>店家資訊</p>
-                        <p>{article.info}</p>
+                <section>
+                    {/* 標題區 */}
+                    <div className="title-container">
+                        <p>咖啡島 老臺北特輯</p>
+                        <h2>{article.title}</h2>
+                        <p>文 陳誠成 攝 郭董郭</p>
                     </div>
-                </div>
+                    {/* 內文區 */}
+                    <div className="content-container">
+                        <figure>
+                            <img src={article.image} alt={article.title} />
+                        </figure>
+                        <p>{article.content}</p>
+                        {/* 根據 hotArticles 的格式渲染段落與圖片 */}
+                        {article.paragraphs && (
+                            <div className="article-paragraphs">
+                                {Object.values(article.paragraphs).map((p, idx) => {
+                                    const smImages = article.smImg || [];
+                                    const hasImage = smImages[idx];
+
+                                    return (
+                                        <div className="paragraph-block" key={idx}>
+                                            {hasImage && (
+                                                
+                                                    <img className="smImg" src={smImages[idx]} alt={`段落圖片 ${idx + 1}`} />
+                                                
+                                            )}
+                                            <p>{p}</p>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* 資訊區 */}
+                    <div className="info-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="315" height="2" viewBox="0 0 315 2" fill="none">
+                            <path d="M0 1.47754H315" stroke="#FFF1CB" />
+                        </svg>
+                        <div className="info-text-container">
+                            <p>店家資訊</p>
+                            <p>{article.info}</p>
+                        </div>
+                    </div>
+                </section>
+
+
 
                 <br />
 

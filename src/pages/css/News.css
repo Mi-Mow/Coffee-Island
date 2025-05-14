@@ -580,11 +580,12 @@
 /* 文章內頁 */
 .article-detail-page {
   color: #FFF1CB;
-  padding: 100px 160px;
+  padding: 100px 320px;
+  gap: 48px;
 }
 .article-detail-page .title-container {
   display: flex;
-  padding: 24px 0px;
+  padding: 0px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -604,10 +605,11 @@
   letter-spacing: 0.512px;
 }
 .article-detail-page .title-container figure {
-  width: 100%;
+  width: 80%;
   overflow: hidden;
 }
 .article-detail-page .title-container figure img {
+  width: 400px;
   object-fit: cover;
   height: 100%;
 }
