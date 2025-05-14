@@ -1,56 +1,25 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
-import article1 from '/news/article1.jpg';
-import cafe1 from '/news/cafe1.jpg';
+import { useParams, useNavigate, Link } from "react-router-dom"
+// 文章資料
+import { articles, hotArticles } from './Article'
+
 
 function ArticlePage() {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    const articleId = parseInt(id, 10);
+
+    // 合併兩個資料來源，找到對應的文章
+    const allArticles = [...articles, ...hotArticles];
+    const article = allArticles.find(a => a.id === articleId);
+
     const handleGoBack = () => {
         navigate(-1); // -1 表示回到上一頁
     };
 
-    const articles = {
-        1: {
-            title: '明星咖啡館與那個年代：台北文人的思想日常',
-            content: '1980年代的臺北，正值經濟起飛，「臺灣錢淹腳目」的繁榮時期，都市文化也隨之蓬勃發展。​在這股浪潮中，咖啡廳逐漸成為市民休閒與文化交流的重要場所，承載著豐富的歷史與人文故事。',
-            image: article1,
-            info: '店家資訊店家資訊店家資訊店家資訊店家資訊'
-
-        },
-        2: {
-            title: '明星咖啡館與那個年代：台北文人的思想日常',
-            content: '1980年代的臺北，正值經濟起飛，「臺灣錢淹腳目」的繁榮時期，都市文化也隨之蓬勃發展。​在這股浪潮中，咖啡廳逐漸成為市民休閒與文化交流的重要場所，承載著豐富的歷史與人文故事。',
-            image: article1,
-            info: ''
-        },
-        3: {
-            title: '明星咖啡館與那個年代：台北文人的思想日常',
-            content: '1980年代的臺北，正值經濟起飛，「臺灣錢淹腳目」的繁榮時期，都市文化也隨之蓬勃發展。​在這股浪潮中，咖啡廳逐漸成為市民休閒與文化交流的重要場所，承載著豐富的歷史與人文故事。',
-            image: article1,
-        },
-        // 人氣文章3篇
-        101: {
-            id: 101,
-            title: '大稻埕最美秘境，預約制老宅咖啡館AKA café！',
-            content: 'AKA café 藏身於大稻埕的百年老宅中，老屋紅磚與現代設計交織出懷舊又摩登的氛圍。推開木門，陽光灑落在磨石子地板上，老傢俱搭配極簡美學，彷彿時光暫停。這裡不只是喝咖啡的地方，更像一場舊時光與當代品味的對話。',
-            image: cafe1
-        },
-        102: {
-            id: 102,
-            title: '隱藏在巷弄的復古咖啡館推薦',
-            content: 'AKA café 藏身於大稻埕的百年老宅中，老屋紅磚與現代設計交織出懷舊又摩登的氛圍。推開木門，陽光灑落在磨石子地板上，老傢俱搭配極簡美學，彷彿時光暫停。這裡不只是喝咖啡的地方，更像一場舊時光與當代品味的對話。',
-            image: cafe1
-        },
-        103: {
-            id: 103,
-            title: '台北10大人氣咖啡館TOP推薦',
-            content: 'AKA café 藏身於大稻埕的百年老宅中，老屋紅磚與現代設計交織出懷舊又摩登的氛圍。推開木門，陽光灑落在磨石子地板上，老傢俱搭配極簡美學，彷彿時光暫停。這裡不只是喝咖啡的地方，更像一場舊時光與當代品味的對話。',
-            image: cafe1
-        }
-        // 可以加入更多文章資料
-    };
-    const article = articles[id];
+    // 處理段落與圖片對應
+    const paragraphArray = Object.values(article.paragraphs);
+    const imageArray = Array.isArray(article.smImg) ? article.smImg : [article.smImg];
 
     if (!article) return <div>找不到文章</div>;
 
@@ -83,14 +52,28 @@ function ArticlePage() {
                 {/* 內文區 */}
                 <div className="content-container">
                     <p>{article.content}</p>
-                    <figure>
-                        <img src={article.image} alt={article.title} />
-                    </figure>
-                    <p>1980年代的臺北，正值經濟起飛，「臺灣錢淹腳目」的繁榮時期，都市文化也隨之蓬勃發展。​在這股浪潮中，咖啡廳逐漸成為市民休閒與文化交流的重要場所，承載著豐富的歷史與人文故事。</p>
-                    <figure>
-                        <img src={article.image} alt={article.title} />
-                    </figure>
+                    {/* 根據 hotArticles 的格式渲染段落與圖片 */}
+                    {article.paragraphs && (
+                        <div className="article-paragraphs">
+                            {Object.values(article.paragraphs).map((p, idx) => {
+                                const smImages = article.smImg || [];
+                                const hasImage = smImages[idx];
+
+                                return (
+                                    <div className="paragraph-block" key={idx}>
+                                        {hasImage && (
+                                            <figure>
+                                                <img src={smImages[idx]} alt={`段落圖片 ${idx + 1}`} />
+                                            </figure>
+                                        )}
+                                        <p>{p}</p>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
+
                 {/* 資訊區 */}
                 <div className="info-container">
                     <svg xmlns="http://www.w3.org/2000/svg" width="315" height="2" viewBox="0 0 315 2" fill="none">

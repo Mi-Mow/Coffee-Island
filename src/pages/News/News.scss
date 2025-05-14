@@ -258,8 +258,10 @@
           flex: 1 0 0;
 
           img {
+            width: 100%;
             height: 240px;
-            align-self: stretch;
+            // align-self: stretch;
+            object-fit: cover;
           }
 
           h3 {
