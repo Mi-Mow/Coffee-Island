@@ -24,7 +24,7 @@ function ArticlePage() {
     if (!article) return <div>找不到文章</div>;
 
     return (
-        <div className="article-detail-page">
+        <div>
             <main className="article-detail-page">
                 {/* <nav>
                     <div className='nav-news'>

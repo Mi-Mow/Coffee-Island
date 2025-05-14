@@ -23,7 +23,7 @@
   #findEvent,
   .article-detail-page,
   .event-detail-page {
-    padding: 100px 170px;
+    padding: 100px 160px;
   }
 }
 @media (max-width:820px) {
@@ -580,7 +580,7 @@
 /* 文章內頁 */
 .article-detail-page {
   color: #FFF1CB;
-  padding: 100px 40px;
+  padding: 100px 160px;
 }
 .article-detail-page .title-container {
   display: flex;
