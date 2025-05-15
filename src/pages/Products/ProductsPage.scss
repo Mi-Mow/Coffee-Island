@@ -1,5 +1,8 @@
 //第一部分：商品大圖加入購物車...等
 .product-detail-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   width: 100%;
   min-height: 100vh;
@@ -13,11 +16,12 @@
     position: relative;
 
     .carousel {
-      position: relative;
-      width: 80%;
+      width: 100%;
+      max-width: 500px;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
 
       img {
         width: 100%;
@@ -46,7 +50,6 @@
           font-size: 24px;
           border-radius: 50%;
           cursor: pointer;
-          transition: background 0.3s;
 
           &:hover {
             background: #7F7E5E;
@@ -61,18 +64,19 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 100px 0px 0px;
+    padding: 80px 0 0 60px;
 
     h2 {
-      font-size: 32px;
+      font-size: 30px;
       margin-bottom: 24px;
       color: #FFF1CB;
     }
 
     .description {
       font-size: 18px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       color: #FFF;
+
     }
 
     .quantity {
@@ -114,7 +118,7 @@
       color: #FFF1CB;
 
       .highlight {
-        color: #ea332d;
+        color: #ffffff;
         font-weight: bold;
         margin-left: 8px;
       }
@@ -167,17 +171,12 @@
     }
   }
 
-  //第一部分：商品大圖加入購物車...等 der RWD
   @media (max-width: 768px) {
     flex-direction: column;
 
     .left,
     .right {
       width: 100%;
-    }
-
-    .carousel {
-      width: 75%;
     }
 
     .right {
@@ -221,38 +220,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  .arrow-wrapper {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-
-    &.left {
-      left: -60px; // 左箭頭內縮
-    }
-
-    &.right {
-      right: -60px; // 右箭頭內縮
-    }
-
-    .arrow {
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
-      background: #fff;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:hover {
-        background: #ffd85d;
-      }
-    }
   }
 
   .carousel-viewport {
@@ -274,7 +241,10 @@
 
     img {
       width: 100%;
+      height: 240px;
+      object-fit: cover; 
       border-radius: 12px;
+      display: block;
     }
 
     h4 {
@@ -291,7 +261,7 @@
 
   // 第三部分：RWD 手機版
   @media (max-width: 768px) {
-    padding: 32px 0;
+    //padding: 32px 0;
 
     .arrow-wrapper {
       &.left {
@@ -326,7 +296,6 @@
       }
     }
   }
-}
 
 
 
@@ -338,7 +307,7 @@
   // 讓整個區塊靠右
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 
   .recommend-title {
     font-size: 32px;

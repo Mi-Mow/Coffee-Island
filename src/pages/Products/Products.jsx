@@ -10,6 +10,15 @@ import coffeeFilter1 from "../../assets/products/coffeeFilter1.png";
 import coffeeFilter2 from "../../assets/products/coffeeFilter2.png";
 import coffeeFilterHover1 from "../../assets/products/coffeeFilter1.jpg";
 import coffeeFilterHover2 from "../../assets/products/coffeeFilter2.jpg";
+import coffeeBean1 from "../../assets/products/coffeeBean1.jpg";
+import coffeeBean2 from "../../assets/products/coffeeBean2.jpg";
+import coffeeBean3 from "../../assets/products/coffeeBean3.jpg";
+import coffeeBeanHover1 from "../../assets/products/coffeeBeanHover1.jpg";
+import coffeeBeanHover2 from "../../assets/products/coffeeBeanHover2.jpg";
+import coffeeBeanHover3 from "../../assets/products/coffeeBeanHover3.jpg";
+
+
+
 import { useNavigate } from "react-router-dom";
 
 const products = [
@@ -70,25 +79,36 @@ const products = [
   },
   {
     id: "3-1",
-    name: "日曬咖啡豆 250g",
-    price: 300,
-    oldPrice: 420,
+    name: "古坑咖啡豆250g #台灣小農 #產地直銷",
+    price: 550,
+    oldPrice: 600,
     tag: "熱銷",
     isNew: true,
     category: "beans",
-    image: gooseneck1,
-    hoverImage: gooseneckHover1,
+    image: coffeeBean1,
+    hoverImage: coffeeBeanHover1,
   },
   {
     id: "3-2",
-    name: "日曬咖啡豆 250g",
-    price: 300,
-    oldPrice: 420,
+    name: " 關西咖啡豆250g #產地直銷 ",
+    price: 600,
+    oldPrice: 700,
     tag: "熱銷",
-    isNew: true,
+    isNew: false,
     category: "beans",
-    image: gooseneck1,
-    hoverImage: gooseneckHover1,
+    image: coffeeBean2,
+    hoverImage: coffeeBeanHover2,
+  },
+  {
+    id: "3-3",
+    name: " 阿里山咖啡豆250g #產地直銷 ",
+    price: 600,
+    oldPrice: 700,
+    tag: "熱銷",
+    isNew: false,
+    category: "beans",
+    image: coffeeBean3,
+    hoverImage: coffeeBeanHover3,
   },
 ];
 

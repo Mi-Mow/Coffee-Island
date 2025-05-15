@@ -5,6 +5,11 @@ import gooseneck1 from "../../assets/products/gooseneck1.png";
 import gooseneck2 from "../../assets/products/gooseneck2.png";
 import gooseneck3 from "../../assets/products/gooseneck3.png";
 import prodRecoMs from "../../assets/products/prodRecoMs.png";
+import coffeeBeanDes1 from "../../assets/products/coffeeBeanDes1.jpg";
+import coffeeBeanDes3 from "../../assets/products/coffeeBeanDes3.jpeg";
+import coffeeBeanDes4 from "../../assets/products/coffeeBeanDes4.jpeg";
+import coffeeBeanDes5 from "../../assets/products/coffeeBeanDes5.jpg";
+import coffeeBeanDes6 from "../../assets/products/coffeeBeanDes6.jpg";
 
 // 假資料區
 const mockProduct = {
@@ -17,13 +22,13 @@ const mockProduct = {
     "可選擇杯份磨豆",
   ],
   colors: ["#000000", "#ffffff", "#a0522d"],
-  images: [gooseneck1, gooseneck2, gooseneck3],
+  images: [coffeeBeanDes5, coffeeBeanDes5, coffeeBeanDes6],
 };
 
 const descData = [
-  { img: gooseneck1, title: "散熱口設計", desc: "快速散熱" },
-  { img: gooseneck2, title: "轉速調節", desc: "手動調整刀盤轉速" },
-  { img: gooseneck3, title: "金屬拋光開關", desc: "開關按鈕觸感升級" },
+  { img: coffeeBeanDes1, title: "散熱口設計", desc: "快速散熱" },
+  { img: coffeeBeanDes5, title: "轉速調節", desc: "手動調整刀盤轉速" },
+  { img: coffeeBeanDes6, title: "金屬拋光開關", desc: "開關按鈕觸感升級" },
 ];
 
 const recommendData = [
@@ -126,9 +131,6 @@ function ProductPage() {
 
         {/* 第三步份：商品描述輪播 */}
         <section className="product-description-carousel">
-          <div className="arrow-wrapper left">
-            <button className="arrow" onClick={handlePrev}>&lt;</button>
-          </div>
 
           <div className="carousel-viewport">
             <div className="carousel-track">
@@ -142,9 +144,6 @@ function ProductPage() {
             </div>
           </div>
 
-          <div className="arrow-wrapper right">
-            <button className="arrow" onClick={handleNext}>&gt;</button>
-          </div>
         </section>
 
         {/* 第四部分：推薦商品區塊 */}
