@@ -18,6 +18,7 @@
     "fdir": "^6.4.4",
     "fs": "^0.0.1-security",
     "i18next": "^25.0.2",
+    "jquery": "^3.7.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.5.1",

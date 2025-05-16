@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 // import { HiChevronLeft } from "react-icons/hi";
 // import { HiChevronRight } from "react-icons/hi";
 import { articles } from "../Article"
@@ -7,24 +7,48 @@ import { Link } from 'react-router-dom'
 export default function App() {
     // 自訂變數
     const [currentIndex, setCurrentIndex] = useState(0);
+    // 把 setInterval 存進一個 ref
+    const intervalRef = useRef(null);
+    const isHovered = useRef(false);
+
     // 陣列存放資料
     const slides = [
-        { url: "/news/story1.png", title: "story1" },
-        { url: "/news/story2.jpg", title: "2" },
-        { url: "/news/story3.jpg", title: "3" },
-        { url: "/news/story4.jpg", title: "4" },
+        { url: "/news/story1.png" },
+        { url: "/news/story2.jpg" },
+        { url: "/news/story3.jpg" },
+        { url: "/news/story4.jpg" },
     ]
+
+    // 啟動自動輪播
+    const startAutoplay = () => {
+        stopAutoplay(); // 清除舊的 interval
+        intervalRef.current = setInterval(() => {
+            if (!isHovered.current) {
+                nextSlide();
+            }
+        }, 3000);
+    };
+
+    // 停止自動輪播
+    const stopAutoplay = () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+    };
+
+    const handleMouseEnter = () => {
+        isHovered.current = true;
+    };
+
+    const handleMouseLeave = () => {
+        isHovered.current = false;
+    };
 
     // 當currentIndex改變時，會再觸發一次
     useEffect(() => {
-        // 每隔自訂秒數，換下一張
-        const autoplay = setInterval(() => {
-            // 換下一張
-            nextSlide();
-        }, 3000)
-        // 清除autoplay
-        return () => clearInterval(autoplay);
-    }, [currentIndex]);
+        startAutoplay();
+        return () => stopAutoplay();
+    }, []);
 
     // 建立自訂函式
     // 往後一張
@@ -61,16 +85,21 @@ export default function App() {
     // )
     // }
 
+
     return (
         <>
             {/* 滿版最外層 */}
-            <div className="cover-story">
+            <div className="cover-story"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
                 {/* 滿版背景輪播圖 */}
                 <Link to={`/news/article/${articles[currentIndex].id}`}>
                     <div className="cover-img"
                         style={{
                             backgroundImage: `url(${slides[currentIndex].url})`,
                             backgroundSize: "cover",
+                            transition: "transform 0.8s ease-in-out",
                         }}
                     >
                     </div>
