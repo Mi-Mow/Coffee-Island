@@ -35,7 +35,7 @@
 .product-page .sort-area {
   display: flex;
   justify-content: flex-end;
-  padding: 0 40px;
+  padding: 0 100px;
 }
 .product-page .sorting-wrapper {
   position: relative;
@@ -85,7 +85,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  padding: 60px;
+  padding: 70px 100px;
 }
 @media (max-width: 1024px) {
   .product-page .product-list {

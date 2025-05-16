@@ -23,7 +23,7 @@
   #findEvent,
   .article-detail-page,
   .event-detail-page {
-    padding: 100px 170px;
+    padding: 100px 160px;
   }
 }
 @media (max-width:820px) {
@@ -128,8 +128,8 @@
 #findEvent .nav-news a,
 .article-detail-page .nav-news a,
 .event-detail-page .nav-news a {
-  margin: 10px;
-  padding: 5px 0;
+  font-size: 14px;
+  padding: 8px 0;
   border-bottom: 2px solid transparent;
   transition: all 0.35s;
   cursor: pointer;
@@ -207,7 +207,11 @@
   align-items: flex-start;
   overflow: hidden;
 }
-#news > main .cover-story img {
+#news > main .cover-story a {
+  width: 100%;
+}
+#news > main .cover-story a .cover-img {
+  border: 1px solid #FFF1CB;
   width: 100%;
   object-fit: cover;
   height: 400px;
@@ -216,7 +220,7 @@
 #news > main .section-row {
   display: flex;
   justify-content: space-between;
-  gap: 64px;
+  gap: 80px;
   width: 100%;
   align-self: stretch;
 }
@@ -236,22 +240,22 @@
   line-height: normal;
   letter-spacing: 0.84px;
   display: flex;
-  padding-bottom: 36px;
+  padding-bottom: 48px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 36px;
+  gap: 32px;
 }
-#news > main .section-row .feature1 {
+#news > main .section-row .feature1 a div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 16px;
   align-self: stretch;
 }
-#news > main .section-row .feature1 img {
+#news > main .section-row .feature1 a div img {
   align-self: stretch;
 }
-#news > main .section-row .feature1 p {
+#news > main .section-row .feature1 a div p {
   color: #FFF1CB;
   font-weight: 400;
   line-height: normal;
@@ -266,25 +270,30 @@
 }
 #news > main .section-row .newest .new-cards {
   display: flex;
-  height: 353px;
+  height: 350px;
   align-items: center;
   gap: 35px;
 }
-#news > main .section-row .newest .new-cards div {
+#news > main .section-row .newest .new-cards a {
+  display: flex;
+  flex: 1;
+}
+#news > main .section-row .newest .new-cards a div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 10px;
-  flex: 1 0 0;
+  gap: 16px;
 }
-#news > main .section-row .newest .new-cards div img {
+#news > main .section-row .newest .new-cards a div img {
+  width: 100%;
   height: 240px;
-  align-self: stretch;
+  object-fit: cover;
 }
-#news > main .section-row .newest .new-cards div h3 {
+#news > main .section-row .newest .new-cards a div h3 {
   height: 50px;
   align-self: stretch;
+  justify-content: center;
 }
 #news > main .recommendation {
   width: 100%;
@@ -296,7 +305,7 @@
   gap: 12px;
   flex-shrink: 0;
   border: 1px solid #FFF1CB;
-  margin-top: 56px;
+  margin-top: 67px;
 }
 #news > main .recommendation a {
   border-bottom: 1px solid #FFF1CB;
@@ -321,6 +330,7 @@
 }
 #news > main .recommendation .reco-card img {
   height: 88px;
+  width: 132px;
   flex: 1 0 0;
 }
 #news > main .recommendation .reco-card .reco-card-text {
@@ -333,7 +343,7 @@
 #news > main .recommendation .reco-button {
   width: 100%;
   display: flex;
-  padding: auto;
+  margin: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -523,7 +533,6 @@
   display: flex;
   width: 290px;
   height: 170px;
-  align-items: center;
 }
 #article .sec1 .articleCard .articleCardText,
 #article .sec2 .articleCard .articleCardText {
@@ -578,68 +587,83 @@
 /* 文章內頁 */
 .article-detail-page {
   color: #FFF1CB;
-  padding: 100px 40px;
+  padding: 100px 160px;
 }
-.article-detail-page .title-container {
+.article-detail-page section {
+  display: flex;
+  padding: 36px 0px;
+  flex-direction: column;
+}
+.article-detail-page section .title-container {
   display: flex;
   padding: 24px 0px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  align-self: stretch;
 }
-.article-detail-page .title-container p {
+.article-detail-page section .title-container p {
   font-size: 14px;
   font-weight: 700;
   line-height: 160%;
   letter-spacing: 0.224px;
 }
-.article-detail-page .title-container h2 {
+.article-detail-page section .title-container h2 {
   font-size: 32px;
   font-weight: 700;
   line-height: 160%;
   letter-spacing: 0.512px;
 }
-.article-detail-page .title-container figure {
-  width: 100%;
-  overflow: hidden;
-}
-.article-detail-page .title-container figure img {
-  object-fit: cover;
-  height: 100%;
-}
-.article-detail-page .content-container {
+.article-detail-page section .content-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;
-  padding: 36px 0px;
 }
-.article-detail-page .content-container p {
+.article-detail-page section .content-container figure {
+  height: 570px;
+  overflow: hidden;
+}
+.article-detail-page section .content-container figure img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+.article-detail-page section .content-container .article-paragraphs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.article-detail-page section .content-container .article-paragraphs .paragraph-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.article-detail-page section .content-container .article-paragraphs .paragraph-block .smImg {
+  width: 560px;
+  height: 315px;
+}
+.article-detail-page section .content-container .article-paragraphs .paragraph-block p {
   font-size: 15px;
+  font-style: normal;
   font-weight: 700;
   line-height: 160%;
   letter-spacing: 0.24px;
 }
-.article-detail-page .content-container figure {
-  height: 32vh;
-  overflow: hidden;
+.article-detail-page section .content-container .article-paragraphs .paragraph-block:last-child p {
+  padding-bottom: 36px;
 }
-.article-detail-page .content-container figure img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-.article-detail-page .info-container {
+.article-detail-page section .info-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
   align-self: stretch;
 }
-.article-detail-page .info-container .info-text-container {
+.article-detail-page section .info-container .info-text-container {
   display: flex;
   width: 100%;
   height: 50%;
