@@ -63,9 +63,9 @@ function ArticlePage() {
                                     return (
                                         <div className="paragraph-block" key={idx}>
                                             {hasImage && (
-                                                
-                                                    <img className="smImg" src={smImages[idx]} alt={`段落圖片 ${idx + 1}`} />
-                                                
+
+                                                <img className="smImg" src={smImages[idx]} alt={`段落圖片 ${idx + 1}`} />
+
                                             )}
                                             <p>{p}</p>
                                         </div>
@@ -100,7 +100,9 @@ function ArticlePage() {
                         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>回到置頂</button>
                     </div>
                     <div className="article-button-container">
-                        <button onClick={() => <Link to="/news"></Link>}>回到月報</button>
+                        <Link to="/news">
+                            <button>回到月報</button>
+                        </Link>
                     </div>
                 </div>
 

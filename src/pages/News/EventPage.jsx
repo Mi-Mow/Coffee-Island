@@ -15,7 +15,7 @@ function EventPage() {
     return (
         <div className="event-detail-page">
             <main className="event-detail-page">
-                {/* <nav>
+                <nav>
                     <div className='nav-news'>
                         <ul>
                             <li>
@@ -27,7 +27,7 @@ function EventPage() {
                         </ul>
 
                     </div>
-                </nav> */}
+                </nav>
             </main>
 
 

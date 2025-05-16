@@ -19,7 +19,6 @@ import Coverstory from './components/Coverstory'
 
 function News() {
 
-
   return (
     <>
       <div id='news'>
@@ -49,21 +48,19 @@ function News() {
               <div className="feature">
                 <h2>老臺北特輯</h2>
                 <div className='feature1'>
-
-                  <a href="`/news/article/${article.id}`">
+                  <Link to={`/news/article/${articles[0].id}`}>
                     <div>
-                      <img src={story1} alt="老臺北特輯封面照片" />
-                      <h3>明星咖啡館與那個年代：台北文人的思想日常</h3>
+                      <img src={articles[0].image} alt={articles[0].title} />
+                      <h3>{articles[0].title}</h3>
                     </div>
-                  </a>
-
+                  </Link>
                 </div>
 
                 <div className="newest">
                   <h2>2025 最新文章</h2>
                   {/* new-cards */}
                   <div className="new-cards">
-                    {articles.slice(0, 3).map((article) => (
+                    {articles.slice(1, 4).map((article) => (
                       <Link to={`/news/article/${article.id}`} key={article.id}>
                         <div>
                           <img src={article.image} alt={article.title} />
