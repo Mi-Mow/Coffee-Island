@@ -207,7 +207,10 @@
   align-items: flex-start;
   overflow: hidden;
 }
-#news > main .cover-story .cover-img {
+#news > main .cover-story a {
+  width: 100%;
+}
+#news > main .cover-story a .cover-img {
   border: 1px solid #FFF1CB;
   width: 100%;
   object-fit: cover;

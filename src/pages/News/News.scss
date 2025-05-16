@@ -162,14 +162,19 @@
     align-items: flex-start;
     overflow: hidden;
 
-    .cover-img {
-      border: 1px solid $textcolor;
+    a {
       width: 100%;
-      object-fit: cover;
-      height: 400px;
-      align-self: stretch;
 
+      .cover-img {
+        border: 1px solid $textcolor;
+        width: 100%;
+        object-fit: cover;
+        height: 400px;
+        align-self: stretch;
+
+      }
     }
+
 
   }
 
@@ -253,6 +258,7 @@
         a {
           display: flex;
           flex: 1;
+
           div {
             display: flex;
             flex-direction: column;

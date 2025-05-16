@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 // import { HiChevronLeft } from "react-icons/hi";
 // import { HiChevronRight } from "react-icons/hi";
-
-
+import { articles } from "../Article"
+import { Link } from 'react-router-dom'
 
 export default function App() {
     // 自訂變數
@@ -14,6 +14,7 @@ export default function App() {
         { url: "/news/story3.jpg", title: "3" },
         { url: "/news/story4.jpg", title: "4" },
     ]
+
     // 當currentIndex改變時，會再觸發一次
     useEffect(() => {
         // 每隔自訂秒數，換下一張
@@ -65,13 +66,15 @@ export default function App() {
             {/* 滿版最外層 */}
             <div className="cover-story">
                 {/* 滿版背景輪播圖 */}
-                <div className="cover-img"
-                    style={{
-                        backgroundImage: `url(${slides[currentIndex].url})`,
-                        backgroundSize: "cover",
-                    }}
-                >
-                </div>
+                <Link to={`/news/article/${articles[currentIndex].id}`}>
+                    <div className="cover-img"
+                        style={{
+                            backgroundImage: `url(${slides[currentIndex].url})`,
+                            backgroundSize: "cover",
+                        }}
+                    >
+                    </div>
+                </Link>
 
                 {/* icon 上一張 */}
                 {/* <Arrow direction="left" onClick={prevSlide} />
