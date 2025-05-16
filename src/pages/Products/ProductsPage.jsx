@@ -1,15 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./ProductsPage.scss";
-import gooseneck1 from "../../assets/products/gooseneck1.png";
-import gooseneck2 from "../../assets/products/gooseneck2.png";
-import gooseneck3 from "../../assets/products/gooseneck3.png";
-import prodRecoMs from "../../assets/products/prodRecoMs.png";
-import coffeeBeanDes1 from "../../assets/products/coffeeBeanDes1.jpg";
-import coffeeBeanDes3 from "../../assets/products/coffeeBeanDes3.jpeg";
-import coffeeBeanDes4 from "../../assets/products/coffeeBeanDes4.jpeg";
-import coffeeBeanDes5 from "../../assets/products/coffeeBeanDes5.jpg";
-import coffeeBeanDes6 from "../../assets/products/coffeeBeanDes6.jpg";
 
 // 假資料區
 const mockProduct = {
@@ -22,19 +13,19 @@ const mockProduct = {
     "可選擇杯份磨豆",
   ],
   colors: ["#000000", "#ffffff", "#a0522d"],
-  images: [coffeeBeanDes5, coffeeBeanDes5, coffeeBeanDes6],
+  images: ["/products/gooseneck1Hover.jpg", "/products/gooseneck1Des1.jpg"],
 };
 
 const descData = [
-  { img: coffeeBeanDes1, title: "散熱口設計", desc: "快速散熱" },
-  { img: coffeeBeanDes5, title: "轉速調節", desc: "手動調整刀盤轉速" },
-  { img: coffeeBeanDes6, title: "金屬拋光開關", desc: "開關按鈕觸感升級" },
+  { img: "/products/gooseneck1Des3.jpg", title: "散熱口設計", desc: "快速散熱" },
+  { img: "/products/gooseneck1Des2.jpg", title: "轉速調節", desc: "手動調整刀盤轉速" },
+  { img: "/products/gooseneck1Hover.jpg", title: "金屬拋光開關", desc: "開關按鈕觸感升級" },
 ];
 
 const recommendData = [
-  { img: gooseneck1, name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
-  { img: gooseneck2, name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
-  { img: gooseneck3, name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
+  { img: "/products/gooseneck1.jpg", name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
+  { img: "/products/gooseneck2.jpg", name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
+  { img: "/products/gooseneck3.jpg", name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
 ];
 
 function ProductPage() {
@@ -45,7 +36,6 @@ function ProductPage() {
   const [currentImage, setCurrentImage] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
 
-  // 第三部分：商品簡介輪播圖
   useEffect(() => {
     const interval = setInterval(() => {
       setStartIndex((prev) => (prev + 1) % descData.length);
@@ -53,18 +43,14 @@ function ProductPage() {
     return () => clearInterval(interval);
   }, []);
 
-  // 直接購買，帶入購物車並跳轉
   const handleBuyNow = () => {
-    // 組新商品物件
     const newItem = {
       ...mockProduct,
       quantity,
       selectedColor,
     };
-    // 先儲存到 localStorage（累積，不重複觸發）
     const existing = JSON.parse(localStorage.getItem("cartItems")) || [];
     localStorage.setItem("cartItems", JSON.stringify([...existing, newItem]));
-    // 直接跳轉，不再帶 state
     navigate("/cart");
   };
 
@@ -125,13 +111,60 @@ function ProductPage() {
         </div>
       </div>
 
-      {/* 第二部分：！！！！我還沒想好要怎麼寫，求放過！！！！！！ */}
+      {/* 第二～四部分：商品敘述、輪播、推薦 */}
       <div className="product-extra-info">
-        <section className="product-specs"></section>
 
-        {/* 第三步份：商品描述輪播 */}
+        {/* 第二部分：商品文字敘述 */}
+        <section className="product-specs">
+          <div className="specs-container">
+            <div className="description">
+              <h3>商品介紹</h3>
+              <p>
+                Bricks 電動家用磨豆機具備專業級磨豆結構，一鍵啟動設計簡單好上手，
+                無論是日常手沖還是義式濃縮都能輕鬆勝任。
+              </p>
+              <ul>
+                <li>可調整刀盤轉速，因應不同烘焙度的咖啡豆</li>
+                <li>金屬開關搭配防滑設計，操控手感再升級</li>
+                <li>散熱快、不卡豆，低噪音運轉</li>
+              </ul>
+
+              {/* 下方兩張圖左右排列 */}
+              <div className="desc-images">
+                <div className="desc-image-wrapper">
+                  <img src="/products/gooseneck1Des3.jpg" alt="商品圖1" />
+                </div>
+                <div className="desc-image-wrapper">
+                  <img src="/products/gooseneck1Des2.jpg" alt="商品圖2" />
+                </div>
+              </div>
+            </div>
+
+
+            <div className="spec-table">
+              <h3>商品規格</h3>
+              <table>
+                <tbody>
+                  <tr><td>商品名稱</td><td>泰摩咖啡 魚04鶴嘴手沖壺</td></tr>
+                  <tr><td>品牌</td><td>TIMEMORE 泰摩咖啡</td></tr>
+                  <tr><td>型號</td><td>Fish Youth 04</td></tr>
+                  <tr><td>顏色</td><td>霧黑／太空灰（以實際販售為主）</td></tr>
+                  <tr><td>材質</td><td>壺身：304 不鏽鋼<br />握把：酚醛樹脂</td></tr>
+                  <tr><td>表面處理</td><td>耐高溫塗層，霧面防刮</td></tr>
+                  <tr><td>容量</td><td>約 600ml</td></tr>
+                  <tr><td>尺寸</td><td>約 23 × 9 × 13 cm</td></tr>
+                  <tr><td>重量</td><td>約 540g</td></tr>
+                  <tr><td>適用熱源</td><td>不適用於電磁爐／直火，建議注入熱水</td></tr>
+                  <tr><td>產地</td><td>中國（原廠製造）</td></tr>
+                  <tr><td>其他特色</td><td>魚型鶴嘴設計，控水精準</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* 第三部分：商品描述輪播
         <section className="product-description-carousel">
-
           <div className="carousel-viewport">
             <div className="carousel-track">
               {visibleCards.map((item, idx) => (
@@ -143,16 +176,14 @@ function ProductPage() {
               ))}
             </div>
           </div>
+        </section> */}
 
-        </section>
-
-        {/* 第四部分：推薦商品區塊 */}
+        {/* 第四部分：推薦商品 */}
         <section className="recommended-products">
           <div className="recommend-title">
             咖啡人還會這樣搭配
-            <img src={prodRecoMs} alt="薦" className="prodRecoMs" />
+            <img src="/products/prodRecoMs.png" alt="薦" className="prodRecoMs" />
           </div>
-
           <div className="recommend-cards">
             {recommendData.map((item, idx) => (
               <div className="product-card" key={idx}>

@@ -1,37 +1,19 @@
 import { useState, useRef, useEffect } from "react";
 import "./Products.scss";
-import gooseneck1 from "../../assets/products/gooseneck1.png";
-import gooseneck2 from "../../assets/products/gooseneck2.png";
-import gooseneck3 from "../../assets/products/gooseneck3.png";
-import gooseneckHover1 from "../../assets/products/gooseneck1.jpg";
-import gooseneckHover2 from "../../assets/products/gooseneck2.jpg";
-import gooseneckHover3 from "../../assets/products/gooseneck3.jpg";
-import coffeeFilter1 from "../../assets/products/coffeeFilter1.png";
-import coffeeFilter2 from "../../assets/products/coffeeFilter2.png";
-import coffeeFilterHover1 from "../../assets/products/coffeeFilter1.jpg";
-import coffeeFilterHover2 from "../../assets/products/coffeeFilter2.jpg";
-import coffeeBean1 from "../../assets/products/coffeeBean1.jpg";
-import coffeeBean2 from "../../assets/products/coffeeBean2.jpg";
-import coffeeBean3 from "../../assets/products/coffeeBean3.jpg";
-import coffeeBeanHover1 from "../../assets/products/coffeeBeanHover1.jpg";
-import coffeeBeanHover2 from "../../assets/products/coffeeBeanHover2.jpg";
-import coffeeBeanHover3 from "../../assets/products/coffeeBeanHover3.jpg";
-
-
-
 import { useNavigate } from "react-router-dom";
 
+// 假資料區：使用 public 資料夾圖片路徑
 const products = [
   {
     id: "1-1",
-    name: "304不鏽鋼掛耳咖啡細口手沖壺700ML",
-    price: 650,
+    name: "咖啡島-鶴嘴手沖壺",
+    price: 1200,
     oldPrice: 1350,
     tag: "優選",
     isNew: false,
     category: "kettle",
-    image: gooseneck1,
-    hoverImage: gooseneckHover1,
+    image: "/products/gooseneck1.jpg",
+    hoverImage: "/products/gooseneck1Hover.jpg",
   },
   {
     id: "1-2",
@@ -41,8 +23,8 @@ const products = [
     tag: "優選",
     isNew: false,
     category: "kettle",
-    image: gooseneck2,
-    hoverImage: gooseneckHover2,
+    image: "/products/gooseneck2.jpg",
+    hoverImage: "/products/gooseneck2Hover.jpg",
   },
   {
     id: "1-3",
@@ -52,8 +34,8 @@ const products = [
     tag: "優選",
     isNew: false,
     category: "kettle",
-    image: gooseneck3,
-    hoverImage: gooseneckHover3,
+    image: "/products/gooseneck3.jpg",
+    hoverImage: "/products/gooseneck3Hover.jpg",
   },
   {
     id: "2-1",
@@ -63,8 +45,8 @@ const products = [
     tag: "經典",
     isNew: false,
     category: "filter",
-    image: coffeeFilter1,
-    hoverImage: coffeeFilterHover1,
+    image: "/products/coffeeFilter1.png",
+    hoverImage: "/products/coffeeFilter1.jpg",
   },
   {
     id: "2-2",
@@ -74,8 +56,8 @@ const products = [
     tag: "經典",
     isNew: false,
     category: "filter",
-    image: coffeeFilter2,
-    hoverImage: coffeeFilterHover2,
+    image: "/products/coffeeFilter2.png",
+    hoverImage: "/products/coffeeFilter2.jpg",
   },
   {
     id: "3-1",
@@ -85,8 +67,8 @@ const products = [
     tag: "熱銷",
     isNew: true,
     category: "beans",
-    image: coffeeBean1,
-    hoverImage: coffeeBeanHover1,
+    image: "/products/coffeeBean1.jpg",
+    hoverImage: "/products/coffeeBeanHover1.jpg",
   },
   {
     id: "3-2",
@@ -96,8 +78,8 @@ const products = [
     tag: "熱銷",
     isNew: false,
     category: "beans",
-    image: coffeeBean2,
-    hoverImage: coffeeBeanHover2,
+    image: "/products/coffeeBean2.jpg",
+    hoverImage: "/products/coffeeBeanHover2.jpg",
   },
   {
     id: "3-3",
@@ -107,8 +89,8 @@ const products = [
     tag: "熱銷",
     isNew: false,
     category: "beans",
-    image: coffeeBean3,
-    hoverImage: coffeeBeanHover3,
+    image: "/products/coffeeBean3.jpg",
+    hoverImage: "/products/coffeeBeanHover3.jpg",
   },
 ];
 
@@ -116,8 +98,8 @@ function ProductList() {
   const [activeCategory, setActiveCategory] = useState("kettle"); //預設分類設為kettle
   const [sortType, setSortType] = useState("熱門商品"); //預設分類設為熱門商品
   const [dropdownOpen, setDropdownOpen] = useState(false);  //預設下拉選單目前有沒有打開
-  const dropdownRef = useRef(); //	用來指向下拉選單的區域，幫忙偵測是否點在外面，點選就關掉
-  const navigate = useNavigate();//用來導向productpage
+  const dropdownRef = useRef(); // 用來指向下拉選單的區域，幫忙偵測是否點在外面，點選就關掉
+  const navigate = useNavigate(); //用來導向productpage
 
   const [hoveredId, setHoveredId] = useState(null); // ⬅️ 新增：追蹤 hover 卡片
 
@@ -155,41 +137,45 @@ function ProductList() {
   return (
     //顯示上方手沖壺、濾網、咖啡豆
     <div className="product-page">
-    {/* 顯示分類選單（置中） */}
-    <div className="top-bar">
-      <div className="category-menu">
-        {/* activeCategory 決定目前選的是哪個分類，被選的會加上 active 樣式 */}
-        <div className={`tab ${activeCategory === "kettle" ? "active" : ""}`} onClick={() => setActiveCategory("kettle")}>手沖壺</div>
-        <div className={`tab ${activeCategory === "filter" ? "active" : ""}`} onClick={() => setActiveCategory("filter")}>濾網</div>
-        <div className={`tab ${activeCategory === "beans" ? "active" : ""}`} onClick={() => setActiveCategory("beans")}>咖啡豆</div>
+      {/* 顯示分類選單（置中） */}
+      <div className="top-bar">
+        <div className="category-menu">
+          {/* activeCategory 決定目前選的是哪個分類，被選的會加上 active 樣式 */}
+          <div className={`tab ${activeCategory === "kettle" ? "active" : ""}`} onClick={() => setActiveCategory("kettle")}>手沖壺</div>
+          <div className={`tab ${activeCategory === "filter" ? "active" : ""}`} onClick={() => setActiveCategory("filter")}>濾網</div>
+          <div className={`tab ${activeCategory === "beans" ? "active" : ""}`} onClick={() => setActiveCategory("beans")}>咖啡豆</div>
+        </div>
       </div>
-    </div>
-  
-    {/* 將篩選清單獨立出來，靠右對齊 */}
-    <div className="sort-area">
-      {/* 顯示篩選清單，ref={dropdownRef}偵測是否有點擊外面 */}
-      <div className="sorting-wrapper" ref={dropdownRef}>
-        <button
-          className={`ranking-btn ${dropdownOpen ? "open" : ""}`}
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-        >
-          {sortType} <span className="arrow">&#9662;</span>
-        </button>
-        
-        {/* 顯示篩選清單內容 */}
-        {dropdownOpen && (
-          <ul className="sorting-options">
-            {["熱門商品", "最新商品", "價錢高到低", "價錢低到高"].map((type) => (
-              <li
-                key={type} onClick={() => {setSortType(type);setDropdownOpen(false);}}
-              >
-                {type}
-              </li>
-            ))}
-          </ul>
-        )}
+
+      {/* 將篩選清單獨立出來，靠右對齊 */}
+      <div className="sort-area">
+        {/* 顯示篩選清單，ref={dropdownRef}偵測是否有點擊外面 */}
+        <div className="sorting-wrapper" ref={dropdownRef}>
+          <button
+            className={`ranking-btn ${dropdownOpen ? "open" : ""}`}
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+          >
+            {sortType} <span className="arrow">&#9662;</span>
+          </button>
+
+          {/* 顯示篩選清單內容 */}
+          {dropdownOpen && (
+            <ul className="sorting-options">
+              {["熱門商品", "最新商品", "價錢高到低", "價錢低到高"].map((type) => (
+                <li
+                  key={type}
+                  onClick={() => {
+                    setSortType(type);
+                    setDropdownOpen(false);
+                  }}
+                >
+                  {type}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
-    </div>
 
       <div className="product-list">
         {sortedProducts.length > 0 ? (
