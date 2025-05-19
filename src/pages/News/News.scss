@@ -607,9 +607,11 @@ input {
 
       border-bottom: 1px solid $bordercolor;
 
+      width: 100%;
+
 
       img {
-        display: flex;
+        display: block;
         width: 290px;
         height: 170px;
         object-fit: cover;
