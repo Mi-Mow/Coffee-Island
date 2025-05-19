@@ -26,7 +26,7 @@ function ArticlePage() {
     return (
         <div>
             <main className="article-detail-page">
-                <nav>
+                {/* <nav>
                     <div className='nav-news'>
                         <ul>
                             <li>
@@ -38,8 +38,8 @@ function ArticlePage() {
                         </ul>
 
                     </div>
-                </nav>
-
+                </nav> */}
+                
                 <section>
                     {/* 標題區 */}
                     <div className="title-container">

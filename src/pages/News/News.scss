@@ -12,6 +12,9 @@
   font-size: $fontsize;
   width: 100%;
   align-self: center;
+  margin: 0 auto;
+
+
 
   @media ($media-1920) {
 
@@ -19,7 +22,7 @@
   }
 
   @media ($media-820) {
-    padding: 80px 48px;
+    padding: 80px 40px;
   }
 
   @media ($media-640) {
@@ -62,7 +65,7 @@
   }
 
   h3 {
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 400;
     letter-spacing: 0.8px;
 
@@ -111,6 +114,7 @@
   }
 }
 
+// 元件
 .event-card {
   width: 100%;
   display: flex;
@@ -144,6 +148,25 @@
   }
 }
 
+button {
+  font-size: 24px;
+}
+
+// 文章關鍵字搜尋
+.search-container .suggestion-list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+
+  li {
+    padding-top: 8px;
+  }
+}
+
+input {
+  letter-spacing: 1.6px;
+}
+
 /* 島嶼月報 */
 #news>main {
   width: 100%;
@@ -153,7 +176,6 @@
   flex-direction: column;
 
   /* 封面故事 */
-
   .cover-story {
     width: 100%;
     display: flex;
@@ -507,11 +529,22 @@
 
 
 /* 閱讀文章 */
-#article {
+#findArticles main {
   display: flex;
   padding: 0px;
+  max-width: 1280px;
+  margin: auto;
   flex-direction: column;
 
+  @media ($media-820) {
+    padding: 40px 0px;
+    width: 100%;
+  }
+
+  @media ($media-640) {
+    padding: 40px 0px;
+    width: 100%;
+  }
 
   /* 關鍵字搜尋 */
   .searchBar {
@@ -550,7 +583,63 @@
     }
   }
 
+  .articleCard {
+    display: flex;
+    padding: 40px 0px;
+    align-items: center;
+    gap: 30px;
+    align-self: stretch;
 
+    border-bottom: 1px solid $bordercolor;
+
+    width: 100%;
+
+
+    img {
+      display: block;
+      width: 290px;
+      height: 170px;
+      object-fit: cover;
+      /* 保持比例並且覆蓋容器 */
+      object-position: center;
+      // align-items: center;
+      // flex: 1 0 0;
+    }
+
+    .articleCardText {
+      display: flex;
+      // width: 780px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 20px;
+
+      h1 {
+        font-size: 32px;
+        letter-spacing: $letter-spacing-s;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-self: stretch;
+      }
+
+      p {
+        line-height: 2rem;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-self: stretch;
+      }
+    }
+
+
+  }
 
   .sec1,
   .sec2 {
@@ -563,57 +652,7 @@
 
 
 
-    .articleCard {
-      display: flex;
-      padding: 40px 0px;
-      align-items: center;
-      gap: 30px;
-      align-self: stretch;
 
-      border-bottom: 1px solid $bordercolor;
-
-      img {
-        display: flex;
-        width: 290px;
-        height: 170px;
-        // align-items: center;
-        // flex: 1 0 0;
-      }
-
-      .articleCardText {
-        display: flex;
-        // width: 780px;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 20px;
-
-        h1 {
-          font-size: 32px;
-          letter-spacing: $letter-spacing-s;
-
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          align-self: stretch;
-        }
-
-        p {
-          line-height: 2rem;
-
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 3;
-
-          overflow: hidden;
-          text-overflow: ellipsis;
-          align-self: stretch;
-        }
-      }
-
-
-    }
 
     // 頁碼
     .pageNumberArea {
@@ -645,8 +684,20 @@
 
 /* 文章內頁 */
 .article-detail-page {
-  color: $textcolor;
-  padding: 100px 160px;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 100px 0;
+
+  p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 200%;
+    justify-content: center;
+    letter-spacing: 0.24px;
+
+  }
 
   section {
     display: flex;
@@ -663,16 +714,14 @@
 
       p {
         font-size: 14px;
-        font-weight: 700;
-        line-height: 160%;
-        letter-spacing: 0.224px;
+        letter-spacing: 8px;
       }
 
       h2 {
         font-size: 32px;
         font-weight: 700;
         line-height: 160%;
-        letter-spacing: 0.512px;
+        letter-spacing: 0.8px;
       }
 
     }
@@ -686,8 +735,9 @@
 
       // 封面圖
       figure {
-        height: 570px;
+        height: 480px;
         overflow: hidden;
+        margin: 0 auto;
 
         img {
           width: 100%;
@@ -713,14 +763,7 @@
             height: 315px;
           }
 
-          p {
-            font-size: 15px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 160%;
-            letter-spacing: 0.24px;
 
-          }
         }
 
         .paragraph-block:last-child p {
@@ -920,6 +963,12 @@
     gap: 12px;
     align-self: stretch;
 
+    @media ($media-640) {
+      max-width: 393px;
+      padding: 0 auto;
+      width: 80%;
+    }
+
     .timeBar {
       display: flex;
       justify-content: center;
@@ -927,11 +976,23 @@
       gap: 36px;
       align-self: stretch;
 
+      @media ($media-640) {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: flex-start;
+        font-size: 12px;
+      }
+
       div {
         display: flex;
         width: 363px;
         align-items: center;
         gap: 20px;
+
+        @media ($media-640) {
+          width: 100%;
+          max-width: 300px;
+        }
 
         .time {
 
