@@ -167,7 +167,6 @@ function Event() {
             {/* 關鍵字搜尋 */}
             <div className="searchBar">
               <input type="text" placeholder="請輸入關鍵字" />
-              {/* <button className="searchBtn">搜尋</button> */}
             </div>
           </section>
 

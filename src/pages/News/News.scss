@@ -12,6 +12,7 @@
   font-size: $fontsize;
   width: 100%;
   align-self: center;
+  margin: 0 auto;
 
   @media ($media-1920) {
 
@@ -645,8 +646,20 @@
 
 /* 文章內頁 */
 .article-detail-page {
-  color: $textcolor;
-  padding: 100px 160px;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 100px 0;
+
+  p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 200%;
+    justify-content: center;
+    letter-spacing: 0.24px;
+
+  }
 
   section {
     display: flex;
@@ -663,16 +676,14 @@
 
       p {
         font-size: 14px;
-        font-weight: 700;
-        line-height: 160%;
-        letter-spacing: 0.224px;
+        letter-spacing: 8px;
       }
 
       h2 {
         font-size: 32px;
         font-weight: 700;
         line-height: 160%;
-        letter-spacing: 0.512px;
+        letter-spacing: 0.8px;
       }
 
     }
@@ -686,8 +697,9 @@
 
       // 封面圖
       figure {
-        height: 570px;
+        height: 480px;
         overflow: hidden;
+        margin: 0 auto;
 
         img {
           width: 100%;
@@ -713,14 +725,7 @@
             height: 315px;
           }
 
-          p {
-            font-size: 15px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 160%;
-            letter-spacing: 0.24px;
 
-          }
         }
 
         .paragraph-block:last-child p {

@@ -4,14 +4,13 @@ import cafe2 from '/news/cafe2.jpg'
 import cafe2_1 from '/news/cafe2-1.jpg'
 import cafe2_2 from '/news/cafe2-2.jpg'
 import cafe2_3 from '/news/cafe2-3.jpg'
-
 import cafe3 from '../../assets/news/coffeeshop/Ura219/Ura2191.jpeg'
-import article1 from '/news/article1.jpg'
 import story1 from '/news/story1.png'
 import story1_1 from '/news/story1_1.jpg'
 import story2 from '/news/story2.jpg'
 import story3 from '/news/story3.jpg'
 import story4 from '/news/story4.jpg'
+import SearchBar from './components/Searchbar'
 
 
 
@@ -169,8 +168,8 @@ function Article() {
                     <section className="sec1">
                         {/* 關鍵字搜尋 */}
                         <div className="searchBar">
-                            <input type="search" placeholder="請輸入關鍵字" />
-                            {/* <button className='searchBtn'>搜尋</button> */}
+                            {/* <input type="search" placeholder="請輸入關鍵字" /> */}
+                            <SearchBar articles={articles} />
                         </div>
                         {/* 每張卡片 */}
                         {articles.map((article) => (
