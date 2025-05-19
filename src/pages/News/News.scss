@@ -529,7 +529,7 @@ input {
 
 
 /* 閱讀文章 */
-#findArticles main{
+#findArticles main {
   display: flex;
   padding: 0px;
   max-width: 1280px;
@@ -607,10 +607,14 @@ input {
 
       border-bottom: 1px solid $bordercolor;
 
+
       img {
         display: flex;
         width: 290px;
         height: 170px;
+        object-fit: cover;
+        /* 保持比例並且覆蓋容器 */
+        object-position: center;
         // align-items: center;
         // flex: 1 0 0;
       }
