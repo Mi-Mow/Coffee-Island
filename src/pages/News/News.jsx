@@ -64,7 +64,7 @@ function News() {
                       <Link to={`/news/article/${article.id}`} key={article.id}>
                         <div>
                           <img src={article.image} alt={article.title} />
-                          <p className="tagName">老臺北特輯</p>
+                          <p className="tagName">{article.tag}</p>
                           <h3>{article.title}</h3>
                         </div>
                       </Link>

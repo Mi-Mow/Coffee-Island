@@ -30,7 +30,7 @@ function SearchBar({ articles }) {
     <div className="search-container">
       <input
         type="search"
-        placeholder="有特定想找的文章嗎？例如：咖啡館"
+        placeholder="有特定想找的文章嗎？例如：手沖咖啡"
         value={searchTerm}
         onChange={handleChange}
       />

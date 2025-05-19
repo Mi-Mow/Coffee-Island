@@ -22,7 +22,7 @@
   }
 
   @media ($media-820) {
-    padding: 80px 48px;
+    padding: 80px 40px;
   }
 
   @media ($media-640) {
@@ -65,7 +65,7 @@
   }
 
   h3 {
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 400;
     letter-spacing: 0.8px;
 
@@ -546,8 +546,6 @@ input {
     width: 100%;
   }
 
-
-
   /* 關鍵字搜尋 */
   .searchBar {
     display: flex;
@@ -585,7 +583,63 @@ input {
     }
   }
 
+  .articleCard {
+    display: flex;
+    padding: 40px 0px;
+    align-items: center;
+    gap: 30px;
+    align-self: stretch;
 
+    border-bottom: 1px solid $bordercolor;
+
+    width: 100%;
+
+
+    img {
+      display: block;
+      width: 290px;
+      height: 170px;
+      object-fit: cover;
+      /* 保持比例並且覆蓋容器 */
+      object-position: center;
+      // align-items: center;
+      // flex: 1 0 0;
+    }
+
+    .articleCardText {
+      display: flex;
+      // width: 780px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 20px;
+
+      h1 {
+        font-size: 32px;
+        letter-spacing: $letter-spacing-s;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-self: stretch;
+      }
+
+      p {
+        line-height: 2rem;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-self: stretch;
+      }
+    }
+
+
+  }
 
   .sec1,
   .sec2 {
@@ -598,63 +652,7 @@ input {
 
 
 
-    .articleCard {
-      display: flex;
-      padding: 40px 0px;
-      align-items: center;
-      gap: 30px;
-      align-self: stretch;
 
-      border-bottom: 1px solid $bordercolor;
-
-      width: 100%;
-
-
-      img {
-        display: block;
-        width: 290px;
-        height: 170px;
-        object-fit: cover;
-        /* 保持比例並且覆蓋容器 */
-        object-position: center;
-        // align-items: center;
-        // flex: 1 0 0;
-      }
-
-      .articleCardText {
-        display: flex;
-        // width: 780px;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 20px;
-
-        h1 {
-          font-size: 32px;
-          letter-spacing: $letter-spacing-s;
-
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          align-self: stretch;
-        }
-
-        p {
-          line-height: 2rem;
-
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 3;
-
-          overflow: hidden;
-          text-overflow: ellipsis;
-          align-self: stretch;
-        }
-      }
-
-
-    }
 
     // 頁碼
     .pageNumberArea {
@@ -965,6 +963,12 @@ input {
     gap: 12px;
     align-self: stretch;
 
+    @media ($media-640) {
+      max-width: 393px;
+      padding: 0 auto;
+      width: 80%;
+    }
+
     .timeBar {
       display: flex;
       justify-content: center;
@@ -972,11 +976,23 @@ input {
       gap: 36px;
       align-self: stretch;
 
+      @media ($media-640) {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: flex-start;
+        font-size: 12px;
+      }
+
       div {
         display: flex;
         width: 363px;
         align-items: center;
         gap: 20px;
+
+        @media ($media-640) {
+          width: 100%;
+          max-width: 300px;
+        }
 
         .time {
 

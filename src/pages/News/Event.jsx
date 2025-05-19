@@ -36,7 +36,7 @@ import event7 from '../../assets/news/activities/7.jpg';
       date: '2025/05/30~2025/05/30',
       startDate: new Date('2025-05-30'),
       endDate: new Date('2025-05-30'),
-      title: '徐明志｜品一杯草莓果醬味咖啡',
+      title: 'TYPICA WORLD CARAVAN 2025 - 台中場',
       link: "/news/event/1" // 活動內容頁面
     },
     {
