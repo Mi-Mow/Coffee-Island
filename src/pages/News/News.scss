@@ -14,6 +14,8 @@
   align-self: center;
   margin: 0 auto;
 
+
+
   @media ($media-1920) {
 
     padding: 100px 160px;
@@ -112,6 +114,7 @@
   }
 }
 
+// 元件
 .event-card {
   width: 100%;
   display: flex;
@@ -145,6 +148,25 @@
   }
 }
 
+button {
+  font-size: 24px;
+}
+
+// 文章關鍵字搜尋
+.search-container .suggestion-list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+
+  li {
+    padding-top: 8px;
+  }
+}
+
+input {
+  letter-spacing: 1.6px;
+}
+
 /* 島嶼月報 */
 #news>main {
   width: 100%;
@@ -154,7 +176,6 @@
   flex-direction: column;
 
   /* 封面故事 */
-
   .cover-story {
     width: 100%;
     display: flex;
@@ -508,10 +529,23 @@
 
 
 /* 閱讀文章 */
-#article {
+#findArticles main{
   display: flex;
   padding: 0px;
+  max-width: 1280px;
+  margin: auto;
   flex-direction: column;
+
+  @media ($media-820) {
+    padding: 40px 0px;
+    width: 100%;
+  }
+
+  @media ($media-640) {
+    padding: 40px 0px;
+    width: 100%;
+  }
+
 
 
   /* 關鍵字搜尋 */

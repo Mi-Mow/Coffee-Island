@@ -5,7 +5,7 @@ import event1 from '../../assets/news/activities/01.jpg';
 import event2 from '../../assets/news/activities/02.jpg';
 import event3 from '../../assets/news/activities/3.png';
 import event4 from '../../assets/news/activities/4.jpg';
-import event5 from '../../assets/news/activities/5.jpg';
+import event5 from '/cafe/neihu_16_1.jpg';
 import event6 from '../../assets/news/activities/6.jpg';
 import event7 from '../../assets/news/activities/7.jpg';
 
@@ -172,12 +172,12 @@ function Event() {
 
           <div className="events">
             {/* 標題 */}
-            <div className="event-title">
+            {/* <div className="event-title">
               <h2>Events</h2>
               <svg xmlns="http://www.w3.org/2000/svg" width="321" height="3" viewBox="0 0 321 3" fill="none">
                 <path d="M0.5 1.47754H320.5" stroke="#FFF1CB" strokeWidth="2" />
               </svg>
-            </div>
+            </div> */}
 
             {/* 卡片區 */}
             {/* 一列3欄 */}
