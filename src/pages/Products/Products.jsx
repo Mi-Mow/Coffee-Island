@@ -45,8 +45,8 @@ const products = [
     tag: "經典",
     isNew: false,
     category: "filter",
-    image: "/products/coffeeFilter1.png",
-    hoverImage: "/products/coffeeFilter1.jpg",
+    image: "/products/coffeeFilter1.jpg",
+    hoverImage: "/products/coffeeFilter1Hover.jpg",
   },
   {
     id: "2-2",
@@ -56,8 +56,8 @@ const products = [
     tag: "經典",
     isNew: false,
     category: "filter",
-    image: "/products/coffeeFilter2.png",
-    hoverImage: "/products/coffeeFilter2.jpg",
+    image: "/products/coffeeFilter2.jpg",
+    hoverImage: "/products/coffeeFilter2Hover.jpg",
   },
   {
     id: "3-1",
