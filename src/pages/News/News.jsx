@@ -79,18 +79,21 @@ function News() {
             <section>
               <div className="recommendation">
                 <h2>人氣推薦</h2>
-                {/* reco-cards */}
-                {hotArticles.slice(0, 3).map((article) => (
-                  <a key={article.id} href={`/news/article/${article.id}`} className="reco-card">
-                    <div>
-                      <img src={article.image} alt="人氣推薦咖啡廳照片" />
-                    </div>
-                    <div className="reco-card-text">
-                      <p className="tagName">特色咖啡廳</p>
-                      <h3>{article.title}</h3>
-                    </div>
-                  </a>
-                ))}
+                <div className="reco-cards">
+                  {/* reco-cards */}
+                  {hotArticles.slice(0, 3).map((article) => (
+                    <a key={article.id} href={`/news/article/${article.id}`} className="reco-card">
+                      <div>
+                        <img src={article.image} alt="人氣推薦咖啡廳照片" />
+                      </div>
+                      <div className="reco-card-text">
+                        <p className="tagName">特色咖啡廳</p>
+                        <h3>{article.title}</h3>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+
 
                 {/* btn */}
 
