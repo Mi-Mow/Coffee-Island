@@ -154,7 +154,7 @@ function Event() {
                     }}
                     style={{ cursor: 'pointer',
                       fontWeight: filterTime === label ? 'bold' : 'normal',
-                      backgroundColor: filterTime === label ? '#333' : '',
+                      backgroundColor: filterTime === label ? '#122f30' : '',
                     }}
                   >
                     <p>{label}</p>
@@ -166,7 +166,7 @@ function Event() {
 
             {/* 關鍵字搜尋 */}
             <div className="searchBar">
-              <input type="text" placeholder="請輸入關鍵字" />
+              <input type="text" placeholder="想找什麼活動嗎？例如：咖啡展" />
             </div>
           </section>
 
