@@ -7,16 +7,25 @@ import profile from "../../assets/header/profile.svg";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 function Header() {
-  const { i18n, t } = useTranslation();
+  const { language, changeLanguage } = useLanguage();
+
   const toggleLang = () => {
-    const currentLang = i18n.language;
-    const newLang = currentLang === "zh-TW" ? "en" : "zh-TW";
-    i18n.changeLanguage(newLang);
-    localStorage.setItem("lang", newLang);
-  };
-  const nextLang = i18n.language === "zh-TW" ? "EN" : "繁中";
+    changeLanguage(language === 'zh-TW' ? 'en' : 'zh-TW');
+  }
+  const { t } = useTranslation();
+  const nextLang = language === "zh-TW" ? "EN" : "繁中";
+  // const toggleLang = () => {
+  //   const currentLang = i18n.language;
+  //   const newLang = currentLang === "zh-TW" ? "en" : "zh-TW";
+  //   i18n.changeLanguage(newLang);
+  //   localStorage.setItem("lang", newLang);
+  // };
+  // const nextLang = i18n.language === "zh-TW" ? "EN" : "繁中";
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // setIsLoggedIn(localStorage.getItem("isLoggedIn"));
   const { isLoggedIn } = useAuth();
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1140);
@@ -43,7 +52,6 @@ function Header() {
                   <img src="/hamburger.svg" alt="" />
                 </div>
               </div>
-
               {isMenuOpen && (
                 <>
                   <div className={s.menuDimmer}></div>

@@ -17,5 +17,14 @@
       "5": "Fri.",
       "6": "Sat."
     }
+  },
+  "map": {
+    "cafe": {
+      "today_opening_hours": "Today's business hours",
+      "today_day_off": "Day off",
+      "opening_hours": "Business hours",
+      "more_info": "More info",
+      "close": "Close"
+    }
   }
 }

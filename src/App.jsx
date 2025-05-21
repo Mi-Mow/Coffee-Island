@@ -4,16 +4,19 @@ import Pages from "./pages/Pages";
 import Header from "./components/Header/Header";
 import { AuthProvider } from "./context/AuthContext";
 import { CafeProvider } from "./components/CafeContext";
+import { LanguageProvider } from "./context/LanguageContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <AuthProvider>
-          <CafeProvider>
-            <Header />
-            <Pages />
-          </CafeProvider>
+          <LanguageProvider>
+            <CafeProvider>
+              <Header />
+              <Pages />
+            </CafeProvider>
+          </LanguageProvider>
         </AuthProvider>
       </BrowserRouter>
     </>

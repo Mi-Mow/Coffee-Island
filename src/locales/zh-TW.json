@@ -17,5 +17,14 @@
       "5": "(五)",
       "6": "(六)"
     }
+  },
+  "map": {
+    "cafe": {
+      "today_opening_hours": "今日營業時間",
+      "today_day_off": "本日公休",
+      "opening_hours": "營業時間",
+      "more_info": "查看更多",
+      "close": "關閉"
+    }
   }
 }

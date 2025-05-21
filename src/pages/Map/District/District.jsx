@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import s from "./District.module.scss";
 import beitou from "../../../assets/home/district/beitou.svg";
 import shilin from "../../../assets/home/district/shilin.svg";
@@ -26,9 +26,16 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 
 function District() {
+  const location = useLocation();
   useEffect(() => {
-    // start at (0, 0)
-    window.scrollTo(0, 0);
+    if (location.state?.scrollToFilter) {
+      const filter = document.getElementById("filter");
+      if (filter) {
+        filter.scrollIntoView();
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   const { district } = useParams();
@@ -156,6 +163,7 @@ function District() {
   ];
 
   const { cafes } = useCafeData();
+  console.log("cafes", cafes)
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedAreas, setSelectedAreas] = useState([]);
 
@@ -165,15 +173,15 @@ function District() {
         ? prev.filter((id) => id !== tagId)
         : [...prev, tagId]
     );
-    // displayFilter = displayFilter.filter((cafe) => cafe.tags.includes(tagId));
   };
 
-  const displayFilter = cafes.filter(
-    (cafe) =>
-      selectedTags.every((tag) => cafe.tags.includes(tag)) &&
-      (selectedAreas.length === 0 ||
-        selectedAreas.some((areaTag) => cafe.district_id === areaTag))
-  );
+  const displayFilter =
+    cafes.filter(
+      (cafe) =>
+        selectedTags.every((tag) => cafe.tags.includes(tag)) &&
+        (selectedAreas.length === 0 ||
+          selectedAreas.some((areaTag) => cafe.district_id === areaTag))
+    ) || [];
 
   const menuProps = {
     PaperProps: {
@@ -245,6 +253,11 @@ function District() {
                   rating={cafe.rating}
                   img={`${cafe.district_id}_${cafe?.id}_1`}
                   cafe={cafe}
+                  displayFilter={
+                    selectedAreas.length === 0 && selectedTags.length === 0
+                      ? []
+                      : displayFilter
+                  }
                 />
               ))}
             </div>
@@ -257,7 +270,7 @@ function District() {
         </div>
       </section>
       {/* Filter Section */}
-      <section className={s.filter} ref={filterRef}>
+      <section className={s.filter} ref={filterRef} id="filter">
         <div className={s.main}>
           <div className={s.tags}>
             <div className={s.areasTag}>
@@ -390,6 +403,11 @@ function District() {
                   rating={cafe.rating}
                   img={`${cafe.district_id}_${cafe?.id}_1`}
                   cafe={cafe}
+                  displayFilter={
+                    selectedAreas.length === 0 && selectedTags.length === 0
+                      ? []
+                      : displayFilter
+                  }
                 />
               ))}
             </div>
@@ -399,19 +417,6 @@ function District() {
           </div>
         </div>
       </section>
-      <div>
-        {/* <h2>台北復古咖啡廳列表</h2>
-      {cafes.map((cafe, index) => (
-        <div key={index}>
-          <h3>{cafe.name_zh} ({cafe.name_en})</h3>
-          <p>id: {cafe.id}</p>
-          <p>區域：{cafe.district}</p>
-          <p>地址：{cafe.address}</p>
-          <p>營業時間：{cafe.opening_hours.join(' / ')}</p>
-          <a href={cafe.map_link} target="_blank">查看地圖</a>
-        </div>
-      ))} */}
-      </div>
     </>
   );
 }

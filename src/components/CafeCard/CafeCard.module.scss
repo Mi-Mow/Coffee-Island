@@ -5,17 +5,24 @@
   transition: 0.2s transform ease-out;
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+    .imgContainer {
+      img {
+        transform: scale(1.05);
+      }
+    }
   }
   .imgContainer {
     height: 150px;
     position: relative;
+    overflow: hidden;
     img {
       width: 100%;
       height: 100%;
       border-radius: 3px 3px 0 0;
       object-fit: cover;
       object-position: center;
+      transition: 0.2s transform ease-out;
     }
 
     .heartContainer {
@@ -62,4 +69,8 @@
     -webkit-line-clamp: 3;
     overflow: hidden;
   }
+}
+
+.small {
+  width: 23%;
 }
