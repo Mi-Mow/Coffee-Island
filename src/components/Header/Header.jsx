@@ -29,6 +29,7 @@ function Header() {
   const { isLoggedIn } = useAuth();
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1140);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1140);
@@ -42,14 +43,57 @@ function Header() {
         <NavLink to={"/"} className={s.logo}>
           <img src={logo} alt="" />
         </NavLink>
+
         <nav>
           {isMobile ? (
             <>
-              <div className={s.hamburger}>
+              <div className={s.hamburger} onClick={() => setIsMenuOpen(true)}>
                 <div className={s.hamburgerContainer}>
                   <img src="/hamburger.svg" alt="" />
                 </div>
               </div>
+              {isMenuOpen && (
+                <>
+                  <div className={s.menuDimmer}></div>
+
+                  <div className={s.hamburgerOverlay}>
+                    <button className={s.closeBtn} onClick={() => setIsMenuOpen(false)}>
+                      ×
+                    </button>
+
+                    {isLoggedIn ? (
+                      <>
+                        <ul className={s.menuList}>
+                          <li><NavLink to="/" onClick={() => setIsMenuOpen(false)}>主頁</NavLink></li>
+                          <li><NavLink to="/#map" onClick={() => setIsMenuOpen(false)}>地圖</NavLink></li>
+                          <li><NavLink to="/news" onClick={() => setIsMenuOpen(false)}>島嶼月報</NavLink></li>
+                          <li><NavLink to="/products" onClick={() => setIsMenuOpen(false)}>限定商品</NavLink></li>
+                          <li><NavLink to="/about" onClick={() => setIsMenuOpen(false)}>關於我們</NavLink></li>
+                          <li><NavLink to="/cart" onClick={() => setIsMenuOpen(false)}>購物車</NavLink></li>
+                        </ul>
+
+                        <NavLink to="/profile" onClick={() => setIsMenuOpen(false)} className={s.memberButton}>
+                          會員中心
+                        </NavLink>
+                      </>
+                    ) : (
+                      <>
+                        <ul className={s.menuList}>
+                          <li><NavLink to="/" onClick={() => setIsMenuOpen(false)}>主頁</NavLink></li>
+                          <li><NavLink to="/#map" onClick={() => setIsMenuOpen(false)}>地圖</NavLink></li>
+                          <li><NavLink to="/news" onClick={() => setIsMenuOpen(false)}>島嶼月報</NavLink></li>
+                          <li><NavLink to="/products" onClick={() => setIsMenuOpen(false)}>限定商品</NavLink></li>
+                          <li><NavLink to="/about" onClick={() => setIsMenuOpen(false)}>關於我們</NavLink></li>
+                        </ul>
+
+                        <NavLink to="/login" onClick={() => setIsMenuOpen(false)} className={s.memberButton}>
+                          會員登入
+                        </NavLink>
+                      </>
+                    )}
+                  </div>
+                </>
+              )}
             </>
           ) : (
             <>

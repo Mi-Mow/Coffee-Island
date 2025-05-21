@@ -5,7 +5,7 @@ import event1 from '../../assets/news/activities/01.jpg';
 import event2 from '../../assets/news/activities/02.jpg';
 import event3 from '../../assets/news/activities/3.png';
 import event4 from '../../assets/news/activities/4.jpg';
-import event5 from '../../assets/news/activities/5.jpg';
+import event5 from '/cafe/neihu_16_1.jpg';
 import event6 from '../../assets/news/activities/6.jpg';
 import event7 from '../../assets/news/activities/7.jpg';
 
@@ -36,7 +36,7 @@ import event7 from '../../assets/news/activities/7.jpg';
       date: '2025/05/30~2025/05/30',
       startDate: new Date('2025-05-30'),
       endDate: new Date('2025-05-30'),
-      title: '徐明志｜品一杯草莓果醬味咖啡',
+      title: 'TYPICA WORLD CARAVAN 2025 - 台中場',
       link: "/news/event/1" // 活動內容頁面
     },
     {
@@ -154,7 +154,7 @@ function Event() {
                     }}
                     style={{ cursor: 'pointer',
                       fontWeight: filterTime === label ? 'bold' : 'normal',
-                      backgroundColor: filterTime === label ? '#333' : '',
+                      backgroundColor: filterTime === label ? '#122f30' : '',
                     }}
                   >
                     <p>{label}</p>
@@ -166,19 +166,18 @@ function Event() {
 
             {/* 關鍵字搜尋 */}
             <div className="searchBar">
-              <input type="text" placeholder="請輸入關鍵字" />
-              {/* <button className="searchBtn">搜尋</button> */}
+              <input type="text" placeholder="想找什麼活動嗎？例如：咖啡展" />
             </div>
           </section>
 
           <div className="events">
             {/* 標題 */}
-            <div className="event-title">
+            {/* <div className="event-title">
               <h2>Events</h2>
               <svg xmlns="http://www.w3.org/2000/svg" width="321" height="3" viewBox="0 0 321 3" fill="none">
                 <path d="M0.5 1.47754H320.5" stroke="#FFF1CB" strokeWidth="2" />
               </svg>
-            </div>
+            </div> */}
 
             {/* 卡片區 */}
             {/* 一列3欄 */}

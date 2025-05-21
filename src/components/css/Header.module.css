@@ -40,7 +40,7 @@ header .navLink .navItem {
   padding-bottom: 10px;
   font-size: 18px;
   color: #fff;
-  font-weight: 800;
+  font-weight: 600;
   border-bottom: transparent 2px solid;
   transition: all 0.3s ease-out;
 }
@@ -54,13 +54,19 @@ header .language {
   cursor: pointer;
 }
 header .language .earthContainer {
-  width: 36px;
+  width: 28px;
 }
 header .language p {
   font-size: 16px;
   padding: 0 20px 0 15px;
   color: #fff;
   font-weight: 500;
+}
+header .cartContainer {
+  width: 48px;
+}
+header .profileContainer {
+  width: 48px;
 }
 header .loginBtn {
   border: #fff 2px solid;
@@ -95,6 +101,10 @@ header .registerBtn:hover {
   background-color: transparent;
   transition: 0.3s;
 }
+header .hamburgerContainer {
+  width: 48px;
+  cursor: pointer;
+}
 
 nav,
 .btnContainer,
@@ -102,10 +112,4 @@ nav,
 main {
   display: flex;
   align-items: center;
-}
-
-@media (max-width: 1140px) {
-  nav {
-    display: none;
-  }
 }

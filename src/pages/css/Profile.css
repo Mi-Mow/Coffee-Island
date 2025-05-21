@@ -1,0 +1,15 @@
+.profile-page {
+  padding: 100px 70px 0;
+}
+.profile-page .logout-btn {
+  border: #fff 2px solid;
+  color: #265b51;
+  font-size: 16px;
+  font-weight: 800;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 120px;
+  padding: 8px 0;
+  margin-left: 20px;
+  cursor: pointer;
+}

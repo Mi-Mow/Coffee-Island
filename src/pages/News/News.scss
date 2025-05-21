@@ -1,5 +1,10 @@
 @use "variable" as *;
 
+#news>main {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* 島嶼月報 all */
 #news,
 #findArticles,
@@ -12,14 +17,15 @@
   font-size: $fontsize;
   width: 100%;
   align-self: center;
+  margin: 0 auto;
 
   @media ($media-1920) {
 
-    padding: 100px 170px;
+    padding: 100px 160px;
   }
 
   @media ($media-820) {
-    padding: 80px 48px;
+    padding: 80px 40px;
   }
 
   @media ($media-640) {
@@ -48,6 +54,10 @@
     width: 100%;
     text-align: right;
     line-height: 1.6rem;
+
+    @media (max-width: 640px) {
+      font-size: 20px;
+    }
   }
 
   h1 {
@@ -59,13 +69,19 @@
     font-weight: 400;
     letter-spacing: 8px;
 
+    @media (max-width: 640px) {
+      font-size: 16px;
+    }
   }
 
   h3 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.8px;
 
+    @media (max-width: 640px) {
+      font-size: 14px;
+    }
   }
 
   .tagName {
@@ -75,6 +91,10 @@
     font-weight: 400;
     letter-spacing: 0.84px;
     line-height: 0.8rem;
+
+    @media (max-width: 640px) {
+      font-size: 10px;
+    }
   }
 
   /* nav */
@@ -84,8 +104,9 @@
     display: flex;
 
     a {
-      margin: 10px;
-      padding: 5px 0;
+      font-size: 16px;
+      // margin: 10px;
+      padding: 8px 0;
       border-bottom: 2px solid transparent;
       transition: all .35s;
       cursor: pointer;
@@ -105,11 +126,17 @@
     ul {
       display: flex;
       gap: 24px;
+
+      @media($media-640) {
+        margin-top: 8px;
+        gap: 16px;
+      }
     }
 
   }
 }
 
+// 元件
 .event-card {
   width: 100%;
   display: flex;
@@ -143,6 +170,83 @@
   }
 }
 
+button {
+  font-size: 24px;
+}
+
+/* 關鍵字搜尋 */
+.searchBar {
+  display: flex;
+  padding: 24px auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+
+  @media ($media-820) {
+    padding: 0px;
+    width: 100%;
+  }
+
+  @media ($media-640) {
+    padding: 0px;
+    width: 100%;
+  }
+
+  input {
+    background-color: transparent;
+    display: flex;
+    width: 400px;
+    height: 40px;
+    padding: 0px 20px;
+    gap: 10px;
+    color: $textcolor;
+    border-radius: 2px;
+    border: 2px solid $bordercolor;
+    transition: border-color 0.3s, color 0.3s;
+
+    @media ($media-640) {
+      padding: 0px 8px;
+      width: 300px;
+      height: 30px;
+    }
+
+    &::placeholder {
+      color: $textcolor;
+      font-size: 14px;
+
+      @media ($media-640) {
+        font-size: 12px;
+      }
+    }
+
+    &:hover {
+      color: $primary_1;
+      border: 2px solid $primary_1;
+    }
+
+    &:focus {
+      outline: 2px solid $primary_1;
+    }
+  }
+
+}
+
+// 文章關鍵字搜尋
+.search-container .suggestion-list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+
+  li {
+    padding-top: 8px;
+  }
+}
+
+input {
+  letter-spacing: 1.6px;
+}
+
 /* 島嶼月報 */
 #news>main {
   width: 100%;
@@ -152,7 +256,6 @@
   flex-direction: column;
 
   /* 封面故事 */
-
   .cover-story {
     width: 100%;
     display: flex;
@@ -161,15 +264,22 @@
     align-items: flex-start;
     overflow: hidden;
 
-    .cover-img {
-      border: 1px solid $textcolor;
+    a {
       width: 100%;
-      object-fit: cover;
-      height: 400px;
-      align-self: stretch;
 
+      .cover-img {
+        border: 1px solid $textcolor;
+        width: 100%;
+        object-fit: cover;
+        height: 400px;
+        align-self: stretch;
+
+        @media($media-640) {
+          height: 150px;
+        }
+
+      }
     }
-
   }
 
   /* feature (section) */
@@ -182,6 +292,12 @@
 
     width: 100%;
     align-self: stretch;
+
+    @media ($media-640) {
+      justify-content: center;
+      gap: 0px;
+    }
+
   }
 
   .section-row>section:first-child {
@@ -209,22 +325,23 @@
 
       display: flex;
       // width: 700px;
-      padding-bottom: 36px;
+      padding-bottom: 48px;
       flex-direction: column;
       align-items: flex-start;
-      gap: 36px;
+      gap: 32px;
     }
 
 
-    .feature1 {
+    .feature1 a div {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
+      gap: 16px;
       align-self: stretch;
 
       img {
         // height: 300px;
+
         align-self: stretch;
       }
 
@@ -243,30 +360,65 @@
       gap: 24px;
       align-self: stretch;
 
+      @media ($media-640) {
+        width: 100%;
+        overflow-x: hidden;
+        gap: 16px;
+      }
+
       .new-cards {
         display: flex;
-        height: 353px;
+        height: 350px;
+        // height: 100%;
         align-items: center;
         gap: 35px;
 
-        div {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
-          gap: 10px;
-          flex: 1 0 0;
+        @media ($media-640) {
+          flex-direction: row;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scroll-snap-type: x mandatory;
+          // padding-bottom: 16px;
+          max-width: 100%; // ← 防止超過畫面
+          height: 300px;
 
-          img {
-            height: 240px;
-            align-self: stretch;
-          }
-
-          h3 {
-            height: 50px;
-            align-self: stretch;
-          }
         }
+
+        a {
+          display: flex;
+          height: 100%;
+          flex: 1;
+
+          @media ($media-640) {
+            scroll-snap-align: start;
+            flex: 0 0 75%; // 每張卡片寬度（視需要可調整為 100%, 75% 等）
+            display: block;
+          }
+
+          div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 16px;
+            // flex: 1 0 0;
+
+            img {
+              width: 100%;
+              height: 240px;
+              object-fit: cover;
+            }
+
+            h3 {
+              height: 80px;
+              align-self: stretch;
+              justify-content: center;
+            }
+          }
+
+        }
+
+
       }
     }
   }
@@ -274,20 +426,34 @@
 
   /* feature右欄 */
 
+  .recommendation::-webkit-scrollbar {
+    // 隱藏橫向滾動條
+    display: none;
+  }
+
   .recommendation {
     width: 100%;
     display: flex;
     width: 100%;
-    height: 748px;
     padding: 24px;
     flex-direction: column;
     gap: 12px;
     flex-shrink: 0;
     border: 1px solid $bordercolor;
-    margin-top: 56px;
+    margin-top: 67px;
+
+    @media ($media-640) {
+      margin-top: 8px;
+      padding: 16px;
+
+    }
 
     a {
       border-bottom: 1px solid $bordercolor;
+
+      @media ($media-640) {
+        border-bottom: none;
+      }
     }
 
     h2 {
@@ -302,31 +468,78 @@
       letter-spacing: 24px;
     }
 
-
-    .reco-card {
-      display: flex;
-      width: 100%;
-      max-height: 200px;
-      padding: 36px 0px;
-      align-items: center;
-      gap: 24px;
-      align-self: stretch;
-
-
-      img {
-        height: 88px;
-        width: 132px;
-        flex: 1 0 0;
-      }
-
-      .reco-card-text {
+    .reco-cards {
+      @media($media-640) {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        flex: 1 0 0;
+        flex-direction: row;
+        gap: 24px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+          display: none; // 手機隱藏 scrollbar
+        }
+
       }
+
+      .reco-card {
+        display: flex;
+        width: 100%;
+        max-height: 200px;
+        padding: 36px 0px;
+        align-items: center;
+        gap: 24px;
+        align-self: stretch;
+
+        @media ($media-640) {
+          scroll-snap-align: start;
+          flex-direction: column;
+          flex: 0 0 60%; // 每張卡片佔 80% 寬度
+          padding: 16px 0;
+        }
+
+
+        img {
+          height: 88px;
+          width: 132px;
+          flex: 1 0 0;
+
+          @media ($media-640) {
+            height: auto;
+            width: 100%;
+          }
+        }
+
+        .reco-card-text {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          flex: 1 0 0;
+
+          @media ($media-640) {
+            gap: 8px;
+          }
+
+          h3 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+          }
+
+        }
+      }
+
     }
+
+
+
+
 
     .reco-button {
       width: 100%;
@@ -336,6 +549,13 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
+      padding: 36px 0px;
+
+      @media ($media-640) {
+        gap: 8px;
+        padding: 16px 0px;
+      }
+
     }
 
     .reco-button a {
@@ -352,6 +572,11 @@
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       z-index: 1;
+
+      @media ($media-640) {
+        font-size: 12px;
+      }
+
 
       // 疊上透明背景圖（紙張材質）
       &::before {
@@ -392,6 +617,13 @@
       flex-direction: column;
       align-items: center;
       gap: 12px;
+      text-align: center;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .event-cards {
@@ -408,7 +640,7 @@
         /* 平板：2欄 */
       }
 
-      @media screen and (max-width: 600px) {
+      @media (max-width: 640px) {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: 54px 24px;
@@ -474,6 +706,17 @@
   cursor: pointer;
   z-index: 1000;
 
+  @media ($media-640) {
+    .top-btn {
+      bottom: 20px;
+      right: 20px;
+
+      svg {
+        width: 50px; // 手機上放大一點較易點擊
+      }
+    }
+  }
+
   svg {
     width: 40px;
     height: auto;
@@ -490,113 +733,168 @@
 
 
 /* 閱讀文章 */
-#article {
+#findArticles main {
   display: flex;
   padding: 0px;
+  max-width: 1280px;
+  margin: auto;
   flex-direction: column;
 
-
-  /* 關鍵字搜尋 */
-  .searchBar {
-    display: flex;
-    padding: 24px 320px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-self: stretch;
-
-    input {
-      background-color: transparent;
-      display: flex;
-      width: 400px;
-      height: 40px;
-      padding: 0px 20px;
-      gap: 10px;
-      color: $textcolor;
-      border-radius: 2px;
-      border: 2px solid $bordercolor;
-      transition: border-color 0.3s, color 0.3s;
-
-      &::placeholder {
-        color: $textcolor;
-        font-size: 14px;
-      }
-
-      &:hover {
-        color: $primary_1;
-        border: 2px solid $primary_1;
-      }
-
-      &:focus {
-        outline: 2px solid $primary_1;
-      }
-    }
+  @media ($media-820) {
+    padding: 40px 0px;
+    width: 100%;
   }
 
+  @media ($media-640) {
+    padding: 0px;
+    width: 100%;
+  }
 
+  // /* 關鍵字搜尋 */
+  // .searchBar {
+  //   display: flex;
+  //   padding: 24px 320px;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
+  //   align-self: stretch;
+
+  //   @media ($media-640) {
+  //     padding: 0px;
+  //     width: 100%;
+  //   }
+
+  //   input {
+  //     background-color: transparent;
+  //     display: flex;
+  //     width: 400px;
+  //     height: 40px;
+  //     padding: 0px 20px;
+  //     gap: 10px;
+  //     color: $textcolor;
+  //     border-radius: 2px;
+  //     border: 2px solid $bordercolor;
+  //     transition: border-color 0.3s, color 0.3s;
+
+  //     @media ($media-640) {
+  //       padding: 0px 8px;
+  //       width: 300px;
+  //       height: 30px;
+  //     }
+
+  //     &::placeholder {
+  //       color: $textcolor;
+  //       font-size: 14px;
+
+  //       @media ($media-640) {
+  //         font-size: 12px;
+  //       }
+  //     }
+
+  //     &:hover {
+  //       color: $primary_1;
+  //       border: 2px solid $primary_1;
+  //     }
+
+  //     &:focus {
+  //       outline: 2px solid $primary_1;
+  //     }
+  //   }
+
+  // }
+
+  .articleCard {
+    display: flex;
+    padding: 40px 0px;
+    align-items: center;
+    gap: 30px;
+    align-self: stretch;
+
+    border-bottom: 1px solid $bordercolor;
+
+    width: 100%;
+
+    @media ($media-640) {
+      padding: 48px 36px;
+    }
+
+
+    img {
+      display: block;
+      width: 290px;
+      height: 170px;
+      object-fit: cover;
+      /* 保持比例並且覆蓋容器 */
+      object-position: center;
+      // align-items: center;
+      // flex: 1 0 0;
+    }
+
+    .articleCardText {
+      display: flex;
+      // width: 780px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 20px;
+
+      @media ($media-640) {
+        gap: 16px;
+      }
+
+      h1 {
+        font-size: 32px;
+        letter-spacing: $letter-spacing-s;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-self: stretch;
+
+        @media ($media-640) {
+          font-size: 18px;
+          letter-spacing: normal;
+        }
+      }
+
+      p {
+        line-height: 2rem;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-self: stretch;
+
+        @media ($media-640) {
+          font-size: 14px;
+          line-height: normal;
+        }
+      }
+    }
+
+
+  }
 
   .sec1,
   .sec2 {
     display: flex;
-    padding: 36px 0px;
+    padding: 48px 0px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     align-self: stretch;
 
-
-
-    .articleCard {
-      display: flex;
-      padding: 40px 0px;
-      align-items: center;
-      gap: 30px;
-      align-self: stretch;
-
-      border-bottom: 1px solid $bordercolor;
-
-      img {
-        display: flex;
-        width: 290px;
-        height: 170px;
-        align-items: center;
-        // flex: 1 0 0;
-      }
-
-      .articleCardText {
-        display: flex;
-        // width: 780px;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 20px;
-
-        h1 {
-          font-size: 32px;
-          letter-spacing: $letter-spacing-s;
-
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          align-self: stretch;
-        }
-
-        p {
-          line-height: 2rem;
-
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 3;
-
-          overflow: hidden;
-          text-overflow: ellipsis;
-          align-self: stretch;
-        }
-      }
-
-
+    @media ($media-640) {
+      // padding: 16px 0px;
     }
+
+
+
+
 
     // 頁碼
     .pageNumberArea {
@@ -628,88 +926,116 @@
 
 /* 文章內頁 */
 .article-detail-page {
-  color: $textcolor;
-  padding: 100px 40px;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 100px 0;
 
-  .title-container {
-    display: flex;
-    padding: 24px 0px;
-    flex-direction: column;
+  p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 200%;
     justify-content: center;
-    align-items: center;
-    gap: 12px;
-    align-self: stretch;
+    letter-spacing: 0.24px;
 
-    p {
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 160%;
-      letter-spacing: 0.224px;
-    }
-
-    h2 {
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 160%;
-      letter-spacing: 0.512px;
-    }
-
-    // 封面圖
-    figure {
-      width: 100%;
-      overflow: hidden;
-
-      img {
-        object-fit: cover;
-        height: 100%;
-      }
-    }
   }
 
-  .content-container {
+  section {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    align-self: stretch;
     padding: 36px 0px;
+    flex-direction: column;
 
-    p {
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 160%;
-      letter-spacing: 0.24px;
+    .title-container {
+      display: flex;
+      padding: 24px 0px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+
+      p {
+        font-size: 14px;
+        letter-spacing: 8px;
+      }
+
+      h2 {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 160%;
+        letter-spacing: 0.8px;
+      }
+
     }
 
-    figure {
-      height: 32vh;
-      overflow: hidden;
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      align-self: stretch;
 
-      img {
-        object-fit: cover;
+      // 封面圖
+      figure {
+        height: 480px;
+        overflow: hidden;
+        margin: 0 auto;
+
+        img {
+          width: 100%;
+          object-fit: cover;
+          height: 100%;
+        }
+      }
+
+      .article-paragraphs {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+
+        .paragraph-block {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+
+          .smImg {
+            width: 560px;
+            height: 315px;
+          }
+
+
+        }
+
+        .paragraph-block:last-child p {
+          padding-bottom: 36px; // 最後一個p給一個底部內距
+
+        }
+
+      }
+
+    }
+
+    .info-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      align-self: stretch;
+
+      .info-text-container {
+        display: flex;
         width: 100%;
-        height: 100%;
+        height: 50%;
+        padding: 36px 0px;
+        align-items: center;
+        gap: 24px;
       }
     }
-
   }
 
-  .info-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    align-self: stretch;
 
-    .info-text-container {
-      display: flex;
-      width: 100%;
-      height: 50%;
-      padding: 36px 0px;
-      align-items: center;
-      gap: 24px;
-    }
-  }
 
   .article-buttonGroup-container {
     display: flex;
@@ -749,6 +1075,16 @@
     padding: 0px;
     flex-direction: column;
     align-items: center;
+
+    @media ($media-820) {
+      padding: 40px 0px;
+      width: 100%;
+    }
+
+    @media ($media-640) {
+      padding: 0px;
+      width: 100%;
+    }
 
     .events {
 
@@ -792,77 +1128,6 @@
         }
 
 
-        //         // .event-card {
-        //         //   display: flex;
-        //         //   flex-direction: column;
-        //         //   justify-content: center;
-        //         //   align-items: flex-start;
-        //         //   gap: 12px;
-        //         //   flex: 1 0 0;
-
-        // <<<<<<< HEAD
-        //         //   border: 1px solid $textcolor;
-        //         //   border-radius: 16px;
-        //         //   padding: 32px 24px;
-        //         //   background-color: rgb(104, 50, 5);
-
-        //         //   figure {
-        //         //     // display: block;
-        //         //     display: flex;
-        //         //     justify-content: center;
-        //         //     align-items: center;
-        //         //     height: 280px;
-        //         //     flex-shrink: 0;
-        //         //     overflow: hidden;
-        //         //     // border: 1px solid red;
-
-
-        //         //     img {
-        //         //       object-fit: contain;
-        //         //       height: 100%;
-        //         //       border-radius: 4px;
-        //         //     }
-        //         //   }
-        // =======
-        //           // border: 1px solid $textcolor;
-        //           // border-radius: 16px;
-        //           padding: 32px 24px;
-        //           // background-color: rgb(104, 50, 5);
-
-        //           figure {
-        //             display: block;
-        //             width: 100%;
-        //             // display: flex;
-        //             justify-content: center;
-        //             align-items: center;
-        //             height: 280px;
-        //             flex-shrink: 0;
-        //             overflow: hidden;
-        //             // border: 1px solid red;
-
-
-        //             img {
-        //               object-fit:contain;
-
-        //               height: 100%;
-        //               border-radius: 4px;
-        //             }
-        //           }
-        // >>>>>>> 332eda41000914ed522d0a37ed04bc41f670c1c7
-
-        //         //   .title-container {
-        //         //     height: 90px;
-        //         //   }
-
-        //         //   .event-tags {
-        //         //     display: flex;
-        //         //     align-items: center;
-        //         //     gap: 12px;
-        //         //     align-self: stretch;
-        //         //   }
-        //         // }
-
-
       }
 
     }
@@ -872,12 +1137,22 @@
   .filterBar {
 
     display: flex;
-    padding: 48px 320px 24px;
+    // padding: 48px auto;
+    margin: 48px auto;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 12px;
     align-self: stretch;
+
+    @media ($media-640) {
+      // padding: 40px 0px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+
+      position: sticky;
+      top: 80px;
+      z-index: 99;
+    }
 
     .timeBar {
       display: flex;
@@ -886,11 +1161,25 @@
       gap: 36px;
       align-self: stretch;
 
+      @media ($media-640) {
+        // flex-wrap: wrap;
+
+
+        gap: 12px;
+        justify-content: flex-start;
+        font-size: 12px;
+      }
+
       div {
         display: flex;
         width: 363px;
         align-items: center;
         gap: 20px;
+
+        @media ($media-640) {
+          width: 100%;
+        }
+
 
         .time {
 
@@ -903,6 +1192,15 @@
 
           border-radius: 2px;
           border: 1px solid $bordercolor;
+
+          @media ($media-640) {
+            padding: 0px 8px;
+            background-color: #122f30;
+            backdrop-filter: blur(8px);
+            background-color: rgba(18, 47, 48, 0.6); // 深綠半透明
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+          }
 
           p {
             display: flex;
@@ -922,41 +1220,48 @@
       }
     }
 
-    /* 關鍵字搜尋 */
     .searchBar {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      align-self: stretch;
-
-      input {
-        background-color: transparent;
-        display: flex;
-        width: 400px;
-        height: 40px;
-        padding: 0px 20px;
-        gap: 10px;
-        color: $textcolor;
-        border-radius: 2px;
-        border: 2px solid $bordercolor;
-        transition: border-color 0.3s, color 0.3s;
-
-        &::placeholder {
-          color: $textcolor;
-          font-size: 14px;
-        }
-
-        &:hover {
-          color: $primary_1;
-          border: 2px solid $primary_1;
-        }
-
-        &:focus {
-          outline: 2px solid $primary_1;
-        }
+      @media ($media-640) {
+        position: sticky;
+        top: 100px;
       }
     }
+
+    // /* 關鍵字搜尋 */
+    // .searchBar {
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    //   align-items: center;
+    //   align-self: stretch;
+
+    //   input {
+    //     background-color: transparent;
+    //     display: flex;
+    //     width: 400px;
+    //     height: 40px;
+    //     padding: 0px 20px;
+    //     gap: 10px;
+    //     color: $textcolor;
+    //     border-radius: 2px;
+    //     border: 2px solid $bordercolor;
+    //     transition: border-color 0.3s, color 0.3s;
+
+    //     &::placeholder {
+    //       color: $textcolor;
+    //       font-size: 14px;
+    //     }
+
+    //     &:hover {
+    //       color: $primary_1;
+    //       border: 2px solid $primary_1;
+    //     }
+
+    //     &:focus {
+    //       outline: 2px solid $primary_1;
+    //     }
+    //   }
+    // }
   }
 
 
@@ -1006,18 +1311,86 @@
   }
 }
 
-@media screen and (max-width: 640px) {
-  #news>main .new-cards {
-    flex-direction: column;
+@media (max-width: 640px) {
+
+  img {
+    max-width: 100%;
     height: auto;
+  }
+
+  // 導覽列不顯示
+  #news .nav-news {
+    display: none;
+  }
+
+  #findArticles .title,
+  #findEvent .title {
+    display: none;
+  }
+  #findArticles nav,
+  #findEvent nav {
+    width: 100%;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+
+  }
+
+  #findArticles .nav-news,
+  #findEvent .nav-news {
+    width: 100%;
+    margin: 0px;
+    letter-spacing: $letter-spacing-m;
+
+    ul {
+      gap: 48px;
+      width: 100%;
+      justify-content: space-between;
+
+      li {
+        flex: 1;
+        text-align: center;
+
+        li> a:last-child {
+          width: 100%;
+          align-items: flex-end;
+        }
+        li> a:first-child {
+          width: 100%;
+          align-items: flex-start;
+        }
+        a.active {
+          border-bottom: 2px solid $primary_1;
+          color: $primary_1;
+        }
+      }
+
+
+    }
+  }
+
+  #news>main .cover-story {
+    padding: 16px 0px;
+  }
+
+  #news>main .new-cards {
+    // flex-direction: column;
+    height: auto;
+    // flex-wrap: wrap; /* 若要換行 */
+    overflow: hidden;
+    /* 防止超出 */
 
     div {
       width: 100%;
     }
   }
-}
 
-@media screen and (max-width: 640px) {
+
+  .new-cards>* {
+    max-width: 100%;
+    /* 限制寬度 */
+  }
+
   #article .articleCard {
     flex-direction: column;
     align-items: flex-start;
@@ -1031,20 +1404,32 @@
       align-items: flex-start;
     }
   }
-}
 
-@media screen and (max-width: 640px) {
+  #news>main .section-row .feature {
+    gap: 16px;
+    padding-bottom: 16px;
+  }
 
-  #article .searchBar,
-  #findEvent .filterBar {
-    padding: 0 20px;
+  #news>main .section-row .feature1 a div {
+    gap: 8px;
+  }
 
-    input {
-      width: 100%;
+  #news>main .section-row .newest .new-cards a div img {
+    width: 100%;
+    height: 200px;
+  }
+
+  #news>main .section-row .recommendation {
+    margin-top: 8px;
+    padding: 24px;
+
+    h2 {
+      text-align: center;
     }
   }
 }
 
+// TOP按鈕
 @media screen and (max-width: 640px) {
   .top-btn {
     bottom: 20px;

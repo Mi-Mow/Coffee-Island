@@ -22,18 +22,20 @@
   /* 可根據需要微調 */
 }
 .about #nav {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  display: flex;
   line-height: 400%;
   color: #FFF1CB;
   text-align: center;
   margin-bottom: 2rem;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-end;
 }
 .about__image {
-  width: 100%;
-  height: 170px;
+  width: 90%;
+  height: 90%;
   max-width: 400px;
   margin: 2rem auto;
   display: block;
@@ -111,36 +113,35 @@
     font-size: 0.9rem;
     letter-spacing: 2px;
   }
-  .about__imagegroup {
-    flex-direction: column;
-    align-items: center;
-  }
   .about__imagegroup__imagegirl {
-    width: 80%;
-    height: 160px;
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none;
   }
   .about__image {
-    height: auto;
+    height: 75%;
+    width: 50%;
   }
   .about #nav {
     top: 10%;
     line-height: 300%;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 390px) {
+  .about__imagegroup__imagegirl {
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none;
+  }
   .about__subtitle {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .about p {
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-  }
-  .about__imagegroup__imagegirl {
-    width: 100%;
-    height: auto;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
   }
   .about__button {
-    width: 40%;
-    padding: 1rem;
+    width: 50%;
+    margin: 10 10 10 10;
   }
 }

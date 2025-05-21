@@ -134,3 +134,95 @@ main {
   display: flex;
   align-items: center;
 }
+.hamburgerOverlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 220px;
+  background-color: #28574F;
+  z-index: 1000;
+  padding: 40px 35px 30px 75px;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s ease-in-out;
+  border-radius: 5px ;
+
+  .closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 32px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .menuList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 80px;
+  
+    li {
+      list-style: none;
+      width: 100%; // 讓每列佔滿寬度
+  
+      a {
+        display: block;
+        width: 100%; // 每個項目都與 li 等寬
+        text-align: left; 
+        font-size: 18px;
+        font-weight: 500;
+        color: #fff;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        transition: transform 0.2s ease;
+  
+        &:hover {
+          transform: translateX(-4px); // hover 時向左滑動
+        }
+      }
+    }
+  }  
+  
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+.menuDimmer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); // 黑色 30% 半透明
+  z-index: 999;
+  pointer-events: none; // 不可點擊，選單仍可操作
+}
+.memberButton {
+  margin-top: 50px; // ⬆️ 讓它自動推到底部
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #c8a968; // 金色背景
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 0;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #b18e4a;
+  }
+}
+

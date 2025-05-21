@@ -1,0 +1,147 @@
+.recommend {
+  padding: 120px 70px 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recommend::before {
+  content: "";
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 80px);
+  background-image: url("../../../assets/map/distBg.svg");
+  background-repeat: repeat;
+  background-size: 25px 25px;
+  background-color: #4d8477;
+  opacity: 0.8;
+  z-index: -1;
+}
+@media (max-width: 1250px) {
+  .recommend {
+    height: auto;
+  }
+}
+.recommend .content {
+  display: flex;
+  align-items: center;
+}
+.recommend .districtImg {
+  flex: 1;
+}
+.recommend .popular {
+  flex: 2;
+  padding-left: 40px;
+}
+.recommend .popular .title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  padding-bottom: 20px;
+}
+.recommend .popular .cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.recommend .popular .btn {
+  margin: 20px 0;
+}
+.recommend .popular .btn .btnBg {
+  background-color: #7B4519;
+  height: 50px;
+  width: 150px;
+  display: block;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s ease-out;
+}
+.recommend .popular .btn .btnBg:hover {
+  background-color: #EEB17E;
+}
+.recommend .popular .btn .btnBg button {
+  margin: auto;
+  background-color: transparent;
+  color: #FFF1CB;
+  font-size: 16px;
+  font-weight: bold;
+  border: 3px solid #EEB17E;
+  width: 140px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s ease-out;
+}
+.recommend .popular .btn .btnBg button:hover {
+  color: #7B4519;
+  border: 3px solid #7B4519;
+}
+
+.filter {
+  height: calc(100vh - 80px);
+  background-image: url("/paper-texture.png");
+  background-repeat: repeat;
+  background-size: cover;
+  background-color: #122f30;
+  background-blend-mode: overlay;
+  padding: 0 80px;
+  padding-top: 20px;
+}
+.filter .main .tags {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.filter .main .tags .tag {
+  background-color: #904118;
+  border: #bc7c33 1px solid;
+  color: #fff1cb;
+  height: 50px;
+  font-weight: 600;
+  padding: 10px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.2s background-color ease-in;
+}
+.filter .main .tags .tag:hover {
+  background-color: #9e4a1d;
+}
+.filter .main .tags .tag.active {
+  border: #f2dab2 3px solid;
+  border-radius: 2px;
+}
+.filter .main .tags .tag .cross {
+  width: 24px;
+  padding-left: 8px;
+}
+.filter .main .content {
+  display: flex;
+  justify-content: space-between;
+  height: 70vh;
+  overflow: hidden;
+  padding-top: 30px;
+  gap: 20px;
+}
+.filter .main .content .cards {
+  width: 60%;
+  height: 100%;
+  gap: 10px;
+  overflow-y: auto;
+  scrollbar-color: #fff1cb transparent;
+}
+.filter .main .content .map {
+  width: 40%;
+  height: 100%;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}

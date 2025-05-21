@@ -1,15 +1,142 @@
 .profile-page {
+  display: flex;
   padding: 100px 70px 0;
-  .logout-btn {
-    border: #fff 2px solid;
-    color: #265b51;
+  gap: 40px;
+  color: #FFF0C8;
+}
+
+/* 左側：功能選單欄 */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  gap: 24px;
+}
+
+/* 右側區塊（上下分） */
+.right-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.top-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 40px;
+
+  .favorite-item {
+    text-align: center;
     font-size: 16px;
-    font-weight: 800;
-    background-color: #fff;
-    border-radius: 5px;
-    width: 120px;
-    padding: 8px 0;
-    margin-left: 20px;
-    cursor: pointer;
+    color: #FFF0C8;
+    position: relative;
+
+    .count {
+      font-size: 48px;
+
+      color: #FFF0C8; // 或你原本的強調色
+      margin-top: 4px;
+      display: block;
+    }
   }
+}
+
+
+
+/* Tab 區塊 */
+.tab-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  justify-content: center;
+  gap: 40px;
+
+}
+
+.tab {
+  width: 113px;
+  height: 56px;
+  padding: 19px 16px;
+  background: none;
+  color: #FFF0C8;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.tab:hover {
+
+  border-bottom: #FFF0C8 2px solid;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+  transition-property: all;
+}
+
+
+/* 右中下區塊（主內容） */
+.main-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.count {
+  display: flex;
+  gap: 20px;
+}
+
+.count-item {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 14px;
+  color: #FFF0C8;
+}
+
+.count-item:hover {
+  border-bottom: #FFF0C8 2px solid;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+  transition-property: all;
+}
+
+.count-item span {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* 按鈕樣式統一：我的收藏、訂單狀態、瀏覽紀錄、登出 */
+.button-style {
+  display: flex;
+  width: 113px;
+  height: 56px;
+  padding: 19px 16px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #A77434;
+  border-radius: 2px;
+  background: none;
+  color: #FFF0C8;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.button-style:hover {
+  background-color: #A77434;
+  color: #fff;
+}
+
+/* 使用者名稱欄 */
+.username {
+  margin: 24px 0;
+  font-size: 16px;
+  color: #FFF0C8;
 }
