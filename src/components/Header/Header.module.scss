@@ -60,6 +60,7 @@ header {
   }
 
   .language {
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
     .earthContainer {
       width: 28px;
@@ -69,6 +70,9 @@ header {
       padding: 0 20px 0 15px;
       color: #fff;
       font-weight: 500;
+    }
+    &:hover {
+      transform: scale(1.06);
     }
   }
 

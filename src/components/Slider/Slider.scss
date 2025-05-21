@@ -1,0 +1,80 @@
+.swiper-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // height: 60;
+  // background: #ffffff;
+}
+.container {
+  width: 100%;
+  .swiper {
+    width: 100%;
+    padding: 10px 0;
+
+    .swiper-wrapper {
+      .swiper-slide {
+        width: 80%;
+        position: relative;
+        width: 400px;
+        height: 50vh;
+        overflow: hidden;
+        user-select: none;
+        transition: 1s;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: 1s;
+          margin-right: 10px;
+        }
+      }
+      .swiper-slide-active {
+        width: 600px;
+      }
+
+      .swiper-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba($color: #2b2b2b, $alpha: 0.8);
+        backdrop-filter: blur(2px);
+        mix-blend-mode: multiply;
+        z-index: 1;
+        transition: 1s;
+      }
+
+      .swiper-slide-active::after {
+        background: none;
+        backdrop-filter: none;
+      }
+
+      .swiper-slide-active img {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.swiper-pagination {
+  padding-bottom: 10px;
+  .swiper-pagination-bullet {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: url(../../assets//home/coffeeBeanLight.svg);
+  transition: all 0.6s ease-in-out;
+}
+}
+
+
+
+@media (max-width: 900px) {
+  .swiper-slide-active {
+    width: 100px;
+  }
+}

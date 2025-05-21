@@ -10,7 +10,23 @@ export const CafeProvider = ({ children }) => {
   const [cafes, setCafes] = useState([]);
 
   useEffect(() => {
-    const loadExcel = async () => {
+    const loadFromLocalStorage = () => {
+      const cached = localStorage.getItem("cafes");
+      if (cached) {
+        try {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed)) {
+            setCafes(parsed);
+            return true;
+          }
+        } catch (e) {
+          console.error("Failed to parse cafes from localStorage:", e);
+        }
+      }
+      return false;
+    };
+
+    const loadFromExcel = async () => {
       const response = await fetch("/data/Taipei_Retro_Cafe.xlsx");
       const blob = await response.blob();
 
@@ -38,16 +54,22 @@ export const CafeProvider = ({ children }) => {
           description: row[19],
           tags: row[20]?.split(","),
           rating: row[21],
-          district_id: row[22]
+          district_id: row[22],
+          img_q: row[23],
+          address_en: row[24],
         }));
 
+        localStorage.setItem("cafes", JSON.stringify(parsed));
         setCafes(parsed);
       };
 
       reader.readAsArrayBuffer(blob);
     };
 
-    loadExcel();
+
+    if (!loadFromLocalStorage()) {
+      loadFromExcel();
+    }
   }, []);
 
   return (
