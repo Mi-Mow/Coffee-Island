@@ -1,7 +1,10 @@
 .cafe {
   .cafe-info {
-    padding: 90px 90px 0;
-    height: 100vh;
+    padding: 90px 90px 30px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
     .header {
       display: flex;
@@ -123,8 +126,11 @@
 
 .recommend {
   // height: 100vh;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
   position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
   &::before {
     content: "";
@@ -144,7 +150,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 25px 80px 30px;
+    padding: 30px 80px;
     .title {
       font-size: 32px;
       font-weight: bold;

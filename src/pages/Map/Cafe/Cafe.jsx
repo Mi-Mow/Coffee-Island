@@ -15,6 +15,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import CafeCard from "../../../components/CafeCard/CafeCard";
 import { useCafeData } from "../../../components/CafeContext";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const getRandom = (data) => {
   const selectedIndices = new Set();
@@ -37,6 +39,7 @@ function Cafe() {
   const [cafe, setCafe] = useState(null);
   const [displayFilter, setDisplayFilter] = useState([]);
   const [tags, setTags] = useState([]);
+  const [openSnackBar, setOpenSnackBar] = useState(false);
 
   useEffect(() => {
     console.log("current cafe ", location.state.cafe);
@@ -67,7 +70,9 @@ function Cafe() {
     }
 
     if (location.state.displayFilter.length > 1) {
-      tempCafes = location.state.displayFilter.filter((item) => item.id !== location.state.cafe.id);
+      tempCafes = location.state.displayFilter.filter(
+        (item) => item.id !== location.state.cafe.id
+      );
       if (tempCafes.length > 8) {
         if (!randomDataRef.current) {
           randomDataRef.current = getRandom(tempCafes);
@@ -138,6 +143,15 @@ function Cafe() {
   const toggleFavorite = (event) => {
     event.stopPropagation();
     setIsFavorite(!isFavorite);
+    setOpenSnackBar(true);
+  };
+
+  const handleSnackBarClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackBar(false);
   };
 
   const tagsMapping = [
@@ -312,7 +326,11 @@ function Cafe() {
               {dayMapping.map((day, index) => (
                 <ListItem
                   key={index}
-                  sx={{ display: "flex", padding: "0 24px 16px" }}
+                  sx={{
+                    display: "flex",
+                    padding: "0 24px 16px",
+                    fontWeight: "500",
+                  }}
                 >
                   <div className="day">
                     {language === "zh-TW" ? day.zh : day.en}
@@ -355,6 +373,20 @@ function Cafe() {
           </div>
         </section>
       </div>
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={2500}
+        onClose={handleSnackBarClose}
+      >
+        <Alert
+          onClose={handleSnackBarClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%", backgroundColor: "#7b4519" }}
+        >
+          {isFavorite ? "已加入收藏" : "已從收藏中移除"}
+        </Alert>
+      </Snackbar>
     </>
   );
 }
