@@ -5,8 +5,12 @@ import Header from "./components/Header/Header";
 import { AuthProvider } from "./context/AuthContext";
 import { CafeProvider } from "./components/CafeContext";
 import { LanguageProvider } from "./context/LanguageContext";
+import monster from "./assets/goUpMonster.svg";
 
 function App() {
+  const goUp = () => {
+    window.scrollTo(0,0);
+  }
   return (
     <>
       <BrowserRouter>
@@ -15,6 +19,9 @@ function App() {
             <CafeProvider>
               <Header />
               <Pages />
+              <div className="monter-container" onClick={goUp}>
+                <img src={monster} alt="" />
+              </div>
             </CafeProvider>
           </LanguageProvider>
         </AuthProvider>

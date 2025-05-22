@@ -83,5 +83,18 @@ body::before {
   z-index: -99;
 }
 
+.monter-container {
+  width: 50px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  transition: 0.1s all ease-out;
+
+  &:hover {
+    width: 55px;
+  }
+}
+
 
 
