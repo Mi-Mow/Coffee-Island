@@ -2,6 +2,11 @@
 /* define primary colors */
 /* hover color */
 /* h1 color */
+#news > main {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* 島嶼月報 all */
 #news,
 #findArticles,
@@ -79,6 +84,15 @@
   text-align: right;
   line-height: 1.6rem;
 }
+@media (max-width: 640px) {
+  #news .title,
+  #findArticles .title,
+  #findEvent .title,
+  .article-detail-page .title,
+  .event-detail-page .title {
+    font-size: 20px;
+  }
+}
 #news h1,
 #findArticles h1,
 #findEvent h1,
@@ -95,6 +109,15 @@
   font-weight: 400;
   letter-spacing: 8px;
 }
+@media (max-width: 640px) {
+  #news h2,
+  #findArticles h2,
+  #findEvent h2,
+  .article-detail-page h2,
+  .event-detail-page h2 {
+    font-size: 16px;
+  }
+}
 #news h3,
 #findArticles h3,
 #findEvent h3,
@@ -103,6 +126,15 @@
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.8px;
+}
+@media (max-width: 640px) {
+  #news h3,
+  #findArticles h3,
+  #findEvent h3,
+  .article-detail-page h3,
+  .event-detail-page h3 {
+    font-size: 14px;
+  }
 }
 #news .tagName,
 #findArticles .tagName,
@@ -115,6 +147,15 @@
   font-weight: 400;
   letter-spacing: 0.84px;
   line-height: 0.8rem;
+}
+@media (max-width: 640px) {
+  #news .tagName,
+  #findArticles .tagName,
+  #findEvent .tagName,
+  .article-detail-page .tagName,
+  .event-detail-page .tagName {
+    font-size: 10px;
+  }
 }
 #news .nav-news,
 #findArticles .nav-news,
@@ -163,7 +204,7 @@
   #findEvent .nav-news ul,
   .article-detail-page .nav-news ul,
   .event-detail-page .nav-news ul {
-    margin-top: 16px;
+    margin-top: 8px;
     gap: 16px;
   }
 }
@@ -182,6 +223,12 @@
   flex-shrink: 0;
   overflow: hidden;
 }
+@media (max-width:640px) {
+  .event-card figure {
+    height: 240px;
+    width: 100%;
+  }
+}
 .event-card figure img {
   object-fit: cover;
   height: 100%;
@@ -199,6 +246,68 @@
 
 button {
   font-size: 24px;
+}
+@media (max-width:640px) {
+  button {
+    font-size: 16px;
+  }
+}
+
+/* 關鍵字搜尋 */
+.searchBar {
+  display: flex;
+  padding: 24px auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+@media (max-width:820px) {
+  .searchBar {
+    padding: 0px;
+    width: 100%;
+  }
+}
+@media (max-width:640px) {
+  .searchBar {
+    padding: 0px;
+    width: 100%;
+  }
+}
+.searchBar input {
+  background-color: transparent;
+  display: flex;
+  width: 400px;
+  height: 40px;
+  padding: 0px 20px;
+  gap: 10px;
+  color: #FFF1CB;
+  border-radius: 2px;
+  border: 2px solid #FFF1CB;
+  transition: border-color 0.3s, color 0.3s;
+}
+@media (max-width:640px) {
+  .searchBar input {
+    padding: 0px 8px;
+    width: 300px;
+    height: 30px;
+  }
+}
+.searchBar input::placeholder {
+  color: #FFF1CB;
+  font-size: 14px;
+}
+@media (max-width:640px) {
+  .searchBar input::placeholder {
+    font-size: 12px;
+  }
+}
+.searchBar input:hover {
+  color: #a2b9bc;
+  border: 2px solid #a2b9bc;
+}
+.searchBar input:focus {
+  outline: 2px solid #a2b9bc;
 }
 
 .search-container .suggestion-list {
@@ -234,11 +343,6 @@ input {
   flex-direction: column;
   align-items: flex-start;
   overflow: hidden;
-}
-@media (max-width:640px) {
-  #news > main .cover-story {
-    padding: 24px 0px;
-  }
 }
 #news > main .cover-story a {
   width: 100%;
@@ -314,7 +418,9 @@ input {
 }
 @media (max-width:640px) {
   #news > main .section-row .newest {
+    width: 100%;
     overflow-x: hidden;
+    gap: 16px;
   }
 }
 #news > main .section-row .newest .new-cards {
@@ -330,7 +436,7 @@ input {
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     max-width: 100%;
-    box-sizing: border-box;
+    height: 300px;
   }
 }
 #news > main .section-row .newest .new-cards a {
@@ -379,6 +485,7 @@ input {
 @media (max-width:640px) {
   #news > main .recommendation {
     margin-top: 8px;
+    padding: 16px;
   }
 }
 #news > main .recommendation a {
@@ -407,7 +514,6 @@ input {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding: 8px;
   }
   #news > main .recommendation .reco-cards::-webkit-scrollbar {
     display: none;
@@ -426,13 +532,20 @@ input {
   #news > main .recommendation .reco-cards .reco-card {
     scroll-snap-align: start;
     flex-direction: column;
-    flex: 0 0 80%;
+    flex: 0 0 60%;
+    padding: 16px 0;
   }
 }
 #news > main .recommendation .reco-cards .reco-card img {
   height: 88px;
   width: 132px;
   flex: 1 0 0;
+}
+@media (max-width:640px) {
+  #news > main .recommendation .reco-cards .reco-card img {
+    height: auto;
+    width: 100%;
+  }
 }
 #news > main .recommendation .reco-cards .reco-card .reco-card-text {
   display: flex;
@@ -443,8 +556,15 @@ input {
 }
 @media (max-width:640px) {
   #news > main .recommendation .reco-cards .reco-card .reco-card-text {
-    gap: 4px;
+    gap: 8px;
   }
+}
+#news > main .recommendation .reco-cards .reco-card .reco-card-text h3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #news > main .recommendation .reco-button {
   width: 100%;
@@ -455,6 +575,12 @@ input {
   align-items: center;
   gap: 10px;
   padding: 36px 0px;
+}
+@media (max-width:640px) {
+  #news > main .recommendation .reco-button {
+    gap: 8px;
+    padding: 16px 0px;
+  }
 }
 #news > main .recommendation .reco-button a {
   position: relative;
@@ -469,6 +595,11 @@ input {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   z-index: 1;
+}
+@media (max-width:640px) {
+  #news > main .recommendation .reco-button a {
+    font-size: 12px;
+  }
 }
 #news > main .recommendation .reco-button a::before {
   content: "";
@@ -502,6 +633,12 @@ input {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #news > main .events .event-cards {
   display: grid;
@@ -595,7 +732,6 @@ input {
   max-width: 1280px;
   margin: auto;
   flex-direction: column;
-  /* 關鍵字搜尋 */
 }
 @media (max-width:820px) {
   #findArticles main {
@@ -605,40 +741,9 @@ input {
 }
 @media (max-width:640px) {
   #findArticles main {
-    padding: 40px 0px;
+    padding: 0px;
     width: 100%;
   }
-}
-#findArticles main .searchBar {
-  display: flex;
-  padding: 24px 320px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-}
-#findArticles main .searchBar input {
-  background-color: transparent;
-  display: flex;
-  width: 400px;
-  height: 40px;
-  padding: 0px 20px;
-  gap: 10px;
-  color: #FFF1CB;
-  border-radius: 2px;
-  border: 2px solid #FFF1CB;
-  transition: border-color 0.3s, color 0.3s;
-}
-#findArticles main .searchBar input::placeholder {
-  color: #FFF1CB;
-  font-size: 14px;
-}
-#findArticles main .searchBar input:hover {
-  color: #a2b9bc;
-  border: 2px solid #a2b9bc;
-}
-#findArticles main .searchBar input:focus {
-  outline: 2px solid #a2b9bc;
 }
 #findArticles main .articleCard {
   display: flex;
@@ -648,6 +753,11 @@ input {
   align-self: stretch;
   border-bottom: 1px solid #FFF1CB;
   width: 100%;
+}
+@media (max-width:640px) {
+  #findArticles main .articleCard {
+    padding: 48px 36px;
+  }
 }
 #findArticles main .articleCard img {
   display: block;
@@ -663,6 +773,11 @@ input {
   align-items: flex-end;
   gap: 20px;
 }
+@media (max-width:640px) {
+  #findArticles main .articleCard .articleCardText {
+    gap: 16px;
+  }
+}
 #findArticles main .articleCard .articleCardText h1 {
   font-size: 32px;
   letter-spacing: 0.2rem;
@@ -673,6 +788,12 @@ input {
   text-overflow: ellipsis;
   align-self: stretch;
 }
+@media (max-width:640px) {
+  #findArticles main .articleCard .articleCardText h1 {
+    font-size: 18px;
+    letter-spacing: normal;
+  }
+}
 #findArticles main .articleCard .articleCardText p {
   line-height: 2rem;
   display: -webkit-box;
@@ -682,10 +803,16 @@ input {
   text-overflow: ellipsis;
   align-self: stretch;
 }
+@media (max-width:640px) {
+  #findArticles main .articleCard .articleCardText p {
+    font-size: 14px;
+    line-height: normal;
+  }
+}
 #findArticles main .sec1,
 #findArticles main .sec2 {
   display: flex;
-  padding: 36px 0px;
+  padding: 48px 0px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -717,8 +844,7 @@ input {
 .article-detail-page {
   display: flex;
   margin: 0 auto;
-  max-width: 1080px;
-  padding: 100px 0;
+  max-width: 1280px;
 }
 .article-detail-page p {
   font-size: 16px;
@@ -807,6 +933,14 @@ input {
   align-items: center;
   gap: 24px;
 }
+@media (max-width:640px) {
+  .article-detail-page .article-buttonGroup-container {
+    gap: 32px;
+  }
+  .article-detail-page .article-buttonGroup-container .article-button-container:nth-child(2) {
+    display: none;
+  }
+}
 .article-detail-page .article-buttonGroup-container .article-button-container button {
   border-radius: 2px;
   border: 3px solid #FFF1CB;
@@ -819,6 +953,12 @@ input {
   align-items: center;
   cursor: pointer;
 }
+@media (max-width:640px) {
+  .article-detail-page .article-buttonGroup-container .article-button-container button {
+    width: 120px;
+    height: 56px;
+  }
+}
 .article-detail-page .article-buttonGroup-container .article-button-container button:hover {
   color: #a2b9bc;
   border: 2px solid #FFF1CB;
@@ -830,6 +970,18 @@ input {
   padding: 0px;
   flex-direction: column;
   align-items: center;
+}
+@media (max-width:820px) {
+  #findEvent main {
+    padding: 40px 0px;
+    width: 100%;
+  }
+}
+@media (max-width:640px) {
+  #findEvent main {
+    padding: 0px;
+    width: 100%;
+  }
 }
 #findEvent main .events {
   display: flex;
@@ -862,7 +1014,7 @@ input {
     /* 平板：2欄 */
   }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 640px) {
   #findEvent main .events .event-cards {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -872,21 +1024,19 @@ input {
 }
 #findEvent .filterBar {
   display: flex;
-  padding: 48px 320px 24px;
+  margin: 48px auto;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 12px;
   align-self: stretch;
-  /* 關鍵字搜尋 */
 }
 @media (max-width:640px) {
   #findEvent .filterBar {
-    padding: 0px;
-    width: 80%;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    position: sticky;
+    top: 80px;
+    z-index: 99;
   }
 }
 #findEvent .filterBar .timeBar {
@@ -898,7 +1048,6 @@ input {
 }
 @media (max-width:640px) {
   #findEvent .filterBar .timeBar {
-    flex-wrap: wrap;
     gap: 12px;
     justify-content: flex-start;
     font-size: 12px;
@@ -913,7 +1062,6 @@ input {
 @media (max-width:640px) {
   #findEvent .filterBar .timeBar div {
     width: 100%;
-    max-width: 300px;
   }
 }
 #findEvent .filterBar .timeBar div .time {
@@ -926,6 +1074,15 @@ input {
   border-radius: 2px;
   border: 1px solid #FFF1CB;
 }
+@media (max-width:640px) {
+  #findEvent .filterBar .timeBar div .time {
+    padding: 0px 8px;
+    background-color: #122f30;
+    backdrop-filter: blur(8px);
+    background-color: rgba(18, 47, 48, 0.6);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
 #findEvent .filterBar .timeBar div .time p {
   display: flex;
   color: #FFF1CB;
@@ -936,35 +1093,11 @@ input {
 #findEvent .filterBar .timeBar div .time:hover {
   border: 2px solid #a2b9bc;
 }
-#findEvent .filterBar .searchBar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-}
-#findEvent .filterBar .searchBar input {
-  background-color: transparent;
-  display: flex;
-  width: 400px;
-  height: 40px;
-  padding: 0px 20px;
-  gap: 10px;
-  color: #FFF1CB;
-  border-radius: 2px;
-  border: 2px solid #FFF1CB;
-  transition: border-color 0.3s, color 0.3s;
-}
-#findEvent .filterBar .searchBar input::placeholder {
-  color: #FFF1CB;
-  font-size: 14px;
-}
-#findEvent .filterBar .searchBar input:hover {
-  color: #a2b9bc;
-  border: 2px solid #a2b9bc;
-}
-#findEvent .filterBar .searchBar input:focus {
-  outline: 2px solid #a2b9bc;
+@media (max-width:640px) {
+  #findEvent .filterBar .searchBar {
+    position: sticky;
+    top: 100px;
+  }
 }
 #findEvent .pageNumberArea {
   display: flex;
@@ -1002,15 +1135,71 @@ input {
   }
 }
 @media (max-width: 640px) {
-  #news > main .new-cards {
-    flex-direction: column;
+  img {
+    max-width: 100%;
     height: auto;
+  }
+  #news .nav-news {
+    display: none;
+  }
+  #findArticles .title,
+  #findEvent .title {
+    display: none;
+  }
+  #findArticles nav,
+  #findEvent nav {
+    width: 100%;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+  }
+  #findArticles .nav-news,
+  #findEvent .nav-news {
+    width: 100%;
+    margin: 0px;
+    letter-spacing: 0.8rem;
+  }
+  #findArticles .nav-news ul,
+  #findEvent .nav-news ul {
+    gap: 48px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  #findArticles .nav-news ul li,
+  #findEvent .nav-news ul li {
+    flex: 1;
+    text-align: center;
+  }
+  #findArticles .nav-news ul li li > a:last-child,
+  #findEvent .nav-news ul li li > a:last-child {
+    width: 100%;
+    align-items: flex-end;
+  }
+  #findArticles .nav-news ul li li > a:first-child,
+  #findEvent .nav-news ul li li > a:first-child {
+    width: 100%;
+    align-items: flex-start;
+  }
+  #findArticles .nav-news ul li a.active,
+  #findEvent .nav-news ul li a.active {
+    border-bottom: 2px solid #a2b9bc;
+    color: #a2b9bc;
+  }
+  #news > main .cover-story {
+    padding: 16px 0px;
+  }
+  #news > main .new-cards {
+    height: auto;
+    overflow: hidden;
+    /* 防止超出 */
   }
   #news > main .new-cards div {
     width: 100%;
   }
-}
-@media screen and (max-width: 640px) {
+  .new-cards > * {
+    max-width: 100%;
+    /* 限制寬度 */
+  }
   #article .articleCard {
     flex-direction: column;
     align-items: flex-start;
@@ -1022,17 +1211,23 @@ input {
   #article .articleCard .articleCardText {
     align-items: flex-start;
   }
-}
-@media screen and (max-width: 640px) {
-  #article .searchBar,
-  #findEvent, .filterBar, .searchBar, #findArticles {
-    padding: 0 20px;
+  #news > main .section-row .feature {
+    gap: 16px;
+    padding-bottom: 16px;
   }
-  #article .searchBar input,
-  #findEvent input, .filterBar input, .searchBar input, #findArticles input {
-    width: 300px;
-    max-width: 100%;
-    padding: 0px;
+  #news > main .section-row .feature1 a div {
+    gap: 8px;
+  }
+  #news > main .section-row .newest .new-cards a div img {
+    width: 100%;
+    height: 200px;
+  }
+  #news > main .section-row .recommendation {
+    margin-top: 8px;
+    padding: 24px;
+  }
+  #news > main .section-row .recommendation h2 {
+    text-align: center;
   }
 }
 @media screen and (max-width: 640px) {

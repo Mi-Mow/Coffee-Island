@@ -178,6 +178,7 @@ function Article() {
                                 <div className="articleCardText">
                                     <h1>{article.title}</h1>
                                     <p className="articleContent">{article.content}</p>
+                                    
                                 </div>
                             </div>
                         ))}
@@ -203,7 +204,7 @@ function Article() {
                                 key={article.id}
                                 onClick={() => onClickArea(article.id)}
                             >
-                                <img src={article.image} alt={article.title} />
+                                <img src={article.image} alt={article.title} loading="lazy" />
                                 <div className="articleCardText">
                                     <h1>{article.title}</h1>
                                     <p className="articleContent">{article.content}</p>

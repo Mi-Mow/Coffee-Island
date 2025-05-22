@@ -20,7 +20,6 @@
   margin: 0 auto;
 
   @media ($media-1920) {
-
     padding: 100px 160px;
   }
 
@@ -151,6 +150,11 @@
     flex-shrink: 0;
     overflow: hidden;
 
+    @media ($media-640) {
+      height: 240px;
+      width: 100%;
+    }
+
     img {
       object-fit: cover;
       height: 100%;
@@ -167,6 +171,15 @@
 
   .title-container {
     height: 2rem;
+  }
+}
+
+
+button {
+  font-size: 24px;
+
+  @media ($media-640) {
+    font-size: 16px;
   }
 }
 
@@ -925,8 +938,8 @@ input {
 .article-detail-page {
   display: flex;
   margin: 0 auto;
-  max-width: 1080px;
-  padding: 100px 0;
+  max-width: 1280px;
+  // padding: 100px 0;
 
   p {
     font-size: 16px;
@@ -1039,7 +1052,15 @@ input {
     align-items: center;
     gap: 24px;
 
+    @media ($media-640) {
+      gap: 32px;
+      .article-button-container:nth-child(2) {
+        display: none;
+      }
+    }
+
     .article-button-container {
+
       button {
         border-radius: 2px;
         border: 3px solid $textcolor;
@@ -1053,6 +1074,11 @@ input {
         align-items: center;
 
         cursor: pointer;
+
+        @media ($media-640) {
+          width: 120px;
+          height: 56px;
+        }
 
         &:hover {
           color: $primary_1;
@@ -1117,7 +1143,7 @@ input {
           /* 平板：2欄 */
         }
 
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 640px) {
           display: grid;
           grid-template-columns: repeat(1, 1fr);
           gap: 54px 24px;
@@ -1324,6 +1350,7 @@ input {
   #findEvent .title {
     display: none;
   }
+
   #findArticles nav,
   #findEvent nav {
     width: 100%;
@@ -1348,14 +1375,16 @@ input {
         flex: 1;
         text-align: center;
 
-        li> a:last-child {
+        li>a:last-child {
           width: 100%;
           align-items: flex-end;
         }
-        li> a:first-child {
+
+        li>a:first-child {
           width: 100%;
           align-items: flex-start;
         }
+
         a.active {
           border-bottom: 2px solid $primary_1;
           color: $primary_1;
