@@ -169,19 +169,23 @@
       justify-content: center;
 
       .back-btn {
-        background-color: transparent;
-        border: 2px #fff1cb solid;
-        font-size: 16px;
+        padding: 5px 8px;
+        background-color: #7b4519;
+        border: #eeb17e 2px solid;
+        border-radius: 2px;
         color: #fff1cb;
-        padding: 8px 10px;
         cursor: pointer;
-        transition: 0.2s all ease-out;
+        font-size: 14px;
+        text-align: center;
+        transition: all 0.3s ease-out;
+        margin-right: 5px;
+        letter-spacing: 1px;
         font-weight: 600;
 
         &:hover {
-          background-color: #fff1cb;
-          border: 2px #653511 solid;
-          color: #653511;
+          background-color: #eeb17e;
+          color: #7b4519;
+          border: #7b4519 2px solid;
         }
       }
     }

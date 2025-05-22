@@ -53,17 +53,17 @@ gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 const carouselImages = [
   {
     img: carousel1,
-    link: "/products",
+    link: `${base}products`,
     text: "限定商品",
   },
   {
     img: carousel2,
-    link: "/news/event",
+    link: `${base}news/event`,
     text: "找活動",
   },
   {
     img: carousel3,
-    link: "/news/article",
+    link: `${base}news/article`,
     text: "閱讀文章",
   },
 ];
