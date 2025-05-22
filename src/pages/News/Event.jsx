@@ -27,7 +27,7 @@ import event7 from '../../assets/news/activities/7.jpg';
       date: '2025/06/30~2025/06/30',
       startDate: new Date('2025-06-30'),
       endDate: new Date('2025-06-30'),
-      title: '徐明志｜品一杯草莓果醬味咖啡',
+      title: '咖啡文化節｜品一杯草莓果醬味咖啡',
       link: "/news/event/1" // 活動內容頁面
     },
     {
