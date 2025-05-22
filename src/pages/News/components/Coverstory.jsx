@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 // import { HiChevronRight } from "react-icons/hi";
 import { articles } from "../Article"
 import { Link } from 'react-router-dom'
+const base = import.meta.env.BASE_URL;
 
 export default function App() {
     // 自訂變數
@@ -13,10 +14,10 @@ export default function App() {
 
     // 陣列存放資料
     const slides = [
-        { url: "/news/story1.png" },
-        { url: "/news/story2.jpg" },
-        { url: "/news/story3.jpg" },
-        { url: "/news/story4.jpg" },
+        { url: `${base}news/story1.png` },
+        { url: `${base}news/story2.jpg` },
+        { url: `${base}news/story3.jpg` },
+        { url: `${base}news/story4.jpg` },
     ]
 
     // 啟動自動輪播
@@ -94,7 +95,7 @@ export default function App() {
                 onMouseLeave={handleMouseLeave}
             >
                 {/* 滿版背景輪播圖 */}
-                <Link to={`/news/article/${articles[currentIndex].id}`}>
+                <Link to={`${base}news/article/${articles[currentIndex].id}`}>
                     <div className="cover-img"
                         style={{
                             backgroundImage: `url(${slides[currentIndex].url})`,

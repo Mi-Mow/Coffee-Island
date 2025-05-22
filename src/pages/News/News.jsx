@@ -1,13 +1,6 @@
 import { Link } from 'react-router-dom'
 import './News.scss'
-import Article from './Article'
-import story1 from '/news/story1.png'
-import cafe1 from '/news/cafe1.jpg'
-import cafe2 from '/news/cafe2.jpg'
-import cafe3 from '../../assets/news/coffeeshop/Ura219/Ura2191.jpeg'
-import historyImg1 from '/news/historyImg1.jpg'
-import event1 from '/news/event1.png'
-import { useState } from 'react'
+const base = import.meta.env.BASE_URL;
 // 活動資料
 import { events } from './Event'
 // 文章資料
@@ -28,10 +21,10 @@ function News() {
           <div className='nav-news'>
             <ul
             ><li>
-                <Link to="/news/article">閱讀文章</Link>
+                <Link to={`${base}news/article`}>閱讀文章</Link>
               </li>
               <li>
-                <Link to="/news/event">找活動</Link>
+                <Link to={`${base}news/event`}>找活動</Link>
               </li>
             </ul>
 
@@ -48,7 +41,7 @@ function News() {
               <div className="feature">
                 <h2>老臺北特輯</h2>
                 <div className='feature1'>
-                  <Link to={`/news/article/${articles[0].id}`}>
+                  <Link to={`${base}news/article/${articles[0].id}`}>
                     <div>
                       <img src={articles[0].image} alt={articles[0].title} />
                       <h3>{articles[0].title}</h3>
@@ -61,7 +54,7 @@ function News() {
                   {/* new-cards */}
                   <div className="new-cards">
                     {articles.slice(1, 4).map((article) => (
-                      <Link to={`/news/article/${article.id}`} key={article.id}>
+                      <Link to={`${base}news/article/${article.id}`} key={article.id}>
                         <div>
                           <img src={article.image} alt={article.title} />
                           <p className="tagName">{article.tag}</p>
@@ -82,7 +75,7 @@ function News() {
                 <div className="reco-cards">
                   {/* reco-cards */}
                   {hotArticles.slice(0, 3).map((article) => (
-                    <a key={article.id} href={`/news/article/${article.id}`} className="reco-card">
+                    <a key={article.id} href={`${base}news/article/${article.id}`} className="reco-card">
                       <div>
                         <img src={article.image} alt="人氣推薦咖啡廳照片" />
                       </div>
@@ -98,7 +91,7 @@ function News() {
                 {/* btn */}
 
                 <div className="reco-button">
-                  <Link to="/news/article">看更多</Link>
+                  <Link to={`${base}news/article`}>看更多</Link>
                 </div>
 
 
@@ -136,7 +129,7 @@ function News() {
 
             {/* 按鈕 */}
             <div className="event-btn">
-              <Link to="/news/event">看更多最新活動</Link>
+              <Link to={`${base}news/event`}>看更多最新活動</Link>
 
             </div>
 

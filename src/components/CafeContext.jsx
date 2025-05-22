@@ -1,6 +1,7 @@
 // src/context/CafeContext.jsx
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as XLSX from "xlsx";
+const base = import.meta.env.BASE_URL;
 
 const CafeContext = createContext();
 
@@ -10,8 +11,24 @@ export const CafeProvider = ({ children }) => {
   const [cafes, setCafes] = useState([]);
 
   useEffect(() => {
-    const loadExcel = async () => {
-      const response = await fetch("/data/Taipei_Retro_Cafe.xlsx");
+    const loadFromLocalStorage = () => {
+      const cached = localStorage.getItem("cafes");
+      if (cached) {
+        try {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed)) {
+            setCafes(parsed);
+            return true;
+          }
+        } catch (e) {
+          console.error("Failed to parse cafes from localStorage:", e);
+        }
+      }
+      return false;
+    };
+
+    const loadFromExcel = async () => {
+      const response = await fetch(`${base}data/Taipei_Retro_Cafe.xlsx`);
       const blob = await response.blob();
 
       const reader = new FileReader();
@@ -38,16 +55,22 @@ export const CafeProvider = ({ children }) => {
           description: row[19],
           tags: row[20]?.split(","),
           rating: row[21],
-          district_id: row[22]
+          district_id: row[22],
+          img_q: row[23],
+          address_en: row[24],
         }));
 
+        localStorage.setItem("cafes", JSON.stringify(parsed));
         setCafes(parsed);
       };
 
       reader.readAsArrayBuffer(blob);
     };
 
-    loadExcel();
+
+    if (!loadFromLocalStorage()) {
+      loadFromExcel();
+    }
   }, []);
 
   return (

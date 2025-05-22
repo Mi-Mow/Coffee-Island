@@ -1,5 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { events } from './Event'
+const base = import.meta.env.BASE_URL;
 
 function EventPage() {
     const { id } = useParams();
@@ -13,6 +14,7 @@ function EventPage() {
     if (!event) return <div>找不到活動</div>;
 
     return (
+
         <>
             <div className="event-detail-page">
                 <main className="event-detail-page">
@@ -45,6 +47,7 @@ function EventPage() {
                 </svg>
             </div>
         </>
+
 
     )
 }

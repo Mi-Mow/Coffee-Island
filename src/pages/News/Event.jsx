@@ -8,6 +8,7 @@ import event4 from '../../assets/news/activities/4.jpg';
 import event5 from '/cafe/neihu_16_1.jpg';
 import event6 from '../../assets/news/activities/6.jpg';
 import event7 from '../../assets/news/activities/7.jpg';
+const base = import.meta.env.BASE_URL;
 
   // data陣列
   export const events = [
@@ -19,7 +20,7 @@ import event7 from '../../assets/news/activities/7.jpg';
       startDate: new Date('2025-11-14'),
       endDate: new Date('2025-11-17'),
       title: '2025台灣國際咖啡展',
-      link: "/news/event/1" // 活動內容頁面
+      link: `${base}news/event/1` // 活動內容頁面
     },
     {
       imgSrc: event2,
@@ -28,7 +29,7 @@ import event7 from '../../assets/news/activities/7.jpg';
       startDate: new Date('2025-06-30'),
       endDate: new Date('2025-06-30'),
       title: '咖啡文化節｜品一杯草莓果醬味咖啡',
-      link: "/news/event/1" // 活動內容頁面
+      link: `${base}news/event/1` // 活動內容頁面
     },
     {
       imgSrc: event3,
@@ -37,7 +38,7 @@ import event7 from '../../assets/news/activities/7.jpg';
       startDate: new Date('2025-05-30'),
       endDate: new Date('2025-05-30'),
       title: 'TYPICA WORLD CARAVAN 2025 - 台中場',
-      link: "/news/event/1" // 活動內容頁面
+      link: `${base}news/event/1` // 活動內容頁面
     },
     {
       imgSrc: event4,
@@ -55,7 +56,16 @@ import event7 from '../../assets/news/activities/7.jpg';
       startDate: new Date('2025-05-30'),
       endDate: new Date('2025-05-30'),
       title: '咖啡文化講座',
-      link: "/news/event/1" // 活動內容頁面
+      link: `${base}news/event/1` // 活動內容頁面
+    },
+    {
+      imgSrc: `${base}cafe/neihu_16_1.jpg`,
+      tags: ['最新企劃', '復古咖啡廳'],
+      date: '2025/05/30~2025/05/30',
+      startDate: new Date('2025-05-30'),
+      endDate: new Date('2025-05-30'),
+      title: '徐明志｜品一杯草莓果醬味咖啡',
+      link: `${base}news/event/1` // 活動內容頁面
     },
     {
       imgSrc: event6,
@@ -64,7 +74,7 @@ import event7 from '../../assets/news/activities/7.jpg';
       startDate: new Date('2025-05-19'),
       endDate: new Date('2025-05-19'),
       title: 'Things about coffee《台灣埔里尋豆記》',
-      link: "/news/event/1" // 活動內容頁面
+      link: `${base}news/event/1` // 活動內容頁面
     },
     {
       imgSrc: event7,
@@ -73,7 +83,7 @@ import event7 from '../../assets/news/activities/7.jpg';
       startDate: new Date('2025-06-07'),
       endDate: new Date('2025-06-28'),
       title: '95究極烘豆班-單品豆烘焙(初階)',
-      link: "/news/event/1" // 活動內容頁面
+      link: `${base}news/event/1` // 活動內容頁面
     },
     // 更多資料...
   ];
@@ -83,7 +93,7 @@ function Event() {
   const navigate = useNavigate();
 
     function onClickArea(id) {
-        navigate(`/news/event/${id}`);
+        navigate(`${base}news/event/${id}`);
     }
 
 
@@ -127,10 +137,10 @@ function Event() {
             <div className='nav-news'>
               <ul
               ><li>
-                  <Link to="/news/article">閱讀文章</Link>
+                  <Link to={`${base}news/article`}>閱讀文章</Link>
                 </li>
                 <li>
-                  <Link to="/news/event">找活動</Link>
+                  <Link to={`${base}news/event`}>找活動</Link>
                 </li>
               </ul>
 

@@ -7,7 +7,7 @@ import {
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
 const GOOGLE_MAP_API = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-import { useCafeData } from "../../components/CafeContext";
+const base = import.meta.env.BASE_URL;
 
 const containerStyle = {
   width: "100%",
@@ -184,12 +184,10 @@ const CafeMap = ({filtered}) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [customIcon, setCustomIcon] = useState(null);
   const [animation, setAnimation] = useState(null);
-  const { cafes } = useCafeData();
-  // console.log(cafes);
 
   const onMapLoad = useCallback(() => {
     const icon = {
-      url: "/logo-sm.svg",
+      url: `${base}logo-sm.svg`,
       scaledSize: new window.google.maps.Size(30, 30), // 圖標尺寸
       origin: new window.google.maps.Point(0, 0), // 起點座標
       anchor: new window.google.maps.Point(15, 30), // 錨點（圖標的底部中心

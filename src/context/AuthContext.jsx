@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
+const base = import.meta.env.BASE_URL;
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -12,10 +13,10 @@ export const AuthProvider = ({ children }) => {
   const login = () => {
     localStorage.setItem("isLoggedIn", true);
     setIsLoggedIn(true);
-    navigate("/");
+    navigate(`${base}`);
   };
   const logout = () => {
-    navigate("/");
+    navigate(`${base}`);
     localStorage.setItem("isLoggedIn", false);
     setIsLoggedIn(false);
   };
