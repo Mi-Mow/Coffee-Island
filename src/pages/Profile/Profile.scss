@@ -45,39 +45,6 @@
 }
 
 
-
-/* Tab 區塊 */
-.tab-group {
-  display: flex;
-  gap: 12px;
-  margin-top: 10px;
-  justify-content: center;
-  gap: 40px;
-
-}
-
-.tab {
-  width: 113px;
-  height: 56px;
-  padding: 19px 16px;
-  background: none;
-  color: #FFF0C8;
-  cursor: pointer;
-  border: none;
-  font-size: 16px;
-  letter-spacing: 1px;
-}
-
-.tab:hover {
-
-  border-bottom: #FFF0C8 2px solid;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out;
-  transition-delay: 0s;
-  transition-property: all;
-}
-
-
 /* 右中下區塊（主內容） */
 .main-section {
   display: flex;

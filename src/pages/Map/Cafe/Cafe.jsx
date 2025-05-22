@@ -14,7 +14,6 @@ import ListItem from "@mui/material/ListItem";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import CafeCard from "../../../components/CafeCard/CafeCard";
-import { useCafeData } from "../../../components/CafeContext";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 const base = import.meta.env.BASE_URL;

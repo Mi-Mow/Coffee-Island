@@ -271,10 +271,15 @@ main {
         font-size: 16px;
       }
     }
-    .filmGroup:hover .filmImg {
-      // transform: scale(1.1);
+    
+    .filmGroup:hover .filmImg1 {
+      width: 900px;
+    }
+    .filmGroup:hover .filmImg2 {
       width: 400px;
-      height: 400px;
+    }
+    .filmGroup:hover .filmImg3 {
+      width: 280px;
     }
 
     .filmGroup:hover .filmMask,

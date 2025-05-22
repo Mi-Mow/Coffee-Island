@@ -16,7 +16,6 @@ import wenshan from "../../../assets/home/district/wenshan.svg";
 import cross from "../../../assets/map/cross.svg";
 import CafeMap from "../../../components/CafeMap/CafeMap";
 import CafeCard from "../../../components/CafeCard/CafeCard";
-import { useCafeData } from "../../../components/CafeContext";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -162,8 +161,8 @@ function District() {
     { id: "xinyi", label: "信義區" },
   ];
 
-  const { cafes } = useCafeData();
-  console.log("cafes", cafes)
+  const cafes = JSON.parse(localStorage.getItem("cafes"));
+  // console.log("cafes", cafes)
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedAreas, setSelectedAreas] = useState([]);
 

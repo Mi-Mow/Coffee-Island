@@ -7,7 +7,6 @@ import {
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
 const GOOGLE_MAP_API = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-import { useCafeData } from "../../components/CafeContext";
 const base = import.meta.env.BASE_URL;
 
 const containerStyle = {
@@ -185,8 +184,6 @@ const CafeMap = ({filtered}) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [customIcon, setCustomIcon] = useState(null);
   const [animation, setAnimation] = useState(null);
-  const { cafes } = useCafeData();
-  // console.log(cafes);
 
   const onMapLoad = useCallback(() => {
     const icon = {

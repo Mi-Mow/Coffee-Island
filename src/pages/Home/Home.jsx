@@ -104,6 +104,10 @@ function Home() {
     navigate(`${base}map/${area}`);
   }
 
+  function onClickFilm(id) {
+    navigate(`${base}news/article/${id}`);
+  }
+
   // 向下滾動 arrow
   const carouselRef = useRef(null);
   const scrollDown = () => {
@@ -481,14 +485,14 @@ function Home() {
                 <stop offset="1" stopColor="white" stopOpacity="0.66" />
               </linearGradient>
             </defs>
-            <g className={s.filmGroup}>
+            <g className={s.filmGroup} onClick={() => onClickFilm(1)}>
               <image
-                className={s.filmImg}
-                href={history1}
-                width="350"
-                height="350"
-                x={50}
-                y={110}
+                className={`${s.filmImg} ${s.filmImg1}`}
+                href={`${base}news/story1.png`}
+                width="850"
+                // height="500"
+                x={0}
+                y={150}
                 clipPath="url(#history1)"
               />
               <rect
@@ -500,17 +504,17 @@ function Home() {
                 clipPath="url(#history1)"
                 fill="rgba(0,0,0,0.5)"
               />
-              <text className={s.filmTitle} x="180" y="300">
-                台灣咖啡興衰史
+              <text className={s.filmTitle} x="170" y="300">
+                明星咖啡館與那個年代
               </text>
             </g>
-            <g className={s.filmGroup}>
+            <g className={s.filmGroup} onClick={() => onClickFilm(2)}>
               <image
-                className={s.filmImg}
-                href={history2}
+                className={`${s.filmImg} ${s.filmImg2}`}
+                href={`${base}news/story2.jpg`}
                 width="350"
                 height="350"
-                x={350}
+                x={380}
                 clipPath="url(#history2)"
               />
               <rect
@@ -521,17 +525,17 @@ function Home() {
                 clipPath="url(#history2)"
                 fill="rgba(0,0,0,0.5)"
               />
-              <text className={s.filmTitle} x="470" y="180">
-                台灣咖啡興衰史
+              <text className={s.filmTitle} x="445" y="180">
+                那些年，台灣喝的咖啡
               </text>
             </g>
-            <g className={s.filmGroup}>
+            <g className={s.filmGroup} onClick={() => onClickFilm(3)}>
               <image
-                className={s.filmImg}
-                href={history3}
-                width="350"
-                height="350"
-                x={600}
+                className={`${s.filmImg} ${s.filmImg3}`}
+                href={`${base}news/story3.jpg`}
+                width="260"
+                x={620}
+                y={0}
                 clipPath="url(#history3)"
               />
               <rect
@@ -542,17 +546,18 @@ function Home() {
                 clipPath="url(#history3)"
                 fill="rgba(0,0,0,0.5)"
               />
-              <text className={s.filmTitle} x="690" y="140">
-                台灣咖啡興衰史
+              <text className={s.filmTitle} x="675" y="140">
+                烘豆節奏與烘豆手法
               </text>
             </g>
-            <g className={s.filmGroup}>
+            <g className={s.filmGroup} onClick={() => onClickFilm(4)}>
               <image
-                className={s.filmImg}
-                href={history4}
+                className={`${s.filmImg} ${s.filmImg2}`}
+                href={`${base}news/story4.jpg`}
                 width="350"
                 height="350"
                 x={800}
+                y={20}
                 clipPath="url(#history4)"
               />
               <rect
@@ -563,14 +568,14 @@ function Home() {
                 clipPath="url(#history4)"
                 fill="rgba(0,0,0,0.5)"
               />
-              <text className={s.filmTitle} x="890" y="160">
-                台灣咖啡興衰史
+              <text className={s.filmTitle} x="910" y="160">
+                手沖咖啡技巧
               </text>
             </g>
-            <g className={s.filmGroup}>
+            <g className={s.filmGroup} onClick={() => onClickFilm(101)}>
               <image
-                className={s.filmImg}
-                href={history2}
+                className={`${s.filmImg} ${s.filmImg2}`}
+                href={`${base}news/cafe1.jpg`}
                 width="350"
                 height="350"
                 x={1000}
@@ -585,16 +590,17 @@ function Home() {
                 fill="rgba(0,0,0,0.5)"
               />
               <text className={s.filmTitle} x="1090" y="210">
-                台灣咖啡興衰史
+                大稻埕老宅咖啡館
               </text>
             </g>
-            <g className={s.filmGroup}>
+            <g className={s.filmGroup} onClick={() => onClickFilm(102)}>
               <image
-                className={s.filmImg}
-                href={history1}
+                className={`${s.filmImg} ${s.filmImg2}`}
+                href={`${base}news/cafe2.jpg`}
                 width="350"
                 height="350"
-                x={1200}
+                x={1130}
+                y={120}
                 clipPath="url(#history6)"
               />
               <rect
@@ -605,8 +611,8 @@ function Home() {
                 clipPath="url(#history6)"
                 fill="rgba(0,0,0,0.5)"
               />
-              <text className={s.filmTitle} x="1260" y="250">
-                台灣咖啡興衰史
+              <text className={s.filmTitle} x="1275" y="250">
+                小尾咖啡
               </text>
             </g>
           </svg>
