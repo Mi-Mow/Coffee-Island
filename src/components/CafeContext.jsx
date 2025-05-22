@@ -1,6 +1,7 @@
 // src/context/CafeContext.jsx
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as XLSX from "xlsx";
+const base = import.meta.env.BASE_URL;
 
 const CafeContext = createContext();
 
@@ -27,7 +28,7 @@ export const CafeProvider = ({ children }) => {
     };
 
     const loadFromExcel = async () => {
-      const response = await fetch("/data/Taipei_Retro_Cafe.xlsx");
+      const response = await fetch(`${base}data/Taipei_Retro_Cafe.xlsx`);
       const blob = await response.blob();
 
       const reader = new FileReader();
