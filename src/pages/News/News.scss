@@ -174,12 +174,13 @@
   }
 }
 
-
-button {
-  font-size: 24px;
-
-  @media ($media-640) {
-    font-size: 16px;
+.article-buttonGroup-container {
+  button {
+    font-size: 24px;
+  
+    @media ($media-640) {
+      font-size: 16px;
+    }
   }
 }
 
