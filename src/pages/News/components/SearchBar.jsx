@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+const base = import.meta.env.BASE_URL;
 
 function SearchBar({ articles }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,7 +24,7 @@ function SearchBar({ articles }) {
   const handleSelect = (id) => {
     setSearchTerm('');
     setSuggestions([]);
-    navigate(`/news/article/${id}`);
+    navigate(`${base}news/article/${id}`);
   };
 
   return (

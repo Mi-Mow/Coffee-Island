@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import { Mousewheel, Pagination } from "swiper/modules";
 // import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { gsap } from "gsap";
+const base = import.meta.env.BASE_URL;
 
 function Slider({ imageQ, district, id }) {
   const swiperWrapperRef = useRef(null);
@@ -96,7 +97,7 @@ function Slider({ imageQ, district, id }) {
         >
           {images.map((imagePath, index) => (
             <SwiperSlide key={index}>
-              <img src={`/cafe/${imagePath}`} alt="" />
+              <img src={`${base}cafe/${imagePath}`} alt="" />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -17,6 +17,7 @@ import CafeCard from "../../../components/CafeCard/CafeCard";
 import { useCafeData } from "../../../components/CafeContext";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+const base = import.meta.env.BASE_URL;
 
 const getRandom = (data) => {
   const selectedIndices = new Set();
@@ -42,8 +43,8 @@ function Cafe() {
   const [openSnackBar, setOpenSnackBar] = useState(false);
 
   useEffect(() => {
-    console.log("current cafe ", location.state.cafe);
-    console.log("filter: ", location.state.displayFilter);
+    // console.log("current cafe ", location.state.cafe);
+    // console.log("filter: ", location.state.displayFilter);
     if (location.state?.cafe && location.state?.displayFilter) {
       sessionStorage.setItem(
         "currentCafe",
@@ -227,7 +228,7 @@ function Cafe() {
   };
 
   const backToFilter = () => {
-    navigate(`/map/${cafe.district_id}`, { state: { scrollToFilter: true } });
+    navigate(`${base}map/${cafe.district_id}`, { state: { scrollToFilter: true } });
   };
 
   const infoRef = useRef(null);

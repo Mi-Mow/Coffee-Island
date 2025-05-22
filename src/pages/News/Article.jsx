@@ -1,17 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom'
+const base = import.meta.env.BASE_URL;
 import cafe1 from '/news/cafe1.jpg'
 import cafe2 from '/news/cafe2.jpg'
 import cafe2_1 from '/news/cafe2-1.jpg'
 import cafe2_2 from '/news/cafe2-2.jpg'
 import cafe2_3 from '/news/cafe2-3.jpg'
 import cafe3 from '/news/cafe3.jpg'
-import story1 from '/news/story1.png'
 import story1_1 from '/news/story1_1.jpg'
-import story2 from '/news/story2.jpg'
-import story3 from '/news/story3.jpg'
-import story4 from '/news/story4.jpg'
 import SearchBar from './components/Searchbar'
-
 
 
 // 資料區
@@ -20,7 +16,7 @@ export const articles = [
         id: 1,
         title: '川先生｜明星咖啡館與那個年代：臺北文人的思想日常',
         content: '在1960年代末的台北街頭，思想的自由仍在重重邊界之中遊走。學運、文藝、國際思潮交織而來，卻在某些地方悄然發酵──那不是課堂，也不是報社，而是街角的咖啡館。像是「明星咖啡館」這樣的空間，對當時的文青而言，不只是喝咖啡的場所，而是一種「精神的流浪地」。他們窩在藤椅裡，口中談論薩特、卡繆與尼采，筆記本裡寫下詩句、政治抒懷、未完成的小說，試圖在那一壺濃黑之中釋放內心的幽微躁動。',
-        image: story1,
+        image: `${base}news/story1.png`,
         tag: '封面故事',
         author: 'Coco Huang',
         paragraphs: {
@@ -35,7 +31,7 @@ export const articles = [
         id: 2,
         title: '川先生｜那些年，台灣喝的咖啡是什麼味',
         content: '明清時期-零星摸索種植最早可推前至1624-1662年，當時少數荷蘭人早已悄悄引進咖啡樹，但僅限於荷蘭人自己飲用，不具有真正的商業價值與推廣意義。 下面敘述是最早可考據的文字紀錄，18世紀清光緒年間台灣開放商港後，英國「德記洋行」來台經商貿易，選擇從馬尼拉引進阿拉比卡品種， 種植區域主要於北部商港附近山區，包括現今新北市海山地區與台北市文山區，但短短三年時間，莊園因一把不明火炬整個燒光， 同時因北部緯度過高栽植過程水土不服，德記洋行因兩個主要原因選擇放棄。',
-        image: story2,
+        image: `${base}news/story2.jpg`,
         tag: '封面故事',
         author: 'Coco Huang',
         paragraphs: {
@@ -52,7 +48,7 @@ export const articles = [
         id: 3,
         title: '步昂｜烘豆節奏與烘豆手法介紹！ 北歐快烘與日式慢烘的風味差異比較！',
         content: '精品咖啡風味與「咖啡豆本身品質」以及「咖啡豆處理方式」有密切關係，而其中又以咖啡烘豆手法對風味產生極大的影響。由於咖啡豆烘焙過程會經歷一連串化學反應，像是梅納反應、焦糖化反應等等，讓咖啡呈現出豐富多樣的風味口感。國際咖啡中烘焙手法也十分多元，以烘豆節奏區分的兩大經典派系：「北歐快烘」和「日式慢烘」。精品咖啡風味與「咖啡豆本身品質」以及「咖啡豆處理方式」有密切關係，而其中又以咖啡烘豆手法對風味產生極大的影響。由於咖啡豆烘焙過程會經歷一連串化學反應，像是梅納反應、焦糖化反應等等，讓咖啡呈現出豐富多樣的風味口感。',
-        image: story3,
+        image: `${base}news/story3.jpg`,
         tag: '咖啡教學',
         author: 'Coco Huang',
         paragraphs: {
@@ -69,7 +65,7 @@ export const articles = [
         id: 4,
         title: '湛盧｜手沖咖啡總是不對味？掌握技巧與比例，輕鬆享受好咖啡',
         content: '手沖咖啡能夠忠實發揮咖啡豆多層次的味譜，近期在國內外盛行。對於咖啡愛好者來說，手沖咖啡除了深入體會不同豆子的真實風味，也能更加了解咖啡其中的奧秘。而究竟手沖咖啡技巧有哪些呢？這篇文章將詳細介紹手沖咖啡步驟，讓你輕鬆享受手沖咖啡的趣味。',
-        image: story4,
+        image: `${base}news/story4.jpg`,
         tag: '咖啡教學',
         author: 'Coco Huang',
         paragraphs: {
@@ -88,7 +84,7 @@ export const hotArticles = [
         id: 101,
         title: '大稻埕最美秘境，預約制老宅咖啡館AKA café！',
         content: 'AKA café 藏身於大稻埕的百年老宅中，老屋紅磚與現代設計交織出懷舊又摩登的氛圍。推開木門，陽光灑落在磨石子地板上，老傢俱搭配極簡美學，彷彿時光暫停。這裡不只是喝咖啡的地方，更像一場舊時光與當代品味的對話。',
-        image: cafe1,
+        image: `${base}news/cafe1.jpg`,
         author: 'Coco Huang',
         paragraphs: {
             p1: "隱身於大稻埕百年老宅的AKA café，因「不可參觀、需預約、不併桌、禁拍照」等嚴格規矩，讓不少人望之卻步。然而，一旦按下門鈴、隨著引導穿越窄巷入內，便能瞬間感受到空間裡沈積百年的光影與質感，彷彿走入過去富貴人家的日常場景。",
@@ -105,7 +101,7 @@ export const hotArticles = [
         id: 102,
         title: '種蘭花的溫室改造而成！大稻埕「小尾咖啡」隱身二樓老宅，明亮採光包覆空間',
         content: '前身為蘭花溫室的老宅空間改造，小尾咖啡由Allen與設計師筱婷合作打造，空間保留原貌，結合喫茶店元素與黑膠唱片、雜誌牆，成為充滿交流與個性的小隱秘境。樓中樓設計讓人有探索的趣味，傳遞對咖啡與空間的熱愛。',
-        image: cafe2,
+        image: `${base}news/cafe2.jpg`,
         author: '洪雅筠',
         paragraphs: {
             p1: "疫情過後的大稻埕風景變動頻繁，一些老店退出，一些新面孔進駐，但歷史與文化的厚度依然存在。就在台北橋邊，一棟屋齡六十年的老房子悄然轉變成咖啡館。主理人Allen與設計師筱婷，憑藉對老城區的熱愛與偶然的靈感，共同打造了『小尾咖啡』。",
@@ -119,7 +115,7 @@ export const hotArticles = [
         id: 103,
         title: '隱身大稻埕迪化街的老宅秘境！「裏 Ura.219」',
         content: 'AKA café 「裏 Ura.219」結合服裝、陶藝、植物與茶屋的複合式空間，強調「痕跡」與「不完美」的美學。內部庭院融合日式禪意造景、枯山水步道及古物選品，強調歷史痕跡與生命流動，營造靜謐而充滿藝術氣息的空間體驗，呼應大稻埕的文化底蘊。',
-        image: cafe3,
+        image: `${base}news/cafe3.jpg`,
         author: 'Amber Chiu',
         paragraphs: {
             p1: "2022 年，『Merci 裏山』在台北陽明山開幕，結合溫室、植栽、老物與茶室等元素，營造出兼具藝文氣息與自然靜謐感的空間，吸引眾多風格人士造訪。到了 2023 年底，裏山與服裝品牌 Professor.E 攜手在大稻埕推出全新複合式空間『裏 Ura.219』，將服飾、塊根植物、咖啡、茶屋與古物美學融合，為熙攘的迪化街注入一抹安靜且深層的文化氣息。",
@@ -137,7 +133,7 @@ function Article() {
     const navigate = useNavigate();
 
     function onClickArea(id) {
-        navigate(`/news/article/${id}`);
+        navigate(`${base}news/article/${id}`);
     }
 
     return (
@@ -150,10 +146,10 @@ function Article() {
                         <div className='nav-news'>
                             <ul>
                                 <li>
-                                    <Link to="/news/article">閱讀文章</Link>
+                                    <Link to={`${base}news/article`}>閱讀文章</Link>
                                 </li>
                                 <li>
-                                    <Link to="/news/event">找活動</Link>
+                                    <Link to={`${base}news/event`}>找活動</Link>
                                 </li>
                             </ul>
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CartPage.scss";
+const base = import.meta.env.BASE_URL;
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -125,7 +126,7 @@ function CartPage() {
             </div>
             <div className="button-group">
               <button className="next" onClick={() => setStep(2)}>下一步</button>
-              <button className="keep" onClick={() => navigate("/products")}>繼續選購</button>
+              <button className="keep" onClick={() => navigate(`${base}products`)}>繼續選購</button>
             </div>
           </div>
         </div>
@@ -260,7 +261,7 @@ function CartPage() {
         <div className="order-complete">
           <h2>感謝您的預訂！</h2>
           <p>我們已收到您的訂單，請至電子信箱查看確認信。</p>
-          <button className="keep" onClick={() => navigate("/")}>返回首頁</button>
+          <button className="keep" onClick={() => navigate(`${base}`)}>返回首頁</button>
         </div>
       )}
     </div>

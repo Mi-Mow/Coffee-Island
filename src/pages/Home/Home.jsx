@@ -45,6 +45,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CONFIG } from "../../config";
 import { useTranslation } from "react-i18next";
 const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const base = import.meta.env.BASE_URL;
 
 // 註冊 GSAP MotionPathPlugin
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
@@ -100,7 +101,7 @@ function Home() {
   const navigate = useNavigate();
 
   function onClickArea(area) {
-    navigate(`/map/${area}`);
+    navigate(`${base}map/${area}`);
   }
 
   // 向下滾動 arrow
@@ -807,7 +808,7 @@ function Home() {
               <div className={s.titleCh}>咖啡地圖</div>
             </div>
             <div className={s.logo}>
-              <img src="/logo-sm.svg" alt="" />
+              <img src={`${base}logo-sm.svg`} alt="" />
             </div>
           </div>
           <div className={s.hint}>點選您想要去的區域</div>
@@ -881,7 +882,7 @@ function Home() {
             <button
               className={s.registerButton}
               onClick={() => {
-                navigate("/register");
+                navigate(`${base}register`);
               }}
             >
               創建您的帳戶

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./Products.scss";
 import { useNavigate } from "react-router-dom";
+const base = import.meta.env.BASE_URL;
 
 // 假資料區：使用 public 資料夾圖片路徑
 const products = [
@@ -12,8 +13,8 @@ const products = [
     tag: "優選",
     isNew: false,
     category: "kettle",
-    image: "/products/gooseneck1.jpg",
-    hoverImage: "/products/gooseneck1Hover.jpg",
+    image: `${base}products/gooseneck1.jpg`,
+    hoverImage: `${base}products/gooseneck1Hover.jpg`,
   },
   {
     id: "1-2",
@@ -23,8 +24,8 @@ const products = [
     tag: "優選",
     isNew: false,
     category: "kettle",
-    image: "/products/gooseneck2.jpg",
-    hoverImage: "/products/gooseneck2Hover.jpg",
+    image: `${base}products/gooseneck2.jpg`,
+    hoverImage: `${base}products/gooseneck2Hover.jpg`,
   },
   {
     id: "1-3",
@@ -34,8 +35,8 @@ const products = [
     tag: "優選",
     isNew: false,
     category: "kettle",
-    image: "/products/gooseneck3.jpg",
-    hoverImage: "/products/gooseneck3Hover.jpg",
+    image: `${base}products/gooseneck3.jpg`,
+    hoverImage: `${base}products/gooseneck3Hover.jpg`,
   },
   {
     id: "2-1",
@@ -45,8 +46,8 @@ const products = [
     tag: "經典",
     isNew: false,
     category: "filter",
-    image: "/products/coffeeFilter1.jpg",
-    hoverImage: "/products/coffeeFilter1Hover.jpg",
+    image: `${base}products/coffeeFilter1.jpg`,
+    hoverImage: `${base}products/coffeeFilter1Hover.jpg`,
   },
   {
     id: "2-2",
@@ -56,8 +57,8 @@ const products = [
     tag: "經典",
     isNew: false,
     category: "filter",
-    image: "/products/coffeeFilter2.jpg",
-    hoverImage: "/products/coffeeFilter2Hover.jpg",
+    image: `${base}products/coffeeFilter2.jpg`,
+    hoverImage: `${base}products/coffeeFilter2Hover.jpg`,
   },
   {
     id: "3-1",
@@ -67,8 +68,8 @@ const products = [
     tag: "熱銷",
     isNew: true,
     category: "beans",
-    image: "/products/coffeeBean1.jpg",
-    hoverImage: "/products/coffeeBeanHover1.jpg",
+    image: `${base}products/coffeeBean1.jpg`,
+    hoverImage: `${base}products/coffeeBeanHover1.jpg`,
   },
   {
     id: "3-2",
@@ -78,8 +79,8 @@ const products = [
     tag: "熱銷",
     isNew: false,
     category: "beans",
-    image: "/products/coffeeBean2.jpg",
-    hoverImage: "/products/coffeeBeanHover2.jpg",
+    image: `${base}products/coffeeBean2.jpg`,
+    hoverImage: `${base}products/coffeeBeanHover2.jpg`,
   },
   {
     id: "3-3",
@@ -89,8 +90,8 @@ const products = [
     tag: "熱銷",
     isNew: false,
     category: "beans",
-    image: "/products/coffeeBean3.jpg",
-    hoverImage: "/products/coffeeBeanHover3.jpg",
+    image: `${base}products/coffeeBean3.jpg`,
+    hoverImage: `${base}products/coffeeBeanHover3.jpg`,
   },
 ];
 
@@ -183,7 +184,7 @@ function ProductList() {
             <div
               className="product-card"
               key={item.id}
-              onClick={() => navigate(`/product/${item.id}`)}
+              onClick={() => navigate(`${base}products/${item.id}`)}
               onMouseEnter={() => setHoveredId(item.id)} // ⬅️ 進入 hover
               onMouseLeave={() => setHoveredId(null)}     // ⬅️ 離開 hover
               style={{ cursor: "pointer" }}

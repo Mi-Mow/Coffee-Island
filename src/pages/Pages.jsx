@@ -6,7 +6,7 @@ import About from "./About/About";
 import Article from "./News/Article";
 import ArticlePage from "./News/ArticlePage";
 import Event from "./News/Event";
-import EventPage from './News/EventPage'
+import EventPage from "./News/EventPage";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import District from "./Map/District/District";
@@ -15,27 +15,28 @@ import CartPage from "./Products/CartPage";
 import Profile from "./Profile/Profile";
 import ProtectedRoute from "../components/ProtectedRoute";
 import Cafe from "./Map/Cafe/Cafe";
+const base = import.meta.env.BASE_URL;
 
 function Pages() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/map" element={<Map />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/news/article" element={<Article />} />
-        <Route path="/news/article/:id" element={<ArticlePage />} />
-        <Route path="/news/event" element={<Event />} />
-		<Route path="/news/event/:id" element={<EventPage/>} />
-        <Route path="/map/:district" element={<District />} />
-        <Route path="/map/:district/cafe/:id" element={<Cafe />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path={`${base}`} element={<Home />} />
+        <Route path={`${base}#map`} element={<Map />} />
+        <Route path={`${base}map/:district`} element={<District />} />
+        <Route path={`${base}map/:district/cafe/:id`} element={<Cafe />} />
+        <Route path={`${base}news`} element={<News />} />
+        <Route path={`${base}news/article`} element={<Article />} />
+        <Route path={`${base}news/article/:id`} element={<ArticlePage />} />
+        <Route path={`${base}news/event`} element={<Event />} />
+        <Route path={`${base}news/event/:id`} element={<EventPage />} />
+        <Route path={`${base}products`} element={<Products />} />
+        <Route path={`${base}products/:id`} element={<ProductPage />} />
+        <Route path={`${base}about`} element={<About />} />
+        <Route path={`${base}login`} element={<Login />} />
+        <Route path={`${base}register`} element={<Register />} />
         <Route
-          path="/cart"
+          path={`${base}cart`}
           element={
             <ProtectedRoute>
               <CartPage />
@@ -43,7 +44,7 @@ function Pages() {
           }
         />
         <Route
-          path="/profile"
+          path={`${base}profile`}
           element={
             <ProtectedRoute>
               <Profile />

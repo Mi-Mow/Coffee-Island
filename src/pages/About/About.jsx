@@ -22,7 +22,7 @@ function About() {
 
           </div>
         </div>
-        <div class="circle-outline"></div>
+        <div className="circle-outline"></div>
 
         <p id='nav'>是否還記得<br />
           還記得錄音帶轉到第 A 首歌<br />

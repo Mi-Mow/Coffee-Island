@@ -5,6 +5,7 @@ import heartFilled from "../../assets/map/icon-heart-red.svg";
 import { useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+const base = import.meta.env.BASE_URL;
 
 function CafeCard({ title, desc, rating, img, cafe, size, displayFilter }) {
   const location = useLocation();
@@ -26,19 +27,19 @@ function CafeCard({ title, desc, rating, img, cafe, size, displayFilter }) {
     setOpenSnackBar(false);
   };
 
-  const pathRegex = /^\/map\/[^/]+\/cafe/;
+  const pathRegex = /^\/Coffee-Island\/\map\/[^/]+\/cafe/;
 
   const handleClick = () => {
     if (pathRegex.test(location.pathname)) {
       const cafeInfo = document.getElementById("cafeInfo");
+      cafeInfo.scrollIntoView();
       if (cafeInfo) {
-        cafeInfo.scrollIntoView();
-        navigate(`/map/${cafe.district_id}/cafe/${cafe.id}`, {
+        navigate(`${base}map/${cafe.district_id}/cafe/${cafe.id}`, {
           state: { cafe, displayFilter },
         });
       }
     } else {
-      navigate(`/map/${cafe.district_id}/cafe/${cafe.id}`, {
+      navigate(`${base}map/${cafe.district_id}/cafe/${cafe.id}`, {
         state: { cafe, displayFilter },
       });
     }
@@ -51,7 +52,7 @@ function CafeCard({ title, desc, rating, img, cafe, size, displayFilter }) {
         onClick={handleClick}
       >
         <div className={s.imgContainer}>
-          <img src={`/cafe/${img}.jpg`} alt="" />
+          <img src={`${base}cafe/${img}.jpg`} alt="" />
           <div className={s.heartContainer} onClick={toggleFavorite}>
             <img
               src={isFavorite ? heartFilled : heartOutline}

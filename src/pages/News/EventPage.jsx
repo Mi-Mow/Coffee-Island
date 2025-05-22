@@ -1,5 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { events } from './Event'
+const base = import.meta.env.BASE_URL;
 
 function EventPage() {
     const { id } = useParams();
@@ -19,10 +20,10 @@ function EventPage() {
                     <div className='nav-news'>
                         <ul>
                             <li>
-                                <Link to="/news/event">閱讀文章</Link>
+                                <Link to={`${base}news/article`}>閱讀文章</Link>
                             </li>
                             <li>
-                                <Link to="/news/event">找活動</Link>
+                                <Link to={`${base}news/event`}>找活動</Link>
                             </li>
                         </ul>
 

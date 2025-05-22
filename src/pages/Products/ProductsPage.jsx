@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./ProductsPage.scss";
+const base = import.meta.env.BASE_URL;
 
 // 假資料區
 const mockProduct = {
@@ -13,19 +14,19 @@ const mockProduct = {
     "可選擇杯份磨豆",
   ],
   colors: ["#000000", "#ffffff", "#a0522d"],
-  images: ["/products/gooseneck1Hover.jpg", "/products/gooseneck1Des1.jpg"],
+  images: [`${base}products/gooseneck1Hover.jpg`, `${base}products/gooseneck1Des1.jpg`],
 };
 
 const descData = [
-  { img: "/products/gooseneck1Des3.jpg", title: "散熱口設計", desc: "快速散熱" },
-  { img: "/products/gooseneck1Des2.jpg", title: "轉速調節", desc: "手動調整刀盤轉速" },
-  { img: "/products/gooseneck1Hover.jpg", title: "金屬拋光開關", desc: "開關按鈕觸感升級" },
+  { img: `${base}products/gooseneck1Des3.jpg`, title: "散熱口設計", desc: "快速散熱" },
+  { img: `${base}products/gooseneck1Des2.jpg`, title: "轉速調節", desc: "手動調整刀盤轉速" },
+  { img: `${base}products/gooseneck1Hover.jpg`, title: "金屬拋光開關", desc: "開關按鈕觸感升級" },
 ];
 
 const recommendData = [
-  { img: "/products/gooseneck1.jpg", name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
-  { img: "/products/gooseneck2.jpg", name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
-  { img: "/products/gooseneck3.jpg", name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
+  { img: `${base}products/gooseneck1.jpg`, name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
+  { img: `${base}products/gooseneck2.jpg`, name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
+  { img: `${base}products/gooseneck3.jpg`, name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
 ];
 
 function ProductPage() {
@@ -51,7 +52,7 @@ function ProductPage() {
     };
     const existing = JSON.parse(localStorage.getItem("cartItems")) || [];
     localStorage.setItem("cartItems", JSON.stringify([...existing, newItem]));
-    navigate("/cart");
+    navigate(`${base}cart`);
   };
 
   const handlePrev = () => {
@@ -132,10 +133,10 @@ function ProductPage() {
               {/* 下方兩張圖左右排列 */}
               <div className="desc-images">
                 <div className="desc-image-wrapper">
-                  <img src="/products/gooseneck1Des3.jpg" alt="商品圖1" />
+                  <img src={`${base}products/gooseneck1Des3.jpg`} alt="商品圖1" />
                 </div>
                 <div className="desc-image-wrapper">
-                  <img src="/products/gooseneck1Des2.jpg" alt="商品圖2" />
+                  <img src={`${base}products/gooseneck1Des2.jpg`} alt="商品圖2" />
                 </div>
               </div>
             </div>
@@ -182,7 +183,7 @@ function ProductPage() {
         <section className="recommended-products">
           <div className="recommend-title">
             咖啡人還會這樣搭配
-            <img src="/products/prodRecoMs.png" alt="薦" className="prodRecoMs" />
+            <img src={`${base}products/prodRecoMs.png`} alt="薦" className="prodRecoMs" />
           </div>
           <div className="recommend-cards">
             {recommendData.map((item, idx) => (

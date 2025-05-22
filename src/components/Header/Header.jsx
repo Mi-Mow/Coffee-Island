@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useLanguage } from "../../context/LanguageContext";
+const base = import.meta.env.BASE_URL;
 
 function Header() {
   const { language, changeLanguage } = useLanguage();
@@ -40,7 +41,7 @@ function Header() {
   return (
     <div>
       <header>
-        <NavLink to={"/"} className={s.logo}>
+        <NavLink to={`${base}`} className={s.logo}>
           <img src={logo} alt="" />
         </NavLink>
 
@@ -49,7 +50,7 @@ function Header() {
             <>
               <div className={s.hamburger} onClick={() => setIsMenuOpen(true)}>
                 <div className={s.hamburgerContainer}>
-                  <img src="/hamburger.svg" alt="" />
+                  <img src={`${base}hamburger.svg`} alt="" />
                 </div>
               </div>
               {isMenuOpen && (
@@ -64,29 +65,29 @@ function Header() {
                     {isLoggedIn ? (
                       <>
                         <ul className={s.menuList}>
-                          <li><NavLink to="/" onClick={() => setIsMenuOpen(false)}>主頁</NavLink></li>
-                          <li><NavLink to="/#map" onClick={() => setIsMenuOpen(false)}>地圖</NavLink></li>
-                          <li><NavLink to="/news" onClick={() => setIsMenuOpen(false)}>島嶼月報</NavLink></li>
-                          <li><NavLink to="/products" onClick={() => setIsMenuOpen(false)}>限定商品</NavLink></li>
-                          <li><NavLink to="/about" onClick={() => setIsMenuOpen(false)}>關於我們</NavLink></li>
-                          <li><NavLink to="/cart" onClick={() => setIsMenuOpen(false)}>購物車</NavLink></li>
+                          <li><NavLink to={`${base}`} onClick={() => setIsMenuOpen(false)}>主頁</NavLink></li>
+                          <li><NavLink to={`${base}#map`} onClick={() => setIsMenuOpen(false)}>地圖</NavLink></li>
+                          <li><NavLink to={`${base}news`} onClick={() => setIsMenuOpen(false)}>島嶼月報</NavLink></li>
+                          <li><NavLink to={`${base}products`} onClick={() => setIsMenuOpen(false)}>限定商品</NavLink></li>
+                          <li><NavLink to={`${base}about`} onClick={() => setIsMenuOpen(false)}>關於我們</NavLink></li>
+                          <li><NavLink to={`${base}cart`} onClick={() => setIsMenuOpen(false)}>購物車</NavLink></li>
                         </ul>
 
-                        <NavLink to="/profile" onClick={() => setIsMenuOpen(false)} className={s.memberButton}>
+                        <NavLink to={`${base}profile`} onClick={() => setIsMenuOpen(false)} className={s.memberButton}>
                           會員中心
                         </NavLink>
                       </>
                     ) : (
                       <>
                         <ul className={s.menuList}>
-                          <li><NavLink to="/" onClick={() => setIsMenuOpen(false)}>主頁</NavLink></li>
-                          <li><NavLink to="/#map" onClick={() => setIsMenuOpen(false)}>地圖</NavLink></li>
-                          <li><NavLink to="/news" onClick={() => setIsMenuOpen(false)}>島嶼月報</NavLink></li>
-                          <li><NavLink to="/products" onClick={() => setIsMenuOpen(false)}>限定商品</NavLink></li>
-                          <li><NavLink to="/about" onClick={() => setIsMenuOpen(false)}>關於我們</NavLink></li>
+                          <li><NavLink to={`${base}`} onClick={() => setIsMenuOpen(false)}>主頁</NavLink></li>
+                          <li><NavLink to={`${base}#map`} onClick={() => setIsMenuOpen(false)}>地圖</NavLink></li>
+                          <li><NavLink to={`${base}news`} onClick={() => setIsMenuOpen(false)}>島嶼月報</NavLink></li>
+                          <li><NavLink to={`${base}products`} onClick={() => setIsMenuOpen(false)}>限定商品</NavLink></li>
+                          <li><NavLink to={`${base}about`} onClick={() => setIsMenuOpen(false)}>關於我們</NavLink></li>
                         </ul>
 
-                        <NavLink to="/login" onClick={() => setIsMenuOpen(false)} className={s.memberButton}>
+                        <NavLink to={`${base}login`} onClick={() => setIsMenuOpen(false)} className={s.memberButton}>
                           會員登入
                         </NavLink>
                       </>
@@ -98,11 +99,11 @@ function Header() {
           ) : (
             <>
               <div className={s.navLink}>
-                <NavLink to={"/#map"} className={s.navItem}>
+                <NavLink to={`${base}#map`} className={s.navItem}>
                   {t(`header.map`)}
                 </NavLink>
                 <NavLink
-                  to={"/news"}
+                  to={`${base}news`}
                   className={({ isActive }) =>
                     isActive ? `${s.navItem} ${s.active}` : s.navItem
                   }
@@ -110,7 +111,7 @@ function Header() {
                   {t(`header.news`)}
                 </NavLink>
                 <NavLink
-                  to={"/products"}
+                  to={`${base}products`}
                   className={({ isActive }) =>
                     isActive ? `${s.navItem} ${s.active}` : s.navItem
                   }
@@ -118,7 +119,7 @@ function Header() {
                   {t(`header.products`)}
                 </NavLink>
                 <NavLink
-                  to={"/about"}
+                  to={`${base}about`}
                   className={({ isActive }) =>
                     isActive ? `${s.navItem} ${s.active}` : s.navItem
                   }
@@ -135,12 +136,12 @@ function Header() {
                 </div>
                 {isLoggedIn ? (
                   <>
-                    <NavLink to={"/cart"}>
+                    <NavLink to={`${base}cart`}>
                       <div className={s.cartContainer}>
                         <img src={cart} alt="" />
                       </div>
                     </NavLink>
-                    <NavLink to={"/profile"}>
+                    <NavLink to={`${base}profile`}>
                       <div className={s.profileContainer}>
                         <img src={profile} alt="" />
                       </div>
@@ -148,12 +149,12 @@ function Header() {
                   </>
                 ) : (
                   <>
-                    <NavLink to={"/login"}>
+                    <NavLink to={`${base}login`}>
                       <button className={s.loginBtn}>
                         {t(`header.login`)}
                       </button>
                     </NavLink>
-                    <NavLink to={"/register"}>
+                    <NavLink to={`${base}register`}>
                       <button className={s.registerBtn}>
                         {t(`header.register`)}
                       </button>

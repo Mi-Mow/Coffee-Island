@@ -2,12 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./Profile.scss";
 import avatar from '../../assets/avatar.svg'
+const base = import.meta.env.BASE_URL;
 
 function Profile() {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const handleLogout = () => {
-    navigate('/');
+    navigate(`${base}`);
 
     setTimeout(() => {
       logout();
