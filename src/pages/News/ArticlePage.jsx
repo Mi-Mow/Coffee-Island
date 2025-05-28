@@ -1,6 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom"
 // 文章資料
 import { articles, hotArticles } from './Article'
+const base = import.meta.env.BASE_URL;
 
 
 function ArticlePage() {
@@ -16,6 +17,13 @@ function ArticlePage() {
     const handleGoBack = () => {
         navigate(-1); // -1 表示回到上一頁
     };
+    const handleGoArticle = () => {
+        navigate(`${base}news/article`);
+    };
+    const handleGoNews = () => {
+        navigate(`${base}news`);
+    };
+
 
     // 處理段落與圖片對應
     const paragraphArray = Object.values(article.paragraphs);
@@ -26,25 +34,34 @@ function ArticlePage() {
     return (
         <div>
             <main className="article-detail-page">
-                {/* <nav>
-                    <div className='nav-news'>
-                        <ul>
-                            <li>
-                                <Link to="/news/article">閱讀文章</Link>
-                            </li>
-                            <li>
-                                <Link to="/news/event">找活動</Link>
-                            </li>
-                        </ul>
 
-                    </div>
-                </nav> */}
+                 {/* 麵包屑區塊 */}
+                <nav className="breadcrumbs" aria-label="breadcrumb">
+                    <ol style={{ listStyle: 'none', padding: 0, margin: '10px 0', display: 'flex', gap: '5px' }}>
+                        <li>
+                            <Link to={`${base}`}>首頁</Link>
+                        </li>
+                        <li>&gt;</li>
+                        <li>
+                            <Link to={`${base}news`}>島嶼月報</Link>
+                        </li>
+                        <li>&gt;</li>
+                        <li>
+                            <Link to={`${base}news/article`}>閱讀文章</Link>
+                        </li>
+                        <li>&gt;</li>
+                        <li aria-current="page">
+                            {article.title} {/* 當前文章標題 */}
+                        </li>
+                    </ol>
+                </nav>
 
                 <section>
                     {/* 標題區 */}
                     <div className="title-container">
                         <p>咖啡島 老臺北特輯</p>
-                        <h2>{article.title}</h2>
+                        {/* SEO h1 */}
+                        <h1>{article.title}</h1>
                         <p>文 陳誠成 攝 郭董郭</p>
                     </div>
                     {/* 內文區 */}
@@ -101,13 +118,14 @@ function ArticlePage() {
                     <div className="article-button-container">
                         <button onClick={handleGoBack}>上一頁</button>
                     </div>
-                    <div className="article-button-container">
+                    {/* <div className="article-button-container">
                         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>回到置頂</button>
+                    </div> */}
+                    <div className="article-button-container">
+                        <button onClick={handleGoArticle}>其他文章</button>
                     </div>
                     <div className="article-button-container">
-                        <Link to="/news">
-                            <button>回到月報</button>
-                        </Link>
+                        <button onClick={handleGoNews}>回到月報</button>
                     </div>
                 </div>
 

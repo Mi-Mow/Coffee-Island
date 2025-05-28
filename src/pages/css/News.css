@@ -4,7 +4,7 @@
 /* h1 color */
 #news > main {
   overflow-x: hidden;
-  max-width: 100%;
+  max-width: 1280px;
 }
 
 /* 島嶼月報 all */
@@ -13,7 +13,7 @@
 #findEvent,
 .article-detail-page,
 .event-detail-page {
-  max-width: 1920px;
+  background: #153837;
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -70,7 +70,7 @@
 #findEvent *,
 .article-detail-page *,
 .event-detail-page * {
-  color: #FFF1CB;
+  color: #fff1cb;
 }
 #news .title,
 #findArticles .title,
@@ -164,31 +164,17 @@
 .event-detail-page .nav-news {
   top: 80px;
   display: flex;
+  flex-direction: row;
+  width: 100%;
 }
-#news .nav-news a,
-#findArticles .nav-news a,
-#findEvent .nav-news a,
-.article-detail-page .nav-news a,
-.event-detail-page .nav-news a {
-  font-size: 16px;
-  padding: 8px 0;
-  border-bottom: 2px solid transparent;
-  transition: all 0.35s;
-  cursor: pointer;
-  color: #FFF1CB;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 16px;
-}
-#news .nav-news a:hover,
-#findArticles .nav-news a:hover,
-#findEvent .nav-news a:hover,
-.article-detail-page .nav-news a:hover,
-.event-detail-page .nav-news a:hover {
-  color: #a2b9bc;
-  border-bottom: 2px solid #FFF1CB;
+#news .nav-news svg,
+#findArticles .nav-news svg,
+#findEvent .nav-news svg,
+.article-detail-page .nav-news svg,
+.event-detail-page .nav-news svg {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
 }
 #news .nav-news ul,
 #findArticles .nav-news ul,
@@ -196,6 +182,7 @@
 .article-detail-page .nav-news ul,
 .event-detail-page .nav-news ul {
   display: flex;
+  justify-content: flex-start;
   gap: 24px;
 }
 @media (max-width:640px) {
@@ -207,6 +194,46 @@
     margin-top: 8px;
     gap: 16px;
   }
+}
+#news .nav-news ul li a .link-text,
+#findArticles .nav-news ul li a .link-text,
+#findEvent .nav-news ul li a .link-text,
+.article-detail-page .nav-news ul li a .link-text,
+.event-detail-page .nav-news ul li a .link-text {
+  /* Hide the text by default */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  /* Smooth transition for appearance */
+}
+#news .nav-news ul li a:hover .link-text,
+#findArticles .nav-news ul li a:hover .link-text,
+#findEvent .nav-news ul li a:hover .link-text,
+.article-detail-page .nav-news ul li a:hover .link-text,
+.event-detail-page .nav-news ul li a:hover .link-text {
+  /* Show the text on hover */
+  visibility: visible;
+  opacity: 1;
+}
+#news .nav-news ul li a,
+#findArticles .nav-news ul li a,
+#findEvent .nav-news ul li a,
+.article-detail-page .nav-news ul li a,
+.event-detail-page .nav-news ul li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #fff1cb;
+}
+#news .nav-news ul li svg,
+#findArticles .nav-news ul li svg,
+#findEvent .nav-news ul li svg,
+.article-detail-page .nav-news ul li svg,
+.event-detail-page .nav-news ul li svg {
+  margin-right: 16px;
+  margin-top: 8px;
+  /* Space between SVG and text */
 }
 
 .event-card {
@@ -244,11 +271,11 @@
   height: 2rem;
 }
 
-button {
+.article-buttonGroup-container button {
   font-size: 24px;
 }
 @media (max-width:640px) {
-  button {
+  .article-buttonGroup-container button {
     font-size: 16px;
   }
 }
@@ -281,7 +308,7 @@ button {
   height: 40px;
   padding: 0px 20px;
   gap: 10px;
-  color: #FFF1CB;
+  color: #fff1cb;
   border-radius: 2px;
   border: 2px solid #FFF1CB;
   transition: border-color 0.3s, color 0.3s;
@@ -294,7 +321,7 @@ button {
   }
 }
 .searchBar input::placeholder {
-  color: #FFF1CB;
+  color: #fff1cb;
   font-size: 14px;
 }
 @media (max-width:640px) {
@@ -339,7 +366,7 @@ input {
 #news > main .cover-story {
   width: 100%;
   display: flex;
-  padding: 48px 0px;
+  padding: 8px 0px 24px;
   flex-direction: column;
   align-items: flex-start;
   overflow: hidden;
@@ -348,7 +375,7 @@ input {
   width: 100%;
 }
 #news > main .cover-story a .cover-img {
-  border: 1px solid #FFF1CB;
+  border: 1px solid #fff1cb;
   width: 100%;
   object-fit: cover;
   height: 400px;
@@ -381,7 +408,7 @@ input {
   align-items: flex-start;
 }
 #news > main .section-row .feature {
-  color: #FFF1CB;
+  color: #fff1cb;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -404,7 +431,7 @@ input {
   align-self: stretch;
 }
 #news > main .section-row .feature1 a div p {
-  color: #FFF1CB;
+  color: #fff1cb;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 1.6px;
@@ -498,7 +525,7 @@ input {
 }
 #news > main .recommendation h2 {
   text-align: center;
-  color: #FFF1CB;
+  color: #fff1cb;
   text-align: center;
   font-style: normal;
   font-weight: 400;
@@ -614,7 +641,7 @@ input {
   transition: background-color 0.3s, opacity 0.3s;
 }
 #news > main .recommendation .reco-button a:hover {
-  color: #FFF1CB;
+  color: #fff1cb;
   border: 2px solid #FFF1CB;
   background-color: #7B4519;
 }
@@ -693,7 +720,7 @@ input {
   transition: background-color 0.3s, opacity 0.3s;
 }
 #news > main .events .event-btn a:hover {
-  color: #FFF1CB;
+  color: #fff1cb;
   border: 2px solid #FFF1CB;
   background-color: #7B4519;
 }
@@ -842,9 +869,16 @@ input {
 
 /* 文章內頁 */
 .article-detail-page {
+  background: #153837;
   display: flex;
   margin: 0 auto;
-  max-width: 1280px;
+}
+.article-detail-page .breadcrumbs {
+  display: flex;
+  justify-content: flex-start;
+}
+.article-detail-page .breadcrumbs > li {
+  color: #fff;
 }
 .article-detail-page p {
   font-size: 16px;
@@ -857,6 +891,7 @@ input {
 .article-detail-page section {
   display: flex;
   padding: 36px 0px;
+  margin: 0px 40px;
   flex-direction: column;
 }
 .article-detail-page section .title-container {
@@ -871,7 +906,7 @@ input {
   font-size: 14px;
   letter-spacing: 8px;
 }
-.article-detail-page section .title-container h2 {
+.article-detail-page section .title-container h1 {
   font-size: 32px;
   font-weight: 700;
   line-height: 160%;
@@ -943,7 +978,7 @@ input {
 }
 .article-detail-page .article-buttonGroup-container .article-button-container button {
   border-radius: 2px;
-  border: 3px solid #FFF1CB;
+  border: 3px solid #fff1cb;
   background-color: transparent;
   display: flex;
   width: 200px;
@@ -970,6 +1005,8 @@ input {
   padding: 0px;
   flex-direction: column;
   align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 @media (max-width:820px) {
   #findEvent main {
@@ -1024,9 +1061,9 @@ input {
 }
 #findEvent .filterBar {
   display: flex;
-  margin: 48px auto;
+  margin: 24px auto 48px;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
   align-self: stretch;
 }
 @media (max-width:640px) {
@@ -1066,7 +1103,7 @@ input {
 }
 #findEvent .filterBar .timeBar div .time {
   display: flex;
-  height: 40px;
+  height: 56px;
   padding: 0px 20px;
   justify-content: center;
   align-items: center;
@@ -1085,7 +1122,7 @@ input {
 }
 #findEvent .filterBar .timeBar div .time p {
   display: flex;
-  color: #FFF1CB;
+  color: #fff1cb;
 }
 #findEvent .filterBar .timeBar div .time p:hover {
   color: #a2b9bc;
