@@ -16,6 +16,13 @@ function ArticlePage() {
     const handleGoBack = () => {
         navigate(-1); // -1 表示回到上一頁
     };
+    const handleGoArticle = () => {
+        navigate('/news/article');
+    };
+    const handleGoNews = () => {
+        navigate('/news');
+    };
+
 
     // 處理段落與圖片對應
     const paragraphArray = Object.values(article.paragraphs);
@@ -44,7 +51,8 @@ function ArticlePage() {
                     {/* 標題區 */}
                     <div className="title-container">
                         <p>咖啡島 老臺北特輯</p>
-                        <h2>{article.title}</h2>
+                        {/* SEO h1 */}
+                        <h1>{article.title}</h1>
                         <p>文 陳誠成 攝 郭董郭</p>
                     </div>
                     {/* 內文區 */}
@@ -101,13 +109,14 @@ function ArticlePage() {
                     <div className="article-button-container">
                         <button onClick={handleGoBack}>上一頁</button>
                     </div>
-                    <div className="article-button-container">
+                    {/* <div className="article-button-container">
                         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>回到置頂</button>
+                    </div> */}
+                    <div className="article-button-container">
+                        <button onClick={handleGoArticle}>其他文章</button>
                     </div>
                     <div className="article-button-container">
-                        <Link to="/news">
-                            <button>回到月報</button>
-                        </Link>
+                        <button onClick={handleGoNews}>回到月報</button>
                     </div>
                 </div>
 

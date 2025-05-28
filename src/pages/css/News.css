@@ -13,6 +13,7 @@
 #findEvent,
 .article-detail-page,
 .event-detail-page {
+  background: #153837;
   max-width: 1920px;
   display: flex;
   flex-direction: column;
@@ -70,7 +71,7 @@
 #findEvent *,
 .article-detail-page *,
 .event-detail-page * {
-  color: #FFF1CB;
+  color: #fff1cb;
 }
 #news .title,
 #findArticles .title,
@@ -175,7 +176,7 @@
   border-bottom: 2px solid transparent;
   transition: all 0.35s;
   cursor: pointer;
-  color: #FFF1CB;
+  color: #fff1cb;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -244,11 +245,11 @@
   height: 2rem;
 }
 
-button {
+.article-buttonGroup-container button {
   font-size: 24px;
 }
 @media (max-width:640px) {
-  button {
+  .article-buttonGroup-container button {
     font-size: 16px;
   }
 }
@@ -281,7 +282,7 @@ button {
   height: 40px;
   padding: 0px 20px;
   gap: 10px;
-  color: #FFF1CB;
+  color: #fff1cb;
   border-radius: 2px;
   border: 2px solid #FFF1CB;
   transition: border-color 0.3s, color 0.3s;
@@ -294,7 +295,7 @@ button {
   }
 }
 .searchBar input::placeholder {
-  color: #FFF1CB;
+  color: #fff1cb;
   font-size: 14px;
 }
 @media (max-width:640px) {
@@ -339,7 +340,7 @@ input {
 #news > main .cover-story {
   width: 100%;
   display: flex;
-  padding: 48px 0px;
+  padding: 24px 0px;
   flex-direction: column;
   align-items: flex-start;
   overflow: hidden;
@@ -348,7 +349,7 @@ input {
   width: 100%;
 }
 #news > main .cover-story a .cover-img {
-  border: 1px solid #FFF1CB;
+  border: 1px solid #fff1cb;
   width: 100%;
   object-fit: cover;
   height: 400px;
@@ -381,7 +382,7 @@ input {
   align-items: flex-start;
 }
 #news > main .section-row .feature {
-  color: #FFF1CB;
+  color: #fff1cb;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -404,7 +405,7 @@ input {
   align-self: stretch;
 }
 #news > main .section-row .feature1 a div p {
-  color: #FFF1CB;
+  color: #fff1cb;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 1.6px;
@@ -498,7 +499,7 @@ input {
 }
 #news > main .recommendation h2 {
   text-align: center;
-  color: #FFF1CB;
+  color: #fff1cb;
   text-align: center;
   font-style: normal;
   font-weight: 400;
@@ -614,7 +615,7 @@ input {
   transition: background-color 0.3s, opacity 0.3s;
 }
 #news > main .recommendation .reco-button a:hover {
-  color: #FFF1CB;
+  color: #fff1cb;
   border: 2px solid #FFF1CB;
   background-color: #7B4519;
 }
@@ -693,7 +694,7 @@ input {
   transition: background-color 0.3s, opacity 0.3s;
 }
 #news > main .events .event-btn a:hover {
-  color: #FFF1CB;
+  color: #fff1cb;
   border: 2px solid #FFF1CB;
   background-color: #7B4519;
 }
@@ -842,6 +843,7 @@ input {
 
 /* 文章內頁 */
 .article-detail-page {
+  background: #153837;
   display: flex;
   margin: 0 auto;
   max-width: 1280px;
@@ -871,7 +873,7 @@ input {
   font-size: 14px;
   letter-spacing: 8px;
 }
-.article-detail-page section .title-container h2 {
+.article-detail-page section .title-container h1 {
   font-size: 32px;
   font-weight: 700;
   line-height: 160%;
@@ -943,7 +945,7 @@ input {
 }
 .article-detail-page .article-buttonGroup-container .article-button-container button {
   border-radius: 2px;
-  border: 3px solid #FFF1CB;
+  border: 3px solid #fff1cb;
   background-color: transparent;
   display: flex;
   width: 200px;
@@ -1085,7 +1087,7 @@ input {
 }
 #findEvent .filterBar .timeBar div .time p {
   display: flex;
-  color: #FFF1CB;
+  color: #fff1cb;
 }
 #findEvent .filterBar .timeBar div .time p:hover {
   color: #a2b9bc;

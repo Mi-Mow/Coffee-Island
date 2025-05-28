@@ -11,6 +11,7 @@
 #findEvent,
 .article-detail-page,
 .event-detail-page {
+  background: #153837;
   max-width: 1920px;
   display: flex;
   flex-direction: column;
@@ -270,7 +271,7 @@ input {
   .cover-story {
     width: 100%;
     display: flex;
-    padding: 48px 0px;
+    padding: 24px 0px;
     flex-direction: column;
     align-items: flex-start;
     overflow: hidden;
@@ -937,6 +938,7 @@ input {
 
 /* 文章內頁 */
 .article-detail-page {
+  background: #153837;
   display: flex;
   margin: 0 auto;
   max-width: 1280px;
@@ -970,7 +972,7 @@ input {
         letter-spacing: 8px;
       }
 
-      h2 {
+      h1 {
         font-size: 32px;
         font-weight: 700;
         line-height: 160%;
