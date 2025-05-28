@@ -1,6 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom"
 // 文章資料
 import { articles, hotArticles } from './Article'
+const base = import.meta.env.BASE_URL;
 
 
 function ArticlePage() {
@@ -17,10 +18,10 @@ function ArticlePage() {
         navigate(-1); // -1 表示回到上一頁
     };
     const handleGoArticle = () => {
-        navigate('/news/article');
+        navigate(`${base}news/article`);
     };
     const handleGoNews = () => {
-        navigate('/news');
+        navigate(`${base}news`);
     };
 
 
