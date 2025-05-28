@@ -2,7 +2,7 @@
 
 #news>main {
   overflow-x: hidden;
-  max-width: 100%;
+  max-width: 1280px;
 }
 
 /* 島嶼月報 all */
@@ -12,7 +12,7 @@
 .article-detail-page,
 .event-detail-page {
   background: #153837;
-  max-width: 1920px;
+  // max-width: 1920px;
   display: flex;
   flex-direction: column;
   font-size: $fontsize;
@@ -102,29 +102,38 @@
     // position: sticky;
     top: 80px;
     display: flex;
+    flex-direction: row;
+    width: 100%;
 
-    a {
-      font-size: 16px;
-      // margin: 10px;
-      padding: 8px 0;
-      border-bottom: 2px solid transparent;
-      transition: all .35s;
-      cursor: pointer;
-      color: $textcolor;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 16px;
-
-      &:hover {
-        color: $primary_1;
-        border-bottom: 2px solid $bordercolor;
-      }
+    svg {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
     }
+
+    // a {
+    //   font-size: 16px;
+    //   // margin: 10px;
+    //   padding: 8px 0;
+    //   border-bottom: 2px solid transparent;
+    //   transition: all .35s;
+    //   cursor: pointer;
+    //   color: $textcolor;
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    //   align-items: flex-start;
+    //   gap: 16px;
+
+    //   &:hover {
+    //     color: $primary_1;
+    //     border-bottom: 2px solid $bordercolor;
+    //   }
+    // }
 
     ul {
       display: flex;
+      justify-content: flex-start;
       gap: 24px;
 
       @media($media-640) {
@@ -134,6 +143,36 @@
     }
 
   }
+
+  // 小怪獸搭配文字動畫
+  .nav-news ul li a .link-text {
+    /* Hide the text by default */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* Smooth transition for appearance */
+  }
+
+  .nav-news ul li a:hover .link-text {
+    /* Show the text on hover */
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .nav-news ul li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: $textcolor;
+  }
+
+  .nav-news ul li svg {
+    margin-right: 16px;
+    margin-top: 8px;
+    /* Space between SVG and text */
+  }
+  
 }
 
 // 元件
@@ -178,7 +217,7 @@
 .article-buttonGroup-container {
   button {
     font-size: 24px;
-  
+
     @media ($media-640) {
       font-size: 16px;
     }
@@ -271,7 +310,7 @@ input {
   .cover-story {
     width: 100%;
     display: flex;
-    padding: 24px 0px;
+    padding: 8px 0px 24px;
     flex-direction: column;
     align-items: flex-start;
     overflow: hidden;
@@ -941,8 +980,18 @@ input {
   background: #153837;
   display: flex;
   margin: 0 auto;
-  max-width: 1280px;
+
+  // max-width: 1280px;
   // padding: 100px 0;
+
+  .breadcrumbs {
+    display: flex;
+    justify-content: flex-start;
+
+    > li {
+      color: $tagcolor;
+    }
+  }
 
   p {
     font-size: 16px;
@@ -957,6 +1006,7 @@ input {
   section {
     display: flex;
     padding: 36px 0px;
+    margin: 0px 40px;
     flex-direction: column;
 
     .title-container {
@@ -1057,6 +1107,7 @@ input {
 
     @media ($media-640) {
       gap: 32px;
+
       .article-button-container:nth-child(2) {
         display: none;
       }
@@ -1101,6 +1152,8 @@ input {
     padding: 0px;
     flex-direction: column;
     align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
 
     @media ($media-820) {
       padding: 40px 0px;
@@ -1164,9 +1217,9 @@ input {
 
     display: flex;
     // padding: 48px auto;
-    margin: 48px auto;
+    margin: 24px auto 48px;
     flex-direction: column;
-    gap: 12px;
+    gap: 24px;
     align-self: stretch;
 
     @media ($media-640) {

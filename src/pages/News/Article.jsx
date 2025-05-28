@@ -8,6 +8,7 @@ import cafe2_3 from '/news/cafe2-3.jpg'
 import cafe3 from '/news/cafe3.jpg'
 import story1_1 from '/news/story1_1.jpg'
 import SearchBar from './components/Searchbar'
+import NewsNav from './components/NewsNav';
 
 
 // 資料區
@@ -140,21 +141,10 @@ function Article() {
         <>
             <div id='findArticles'>
                 <h1 className='title'>閱讀文章</h1>
+                <NewsNav/>
 
                 <main id='article'>
-                    <nav>
-                        <div className='nav-news'>
-                            <ul>
-                                <li>
-                                    <Link to={`${base}news/article`}>閱讀文章</Link>
-                                </li>
-                                <li>
-                                    <Link to={`${base}news/event`}>找活動</Link>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </nav>
+                    
 
                     {/* Section 1: 文章列表 */}
 

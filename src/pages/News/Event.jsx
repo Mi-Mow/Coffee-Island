@@ -8,6 +8,7 @@ import event4 from '../../assets/news/activities/4.jpg';
 import event5 from '/cafe/neihu_16_1.jpg';
 import event6 from '../../assets/news/activities/6.jpg';
 import event7 from '../../assets/news/activities/7.jpg';
+import NewsNav from './components/NewsNav';
 const base = import.meta.env.BASE_URL;
 
   // data陣列
@@ -132,20 +133,9 @@ function Event() {
     <>
       <div id='findEvent'>
         <h1 className='title'>找活動</h1>
+        <NewsNav/>
         <main>
-          <nav>
-            <div className='nav-news'>
-              <ul
-              ><li>
-                  <Link to={`${base}news/article`}>閱讀文章</Link>
-                </li>
-                <li>
-                  <Link to={`${base}news/event`}>找活動</Link>
-                </li>
-              </ul>
-
-            </div>
-          </nav>
+          
 
           <section className='filterBar'>
             {/* 時間列 */}

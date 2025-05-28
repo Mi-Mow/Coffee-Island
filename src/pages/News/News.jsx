@@ -8,6 +8,7 @@ import { articles } from './Article'
 import { hotArticles } from './Article'
 import EventCard from './components/EventCard'
 import Coverstory from './components/Coverstory'
+import NewsNav from './components/NewsNav';
 
 
 function News() {
@@ -16,19 +17,9 @@ function News() {
     <>
       <div id='news'>
         <h1 className='title'>島嶼月報</h1>
-        <main>
-          {/* nav-news */}
-          <div className='nav-news'>
-            <ul
-            ><li>
-                <Link to={`${base}news/article`}>閱讀文章</Link>
-              </li>
-              <li>
-                <Link to={`${base}news/event`}>找活動</Link>
-              </li>
-            </ul>
+        <NewsNav/>
 
-          </div>
+        <main>
 
           {/* 封面故事 */}
           <Coverstory />
