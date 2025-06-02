@@ -215,6 +215,15 @@
   visibility: visible;
   opacity: 1;
 }
+#news .nav-news ul li a:active .link-text,
+#findArticles .nav-news ul li a:active .link-text,
+#findEvent .nav-news ul li a:active .link-text,
+.article-detail-page .nav-news ul li a:active .link-text,
+.event-detail-page .nav-news ul li a:active .link-text {
+  /* Show the text on hover */
+  visibility: visible;
+  opacity: 1;
+}
 #news .nav-news ul li a,
 #findArticles .nav-news ul li a,
 #findEvent .nav-news ul li a,
@@ -773,6 +782,7 @@ input {
   }
 }
 #findArticles main .articleCard {
+  cursor: pointer;
   display: flex;
   padding: 40px 0px;
   align-items: center;
@@ -805,7 +815,7 @@ input {
     gap: 16px;
   }
 }
-#findArticles main .articleCard .articleCardText h1 {
+#findArticles main .articleCard .articleCardText h2 {
   font-size: 32px;
   letter-spacing: 0.2rem;
   display: -webkit-box;
@@ -816,7 +826,7 @@ input {
   align-self: stretch;
 }
 @media (max-width:640px) {
-  #findArticles main .articleCard .articleCardText h1 {
+  #findArticles main .articleCard .articleCardText h2 {
     font-size: 18px;
     letter-spacing: normal;
   }

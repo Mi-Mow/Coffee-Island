@@ -140,11 +140,10 @@ function Article() {
     return (
         <>
             <div id='findArticles'>
-                <h1 className='title'>閱讀文章</h1>
+                <h3 className='title'>閱讀文章</h3>
                 <NewsNav/>
 
                 <main id='article'>
-                    
 
                     {/* Section 1: 文章列表 */}
 
@@ -166,7 +165,7 @@ function Article() {
                                 </figure>
 
                                 <div className="articleCardText">
-                                    <h1>{article.title}</h1>
+                                    <h2>{article.title}</h2>
                                     <p className="articleContent">{article.content}</p>
                                     
                                 </div>
@@ -174,20 +173,20 @@ function Article() {
                         ))}
 
                         {/* 頁碼 */}
-                        <div className="pageNumberArea">
+                        {/* <div className="pageNumberArea">
                             <div>
                                 <p>1</p>
                                 <p>2</p>
                                 <p>3</p>
                             </div>
-                        </div>
+                        </div> */}
 
 
                     </section>
 
                     {/* 人氣推薦 */}
                     <section className="sec2">
-                        <h1 className='title'>Hotest｜人氣推薦</h1>
+                        <h2 className='title'>Hotest｜人氣推薦</h2>
                         {/* 每張卡片 */}
                         {hotArticles.map((article) => (
                             <div className="articleCard"
@@ -196,7 +195,7 @@ function Article() {
                             >
                                 <img src={article.image} alt={article.title} loading="lazy" />
                                 <div className="articleCardText">
-                                    <h1>{article.title}</h1>
+                                    <h2>{article.title}</h2>
                                     <p className="articleContent">{article.content}</p>
                                 </div>
                             </div>

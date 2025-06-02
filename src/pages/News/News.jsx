@@ -16,7 +16,7 @@ function News() {
   return (
     <>
       <div id='news'>
-        <h1 className='title'>島嶼月報</h1>
+        <h3 className='title'>島嶼月報</h3>
         <NewsNav/>
 
         <main>

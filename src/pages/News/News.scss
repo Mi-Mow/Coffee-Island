@@ -144,6 +144,7 @@
 
   }
 
+
   // 小怪獸搭配文字動畫
   .nav-news ul li a .link-text {
     /* Hide the text by default */
@@ -154,6 +155,12 @@
   }
 
   .nav-news ul li a:hover .link-text {
+    /* Show the text on hover */
+    visibility: visible;
+    opacity: 1;
+  }
+
+    .nav-news ul li a:active .link-text {
     /* Show the text on hover */
     visibility: visible;
     opacity: 1;
@@ -172,7 +179,7 @@
     margin-top: 8px;
     /* Space between SVG and text */
   }
-  
+
 }
 
 // 元件
@@ -855,6 +862,7 @@ input {
   // }
 
   .articleCard {
+    cursor: pointer;
     display: flex;
     padding: 40px 0px;
     align-items: center;
@@ -892,7 +900,7 @@ input {
         gap: 16px;
       }
 
-      h1 {
+      h2 {
         font-size: 32px;
         letter-spacing: $letter-spacing-s;
 
@@ -988,7 +996,7 @@ input {
     display: flex;
     justify-content: flex-start;
 
-    > li {
+    >li {
       color: $tagcolor;
     }
   }
