@@ -16,21 +16,42 @@ function Header() {
   const toggleLang = () => {
     changeLanguage(language === 'zh-TW' ? 'en' : 'zh-TW');
   }
+
   const { t } = useTranslation();
   const nextLang = language === "zh-TW" ? "EN" : "繁中";
+
   // const toggleLang = () => {
   //   const currentLang = i18n.language;
   //   const newLang = currentLang === "zh-TW" ? "en" : "zh-TW";
   //   i18n.changeLanguage(newLang);
   //   localStorage.setItem("lang", newLang);
   // };
+
   // const nextLang = i18n.language === "zh-TW" ? "EN" : "繁中";
+
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   // setIsLoggedIn(localStorage.getItem("isLoggedIn"));
+
   const { isLoggedIn } = useAuth();
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1140);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // 購物車數量狀態與監聽
+  const [cartCount, setCartCount] = useState(() => {
+    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+    return items.reduce((sum, item) => sum + item.quantity, 0);
+  });
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+      const total = items.reduce((sum, item) => sum + item.quantity, 0);
+      setCartCount(total);
+    };
+    window.addEventListener("cartUpdated", updateCartCount);
+    return () => window.removeEventListener("cartUpdated", updateCartCount);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1140);
@@ -137,9 +158,11 @@ function Header() {
                 {isLoggedIn ? (
                   <>
                     <NavLink to={`${base}cart`}>
-                      <div className={s.cartContainer}>
+                      <div className={`cartContainer ${s.cartContainer}`}>
                         <img src={cart} alt="" />
+                        {cartCount > 0 && <span className={s.cartCount}>{cartCount}</span>}
                       </div>
+
                     </NavLink>
                     <NavLink to={`${base}profile`}>
                       <div className={s.profileContainer}>

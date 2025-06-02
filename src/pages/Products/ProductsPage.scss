@@ -213,7 +213,7 @@
 
 // 第二部分：商品文字敘述
 .product-specs {
-  padding: 60px 100px;
+  padding: 0px 100px;
   display: flex;
   justify-content: center;
   color: #fff1cb;
@@ -400,7 +400,7 @@
 // 第四部分：推薦商品區
 .recommended-products {
   width: 100%;
-  margin-top: 200px;
+  margin-top: 30px;
 
   // 讓整個區塊靠右
   display: flex;
@@ -509,4 +509,13 @@
     flex-direction: column;
     align-items: center;
   }
+}
+.fly-bean-anim {
+  position: fixed;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  transition: transform 1.2s cubic-bezier(.52,1.6,.53,.99), opacity 0.7s;
+  left: 0; top: 0;
 }

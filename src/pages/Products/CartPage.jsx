@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CartPage.scss";
+import Confetti from 'react-confetti';
+
 const base = import.meta.env.BASE_URL;
 
 function CartPage() {
@@ -25,7 +27,13 @@ function CartPage() {
   const updateLocalStorage = (items) => {
     localStorage.setItem("cartItems", JSON.stringify(items));
     setCartItems(items);
+
+    //cartUpdated 事件，讓 Header 更新購物車數量
+    const total = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    const cartCountEvent = new CustomEvent("cartUpdated", { detail: total });
+    window.dispatchEvent(cartCountEvent);
   };
+
 
   const handleQuantityChange = (index, delta) => {
     const updated = [...cartItems];
@@ -99,7 +107,7 @@ function CartPage() {
             </div>
             {cartItems.map((item, index) => (
               <div className="cart-item" key={index}>
-                <img src={item.images[0]} alt={item.name} />
+                <img src={item.images && item.images[0] ? item.images[0] : item.image} alt={item.name} />
                 <div className="info">
                   <div className="name">{item.name}</div>
                   <div className="spec">規格　{item.selectedColor || "黑色"}</div>
@@ -113,6 +121,7 @@ function CartPage() {
                 <button className="remove" onClick={() => handleRemove(index)}>×</button>
               </div>
             ))}
+
           </div>
           <div className="cart-summary">
             <h3 className="summary-title">預訂摘要</h3>
@@ -259,11 +268,22 @@ function CartPage() {
       {/* step 4: 完成畫面 */}
       {step === 4 && (
         <div className="order-complete">
+          {/* <Confetti width={window.innerWidth} height={window.innerHeight} recycle={false} /> */}
+          {/* <img src={`${base}products/EndMonster.svg`} alt="吉祥物慶祝" className="mascot-img" /> */}
+          <img
+            src={`${base}products/EndMonster.svg`}
+            alt="EndMoster"
+            className="endmoster-swing"
+            style={{ width: 100, marginBottom: 20 }}
+          />
           <h2>感謝您的預訂！</h2>
           <p>我們已收到您的訂單，請至電子信箱查看確認信。</p>
           <button className="keep" onClick={() => navigate(`${base}`)}>返回首頁</button>
+          {/* <button className="order-more" onClick={() => navigate(`${base}products`)}>再去逛新品</button> */}
         </div>
       )}
+
+
     </div>
   );
 }
