@@ -67,10 +67,12 @@
 
     // step1 商品資訊
     .cart-list:not(.form-list) {
+
       .cart-header,
       .cart-item {
         display: grid;
-        grid-template-columns: 100px 1fr 160px 36px 105px;;
+        grid-template-columns: 100px 1fr 160px 36px 105px;
+        ;
         column-gap: 45px;
         align-items: center;
       }
@@ -146,6 +148,21 @@
           cursor: pointer;
         }
       }
+
+      .fly-bean {
+        position: fixed;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      .fly-bean-anim {
+        position: fixed;
+        width: 60px;
+        height: auto;
+        transition: all 0.6s ease-in-out;
+        z-index: 9999;
+      }
+
     }
 
     // step2 表單
@@ -251,13 +268,13 @@
       column-gap: 16px;
       font-size: 20px;
       color: #fff1cb;
-    
+
       .label {
         font-weight: bold;
         font-size: 16px;
         white-space: nowrap;
       }
-    
+
       .value {
         //word-break: break-word;
         font-size: 14px;
@@ -350,5 +367,37 @@
         background: #5e7d79;
       }
     }
+  }
+}
+
+.endmoster-swing {
+  display: block;
+  margin: 0 auto 16px auto;
+  animation: swing 1.3s infinite ease-in-out;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(-13deg);
+  }
+
+  20% {
+    transform: rotate(11deg);
+  }
+
+  40% {
+    transform: rotate(-7deg);
+  }
+
+  60% {
+    transform: rotate(7deg);
+  }
+
+  80% {
+    transform: rotate(-4deg);
+  }
+
+  100% {
+    transform: rotate(-13deg);
   }
 }

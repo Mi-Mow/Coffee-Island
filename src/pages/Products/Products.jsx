@@ -3,97 +3,305 @@ import "./Products.scss";
 import { useNavigate } from "react-router-dom";
 const base = import.meta.env.BASE_URL;
 
-// 假資料區：使用 public 資料夾圖片路徑
-const products = [
-  {
-    id: "1-1",
-    name: "咖啡島-鶴嘴手沖壺",
-    price: 1200,
-    oldPrice: 1350,
-    tag: "優選",
-    isNew: false,
-    category: "kettle",
-    image: `${base}products/gooseneck1.jpg`,
-    hoverImage: `${base}products/gooseneck1Hover.jpg`,
-  },
-  {
-    id: "1-2",
-    name: "304不鏽鋼掛耳咖啡細口手沖壺700ML",
-    price: 650,
-    oldPrice: 1350,
-    tag: "優選",
-    isNew: false,
-    category: "kettle",
-    image: `${base}products/gooseneck2.jpg`,
-    hoverImage: `${base}products/gooseneck2Hover.jpg`,
-  },
-  {
-    id: "1-3",
-    name: "304不鏽鋼掛耳咖啡細口手沖壺700ML",
-    price: 650,
-    oldPrice: 1350,
-    tag: "優選",
-    isNew: false,
-    category: "kettle",
-    image: `${base}products/gooseneck3.jpg`,
-    hoverImage: `${base}products/gooseneck3Hover.jpg`,
-  },
-  {
-    id: "2-1",
-    name: "日製濾網款式A",
-    price: 420,
-    oldPrice: 600,
-    tag: "經典",
-    isNew: false,
-    category: "filter",
-    image: `${base}products/coffeeFilter1.jpg`,
-    hoverImage: `${base}products/coffeeFilter1Hover.jpg`,
-  },
-  {
-    id: "2-2",
-    name: "日製濾網款式A",
-    price: 420,
-    oldPrice: 600,
-    tag: "經典",
-    isNew: false,
-    category: "filter",
-    image: `${base}products/coffeeFilter2.jpg`,
-    hoverImage: `${base}products/coffeeFilter2Hover.jpg`,
-  },
-  {
-    id: "3-1",
-    name: "古坑咖啡豆250g #台灣小農 #產地直銷",
-    price: 550,
-    oldPrice: 600,
-    tag: "熱銷",
-    isNew: true,
-    category: "beans",
-    image: `${base}products/coffeeBean1.jpg`,
-    hoverImage: `${base}products/coffeeBeanHover1.jpg`,
-  },
-  {
-    id: "3-2",
-    name: " 關西咖啡豆250g #產地直銷 ",
-    price: 600,
-    oldPrice: 700,
-    tag: "熱銷",
-    isNew: false,
-    category: "beans",
-    image: `${base}products/coffeeBean2.jpg`,
-    hoverImage: `${base}products/coffeeBeanHover2.jpg`,
-  },
-  {
-    id: "3-3",
-    name: " 阿里山咖啡豆250g #產地直銷 ",
-    price: 600,
-    oldPrice: 700,
-    tag: "熱銷",
-    isNew: false,
-    category: "beans",
-    image: `${base}products/coffeeBean3.jpg`,
-    hoverImage: `${base}products/coffeeBeanHover3.jpg`,
-  },
-];
+//商品頁區
+
+export const products = [
+      {
+        id: "1-1",
+        name: "咖啡島-鶴嘴手沖壺",
+        price: 1200,
+        oldPrice: 1350,
+        tag: "優選",
+        isNew: false,
+        category: "kettle",
+        image: `${base}products/gooseneck1.jpg`,
+        hoverImage: `${base}products/gooseneck1Hover.jpg`,
+        images: [
+          //`${base}products/gooseneck1.jpg`,
+          `${base}products/gooseneck1Hover.jpg`,
+          `${base}products/gooseneck1Des1.jpg`
+        ],
+        intro: "專業級鶴嘴壺嘴設計，細緻控水，手沖新手也能輕鬆掌握萃取節奏，打造精品級咖啡風味。",
+        description: [
+          "鶴嘴出水細長穩定，水流線精準適合各式手沖手法",
+          "防滑舒適手把設計，長時間沖煮也不累手",
+          "耐高溫霧面塗層，質感與實用兼具"
+        ],
+        descImages: [
+          `${base}products/gooseneck1Des3.jpg`,
+          `${base}products/gooseneck1Des2.jpg`
+        ],
+        specs: {
+          商品名稱: "咖啡島-鶴嘴手沖壺",
+          品牌: "咖啡島 Coffee Island",
+          型號: "Island Kettle 01",
+          顏色: "霧黑",
+          材質: "304不鏽鋼",
+          容量: "300ml",
+          重量: "550g",
+          產地: "台灣設計，中國製造",
+          適用熱源: "不適用於電磁爐／直火，建議注入熱水",
+          表面處理: "耐高溫塗層，霧面防刮",
+        }
+      },
+      {
+        id: "1-2",
+        name: "咖啡島-魚嘴手沖壺300ml",
+        price: 1000,
+        oldPrice: 1350,
+        tag: "優選",
+        isNew: false,
+        category: "kettle",
+        image: `${base}products/gooseneck2.jpg`,
+        hoverImage: `${base}products/gooseneck2Hover.jpg`,
+        images: [
+          `${base}products/gooseneck2.jpg`,
+          `${base}products/gooseneck2Hover.jpg`,
+          `${base}products/gooseneck2Des1.jpg`
+        ],
+        intro: "輕巧魚嘴設計，精準控水，適合少量沖煮。人體工學握感，手感絕佳，攜帶方便，是隨行手沖必備好物。",
+        description: [
+          "魚嘴壺嘴集中水流，提升手沖穩定性",
+          "300ml小巧容量，適合一至兩杯沖煮",
+          "人體工學設計手把，手感服貼防滑"
+        ],
+        descImages: [
+          `${base}products/gooseneck2Des1.jpg`,
+          `${base}products/gooseneck2Des2.jpg`
+        ],
+        specs: {
+          商品名稱: "咖啡島-魚嘴手沖壺300ml",
+          品牌: "咖啡島 Coffee Island",
+          型號: "Island Kettle 02",
+          顏色: "霧黑",
+          材質: "304不鏽鋼",
+          容量: "300ml",
+          重量: "320g",
+          產地: "台灣設計，中國製造",
+          適用熱源: "不適用於電磁爐／直火，建議注入熱水",
+          表面處理: "耐高溫塗層，霧面防刮",
+        }
+      },
+      {
+        id: "1-3",
+        name: "咖啡島-掛耳細口手沖300ml",
+        price: 890,
+        oldPrice: 1350,
+        tag: "優選",
+        isNew: false,
+        category: "kettle",
+        image: `${base}products/gooseneck3.jpg`,
+        hoverImage: `${base}products/gooseneck3Hover.jpg`,
+        images: [
+          //`${base}products/gooseneck3.jpg`,
+          `${base}products/gooseneck3Des2.jpg`,
+          `${base}products/gooseneck3Des1.jpg`
+        ],
+        intro: "大容量設計，一次沖足全家或朋友聚會所需。精細壺嘴流線，適合細緻掌控各種注水方式。",
+        description: [
+          "700ml大容量，滿足多杯沖煮需求",
+          "細口壺嘴易控水流，適合新手到老手",
+          "堅固掛耳設計，攜帶更安全"
+        ],
+        descImages: [
+          `${base}products/gooseneck3Des4.jpg`,
+          `${base}products/gooseneck3Des3.jpg`
+        ],
+        specs: {
+          商品名稱: "咖啡島-掛耳細口手沖壺700ml",
+          品牌: "咖啡島 Coffee Island",
+          型號: "Island Kettle 03",
+          顏色: "霧黑",
+          材質: "304不鏽鋼",
+          容量: "700ml",
+          重量: "600g",
+          產地: "台灣設計，中國製造",
+          適用熱源: "不適用於電磁爐／直火，建議注入熱水",
+          表面處理: "耐高溫塗層，霧面防刮",
+        }
+      },
+      {
+        id: "2-1",
+        name: "咖啡島-日製濾杯款式A",
+        price: 420,
+        oldPrice: 600,
+        tag: "經典",
+        isNew: false,
+        category: "filter",
+        image: `${base}products/coffeeFilter1.jpg`,
+        hoverImage: `${base}products/coffeeFilter1Hover.jpg`,
+        images: [
+          //`${base}products/coffeeFilter1.jpg`,
+          `${base}products/coffeeFilter1Hover.jpg`,
+          `${base}products/coffeeFilter1Des1.jpg`
+        ],
+        intro: "日系工藝濾杯，V型設計萃取均勻，經典款式適合日常沖煮各式咖啡風味。",
+        description: [
+          "V型杯身設計，促進熱水均勻穿透咖啡粉",
+          "高密度陶瓷材質，保溫效果佳",
+          "杯底多孔，萃取順暢不卡粉"
+        ],
+        descImages: [
+          `${base}products/coffeeFilter1Des1.jpg`,
+          `${base}products/coffeeFilter1Des2.jpg`
+        ],
+        specs: {
+          商品名稱: "咖啡島-日製濾杯款式A",
+          品牌: "咖啡島 Coffee Island",
+          型號: "Filter A",
+          顏色: "象牙白",
+          材質: "高密度陶瓷",
+          容量: "1-2杯",
+          重量: "250g",
+          產地: "日本",
+          適用熱源: "建議使用手沖熱水，不適直火",
+          表面處理: "高溫釉燒處理"
+        }
+      },
+      {
+        id: "2-2",
+        name: "咖啡島-日製濾杯款式B",
+        price: 420,
+        oldPrice: 600,
+        tag: "經典",
+        isNew: false,
+        category: "filter",
+        image: `${base}products/coffeeFilter2.jpg`,
+        hoverImage: `${base}products/coffeeFilter2Hover.jpg`,
+        images: [
+          `${base}products/coffeeFilter2.jpg`,
+          `${base}products/coffeeFilter2Hover.jpg`,
+          `${base}products/coffeeFilter2Des1.jpg`
+        ],
+        intro: "日本進口B款濾杯，特別的溝槽設計加強萃取效率，簡單易用，風味清新。",
+        description: [
+          "螺旋溝槽結構，提升萃取均勻性",
+          "耐用陶瓷燒製，易於清洗",
+          "底孔加大，防堵塞流速佳"
+        ],
+        descImages: [
+          `${base}products/coffeeFilter2Des1.jpg`,
+          `${base}products/coffeeFilter2Des2.jpg`
+        ],
+        specs: {
+          商品名稱: "咖啡島-日製濾杯款式B",
+          品牌: "咖啡島 Coffee Island",
+          型號: "Filter B",
+          顏色: "象牙白",
+          材質: "高密度陶瓷",
+          容量: "1-2杯",
+          重量: "255g",
+          產地: "日本",
+          適用熱源: "建議使用手沖熱水，不適直火",
+          表面處理: "高溫釉燒處理"
+        }
+      },
+      {
+        id: "3-1",
+        name: "咖啡島-古坑咖啡豆250g",
+        price: 550,
+        oldPrice: 600,
+        tag: "熱銷",
+        isNew: true,
+        category: "beans",
+        image: `${base}products/coffeeBean1.jpg`,
+        hoverImage: `${base}products/coffeeBeanHover1.jpg`,
+        images: [
+          `${base}products/coffeeBean1.jpg`,
+          `${base}products/coffeeBeanHover1.jpg`,
+        ],
+        intro: "台灣古坑小農直送，新鮮烘焙、風味醇厚甘甜，適合手沖或義式濃縮。",
+        description: [
+          "100%台灣古坑在地咖啡豆，新鮮直送",
+          "中深焙，堅果香氣明顯，尾韻甘甜",
+          "適合多種沖煮方式"
+        ],
+        descImages: [
+          `${base}products/coffeeBean1Des1.jpg`,
+          `${base}products/coffeeBean1Des2.jpg`
+        ],
+        specs: {
+          商品名稱: "咖啡島-古坑咖啡豆250g",
+          品牌: "咖啡島 Coffee Island",
+          產地: "台灣 雲林古坑",
+          重量: "250g",
+          處理法: "水洗",
+          烘焙度: "中深焙",
+          保存期限: "半年",
+          包裝: "單向透氣閥鋁箔袋"
+        }
+      },
+      {
+        id: "3-2",
+        name: "咖啡島-關西咖啡豆250g",
+        price: 600,
+        oldPrice: 700,
+        tag: "熱銷",
+        isNew: false,
+        category: "beans",
+        image: `${base}products/coffeeBean2.jpg`,
+        hoverImage: `${base}products/coffeeBeanHover2.jpg`,
+        images: [
+          `${base}products/coffeeBean2.jpg`,
+          `${base}products/coffeeBeanHover2.jpg`,
+        ],
+        intro: "新竹關西在地嚴選豆，新鮮烘焙，帶有淡雅花香與明亮果酸，特色十足。",
+        description: [
+          "新竹關西小農產地直送，品質新鮮有保證",
+          "中淺焙，花果香明顯，口感層次豐富",
+          "推薦搭配手沖，冰滴，法壓壺"
+        ],
+        descImages: [
+          `${base}products/coffeeBean3Des1.jpg`,
+          `${base}products/coffeeBean3Des2.jpg`
+        ],
+        specs: {
+          商品名稱: "咖啡島-關西咖啡豆250g",
+          品牌: "咖啡島 Coffee Island",
+          產地: "台灣 新竹關西",
+          重量: "250g",
+          處理法: "日曬",
+          烘焙度: "中淺焙",
+          保存期限: "半年",
+          包裝: "單向透氣閥鋁箔袋"
+        }
+      },
+      {
+        id: "3-3",
+        name: "咖啡島-阿里山咖啡豆250g",
+        price: 600,
+        oldPrice: 700,
+        tag: "熱銷",
+        isNew: false,
+        category: "beans",
+        image: `${base}products/coffeeBean3.jpg`,
+        hoverImage: `${base}products/coffeeBeanHover3.jpg`,
+        images: [
+          `${base}products/coffeeBean3.jpg`,
+          `${base}products/coffeeBeanHover3.jpg`,
+        ],
+        intro: "阿里山高山咖啡，獨特溫潤口感、果香奔放，帶有淡淡蜜糖韻味，限量推薦！",
+        description: [
+          "高山栽培，手摘精品，果香細緻奔放",
+          "中焙處理，口感溫潤層次多變",
+          "每批限量供應，珍貴首選"
+        ],
+        descImages: [
+          `${base}products/coffeeBean3Des1.jpg`,
+          `${base}products/coffeeBean3Des2.jpg`
+        ],
+        specs: {
+          商品名稱: "咖啡島-阿里山咖啡豆250g",
+          品牌: "咖啡島 Coffee Island",
+          產地: "台灣 嘉義阿里山",
+          重量: "250g",
+          處理法: "蜜處理",
+          烘焙度: "中焙",
+          保存期限: "半年",
+          包裝: "單向透氣閥鋁箔袋"
+        }
+      }
+    ];
 
 function ProductList() {
   const [activeCategory, setActiveCategory] = useState("kettle"); //預設分類設為kettle
