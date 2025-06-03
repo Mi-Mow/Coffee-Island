@@ -173,7 +173,7 @@ function Event() {
   return (
     <>
       <div id='findEvent'>
-        <h1 className='title'>找活動</h1>
+        <h1 className='title'>全部活動</h1>
         <NewsNav />
         <main>
 
