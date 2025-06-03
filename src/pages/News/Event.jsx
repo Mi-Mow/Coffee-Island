@@ -79,13 +79,19 @@ TYPICA 的理念是讓咖啡的價值被公平體現，這不僅是一場品飲�
   {
     id: 5,
     imgSrc: event5,
-    tags: ['外部活動', '復古咖啡廳'],
-    date: '2025/05/30~2025/05/30',
-    startDate: new Date('2025-05-30'),
-    endDate: new Date('2025-05-30'),
+    tags: ['外部活動', '咖啡課程'],
+    date: '2025/06/03 (進行中)',
+    startDate: new Date('2025-06-03'),
+    // endDate: new Date('2025-06-03'),
     time: '', // 無時間
-    title: '咖啡文化講座',
-    link: `${base}news/event/1` // 活動內容頁面
+    title: '臺灣客家茶文化館－DIY手沖咖啡',
+    content: `每天外帶咖啡，也想在家手沖出專於自己的大人味，體驗質感生活日常。
+
+這是一堂手沖咖啡的入門體驗，帶您手把手帶您了解咖啡、磨豆的技巧、沖泡手法以及如何品嘗其中風味。
+
+質感生活從此啟航，來一趟探索咖啡的深度旅行吧！`,
+    organizer: "臺灣客家茶文化館",
+    link: "https://www.hakkatea.tw/events/family/yearendspringprom5?event_category=family" // 活動內容頁面
   },
   {
     id: 6,
@@ -119,7 +125,7 @@ TYPICA 的理念是讓咖啡的價值被公平體現，這不僅是一場品飲�
   },
   {
     id: 8,
-    imgSrc: `${base}cafe/neihu_16_1.jpg`,
+    imgSrc: `${base}cafe/neihu_16_2.jpg`,
     tags: ['最新企劃', '復古咖啡廳'],
     date: '2025/05/30~2025/05/30',
     startDate: new Date('2025-05-30'),
@@ -152,9 +158,9 @@ function Event() {
         return isSameDay(ev.startDate, today);
       case '明日':
         return isSameDay(ev.startDate, tomorrow);
-      case '當月展覽':
+      case '當月':
         return ev.startDate.getMonth() === today.getMonth();
-      case '即將結束':
+      case '將結束':
         const endSoon = (ev.endDate - today) / (1000 * 60 * 60 * 24);
         return endSoon <= 7 && endSoon >= 0; //定義7天內為即將結束
       default:
@@ -183,7 +189,7 @@ function Event() {
             <div className="timeBar">
               {/* <p>時間</p> */}
               <div>
-                {['今日', '明日', '當月展覽', '即將結束'].map((label, idx) => (
+                {['今日', '明日', '當月', '將結束'].map((label, idx) => (
                   <div
                     key={idx}
                     // 點擊切換className名稱

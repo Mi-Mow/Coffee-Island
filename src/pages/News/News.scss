@@ -104,7 +104,7 @@
     left: 40px;
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 56px;
     z-index: 99;
 
     svg {
@@ -163,7 +163,7 @@
     opacity: 1;
   }
 
-    .nav-news ul li a:active .link-text {
+  .nav-news ul li a:active .link-text {
     /* Show the text on active */
     visibility: visible;
     opacity: 1;
@@ -217,6 +217,12 @@
     align-items: center;
     gap: 12px;
     align-self: stretch;
+
+  }
+
+  .date {
+    font-size: 14px;
+    color: $tagcolor !important;
   }
 
   .title-container {
@@ -309,47 +315,48 @@ input {
 }
 
 //共用
-    .reco-button a, button {
-      position: relative;
-      display: flex;
-      padding: 15px 60px;
-      justify-content: center;
-      cursor: pointer;
+.reco-button a,
+button {
+  position: relative;
+  display: flex;
+  padding: 15px 60px;
+  justify-content: center;
+  cursor: pointer;
 
-      font-weight: 900;
-      color: $btn-color!important;
-      border-radius: 2px;
-      border: 3px solid $btn-color;
-      background-color: #E1BB98;
-      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      z-index: 1;
+  font-weight: 900;
+  color: $btn-color !important;
+  border-radius: 2px;
+  border: 3px solid $btn-color;
+  background-color: #E1BB98;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
 
-      @media ($media-640) {
-        font-size: 12px;
-      }
+  @media ($media-640) {
+    font-size: 12px;
+  }
 
 
-      // 疊上透明背景圖（紙張材質）
-      &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image: url('/paper-texture.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        opacity: 0.3; // 材質透明度 30%
-        z-index: 1;
-        transition: background-color 0.3s, opacity 0.3s;
-      }
+  // 疊上透明背景圖（紙張材質）
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('/paper-texture.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.3; // 材質透明度 30%
+    z-index: 1;
+    transition: background-color 0.3s, opacity 0.3s;
+  }
 
-      &:hover {
-        color: $textcolor!important;
-        border: 2px solid $bordercolor;
-        background-color: #7B4519;
-      }
-    }
+  &:hover {
+    color: $textcolor !important;
+    border: 2px solid $bordercolor;
+    background-color: #7B4519;
+  }
+}
 
 /* 島嶼月報 */
 #news>main {
@@ -1030,7 +1037,8 @@ input {
 }
 
 /* 文章內頁 */
-.article-detail-page,.event-detail-page {
+.article-detail-page,
+.event-detail-page {
   background: #153837;
   display: flex;
   margin: 0 auto;
@@ -1042,8 +1050,14 @@ input {
     display: flex;
     justify-content: flex-start;
 
-    >li {
+    li {
+      font-size: 14px;
+    }
+
+    li>a {
+      font-size: 14px;
       color: $tagcolor;
+      cursor: pointer;
     }
   }
 
@@ -1305,7 +1319,7 @@ input {
 
       div {
         display: flex;
-        width: 363px;
+        // width: 363px;
         align-items: center;
         gap: 20px;
 
@@ -1317,8 +1331,8 @@ input {
         .time {
 
           display: flex;
-          height: 56px;
-          padding: 0px 20px;
+          height: 40px;
+          padding: 0px 16px;
           justify-content: center;
           align-items: center;
           gap: 10px;
@@ -1336,6 +1350,7 @@ input {
           }
 
           p {
+            font-size: 14px;
             display: flex;
             color: $textcolor;
 
