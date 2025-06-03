@@ -28,6 +28,9 @@ function EventPage() {
         }
     }, [location]);
 
+    // 取得所有標籤
+    const allTags = [...new Set(events.flatMap(ev => ev.tags))];
+
     return (
 
         <>
@@ -53,24 +56,49 @@ function EventPage() {
                             </li>
                         </ol>
                     </nav>
+                    <section>
+                        <div className="title-container">
+                            <h1>{event.title}</h1>
+                            <div>
+                                <p>
+                                    {event.tags[0]}
+                                    {` `}
+                                    {event.tags[1]}</p>
+                            </div>
+                        </div>
+                        <div className="content-container">
+                            <figure>
+                                <img src={event.imgSrc} alt={event.title} />
+                            </figure>
+                            <p><strong>活動日期：</strong>{event.date}{event.time && `｜時間：${event.time}`}</p>
+                            <p><strong>主辦單位：</strong>{event.organizer}</p>
+                            <p><strong>活動內容：</strong></p>
+                            {/* 文章段落 */}
+                            <p style={{ margin: '20px 0' }}>{event.content}</p>
 
-                    <div className="content">
-                        <h1>{event.title}</h1>
-                        <img src={event.imgSrc} alt={event.title} />
-                        <p><strong>時間：</strong>{event.date}</p>
-                        <p><strong>主辦單位：</strong>{event.organizer}</p>
-                        <p><strong>活動介紹：</strong></p>
-                        <p>{event.content}</p>
+                        </div>
                         <p>
-                            <strong>更多資訊：</strong>
-                            <a href={event.link} target="_blank" rel="noopener noreferrer">點此前往</a>
+                            <strong>更多資訊：</strong>{event.p}
+                            {event.link ? (
+                                <a href={event.link} target="_blank" rel="noopener noreferrer">點此前往</a>
+                            ) : (
+                                <div className="reco-button">
+                                    <button onClick={() => alert('前往報名')}>點此報名</button>
+                                </div>
+                            )}
+
                         </p>
 
+
                         {/* 模擬底部區塊，讓首頁點擊時滾動至此 */}
-                        <div ref={footerRef} style={{ marginTop: '100px' }}>
+                        {/* <div ref={footerRef} style={{ marginTop: '100px' }}>
                             <p>（底部區塊：報名、聯絡資訊等可放這）</p>
-                        </div>
-                    </div>
+                        </div> */}
+
+
+                    </section>
+
+
 
                 </main>
 

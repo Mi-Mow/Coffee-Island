@@ -13,7 +13,7 @@
 #findEvent,
 .article-detail-page,
 .event-detail-page {
-  background: #153837;
+  background: rgba(21, 56, 55, 0.8);
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -162,7 +162,9 @@
 #findEvent .nav-news,
 .article-detail-page .nav-news,
 .event-detail-page .nav-news {
-  top: 80px;
+  position: fixed;
+  top: 100px;
+  left: 40px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -182,6 +184,7 @@
 .article-detail-page .nav-news ul,
 .event-detail-page .nav-news ul {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   gap: 24px;
 }
@@ -220,7 +223,7 @@
 #findEvent .nav-news ul li a:active .link-text,
 .article-detail-page .nav-news ul li a:active .link-text,
 .event-detail-page .nav-news ul li a:active .link-text {
-  /* Show the text on hover */
+  /* Show the text on active */
   visibility: visible;
   opacity: 1;
 }
@@ -359,10 +362,48 @@ input {
   letter-spacing: 1.6px;
 }
 
+.reco-button a, button {
+  position: relative;
+  display: flex;
+  padding: 15px 60px;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 900;
+  color: #904118 !important;
+  border-radius: 2px;
+  border: 3px solid #904118;
+  background-color: #E1BB98;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
+}
+@media (max-width:640px) {
+  .reco-button a, button {
+    font-size: 12px;
+  }
+}
+.reco-button a::before, button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/paper-texture.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: 1;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+.reco-button a:hover, button:hover {
+  color: #fff1cb !important;
+  border: 2px solid #FFF1CB;
+  background-color: #7B4519;
+}
+
 /* 島嶼月報 */
 #news > main {
   width: 100%;
-  padding: 0px;
+  padding: 24px 0px;
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -878,19 +919,19 @@ input {
 }
 
 /* 文章內頁 */
-.article-detail-page {
+.article-detail-page, .event-detail-page {
   background: #153837;
   display: flex;
   margin: 0 auto;
 }
-.article-detail-page .breadcrumbs {
+.article-detail-page .breadcrumbs, .event-detail-page .breadcrumbs {
   display: flex;
   justify-content: flex-start;
 }
-.article-detail-page .breadcrumbs > li {
+.article-detail-page .breadcrumbs > li, .event-detail-page .breadcrumbs > li {
   color: #fff;
 }
-.article-detail-page p {
+.article-detail-page p, .event-detail-page p {
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -898,13 +939,13 @@ input {
   justify-content: center;
   letter-spacing: 0.24px;
 }
-.article-detail-page section {
+.article-detail-page section, .event-detail-page section {
   display: flex;
   padding: 36px 0px;
   margin: 0px 40px;
   flex-direction: column;
 }
-.article-detail-page section .title-container {
+.article-detail-page section .title-container, .event-detail-page section .title-container {
   display: flex;
   padding: 24px 0px;
   flex-direction: column;
@@ -912,60 +953,60 @@ input {
   align-items: center;
   gap: 12px;
 }
-.article-detail-page section .title-container p {
+.article-detail-page section .title-container p, .event-detail-page section .title-container p {
   font-size: 14px;
   letter-spacing: 8px;
 }
-.article-detail-page section .title-container h1 {
+.article-detail-page section .title-container h1, .event-detail-page section .title-container h1 {
   font-size: 32px;
   font-weight: 700;
   line-height: 160%;
   letter-spacing: 0.8px;
 }
-.article-detail-page section .content-container {
+.article-detail-page section .content-container, .event-detail-page section .content-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;
 }
-.article-detail-page section .content-container figure {
+.article-detail-page section .content-container figure, .event-detail-page section .content-container figure {
   height: 480px;
   overflow: hidden;
   margin: 0 auto;
 }
-.article-detail-page section .content-container figure img {
+.article-detail-page section .content-container figure img, .event-detail-page section .content-container figure img {
   width: 100%;
   object-fit: cover;
   height: 100%;
 }
-.article-detail-page section .content-container .article-paragraphs {
+.article-detail-page section .content-container .article-paragraphs, .event-detail-page section .content-container .article-paragraphs {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
 }
-.article-detail-page section .content-container .article-paragraphs .paragraph-block {
+.article-detail-page section .content-container .article-paragraphs .paragraph-block, .event-detail-page section .content-container .article-paragraphs .paragraph-block {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
 }
-.article-detail-page section .content-container .article-paragraphs .paragraph-block .smImg {
+.article-detail-page section .content-container .article-paragraphs .paragraph-block .smImg, .event-detail-page section .content-container .article-paragraphs .paragraph-block .smImg {
   width: 560px;
   height: 315px;
 }
-.article-detail-page section .content-container .article-paragraphs .paragraph-block:last-child p {
+.article-detail-page section .content-container .article-paragraphs .paragraph-block:last-child p, .event-detail-page section .content-container .article-paragraphs .paragraph-block:last-child p {
   padding-bottom: 36px;
 }
-.article-detail-page section .info-container {
+.article-detail-page section .info-container, .event-detail-page section .info-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
   align-self: stretch;
 }
-.article-detail-page section .info-container .info-text-container {
+.article-detail-page section .info-container .info-text-container, .event-detail-page section .info-container .info-text-container {
   display: flex;
   width: 100%;
   height: 50%;
@@ -973,20 +1014,20 @@ input {
   align-items: center;
   gap: 24px;
 }
-.article-detail-page .article-buttonGroup-container {
+.article-detail-page .article-buttonGroup-container, .event-detail-page .article-buttonGroup-container {
   display: flex;
   align-items: center;
   gap: 24px;
 }
 @media (max-width:640px) {
-  .article-detail-page .article-buttonGroup-container {
+  .article-detail-page .article-buttonGroup-container, .event-detail-page .article-buttonGroup-container {
     gap: 32px;
   }
-  .article-detail-page .article-buttonGroup-container .article-button-container:nth-child(2) {
+  .article-detail-page .article-buttonGroup-container .article-button-container:nth-child(2), .event-detail-page .article-buttonGroup-container .article-button-container:nth-child(2) {
     display: none;
   }
 }
-.article-detail-page .article-buttonGroup-container .article-button-container button {
+.article-detail-page .article-buttonGroup-container .article-button-container button, .event-detail-page .article-buttonGroup-container .article-button-container button {
   border-radius: 2px;
   border: 3px solid #fff1cb;
   background-color: transparent;
@@ -999,12 +1040,12 @@ input {
   cursor: pointer;
 }
 @media (max-width:640px) {
-  .article-detail-page .article-buttonGroup-container .article-button-container button {
+  .article-detail-page .article-buttonGroup-container .article-button-container button, .event-detail-page .article-buttonGroup-container .article-button-container button {
     width: 120px;
     height: 56px;
   }
 }
-.article-detail-page .article-buttonGroup-container .article-button-container button:hover {
+.article-detail-page .article-buttonGroup-container .article-button-container button:hover, .event-detail-page .article-buttonGroup-container .article-button-container button:hover {
   color: #a2b9bc;
   border: 2px solid #FFF1CB;
 }
@@ -1162,6 +1203,7 @@ input {
   flex: 1 0 0;
 }
 
+/* 活動內頁 */
 @media screen and (max-width: 820px) {
   #news > main .section-row {
     flex-direction: column;
