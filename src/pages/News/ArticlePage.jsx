@@ -5,6 +5,7 @@ const base = import.meta.env.BASE_URL;
 
 
 function ArticlePage() {
+
     const { id } = useParams();
     const navigate = useNavigate();
 

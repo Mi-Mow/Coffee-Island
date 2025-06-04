@@ -9,6 +9,7 @@ import cafe3 from '/news/cafe3.jpg'
 import story1_1 from '/news/story1_1.jpg'
 import SearchBar from './components/Searchbar'
 import NewsNav from './components/NewsNav';
+import { useEffect } from 'react';
 
 
 // 資料區
@@ -131,6 +132,11 @@ export const hotArticles = [
 ];
 
 function Article() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0); // 捲動到頁面頂部
+    }, []);
+    
     const navigate = useNavigate();
 
     function onClickArea(id) {

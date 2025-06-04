@@ -9,7 +9,7 @@ export default function NewsNav() {
     <>
       {/* nav-news */}
       
-      <div className='nav-news'>
+      <div className='nav-news nav-news-desktop'>
         <ul
         ><li>
             <NavLink to={`${base}news/article`}>
@@ -50,6 +50,26 @@ export default function NewsNav() {
           </li>
         </ul>
 
+      </div>
+
+      {/* 手機版純文字導覽 */}
+      <div className="nav-news nav-news-mobile">
+        <ul>
+          <li>
+            <NavLink to={`${base}news/article`}>
+              {({ isActive }) => (
+                <span className={`text-nav ${isActive ? 'active' : ''}`}>閱讀文章</span>
+              )}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={`${base}news/event`}>
+              {({ isActive }) => (
+                <span className={`text-nav ${isActive ? 'active' : ''}`}>找活動</span>
+              )}
+            </NavLink>
+          </li>
+        </ul>
       </div>
 
 

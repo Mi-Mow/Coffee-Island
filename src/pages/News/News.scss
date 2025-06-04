@@ -29,7 +29,7 @@
   }
 
   @media ($media-640) {
-    padding: 80px 24px;
+    padding: 100px 24px;
   }
 
   nav {
@@ -97,6 +97,7 @@
     }
   }
 
+
   /* nav */
   .nav-news {
     position: fixed;
@@ -104,34 +105,20 @@
     left: 40px;
     display: flex;
     flex-direction: row;
-    width: 56px;
+    width: 100px;
     z-index: 99;
 
     svg {
       width: 56px;
       height: 56px;
       flex-shrink: 0;
+
+      @media($media-640) {
+        width: 48px;
+        height: 48px;
+      }
+
     }
-
-    // a {
-    //   font-size: 16px;
-    //   // margin: 10px;
-    //   padding: 8px 0;
-    //   border-bottom: 2px solid transparent;
-    //   transition: all .35s;
-    //   cursor: pointer;
-    //   color: $textcolor;
-    //   display: flex;
-    //   flex-direction: column;
-    //   justify-content: center;
-    //   align-items: flex-start;
-    //   gap: 16px;
-
-    //   &:hover {
-    //     color: $primary_1;
-    //     border-bottom: 2px solid $bordercolor;
-    //   }
-    // }
 
     ul {
       display: flex;
@@ -140,11 +127,24 @@
       gap: 24px;
 
       @media($media-640) {
-        margin-top: 8px;
-        gap: 16px;
+        flex-direction: row;
+        // margin-top: 8px;
+        // gap: 16px;
       }
     }
 
+  }
+
+
+
+  /* 預設隱藏手機版導覽 */
+  .nav-news-mobile {
+    display: none;
+  }
+
+  /* 桌面版顯示 */
+  .nav-news-desktop {
+    display: block;
   }
 
 
@@ -1001,7 +1001,7 @@ button {
     align-self: stretch;
 
     @media ($media-640) {
-      // padding: 16px 0px;
+      padding: 24px 0px;
     }
 
 
@@ -1230,6 +1230,7 @@ button {
 
     @media ($media-640) {
       padding: 0px;
+      padding-bottom: 24px;
       width: 100%;
     }
 
@@ -1296,9 +1297,9 @@ button {
       max-width: 100%;
       box-sizing: border-box;
 
-      position: sticky;
+      // position: sticky;
       top: 80px;
-      z-index: 99;
+      // z-index: 99;
     }
 
     .timeBar {
@@ -1471,7 +1472,8 @@ button {
 
   // 導覽列不顯示
   #news .nav-news {
-    display: none;
+    display: none!important;
+
   }
 
   #findArticles .title,
@@ -1486,21 +1488,47 @@ button {
     padding: 0px;
     margin: 0px;
 
+
   }
+
+  .nav-news-desktop {
+    display: none !important;
+  }
+
+  .nav-news-mobile {
+    display: block !important;
+  }
+
+  .nav-news-mobile .text-nav {
+    font-size: 14px;
+    padding: 8px;
+    padding-right: calc(8px - 0.8rem); //扣掉右邊字距
+    display: block;
+    text-align: center;
+  }
+
+  .nav-news-mobile .active {
+    font-weight: bold;
+  }
+
 
   #findArticles .nav-news,
   #findEvent .nav-news {
     width: 100%;
     margin: 0px;
     letter-spacing: $letter-spacing-m;
+    position: static;
+    width: 100%;
+    left: 0px;
+    z-index: 0;
 
     ul {
-      gap: 48px;
       width: 100%;
       justify-content: space-between;
 
       li {
         flex: 1;
+        margin: 0px 24px;
         text-align: center;
 
         li>a:last-child {
@@ -1513,9 +1541,16 @@ button {
           align-items: flex-start;
         }
 
+        a {
+          border-radius: 8px;
+          border: $textcolor;
+        }
+
         a.active {
-          border-bottom: 2px solid $primary_1;
-          color: $primary_1;
+          // border-bottom: 2px solid $textcolor;
+          background-color: #A46230;
+          border-radius: 8px;
+          color: $textcolor;
         }
       }
 
