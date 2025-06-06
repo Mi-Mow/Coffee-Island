@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CartPage.scss";
 import Confetti from 'react-confetti';
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+
 
 const base = import.meta.env.BASE_URL;
 
@@ -17,6 +20,10 @@ function CartPage() {
     email: "",
     address: ""
   });
+  const handleConfirm = () => {
+    setStep(4);
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +44,13 @@ function CartPage() {
 
   const handleQuantityChange = (index, delta) => {
     const updated = [...cartItems];
-    updated[index].quantity = Math.max(1, (updated[index].quantity || 1) + delta);
+    const newQuantity = (updated[index].quantity || 1) + delta;
+    if (newQuantity <= 0) {
+      // 數量變成 0，直接刪除該商品
+      updated.splice(index, 1);
+    } else {
+      updated[index].quantity = newQuantity;
+    }
     updateLocalStorage(updated);
   };
 
@@ -52,6 +65,10 @@ function CartPage() {
     0
   );
 
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMsg, setSnackbarMsg] = useState("");
+  const [formShake, setFormShake] = useState(false);
+
   const handleStep2Submit = () => {
     const pay = document.querySelector('input[name="pay"]:checked')?.nextSibling?.textContent.trim();
     const invoiceRadio = document.querySelector('input[name="invoice"]:checked');
@@ -61,6 +78,22 @@ function CartPage() {
 
     const inputs = document.querySelectorAll(".recipient-info input");
     const [nameInput, phoneInput, emailInput, addressInput] = inputs;
+
+    // 驗證
+    if (
+      !pay ||
+      !invoice ||
+      !nameInput?.value.trim() ||
+      !phoneInput?.value.trim() ||
+      !emailInput?.value.trim() ||
+      !addressInput?.value.trim()
+    ) {
+      setSnackbarMsg("請完整填寫所有必填欄位");
+      setOpenSnackbar(true);
+      setFormShake(true);
+      setTimeout(() => setFormShake(false), 400);
+      return;
+    }
 
     setFormData({
       pay,
@@ -74,23 +107,40 @@ function CartPage() {
     setStep(3);
   };
 
-  const handleConfirm = () => {
-    setStep(4);
-  };
-
   return (
     <div className="cart-page">
       {/* 步驟導覽條 */}
       <div className="step-progress">
-        {[1, 2, 3, 4].map((num, i) => (
-          <div className={`step-wrapper ${num === step ? "active" : ""}`} key={i}>
-            <div className="circle">{num}</div>
-            <span className="label">
-              {["確認商品項目", "配送付款資訊", "預定明細確認", "預定完成"][i]}
-            </span>
+        <div className={`step-block show-mobile`}>
+          <div className={`step-wrapper ${step === 1 ? "active" : ""}`}>
+            <div className="circle">1</div>
+            <span className="label">確認商品</span>
           </div>
-        ))}
+          <div className={`step-bar ${step > 1 ? "filled" : ""}`}></div>
+        </div>
+        <div className={`step-block ${step >= 2 ? "show-mobile" : ""}`}>
+          <div className={`step-wrapper ${step === 2 ? "active" : ""}`}>
+            <div className="circle">2</div>
+            <span className="label">填寫資料</span>
+          </div>
+          <div className={`step-bar ${step > 2 ? "filled" : ""}`}></div>
+        </div>
+        <div className={`step-block ${step >= 3 ? "show-mobile" : ""}`}>
+          <div className={`step-wrapper ${step === 3 ? "active" : ""}`}>
+            <div className="circle">3</div>
+            <span className="label">訂單確認</span>
+          </div>
+          <div className={`step-bar ${step > 3 ? "filled" : ""}`}></div>
+        </div>
+        <div className={`step-block ${step >= 4 ? "show-mobile" : ""}`}>
+          <div className={`step-wrapper ${step === 4 ? "active" : ""}`}>
+            <div className="circle">4</div>
+            <span className="label">完成</span>
+          </div>
+        </div>
       </div>
+
+
 
       <h2 className="cart-title">預定區訂單</h2>
 
@@ -98,30 +148,52 @@ function CartPage() {
       {step === 1 && (
         <div className="cart-content">
           <div className="cart-list">
-            <div className="cart-header">
-              <span></span>
-              <span>產品規格</span>
-              <span>單價</span>
-              <span>數量</span>
-              <span></span>
-            </div>
-            {cartItems.map((item, index) => (
-              <div className="cart-item" key={index}>
-                <img src={item.images && item.images[0] ? item.images[0] : item.image} alt={item.name} />
-                <div className="info">
-                  <div className="name">{item.name}</div>
-                  <div className="spec">規格　{item.selectedColor || "黑色"}</div>
-                </div>
-                <div className="price">${item.price}</div>
-                <div className="quantity-control">
-                  <button onClick={() => handleQuantityChange(index, -1)}>－</button>
-                  <span>{item.quantity || 1}</span>
-                  <button onClick={() => handleQuantityChange(index, 1)}>＋</button>
-                </div>
-                <button className="remove" onClick={() => handleRemove(index)}>×</button>
+            {cartItems.length === 0 ? (
+              <div className="cart-empty">
+                購物車沒有東西，趕快去買吧！
               </div>
-            ))}
+            ) : (
+              <>
+                <table className="cart-table">
+                  <thead>
+                    <tr>
+                      <th colSpan={2}>產品名稱</th>
+                      <th>單價</th>
+                      <th>數量</th>
+                      <th>小計</th>
+                      <th>刪除</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cartItems.map((item, idx) => (
+                      <tr key={idx}>
+                        <th className="img">
+                          <img src={item.images?.[0] || item.image} alt={item.name} />
+                        </th>
+                        <th className="title">
+                          <span className="name">{item.name}</span>
+                          <div className="spec">規格 {item.selectedColor || '黑色'}</div>
+                        </th>
+                        <td data-title="單價">${item.price}</td>
+                        <td data-title="數量">
+                          <div className="quantity-control">
+                            <button onClick={() => handleQuantityChange(idx, -1)}>－</button>
+                            <span>{item.quantity || 1}</span>
+                            <button onClick={() => handleQuantityChange(idx, 1)}>＋</button>
+                          </div>
+                        </td>
+                        <td data-title="小計">${(item.price * (item.quantity || 1)).toLocaleString()}</td>
+                        <td data-title="刪除">
+                          <button className="remove" onClick={() => handleRemove(idx)}>×</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
 
+
+              </>
+            )}
           </div>
           <div className="cart-summary">
             <h3 className="summary-title">預訂摘要</h3>
@@ -129,17 +201,19 @@ function CartPage() {
               <span>金額小計</span>
               <span className="total-price">NT${total}</span>
             </div>
-            <div className="summary-line total-line">
-              <span>總額金額</span>
-              <span className="total-price red">NT${total}</span>
-            </div>
             <div className="button-group">
-              <button className="next" onClick={() => setStep(2)}>下一步</button>
-              <button className="keep" onClick={() => navigate(`${base}products`)}>繼續選購</button>
+              <button className="next" onClick={() => setStep(2)} disabled={cartItems.length === 0}>
+                下一步
+              </button>
+              <button className="keep" onClick={() => navigate(`${base}products`)}>
+                繼續選購
+              </button>
             </div>
           </div>
         </div>
       )}
+
+
 
       {/* step 2: 配送付款資訊 */}
       {step === 2 && (
@@ -148,7 +222,7 @@ function CartPage() {
             {/* 配送付款資訊 */}
             <div className="form-section">
               <div className="form-title">配送付款資訊</div>
-              <label><input type="radio" name="pay" /> 線上刷卡 <span>支持分期付款</span></label>
+              {/* <label><input type="radio" name="pay" /> 線上刷卡 <span>支持分期付款</span></label> */}
               <label><input type="radio" name="pay" /> 轉帳</label>
               <label><input type="radio" name="pay" defaultChecked /> 取貨付款</label>
             </div>
@@ -162,7 +236,7 @@ function CartPage() {
                 <label><input type="radio" name="invoice" /> 手機條碼載具</label>
                 <input type="text" />
               </div>
-              <label><input type="radio" name="invoice" /> 電子發票</label>
+              {/* <label><input type="radio" name="invoice" /> 電子發票</label> */}
               <label><input type="radio" name="invoice" defaultChecked /> 實體發票</label>
             </div>
 
@@ -172,10 +246,26 @@ function CartPage() {
             <div className="form-section">
               <div className="form-title">收件人資訊</div>
               <div className="recipient-info">
-                <label>姓名</label><input type="text" />
-                <label>電話</label><input type="text" />
-                <label>電子信箱</label><input type="email" />
-                <label>地址</label><input type="text" />
+                <div className="recipient-info">
+                  <div className="form-row">
+                    <label><span className="required-star">*</span>姓名</label>
+                    <input type="text" />
+                  </div>
+                  <div className="form-row">
+                    <label><span className="required-star">*</span>電話</label>
+                    <input type="text" />
+                  </div>
+                  <div className="form-row">
+                    <label><span className="required-star">*</span>電子信箱</label>
+                    <input type="email" />
+                  </div>
+                  <div className="form-row">
+                    <label><span className="required-star">*</span>地址</label>
+                    <input type="text" />
+                  </div>
+                </div>
+
+
               </div>
             </div>
           </div>
@@ -186,10 +276,10 @@ function CartPage() {
               <span>金額小計</span>
               <span className="total-price">NT${total}</span>
             </div>
-            <div className="summary-line total-line">
+            {/* <div className="summary-line total-line">
               <span>總額金額</span>
               <span className="total-price red">NT${total}</span>
-            </div>
+            </div> */}
             <div className="button-group">
               <button className="next" onClick={handleStep2Submit}>下一步</button>
               <button className="keep" onClick={() => setStep(1)}>返回上一步</button>
@@ -253,10 +343,10 @@ function CartPage() {
               <span>金額小計</span>
               <span className="total-price">NT${total}</span>
             </div>
-            <div className="summary-line total-line">
+            {/* <div className="summary-line total-line">
               <span>總額金額</span>
               <span className="total-price red">NT${total}</span>
-            </div>
+            </div> */}
             <div className="button-group">
               <button className="next" onClick={handleConfirm}>確認訂單</button>
               <button className="keep" onClick={() => setStep(2)}>返回上一步</button>
@@ -268,8 +358,6 @@ function CartPage() {
       {/* step 4: 完成畫面 */}
       {step === 4 && (
         <div className="order-complete">
-          {/* <Confetti width={window.innerWidth} height={window.innerHeight} recycle={false} /> */}
-          {/* <img src={`${base}products/EndMonster.svg`} alt="吉祥物慶祝" className="mascot-img" /> */}
           <img
             src={`${base}products/EndMonster.svg`}
             alt="EndMoster"
@@ -279,12 +367,35 @@ function CartPage() {
           <h2>感謝您的預訂！</h2>
           <p>我們已收到您的訂單，請至電子信箱查看確認信。</p>
           <button className="keep" onClick={() => navigate(`${base}`)}>返回首頁</button>
-          {/* <button className="order-more" onClick={() => navigate(`${base}products`)}>再去逛新品</button> */}
         </div>
       )}
 
+      {/* 第二步驟填資料，若無填寫完整の提示 */}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        sx={{ right: { xs: 90, sm: 90 } }}  // 小怪獸旁邊
+      >
+        <Alert
+          severity="warning"
+          sx={{
+            backgroundColor: "#a46230",
+            color: "#fff",
+            fontWeight: 600,
+            fontSize: "15px",
+            alignItems: "center"
+          }}
+          variant="filled"
+        >
+          {snackbarMsg}
+        </Alert>
+      </Snackbar>
+
 
     </div>
+
   );
 }
 

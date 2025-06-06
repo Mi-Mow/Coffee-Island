@@ -96,7 +96,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    padding: 70px 100px;
+    padding: 50px 100px;
 
     @media (max-width: 1024px) {
       grid-template-columns: repeat(2, 1fr);
