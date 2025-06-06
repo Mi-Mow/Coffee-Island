@@ -3,27 +3,31 @@
   color: #fff1cb;
   font-family: inherit;
 
+  @media (max-width: 600px) {
+    padding: 150px 70px;
+  }
+
   // 第一部分：上方step步驟
   .step-progress {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     max-width: 880px;
     margin-inline: auto;
-  
+
     .step-block {
       display: flex;
       align-items: center;
       position: relative;
     }
-  
+
     .step-wrapper {
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 0 8px;
-  
+
       .circle {
         width: 30px;
         height: 30px;
@@ -37,7 +41,7 @@
         font-weight: bold;
         font-size: 14px;
       }
-  
+
       .label {
         font-size: 20px;
         color: #fff1cb;
@@ -45,17 +49,18 @@
         transition: color 0.2s;
         letter-spacing: 1px;
       }
-  
+
       &.active .circle {
         background: #fff1cb;
         color: #14423d;
         transform: scale(1.18);
         border-color: #fff1cb;
       }
+
       &.active .label {
         font-weight: bold;
       }
-  
+
       &:hover .circle:not(.active),
       &:focus .circle:not(.active) {
         background: #fff1cb30;
@@ -64,18 +69,19 @@
         transform: scale(1.09);
         border-color: #fff1cb;
       }
+
       &:hover .label:not(.active),
       &:focus .label:not(.active) {
         color: #fff1cb;
         text-decoration: underline;
       }
-  
+
       &:active .circle {
         transform: scale(0.96);
         filter: brightness(0.94);
       }
     }
-  
+
     .step-bar {
       height: 6px;
       width: 64px;
@@ -85,7 +91,7 @@
       position: relative;
       background: #fff1cb33;
       transition: background 0.3s;
-  
+
       &::after {
         content: '';
         display: block;
@@ -93,48 +99,64 @@
         width: 0%;
         background: #fff1cb;
         border-radius: 8px;
-        transition: width 0.5s cubic-bezier(.6,.05,.23,.98);
+        transition: width 0.5s cubic-bezier(.6, .05, .23, .98);
         position: absolute;
         left: 0;
         top: 0;
       }
+
       &.filled::after,
       &.filling::after {
         width: 100%;
       }
+
       &.filled::after {
         background: #fff1cb;
-        transition: width 0.6s cubic-bezier(.6,.05,.23,.98);
+        transition: width 0.6s cubic-bezier(.6, .05, .23, .98);
       }
+
       &.filling::after {
         background: #fff1cb;
-        animation: barFill 0.7s cubic-bezier(.6,.05,.23,.98);
+        animation: barFill 0.7s cubic-bezier(.6, .05, .23, .98);
       }
     }
-  
+
     @keyframes barFill {
-      from { width: 0%; }
-      to   { width: 100%; }
+      from {
+        width: 0%;
+      }
+
+      to {
+        width: 100%;
+      }
     }
-  
+
 
     @media (max-width: 1000px) {
-      justify-content: flex-start;
+     //justify-content: flex-start;
       gap: 8px;
+
+      // .step-progress {
+      //   margin-bottom: 30px;
+      // }
       .step-block {
         &:not(.show-mobile) {
           display: none !important;
         }
+
         .step-bar {
           width: 32px;
         }
+
         .label {
           font-size: 16px;
         }
       }
+
       .step-wrapper .label {
         display: none;
       }
+
       .step-wrapper.active .label {
         display: inline-block;
         margin-left: 10px;
@@ -143,54 +165,55 @@
         border-radius: 8px;
         //background: #fff1cb11;
       }
+
     }
   }
-  
+
 
   // 右方預訂摘要
   .cart-content {
     display: flex;
     gap: 40px;
-  
+
     .cart-list,
     .form-list {
       flex: 2;
     }
-  
+
     .cart-summary {
       align-self: flex-start;
       flex: 0.5;
       background: #1a2b29;
       padding: 24px;
       border-radius: 12px;
-  
+
       .summary-title {
         font-size: 20px;
         margin-bottom: 25px;
       }
-  
+
       .summary-line {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 60px;
+        margin-bottom: 10px;
         font-size: 16px;
       }
-  
+
       .total-line {
         margin-bottom: 24px;
       }
-  
+
       .total-price {
         font-size: 22px;
         font-weight: bold;
         text-align: right;
       }
-  
+
       .button-group {
         display: flex;
         flex-direction: column;
         gap: 16px;
-  
+
         .next,
         .keep {
           width: 100%;
@@ -201,7 +224,7 @@
           background: transparent;
           color: #fff1cb;
           cursor: pointer;
-  
+
           &:hover {
             background: #5e7d79;
           }
@@ -209,11 +232,12 @@
       }
     }
   }
+
   @media (max-width: 1000px) {
     .cart-content {
       flex-direction: column;
       gap: 24px;
-  
+
       .cart-summary {
         width: 100% !important;
         min-width: 0 !important;
@@ -224,7 +248,7 @@
       }
     }
   }
-  
+
 
   // 左方預定區訂單
   .cart-title {
@@ -277,7 +301,7 @@
 
       th,
       td {
-        padding: 15px 10px;
+        padding: 8px 10px;
         vertical-align: middle;
         font-size: 20px;
       }
@@ -447,7 +471,7 @@
   .form-list {
     display: flex;
     flex-direction: column;
-    row-gap: 40px;
+    row-gap: 20px;
 
     hr {
       border-color: #fff1cb;
@@ -458,7 +482,7 @@
     .form-section {
       display: flex;
       flex-direction: column;
-      row-gap: 32px;
+      row-gap: 20px;
 
       .form-title {
         font-size: 22px;
@@ -549,7 +573,7 @@
     border: 1px solid #fff1cb;
     border-radius: 8px;
     display: grid;
-    grid-template-columns: 2.2fr 1fr 1.2fr;
+    grid-template-columns: 120px 1fr;
     row-gap: 20px;
     column-gap: 16px;
     font-size: 20px;
@@ -562,23 +586,26 @@
     }
 
     .value {
+      //word-break: break-word;
       font-size: 14px;
     }
   }
+}
 
   // step4：預定完成
   .order-complete {
     text-align: center;
     padding: 80px 40px;
 
-    h2 {
-      font-size: 28px;
+    .thankyou {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
       margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 18px;
-      margin-bottom: 40px;
+      text-align: center;
+      width: 100%;
     }
 
     button.keep {
@@ -596,71 +623,45 @@
     }
   }
 
-  // 特效動畫
-  .endmoster-swing {
-    display: block;
-    margin: 0 auto 16px auto;
-    animation: swing 1.3s infinite ease-in-out;
+.endmoster-swing {
+  display: block;
+  margin: 0 auto 16px auto;
+  animation: swing 1.3s infinite ease-in-out;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(-13deg);
   }
 
-  @keyframes swing {
-    0% {
-      transform: rotate(-13deg);
-    }
-
-    20% {
-      transform: rotate(11deg);
-    }
-
-    40% {
-      transform: rotate(-7deg);
-    }
-
-    60% {
-      transform: rotate(7deg);
-    }
-
-    80% {
-      transform: rotate(-4deg);
-    }
-
-    100% {
-      transform: rotate(-13deg);
-    }
+  20% {
+    transform: rotate(11deg);
   }
 
-  @keyframes shake {
-
-    10%,
-    90% {
-      transform: translateX(-2px);
-    }
-
-    20%,
-    80% {
-      transform: translateX(4px);
-    }
-
-    30%,
-    50%,
-    70% {
-      transform: translateX(-8px);
-    }
-
-    40%,
-    60% {
-      transform: translateX(8px);
-    }
+  40% {
+    transform: rotate(-7deg);
   }
 
-  .form-list.shake,
-  .form-section.shake {
-    animation: shake 0.4s;
+  60% {
+    transform: rotate(7deg);
   }
 
-  .required-star {
-    color: #F44;
-    margin-right: 4px;
-    font-weight: bold;
+  80% {
+    transform: rotate(-4deg);
+  }
+
+  100% {
+    transform: rotate(-13deg);
   }
 }
+
+// .form-list.shake,
+// .form-section.shake {
+//   animation: shake 0.4s;
+// }
+
+// .required-star {
+//   color: #F44;
+//   margin-right: 4px;
+//   font-weight: bold;
+// }

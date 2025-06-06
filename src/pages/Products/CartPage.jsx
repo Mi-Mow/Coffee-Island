@@ -201,8 +201,21 @@ function CartPage() {
               <span>金額小計</span>
               <span className="total-price">NT${total}</span>
             </div>
+            <div className="summary-line total-line">
+              <span>運費</span>
+              <span className="total-price red">
+                NT${total >= 1000 ? 0 : 80}
+              </span>
+            </div>
+            <div className="free-shipping-tip">
+              滿1000元，全館免運
+            </div>
             <div className="button-group">
-              <button className="next" onClick={() => setStep(2)} disabled={cartItems.length === 0}>
+              <button
+                className="next"
+                onClick={() => setStep(2)}
+                disabled={cartItems.length === 0}
+              >
                 下一步
               </button>
               <button className="keep" onClick={() => navigate(`${base}products`)}>
@@ -210,6 +223,7 @@ function CartPage() {
               </button>
             </div>
           </div>
+
         </div>
       )}
 
@@ -276,15 +290,20 @@ function CartPage() {
               <span>金額小計</span>
               <span className="total-price">NT${total}</span>
             </div>
-            {/* <div className="summary-line total-line">
-              <span>總額金額</span>
-              <span className="total-price red">NT${total}</span>
-            </div> */}
+            <div className="summary-line total-line">
+              <span>運費</span>
+              <span className="total-price red">NT${total >= 1000 ? 0 : 80}</span>
+            </div>
+            <div className="free-shipping-tip">
+              滿1000元，全館免運
+            </div>
             <div className="button-group">
               <button className="next" onClick={handleStep2Submit}>下一步</button>
               <button className="keep" onClick={() => setStep(1)}>返回上一步</button>
             </div>
           </div>
+
+
         </div>
       )}
 
@@ -292,25 +311,37 @@ function CartPage() {
       {step === 3 && (
         <div className="cart-content">
           <div className="cart-list">
-            <div className="cart-header">
-              <span></span>
-              <span>產品規格</span>
-              <span>單價</span>
-              <span>數量</span>
-            </div>
-            {cartItems.map((item, index) => (
-              <div className="cart-item" key={index}>
-                <img src={item.images[0]} alt={item.name} />
-                <div className="info">
-                  <div className="name">{item.name}</div>
-                  <div className="spec">規格　{item.selectedColor || "黑色"}</div>
-                </div>
-                <div className="price">${item.price}</div>
-                <div className="quantity-control">
-                  <span>{item.quantity || 1}</span>
-                </div>
-              </div>
-            ))}
+            <table className="cart-table table">
+              <thead>
+                <tr>
+                  <th colSpan={2}>產品名稱</th>
+                  <th>單價</th>
+                  <th>數量</th>
+                  <th>小計</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((item, idx) => (
+                  <tr key={idx}>
+                    <th className="img">
+                      <img src={item.images?.[0] || item.image} alt={item.name} />
+                    </th>
+                    <th className="title">
+                      <span className="name">{item.name}</span>
+                      <div className="spec">規格 {item.selectedColor || "黑色"}</div>
+                    </th>
+                    <td data-title="單價">${item.price}</td>
+                    <td data-title="數量">
+                      <span>{item.quantity || 1}</span>
+                    </td>
+                    <td data-title="小計">
+                      ${item.price * (item.quantity || 1)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
             {/* 顯示表單資料 */}
             <div className="order-info">
               <div className="label">付款方式：</div>
@@ -343,15 +374,23 @@ function CartPage() {
               <span>金額小計</span>
               <span className="total-price">NT${total}</span>
             </div>
-            {/* <div className="summary-line total-line">
-              <span>總額金額</span>
-              <span className="total-price red">NT${total}</span>
-            </div> */}
+            <div className="summary-line total-line">
+              <span>運費</span>
+              <span className="total-price red">
+                NT${total >= 1000 ? 0 : 80}
+              </span>
+            </div>
+            <div className="free-shipping-tip">
+              滿1000元，全館免運
+            </div>
+            <div className="summary-line total-line">
+            </div>
             <div className="button-group">
               <button className="next" onClick={handleConfirm}>確認訂單</button>
               <button className="keep" onClick={() => setStep(2)}>返回上一步</button>
             </div>
           </div>
+
         </div>
       )}
 
@@ -364,8 +403,10 @@ function CartPage() {
             className="endmoster-swing"
             style={{ width: 100, marginBottom: 20 }}
           />
-          <h2>感謝您的預訂！</h2>
-          <p>我們已收到您的訂單，請至電子信箱查看確認信。</p>
+          <div className="thankyou">
+            <h2>感謝您的預訂！</h2>
+            <p>我們已收到您的訂單，請至電子信箱查看確認信。</p>
+          </div>
           <button className="keep" onClick={() => navigate(`${base}`)}>返回首頁</button>
         </div>
       )}
