@@ -5,6 +5,7 @@ const base = import.meta.env.BASE_URL;
 
 
 function ArticlePage() {
+
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -31,11 +32,35 @@ function ArticlePage() {
 
     if (!article) return <div>找不到文章</div>;
 
+    // share
+    const handleShare = async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: article.title,
+                    text: '來看看這篇文章！',
+                    url: window.location.href,
+                });
+            } catch (err) {
+                console.error('分享失敗:', err);
+            }
+        } else {
+            // 不支援 Web Share API，改用複製連結
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                alert('已複製文章連結');
+            } catch (err) {
+                console.error('複製失敗:', err);
+                alert('無法複製連結，請手動複製網址');
+            }
+        }
+    };
+
     return (
         <div>
             <main className="article-detail-page">
 
-                 {/* 麵包屑區塊 */}
+                {/* 麵包屑區塊 */}
                 <nav className="breadcrumbs" aria-label="breadcrumb">
                     <ol style={{ listStyle: 'none', padding: 0, margin: '10px 0', display: 'flex', gap: '5px' }}>
                         <li>
@@ -97,6 +122,7 @@ function ArticlePage() {
                         )}
                     </div>
 
+
                     {/* 資訊區 */}
                     <div className="info-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="315" height="2" viewBox="0 0 315 2" fill="none">
@@ -108,6 +134,10 @@ function ArticlePage() {
                         </div>
                     </div>
                 </section>
+
+                <div className="article-button-container">
+                    <button onClick={handleShare}>分享文章</button>
+                </div>
 
 
 
@@ -122,7 +152,7 @@ function ArticlePage() {
                         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>回到置頂</button>
                     </div> */}
                     <div className="article-button-container">
-                        <button onClick={handleGoArticle}>其他文章</button>
+                        <button onClick={handleGoArticle}>回到列表</button>
                     </div>
                     <div className="article-button-container">
                         <button onClick={handleGoNews}>回到月報</button>

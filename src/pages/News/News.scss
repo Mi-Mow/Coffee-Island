@@ -11,7 +11,7 @@
 #findEvent,
 .article-detail-page,
 .event-detail-page {
-  background: #153837;
+  background: rgb(21, 56, 55, 0.8);
   // max-width: 1920px;
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
   }
 
   @media ($media-640) {
-    padding: 80px 24px;
+    padding: 100px 24px;
   }
 
   nav {
@@ -97,52 +97,56 @@
     }
   }
 
+
   /* nav */
   .nav-news {
-    // position: sticky;
-    top: 80px;
+    position: fixed;
+    top: 100px;
+    left: 40px;
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 100px;
+    z-index: 99;
 
     svg {
       width: 56px;
       height: 56px;
       flex-shrink: 0;
+
+      @media($media-640) {
+        width: 48px;
+        height: 48px;
+      }
+
     }
-
-    // a {
-    //   font-size: 16px;
-    //   // margin: 10px;
-    //   padding: 8px 0;
-    //   border-bottom: 2px solid transparent;
-    //   transition: all .35s;
-    //   cursor: pointer;
-    //   color: $textcolor;
-    //   display: flex;
-    //   flex-direction: column;
-    //   justify-content: center;
-    //   align-items: flex-start;
-    //   gap: 16px;
-
-    //   &:hover {
-    //     color: $primary_1;
-    //     border-bottom: 2px solid $bordercolor;
-    //   }
-    // }
 
     ul {
       display: flex;
+      flex-direction: column;
       justify-content: flex-start;
       gap: 24px;
 
       @media($media-640) {
-        margin-top: 8px;
-        gap: 16px;
+        flex-direction: row;
+        // margin-top: 8px;
+        // gap: 16px;
       }
     }
 
   }
+
+
+
+  /* 預設隱藏手機版導覽 */
+  .nav-news-mobile {
+    display: none;
+  }
+
+  /* 桌面版顯示 */
+  .nav-news-desktop {
+    display: block;
+  }
+
 
   // 小怪獸搭配文字動畫
   .nav-news ul li a .link-text {
@@ -155,6 +159,12 @@
 
   .nav-news ul li a:hover .link-text {
     /* Show the text on hover */
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .nav-news ul li a:active .link-text {
+    /* Show the text on active */
     visibility: visible;
     opacity: 1;
   }
@@ -172,7 +182,7 @@
     margin-top: 8px;
     /* Space between SVG and text */
   }
-  
+
 }
 
 // 元件
@@ -207,6 +217,12 @@
     align-items: center;
     gap: 12px;
     align-self: stretch;
+
+  }
+
+  .date {
+    font-size: 14px;
+    color: $tagcolor !important;
   }
 
   .title-container {
@@ -298,10 +314,54 @@ input {
   letter-spacing: 1.6px;
 }
 
+//共用
+.reco-button a,
+button {
+  position: relative;
+  display: flex;
+  padding: 15px 60px;
+  justify-content: center;
+  cursor: pointer;
+
+  font-weight: 900;
+  color: $btn-color !important;
+  border-radius: 2px;
+  border: 3px solid $btn-color;
+  background-color: #E1BB98;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
+
+  @media ($media-640) {
+    font-size: 12px;
+  }
+
+
+  // 疊上透明背景圖（紙張材質）
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('/paper-texture.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.3; // 材質透明度 30%
+    z-index: 1;
+    transition: background-color 0.3s, opacity 0.3s;
+  }
+
+  &:hover {
+    color: $textcolor !important;
+    border: 2px solid $bordercolor;
+    background-color: #7B4519;
+  }
+}
+
 /* 島嶼月報 */
 #news>main {
   width: 100%;
-  padding: 0px;
+  padding: 24px 0px;
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -855,6 +915,7 @@ input {
   // }
 
   .articleCard {
+    cursor: pointer;
     display: flex;
     padding: 40px 0px;
     align-items: center;
@@ -892,7 +953,7 @@ input {
         gap: 16px;
       }
 
-      h1 {
+      h2 {
         font-size: 32px;
         letter-spacing: $letter-spacing-s;
 
@@ -940,7 +1001,7 @@ input {
     align-self: stretch;
 
     @media ($media-640) {
-      // padding: 16px 0px;
+      padding: 24px 0px;
     }
 
 
@@ -976,7 +1037,8 @@ input {
 }
 
 /* 文章內頁 */
-.article-detail-page {
+.article-detail-page,
+.event-detail-page {
   background: #153837;
   display: flex;
   margin: 0 auto;
@@ -988,8 +1050,14 @@ input {
     display: flex;
     justify-content: flex-start;
 
-    > li {
+    li {
+      font-size: 14px;
+    }
+
+    li>a {
+      font-size: 14px;
       color: $tagcolor;
+      cursor: pointer;
     }
   }
 
@@ -1162,6 +1230,7 @@ input {
 
     @media ($media-640) {
       padding: 0px;
+      padding-bottom: 24px;
       width: 100%;
     }
 
@@ -1228,9 +1297,9 @@ input {
       max-width: 100%;
       box-sizing: border-box;
 
-      position: sticky;
+      // position: sticky;
       top: 80px;
-      z-index: 99;
+      // z-index: 99;
     }
 
     .timeBar {
@@ -1251,7 +1320,7 @@ input {
 
       div {
         display: flex;
-        width: 363px;
+        // width: 363px;
         align-items: center;
         gap: 20px;
 
@@ -1263,8 +1332,8 @@ input {
         .time {
 
           display: flex;
-          height: 56px;
-          padding: 0px 20px;
+          height: 40px;
+          padding: 0px 16px;
           justify-content: center;
           align-items: center;
           gap: 10px;
@@ -1282,6 +1351,7 @@ input {
           }
 
           p {
+            font-size: 14px;
             display: flex;
             color: $textcolor;
 
@@ -1367,6 +1437,9 @@ input {
 
 }
 
+/* 活動內頁 */
+
+
 @media screen and (max-width: 820px) {
   #news>main .section-row {
     flex-direction: column;
@@ -1399,7 +1472,8 @@ input {
 
   // 導覽列不顯示
   #news .nav-news {
-    display: none;
+    display: none!important;
+
   }
 
   #findArticles .title,
@@ -1414,21 +1488,47 @@ input {
     padding: 0px;
     margin: 0px;
 
+
   }
+
+  .nav-news-desktop {
+    display: none !important;
+  }
+
+  .nav-news-mobile {
+    display: block !important;
+  }
+
+  .nav-news-mobile .text-nav {
+    font-size: 14px;
+    padding: 8px;
+    padding-right: calc(8px - 0.8rem); //扣掉右邊字距
+    display: block;
+    text-align: center;
+  }
+
+  .nav-news-mobile .active {
+    font-weight: bold;
+  }
+
 
   #findArticles .nav-news,
   #findEvent .nav-news {
     width: 100%;
     margin: 0px;
     letter-spacing: $letter-spacing-m;
+    position: static;
+    width: 100%;
+    left: 0px;
+    z-index: 0;
 
     ul {
-      gap: 48px;
       width: 100%;
       justify-content: space-between;
 
       li {
         flex: 1;
+        margin: 0px 24px;
         text-align: center;
 
         li>a:last-child {
@@ -1441,9 +1541,16 @@ input {
           align-items: flex-start;
         }
 
+        a {
+          border-radius: 8px;
+          border: $textcolor;
+        }
+
         a.active {
-          border-bottom: 2px solid $primary_1;
-          color: $primary_1;
+          // border-bottom: 2px solid $textcolor;
+          background-color: #A46230;
+          border-radius: 8px;
+          color: $textcolor;
         }
       }
 

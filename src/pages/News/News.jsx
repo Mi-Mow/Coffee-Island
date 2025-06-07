@@ -9,14 +9,19 @@ import { hotArticles } from './Article'
 import EventCard from './components/EventCard'
 import Coverstory from './components/Coverstory'
 import NewsNav from './components/NewsNav';
+import { useEffect } from 'react';
 
 
 function News() {
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // 捲動到頁面頂部
+  }, []);
+
   return (
     <>
       <div id='news'>
-        <h1 className='title'>島嶼月報</h1>
+        <h3 className='title'>島嶼月報</h3>
         <NewsNav/>
 
         <main>

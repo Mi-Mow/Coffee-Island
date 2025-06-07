@@ -122,6 +122,18 @@
   color: #fff1cb;
   cursor: pointer;
 }
+.cart-page .cart-content .cart-list:not(.form-list) .fly-bean {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+}
+.cart-page .cart-content .cart-list:not(.form-list) .fly-bean-anim {
+  position: fixed;
+  width: 60px;
+  height: auto;
+  transition: all 0.6s ease-in-out;
+  z-index: 9999;
+}
 .cart-page .cart-content .form-list {
   display: flex;
   flex-direction: column;
@@ -290,4 +302,31 @@
 }
 .cart-page .order-complete button.keep:hover {
   background: #5e7d79;
+}
+
+.endmoster-swing {
+  display: block;
+  margin: 0 auto 16px auto;
+  animation: swing 1.3s infinite ease-in-out;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(-13deg);
+  }
+  20% {
+    transform: rotate(11deg);
+  }
+  40% {
+    transform: rotate(-7deg);
+  }
+  60% {
+    transform: rotate(7deg);
+  }
+  80% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate(-13deg);
+  }
 }

@@ -9,6 +9,7 @@ import cafe3 from '/news/cafe3.jpg'
 import story1_1 from '/news/story1_1.jpg'
 import SearchBar from './components/Searchbar'
 import NewsNav from './components/NewsNav';
+import { useEffect } from 'react';
 
 
 // 資料區
@@ -26,7 +27,7 @@ export const articles = [
             p3: "正如朱天文在《最好的時光》中所言：「最好的時光，是一種不再回返的幸福之感。」AKA café 所營造的感受，正是這種因永恆失落而倍感珍貴的懷舊情懷，讓空間成為記憶與時間的容器。",
             p4: "咖啡館的主理人 Neo 提到，這棟老宅過去是大稻埕富商郭烏隆的家宅，他以經營郭怡美商行致富，專營雜穀、麵粉與糖品。這處如今的咖啡館，曾是他位於迪化街與民樂街之間的宅邸，靜靜埋藏於城市一角，如同被時光遺忘的秘密。",
         },
-        smImg: [story1_1, cafe2_2, cafe2_3],
+        smImg: [`${base}news/story1_1.jpg`,],
     },
     {
         id: 2,
@@ -131,6 +132,11 @@ export const hotArticles = [
 ];
 
 function Article() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0); // 捲動到頁面頂部
+    }, []);
+    
     const navigate = useNavigate();
 
     function onClickArea(id) {
@@ -140,11 +146,10 @@ function Article() {
     return (
         <>
             <div id='findArticles'>
-                <h1 className='title'>閱讀文章</h1>
+                <h3 className='title'>全部文章</h3>
                 <NewsNav/>
 
                 <main id='article'>
-                    
 
                     {/* Section 1: 文章列表 */}
 
@@ -166,7 +171,7 @@ function Article() {
                                 </figure>
 
                                 <div className="articleCardText">
-                                    <h1>{article.title}</h1>
+                                    <h2>{article.title}</h2>
                                     <p className="articleContent">{article.content}</p>
                                     
                                 </div>
@@ -174,20 +179,20 @@ function Article() {
                         ))}
 
                         {/* 頁碼 */}
-                        <div className="pageNumberArea">
+                        {/* <div className="pageNumberArea">
                             <div>
                                 <p>1</p>
                                 <p>2</p>
                                 <p>3</p>
                             </div>
-                        </div>
+                        </div> */}
 
 
                     </section>
 
                     {/* 人氣推薦 */}
                     <section className="sec2">
-                        <h1 className='title'>Hotest｜人氣推薦</h1>
+                        <h2 className='title'>Hotest｜人氣推薦</h2>
                         {/* 每張卡片 */}
                         {hotArticles.map((article) => (
                             <div className="articleCard"
@@ -196,7 +201,7 @@ function Article() {
                             >
                                 <img src={article.image} alt={article.title} loading="lazy" />
                                 <div className="articleCardText">
-                                    <h1>{article.title}</h1>
+                                    <h2>{article.title}</h2>
                                     <p className="articleContent">{article.content}</p>
                                 </div>
                             </div>
