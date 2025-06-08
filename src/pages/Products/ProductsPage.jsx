@@ -2,6 +2,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./ProductsPage.scss";
 import { products } from "./Products";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import { useAuth } from "../../context/AuthContext";
+
+
+
 const base = import.meta.env.BASE_URL;
 
 const descData = [
@@ -20,16 +26,40 @@ function ProductPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const currentProduct = products.find((item) => item.id === id);
-
-  // Fallback 預防找不到商品
-  // if (!currentProduct) {
-  //   return <div style={{ padding: 60, textAlign: 'center' }}>查無此商品 🙇‍♂️</div>;
-  // }
-
+  const { isLoggedIn } = useAuth();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(currentProduct.colors?.[0] || "");
   const [currentImage, setCurrentImage] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMsg, setSnackbarMsg] = useState("");
+
+  // 收藏資料的 key
+  const FAVORITE_KEY = "favoriteProducts";
+  // 檢查目前商品是否收藏
+  const getIsFavorite = () => {
+    const favoriteList = JSON.parse(localStorage.getItem(FAVORITE_KEY)) || [];
+    return favoriteList.includes(currentProduct.id);
+  };
+  const [isFavorite, setIsFavorite] = useState(getIsFavorite());
+
+  // 處理愛心點擊
+  const handleFavoriteClick = () => {
+    if (!isLoggedIn) {
+      setSnackbarMsg("要先登入會員唷！");
+      setOpenSnackbar(true);
+      return;
+    }
+    let favoriteList = JSON.parse(localStorage.getItem(FAVORITE_KEY)) || [];
+    let updatedFavorite;
+    if (favoriteList.includes(currentProduct.id)) {
+      updatedFavorite = favoriteList.filter(id => id !== currentProduct.id);
+    } else {
+      updatedFavorite = [...favoriteList, currentProduct.id];
+    }
+    localStorage.setItem(FAVORITE_KEY, JSON.stringify(updatedFavorite));
+    setIsFavorite(updatedFavorite.includes(currentProduct.id));
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,41 +68,34 @@ function ProductPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleBuyNow = () => {
-    const newItem = { ...currentProduct, quantity, selectedColor };
-    const existing = JSON.parse(localStorage.getItem("cartItems")) || [];
-    localStorage.setItem("cartItems", JSON.stringify([...existing, newItem]));
-    navigate(`${base}cart`);
-  };
-
+  // 加入購物車（含動畫、未登入提示）
   const handleAddToCart = (e) => {
+    if (!isLoggedIn) {
+      setSnackbarMsg("要先登入會員唷！");
+      setOpenSnackbar(true);
+      return;
+    }
     const newItem = { ...currentProduct, quantity, selectedColor };
     let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-
     const existIndex = cart.findIndex(
       (item) => item.id === newItem.id && item.selectedColor === newItem.selectedColor
     );
-
     if (existIndex !== -1) {
       cart[existIndex].quantity = (cart[existIndex].quantity || 1) + (newItem.quantity || 1);
     } else {
       cart.push({ ...newItem });
     }
-
     localStorage.setItem("cartItems", JSON.stringify(cart));
-
-    // 更新購物車數字（原本有的就繼續加）
-    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
     const cartCountEvent = new CustomEvent("cartUpdated", { detail: total });
     window.dispatchEvent(cartCountEvent);
 
-    // ✅ 飛豆動畫
+    // 飛豆動畫
     const startElem = e.target;
     const start = startElem.getBoundingClientRect();
     const endIcon = document.querySelector("#cart-fly-target") || document.querySelector(".cartContainer");
     if (!endIcon) return;
     const end = endIcon.getBoundingClientRect();
-
     const bean = document.createElement("img");
     bean.src = `${base}products/coffeeBeanLight.svg`;
     bean.className = "fly-bean-anim";
@@ -91,6 +114,19 @@ function ProductPage() {
     }, 1200);
   };
 
+  // 直接購買
+  const handleBuyNow = () => {
+    if (!isLoggedIn) {
+      setSnackbarMsg("要先登入會員唷！");
+      setOpenSnackbar(true);
+      return;
+    }
+    const newItem = { ...currentProduct, quantity, selectedColor };
+    const existing = JSON.parse(localStorage.getItem("cartItems")) || [];
+    localStorage.setItem("cartItems", JSON.stringify([...existing, newItem]));
+    navigate(`${base}cart`);
+  };
+
   const handlePrev = () => {
     setCurrentImage((prev) =>
       (prev - 1 + (currentProduct.images ? currentProduct.images.length : 1))
@@ -104,12 +140,10 @@ function ProductPage() {
     );
   };
 
-  // 若沒有 images 就 fallback 用 main image
   const productImages = currentProduct.images || [currentProduct.image, currentProduct.hoverImage];
 
   return (
     <>
-      {/* 用來放飛行動畫 */}
       <div id="fly-bean" className="fly-bean"></div>
       <div className="product-detail-page">
         <div className="left">
@@ -123,6 +157,22 @@ function ProductPage() {
         </div>
 
         <div className="right">
+          {/* ❤️ 愛心收藏按鈕 */}
+          <div
+            className="heart-wrapper"
+            style={{ marginBottom: "16px", width: "40px", cursor: "pointer" }}
+            onClick={handleFavoriteClick}
+          >
+            <img
+              src={
+                isFavorite
+                  ? `${base}products/icon-heart-red.svg`
+                  : `${base}products/icon-heart-white.svg`
+              }
+              alt="favorite"
+              style={{ width: "40px", height: "40px", transition: "0.2s" }}
+            />
+          </div>
           <h2>
             <span className="highlight">{currentProduct.name}</span>
           </h2>
@@ -149,8 +199,19 @@ function ProductPage() {
             <button className="buy" onClick={handleBuyNow}>直接購買</button>
             <button className="add" onClick={handleAddToCart}>加入購物車</button>
           </div>
+
         </div>
       </div>
+      <div className="see-more-wrapper">
+        <span className="see-more-text">查看更多</span>
+        <img
+          src={`${base}products/arrow.svg`}
+          alt="arrow"
+          className="see-more-arrow"
+        />
+      </div>
+
+
 
       <div className="product-extra-info">
         <section className="product-specs">
@@ -215,6 +276,27 @@ function ProductPage() {
           ))}
         </div>
       </section>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        sx={{ right: { xs: 90, sm: 90 } }}
+      >
+        <Alert
+          severity="warning"
+          sx={{
+            backgroundColor: "#a46230",
+            color: "#fff",
+            fontWeight: 600,
+            fontSize: "15px",
+            alignItems: "center"
+          }}
+          variant="filled"
+        >
+          {snackbarMsg}
+        </Alert>
+      </Snackbar>
     </>
   );
 }
