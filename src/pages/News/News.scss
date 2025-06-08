@@ -183,6 +183,50 @@
     /* Space between SVG and text */
   }
 
+  //按鈕
+.reco-button a,
+button {
+  position: relative;
+  display: flex;
+  padding: 15px 60px;
+  justify-content: center;
+  cursor: pointer;
+
+  font-weight: 900;
+  color: $btn-color !important;
+  border-radius: 2px;
+  border: 3px solid $btn-color;
+  background-color: #E1BB98;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
+
+  @media ($media-640) {
+    font-size: 12px;
+  }
+
+
+  // 疊上透明背景圖（紙張材質）
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('/paper-texture.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.3; // 材質透明度 30%
+    z-index: 1;
+    transition: background-color 0.3s, opacity 0.3s;
+  }
+
+  &:hover {
+    color: $textcolor !important;
+    border: 2px solid $bordercolor;
+    background-color: #7B4519;
+  }
+}
+
 }
 
 // 元件
@@ -314,49 +358,7 @@ input {
   letter-spacing: 1.6px;
 }
 
-//共用
-.reco-button a,
-button {
-  position: relative;
-  display: flex;
-  padding: 15px 60px;
-  justify-content: center;
-  cursor: pointer;
 
-  font-weight: 900;
-  color: $btn-color !important;
-  border-radius: 2px;
-  border: 3px solid $btn-color;
-  background-color: #E1BB98;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  z-index: 1;
-
-  @media ($media-640) {
-    font-size: 12px;
-  }
-
-
-  // 疊上透明背景圖（紙張材質）
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url('/paper-texture.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    opacity: 0.3; // 材質透明度 30%
-    z-index: 1;
-    transition: background-color 0.3s, opacity 0.3s;
-  }
-
-  &:hover {
-    color: $textcolor !important;
-    border: 2px solid $bordercolor;
-    background-color: #7B4519;
-  }
-}
 
 /* 島嶼月報 */
 #news>main {
