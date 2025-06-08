@@ -145,17 +145,28 @@ function Home() {
 
   const carRef = useRef(null);
   const pathRef = useRef(null);
+  const animationRef = useRef(null);
 
   useEffect(() => {
+  const createAnimation = () => {
     const path = pathRef.current;
     const car = carRef.current;
 
-    gsap.to(car, {
+    if (!path || !car) return;
+
+    // 清除前一個動畫
+    if (animationRef.current) {
+      animationRef.current.scrollTrigger?.kill();
+      animationRef.current.kill();
+    }
+
+    animationRef.current = gsap.to(car, {
       scrollTrigger: {
         trigger: ".scrollContainer",
         start: "top 350px",
         end: "bottom -1400px",
         scrub: 1,
+        invalidateOnRefresh: true,
       },
       motionPath: {
         path: path,
@@ -165,7 +176,26 @@ function Home() {
       },
       ease: "none",
     });
-  }, []);
+  };
+
+  // 等待畫面真正載入後再啟動畫
+  const rafId = requestAnimationFrame(() => {
+    setTimeout(() => {
+      createAnimation();
+    }, 200);
+  });
+
+  window.addEventListener("resize", createAnimation);
+
+  return () => {
+    cancelAnimationFrame(rafId);
+    window.removeEventListener("resize", createAnimation);
+    if (animationRef.current) {
+      animationRef.current.scrollTrigger?.kill();
+      animationRef.current.kill();
+    }
+  };
+}, [location.pathname]);
 
   const [hoveredDistrictId, setHoveredDistrictId] = useState(null);
   const [hoveredDistrictText, setHoveredDistrictText] = useState(null);
