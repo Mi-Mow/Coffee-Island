@@ -40,6 +40,9 @@ function Cafe() {
   const [displayFilter, setDisplayFilter] = useState([]);
   const [tags, setTags] = useState([]);
   const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  // localStorage.setItem("currentPath", location.pathname);
 
   useEffect(() => {
     // console.log("current cafe ", location.state.cafe);
@@ -137,13 +140,50 @@ function Cafe() {
     window.scrollTo(0, 0);
   }, []);
 
-  const [isFavorite, setIsFavorite] = useState(false);
+  // const [isFavorite, setIsFavorite] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleFavorite = (event) => {
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser")) || {}
+  );
+  const toggleFavorite = (cafe, event) => {
+    const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
     event.stopPropagation();
-    setIsFavorite(!isFavorite);
-    setOpenSnackBar(true);
+    if (isLoggedIn) {
+      const users = JSON.parse(localStorage.getItem("users"));
+      const updatedUser = { ...currentUser };
+      const cafeExists = updatedUser.favorite.cafes.some(
+        (item) => item.id === cafe.id
+      );
+
+      if (cafeExists) {
+        // delete cafe
+        updatedUser.favorite.cafes = updatedUser.favorite.cafes.filter(
+          (item) => item.id !== cafe.id
+        );
+        setMsg("已從收藏中移除");
+        setOpenSnackBar(true);
+      } else {
+        // add cafe
+        updatedUser.favorite.cafes.push(cafe);
+        setMsg("已加入收藏");
+        setOpenSnackBar(true);
+      }
+      const updatedUsers = users.map((user) => {
+        if (user.userEmail === currentUser.userEmail) {
+          return {
+            ...updatedUser,
+          };
+        }
+        return user;
+      });
+      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      setCurrentUser(updatedUser); // 觸發 re-render
+    } else {
+      setMsg("要先登入才可以收藏哦！");
+      setOpenSnackBar(true);
+    }
   };
 
   const handleSnackBarClose = (reason) => {
@@ -227,7 +267,9 @@ function Cafe() {
   };
 
   const backToFilter = () => {
-    navigate(`${base}map/${cafe.district_id}`, { state: { scrollToFilter: true } });
+    navigate(`${base}map/${cafe.district_id}`, {
+      state: { scrollToFilter: true },
+    });
   };
 
   const infoRef = useRef(null);
@@ -245,9 +287,18 @@ function Cafe() {
               )}
             </div>
             <div className="icon">
-              <div className="heartContainer" onClick={toggleFavorite}>
+              <div
+                className="heartContainer"
+                onClick={(e) => toggleFavorite(cafe, e)}
+              >
                 <img
-                  src={isFavorite ? heartFilled : heartOutline}
+                  src={
+                    currentUser?.favorite?.cafes.some(
+                      (item) => item.id === cafe?.id
+                    )
+                      ? heartFilled
+                      : heartOutline
+                  }
                   alt=""
                   className="heart-icon"
                 />
@@ -352,18 +403,25 @@ function Cafe() {
           <div className="content">
             <div className="title">更多咖啡廳</div>
             <div className="cards">
-              {randomDataRef.current?.map((cafe, index) => (
-                <CafeCard
-                  size="small"
-                  key={index}
-                  title={cafe.name_zh}
-                  desc={cafe.description}
-                  rating={cafe.rating}
-                  img={`${cafe?.district_id}_${cafe?.id}_1`}
-                  cafe={cafe}
-                  displayFilter={displayFilter}
-                />
-              ))}
+              {randomDataRef.current?.map((cafe, index) => {
+                const isFavorite = currentUser.favorite?.cafes.some(
+                  (item) => item.id === cafe.id
+                );
+                return (
+                  <CafeCard
+                    size="small"
+                    key={index}
+                    title={cafe.name_zh}
+                    desc={cafe.description}
+                    rating={cafe.rating}
+                    img={`${cafe?.district_id}_${cafe?.id}_1`}
+                    cafe={cafe}
+                    displayFilter={displayFilter}
+                    isFavorite={isFavorite}
+                    toggleFavorite={toggleFavorite}
+                  />
+                );
+              })}
             </div>
             <div className="btn-container">
               <button onClick={backToFilter} className="back-btn">
@@ -384,7 +442,7 @@ function Cafe() {
           variant="filled"
           sx={{ width: "100%", backgroundColor: "#7b4519" }}
         >
-          {isFavorite ? "已加入收藏" : "已從收藏中移除"}
+          {msg}
         </Alert>
       </Snackbar>
     </>

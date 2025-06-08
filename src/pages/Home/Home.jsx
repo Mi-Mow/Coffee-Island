@@ -1,15 +1,11 @@
 import s from "./Home.module.scss";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import coffeeBeanDark from "../../assets/home/coffeeBeanDark.svg";
 import coffeeBeanLight from "../../assets/home/coffeeBeanLight.svg";
 import bannerSm from "../../assets/home/banner.svg";
 import banner from "../../assets/home/bannerPath.svg";
 import bannerGif from "../../assets/home/banner.gif";
-import history1 from "../../assets/history1.png";
-import history2 from "../../assets/history2.png";
-import history3 from "../../assets/history3.png";
-import history4 from "../../assets/history4.png";
 import arrow from "../../assets/home/arrow.svg";
 import coffeeBeanDeco1 from "../../assets/home/coffeeBeanDeco1.svg";
 import coffeeBeanDeco2 from "../../assets/home/coffeeBeanDeco2.svg";
@@ -44,7 +40,10 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CONFIG } from "../../config";
 import { useTranslation } from "react-i18next";
+import { AuthContext } from "../../context/AuthContext";
 const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 const base = import.meta.env.BASE_URL;
 
 // 註冊 GSAP MotionPathPlugin
@@ -82,6 +81,7 @@ function Home() {
   const { t } = useTranslation();
   const [weatherData, setWeatherData] = useState(null);
 
+
   useEffect(() => {
     const fetchWeather = async () => {
       try {
@@ -114,8 +114,6 @@ function Home() {
     carouselRef.current?.scrollIntoView();
   };
 
-  const carRef = useRef(null);
-  const pathRef = useRef(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -126,6 +124,27 @@ function Home() {
       }
     }
   }, [location]);
+
+  localStorage.setItem("currentPath", location.pathname);
+  const { snackbarMsg } = useContext(AuthContext);
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+
+  useEffect(() => {
+    if (snackbarMsg) {
+      setOpenSnackBar(true);
+    }
+  }, [snackbarMsg]);
+
+  const handleClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackBar(false);
+  };
+
+  const carRef = useRef(null);
+  const pathRef = useRef(null);
 
   useEffect(() => {
     const path = pathRef.current;
@@ -362,7 +381,7 @@ function Home() {
           <div className={s.deco}>
             <img src={coffeeBeanDeco1} alt="" />
           </div>
-          <div className={s.title}>咖啡島 COFFEE ISLAND</div>
+          <h1>咖啡島 COFFEE ISLAND</h1>
           <div className={s.content}>
             在這裡，咖啡不僅是飲品，
             <br />
@@ -940,6 +959,25 @@ function Home() {
         </svg>
         <img ref={carRef} src={carImg} alt="Car" className={s.car} />
       </div>
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        sx={{ right: { xs: 70, sm: 70 } }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{
+            width: "100%",
+            backgroundColor: "#0a7e5d",
+          }}
+        >
+          {snackbarMsg}
+        </Alert>
+      </Snackbar>
     </>
   );
 }
