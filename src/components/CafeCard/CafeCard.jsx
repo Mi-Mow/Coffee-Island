@@ -151,16 +151,19 @@ function CafeCard({
         open={openSnackBar}
         autoHideDuration={2500}
         onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        sx={{ right: { xs: 90, sm: 90 } }}
       >
         <Alert
           onClose={handleClose}
           severity="success"
           variant="filled"
-          sx={{ width: "100%", backgroundColor: "#7b4519" }}
+          sx={{ backgroundColor: "#7b4519" }}
         >
           {msg}
         </Alert>
       </Snackbar>
+
     </>
   );
 }
