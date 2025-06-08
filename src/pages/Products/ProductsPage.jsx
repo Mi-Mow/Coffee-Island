@@ -6,6 +6,8 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useAuth } from "../../context/AuthContext";
 
+
+
 const base = import.meta.env.BASE_URL;
 
 const descData = [
@@ -142,7 +144,6 @@ function ProductPage() {
 
   return (
     <>
-      {/* 用來放飛行動畫 */}
       <div id="fly-bean" className="fly-bean"></div>
       <div className="product-detail-page">
         <div className="left">
@@ -198,8 +199,19 @@ function ProductPage() {
             <button className="buy" onClick={handleBuyNow}>直接購買</button>
             <button className="add" onClick={handleAddToCart}>加入購物車</button>
           </div>
+
         </div>
       </div>
+      <div className="see-more-wrapper">
+        <span className="see-more-text">查看更多</span>
+        <img
+          src={`${base}products/arrow.svg`}
+          alt="arrow"
+          className="see-more-arrow"
+        />
+      </div>
+
+
 
       <div className="product-extra-info">
         <section className="product-specs">
