@@ -435,6 +435,8 @@ function Cafe() {
         open={openSnackBar}
         autoHideDuration={2500}
         onClose={handleSnackBarClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        sx={{ right: { xs: 70, sm: 70 } }}
       >
         <Alert
           onClose={handleSnackBarClose}

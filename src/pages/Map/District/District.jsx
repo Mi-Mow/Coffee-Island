@@ -25,6 +25,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import ProductCard from "../../../components/ProductCard/ProductCard";
 
 function District() {
   const location = useLocation();
@@ -302,6 +303,7 @@ function District() {
           <div className={s.popular}>
             <div className={s.title}>{districtName} 熱門咖啡廳</div>
             <div className={s.cards}>
+              {/* <ProductCard id={"1-1"}/> */}
               {displayPopular.slice(0, 3).map((cafe, index) => {
                 const isFavorite = currentUser.favorite?.cafes.some(
                   (item) => item.id === cafe.id
@@ -493,6 +495,8 @@ function District() {
         open={openSnackBar}
         autoHideDuration={2500}
         onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        sx={{ right: { xs: 70, sm: 70 } }}
       >
         <Alert
           onClose={handleClose}

@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     const handelScroll = () => {
-      setIsVisible(window.scrollY > 250);
+      setIsVisible(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handelScroll);
@@ -35,7 +35,7 @@ function App() {
               <Header />
               <Pages />
               <div
-                className={`monster-container ${isVisible ? 'show' : 'hide'}`}
+                className={`monster-container`}
                 onClick={goUp}
               >
                 <img src={monster} alt="" />

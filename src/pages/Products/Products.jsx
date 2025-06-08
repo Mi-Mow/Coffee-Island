@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import "./Products.scss";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../context/LanguageContext";
+import { useTranslation } from "react-i18next";
 const base = import.meta.env.BASE_URL;
 
 //商品頁區
@@ -8,10 +10,12 @@ const base = import.meta.env.BASE_URL;
 export const products = [
       {
         id: "1-1",
-        name: "咖啡島-鶴嘴手沖壺",
+        nameZH: "咖啡島-鶴嘴手沖壺",
+        nameEN: "Coffee Island-Gooseneck Kettle",
         price: 1200,
         oldPrice: 1350,
-        tag: "優選",
+        tagZH: "優選",
+        tagEN: "Best",
         isNew: false,
         category: "kettle",
         image: `${base}products/gooseneck1.jpg`,
@@ -46,10 +50,12 @@ export const products = [
       },
       {
         id: "1-2",
-        name: "咖啡島-魚嘴手沖壺300ml",
+        nameZH: "咖啡島-魚嘴手沖壺 300ml",
+        nameEN: "Coffee Island-Pour-over Kettle 300ml",
         price: 1000,
         oldPrice: 1350,
-        tag: "優選",
+        tagZH: "優選",
+        tagEN: "Best",
         isNew: false,
         category: "kettle",
         image: `${base}products/gooseneck2.jpg`,
@@ -84,10 +90,12 @@ export const products = [
       },
       {
         id: "1-3",
-        name: "咖啡島-掛耳細口手沖300ml",
+        nameZH: "咖啡島-掛耳細口手沖 300ml",
+        nameEN: "Coffee Island-Narrow-spout Kettle 300ml",
         price: 890,
         oldPrice: 1350,
-        tag: "優選",
+        tagZH: "優選",
+        tagEN: "Best",
         isNew: false,
         category: "kettle",
         image: `${base}products/gooseneck3.jpg`,
@@ -122,10 +130,12 @@ export const products = [
       },
       {
         id: "2-1",
-        name: "咖啡島-日製濾杯款式A",
+        nameZH: "咖啡島-日製濾杯款式A",
+        nameEN: "Coffee Island-Filter A(Made in Japan)",
         price: 420,
         oldPrice: 600,
-        tag: "經典",
+        tagZH: "經典",
+        tagEN: "Classic",
         isNew: false,
         category: "filter",
         image: `${base}products/coffeeFilter1.jpg`,
@@ -160,10 +170,12 @@ export const products = [
       },
       {
         id: "2-2",
-        name: "咖啡島-日製濾杯款式B",
+        nameZH: "咖啡島-日製濾杯款式B",
+        nameEN: "Coffee Island-Filter B(Made in Japan)",
         price: 420,
         oldPrice: 600,
-        tag: "經典",
+        tagZH: "經典",
+        tagEN: "Classic",
         isNew: false,
         category: "filter",
         image: `${base}products/coffeeFilter2.jpg`,
@@ -198,17 +210,19 @@ export const products = [
       },
       {
         id: "3-1",
-        name: "咖啡島-古坑咖啡豆250g",
+        nameZH: "咖啡島-古坑咖啡豆250g",
+        nameEN: "Coffee Island-Gukeng Coffee Beans(250g)",
         price: 550,
         oldPrice: 600,
-        tag: "熱銷",
+        tagZH: "熱銷",
+        tagEN: "Popular",
         isNew: true,
         category: "beans",
-        image: `${base}products/coffeeBean1.jpg`,
-        hoverImage: `${base}products/coffeeBeanHover1.jpg`,
+        image: `${base}products/coffeeBean2.jpg`,
+        hoverImage: `${base}products/coffeeBeanHover2.jpg`,
         images: [
-          `${base}products/coffeeBean1.jpg`,
-          `${base}products/coffeeBeanHover1.jpg`,
+          `${base}products/coffeeBean2.jpg`,
+          `${base}products/coffeeBeanHover2.jpg`,
         ],
         intro: "台灣古坑小農直送，新鮮烘焙、風味醇厚甘甜，適合手沖或義式濃縮。",
         description: [
@@ -233,17 +247,19 @@ export const products = [
       },
       {
         id: "3-2",
-        name: "咖啡島-關西咖啡豆250g",
+        nameZH: "咖啡島-關西咖啡豆250g",
+        nameEN: "Coffee Island-Guanxi Coffee Beans(250g)",
         price: 600,
         oldPrice: 700,
-        tag: "熱銷",
+        tagZH: "熱銷",
+        tagEN: "Popular",
         isNew: false,
         category: "beans",
-        image: `${base}products/coffeeBean2.jpg`,
-        hoverImage: `${base}products/coffeeBeanHover2.jpg`,
+        image: `${base}products/coffeeBean1.jpg`,
+        hoverImage: `${base}products/coffeeBeanHover1.jpg`,
         images: [
-          `${base}products/coffeeBean2.jpg`,
-          `${base}products/coffeeBeanHover2.jpg`,
+          `${base}products/coffeeBean1.jpg`,
+          `${base}products/coffeeBeanHover1.jpg`,
         ],
         intro: "新竹關西在地嚴選豆，新鮮烘焙，帶有淡雅花香與明亮果酸，特色十足。",
         description: [
@@ -268,10 +284,12 @@ export const products = [
       },
       {
         id: "3-3",
-        name: "咖啡島-阿里山咖啡豆250g",
+        nameZH: "咖啡島-阿里山咖啡豆250g",
+        nameEN: "Coffee Island-Alishan Coffee Beans(250g)",
         price: 600,
         oldPrice: 700,
-        tag: "熱銷",
+        tagZH: "熱銷",
+        tagEN: "Popular",
         isNew: false,
         category: "beans",
         image: `${base}products/coffeeBean3.jpg`,
@@ -305,7 +323,7 @@ export const products = [
 
 function ProductList() {
   const [activeCategory, setActiveCategory] = useState("kettle"); //預設分類設為kettle
-  const [sortType, setSortType] = useState("熱門商品"); //預設分類設為熱門商品
+  const [sortType, setSortType] = useState("popular"); //預設分類設為熱門商品
   const [dropdownOpen, setDropdownOpen] = useState(false);  //預設下拉選單目前有沒有打開
   const dropdownRef = useRef(); // 用來指向下拉選單的區域，幫忙偵測是否點在外面，點選就關掉
   const navigate = useNavigate(); //用來導向productpage
@@ -332,16 +350,47 @@ function ProductList() {
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     switch (sortType) {
-      case "價錢高到低":
+      case "highToLow":
         return b.price - a.price;
-      case "價錢低到高":
+      case "lowToHigh":
         return a.price - b.price;
-      case "最新商品":
+      case "latest":
         return b.isNew - a.isNew;
       default:
         return 0;
     }
   });
+
+  const { language } = useLanguage();
+  const { t } = useTranslation();
+
+  const dropdown = [
+    {
+      id: "popular",
+      zh: "熱門商品",
+      en: "Popular"
+    },
+    {
+      id: "latest",
+      zh: "最新商品",
+      en: "Latest"
+    },
+    {
+      id: "highToLow",
+      zh: "價錢高到低",
+      en: "In descending order of price"
+    },
+    {
+      id: "lowToHigh",
+      zh: "價錢低到高",
+      en: "In ascending order of price"
+    },
+  ];
+
+  const getTypeLabel = (typeId) => {
+    const type = dropdown.find((type) => type.id === typeId);
+    return type ? type[language === "zh-TW" ? "zh" : "en"] : typeId;
+  };
 
   return (
     //顯示上方手沖壺、濾網、咖啡豆
@@ -350,9 +399,9 @@ function ProductList() {
       <div className="top-bar">
         <div className="category-menu">
           {/* activeCategory 決定目前選的是哪個分類，被選的會加上 active 樣式 */}
-          <div className={`tab ${activeCategory === "kettle" ? "active" : ""}`} onClick={() => setActiveCategory("kettle")}>手沖壺</div>
-          <div className={`tab ${activeCategory === "filter" ? "active" : ""}`} onClick={() => setActiveCategory("filter")}>濾網</div>
-          <div className={`tab ${activeCategory === "beans" ? "active" : ""}`} onClick={() => setActiveCategory("beans")}>咖啡豆</div>
+          <div className={`tab ${activeCategory === "kettle" ? "active" : ""}`} onClick={() => setActiveCategory("kettle")}>{t("products.category.gooseneck")}</div>
+          <div className={`tab ${activeCategory === "filter" ? "active" : ""}`} onClick={() => setActiveCategory("filter")}>{t("products.category.filter")}</div>
+          <div className={`tab ${activeCategory === "beans" ? "active" : ""}`} onClick={() => setActiveCategory("beans")}>{t("products.category.beans")}</div>
         </div>
       </div>
 
@@ -364,21 +413,21 @@ function ProductList() {
             className={`ranking-btn ${dropdownOpen ? "open" : ""}`}
             onClick={() => setDropdownOpen(!dropdownOpen)}
           >
-            {sortType} <span className="arrow">&#9662;</span>
+            {getTypeLabel(sortType)} <span className="arrow">&#9662;</span>
           </button>
 
           {/* 顯示篩選清單內容 */}
           {dropdownOpen && (
             <ul className="sorting-options">
-              {["熱門商品", "最新商品", "價錢高到低", "價錢低到高"].map((type) => (
+              {dropdown.map((type) => (
                 <li
-                  key={type}
+                  key={type.id}
                   onClick={() => {
-                    setSortType(type);
+                    setSortType(type.id);
                     setDropdownOpen(false);
                   }}
                 >
-                  {type}
+                  {language === "zh-TW" ? type.zh : type.en}
                 </li>
               ))}
             </ul>
@@ -398,14 +447,14 @@ function ProductList() {
               style={{ cursor: "pointer" }}
             >
               {/* 卡片內要顯示的資料 */}
-              <div className="tag">{item.tag}</div>
+              <div className="tag">{language === 'zh-TW' ? item.tagZH : item.tagEN}</div>
               <img
                 src={hoveredId === item.id && item.hoverImage ? item.hoverImage : item.image}
                 alt={item.name}
               />
               {item.isNew && <div className="new-tag">NEW</div>}
               <div className="info">
-                <p className="name">{item.name}</p>
+                <p className="name">{language === 'zh-TW' ? item.nameZH : item.nameEN}</p>
                 <p className="price">
                   NT${item.price} <span className="old-price">NT${item.oldPrice}</span>
                 </p>

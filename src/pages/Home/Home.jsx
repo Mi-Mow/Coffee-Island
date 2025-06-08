@@ -44,6 +44,7 @@ import { AuthContext } from "../../context/AuthContext";
 const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import { useLanguage } from "../../context/LanguageContext";
 const base = import.meta.env.BASE_URL;
 
 // 註冊 GSAP MotionPathPlugin
@@ -131,7 +132,10 @@ function Home() {
   useEffect(() => {
     if (snackbarMsg) {
       setOpenSnackBar(true);
+    } else {
+      setOpenSnackBar(false);
     }
+
   }, [snackbarMsg]);
 
   const handleClose = (reason) => {
@@ -182,7 +186,7 @@ function Home() {
     const rafId = requestAnimationFrame(() => {
       setTimeout(() => {
         createAnimation();
-      }, 1800);
+      }, 100);
     });
 
     window.addEventListener("resize", createAnimation);
@@ -231,8 +235,8 @@ function Home() {
       {
         opacity: 1,
         y: 0,
-        duration: 1.3,
-        delay: 0.8,
+        duration: 1,
+        delay: 0.5,
         ease: "power2.out",
         scrollTrigger: {
           trigger: beanRefs.current[5],
@@ -291,40 +295,39 @@ function Home() {
       }
     );
 
-    gsap.fromTo(
-      roadRef.current,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: 1.2,
-        stagger: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: roadRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      }
-    );
-    gsap.fromTo(
-      carRef.current,
-      { opacity: 0, y: 0 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: 2,
-        stagger: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: carRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      }
-    );
+    // gsap.fromTo(
+    //   roadRef.current,
+    //   { opacity: 0, y: 40 },
+    //   {
+    //     opacity: 1,
+    //     y: 0,
+    //     duration: 0.6,
+    //     delay: 1.2,
+    //     stagger: 1,
+    //     ease: "power2.out",
+    //     scrollTrigger: {
+    //       trigger: roadRef.current,
+    //       start: "top 80%",
+    //       toggleActions: "play none none none",
+    //     },
+    //   }
+    // );
+    // gsap.fromTo(
+    //   carRef.current,
+    //   { opacity: 0, y: 0 },
+    //   {
+    //     opacity: 1,
+    //     y: 0,
+    //     duration: 0.2,
+    //     delay: 1.5,
+    //     ease: "power2.out",
+    //     scrollTrigger: {
+    //       trigger: carRef.current,
+    //       start: "top 90%",
+    //       toggleActions: "play none none none",
+    //     },
+    //   }
+    // );
   }, []);
 
   const [hoveredDistrictId, setHoveredDistrictId] = useState(null);
@@ -384,18 +387,18 @@ function Home() {
   ];
 
   const districtLabels = [
-    { id: "beitou", label: "北投區" },
-    { id: "shilin", label: "士林區" },
-    { id: "datong", label: "大同區" },
-    { id: "zhongshan", label: "中山區" },
-    { id: "songshan", label: "松山區" },
-    { id: "neihu", label: "內湖區" },
-    { id: "wenshan", label: "文山區" },
-    { id: "wanhua", label: "萬華區" },
-    { id: "zhongzheng", label: "中正區" },
-    { id: "daan", label: "大安區" },
-    { id: "nangang", label: "南港區" },
-    { id: "xinyi", label: "信義區" },
+    { id: "beitou", label_zh: "北投區", label_en: "Beitou" },
+    { id: "shilin", label_zh: "士林區", label_en: "Shilin" },
+    { id: "datong", label_zh: "大同區", label_en: "Datong" },
+    { id: "zhongshan", label_zh: "中山區", label_en: "Zhongshan" },
+    { id: "songshan", label_zh: "松山區", label_en: "Songshan" },
+    { id: "neihu", label_zh: "內湖區", label_en: "Neihu" },
+    { id: "wenshan", label_zh: "文山區", label_en: "Wenshan" },
+    { id: "wanhua", label_zh: "萬華區", label_en: "Wanhua" },
+    { id: "zhongzheng", label_zh: "中正區", label_en: "Zhongzheng" },
+    { id: "daan", label_zh: "大安區", label_en: "Daan" },
+    { id: "nangang", label_zh: "南港區", label_en: "Nangang" },
+    { id: "xinyi", label_zh: "信義區", label_en: "Xinyi" },
   ];
 
   const hoverImages = [
@@ -435,6 +438,8 @@ function Home() {
       (prevIndex) => (prevIndex + 1) % carouselImages.length
     );
   };
+
+  const { language } = useLanguage();
 
   return (
     <>
@@ -482,14 +487,14 @@ function Home() {
             </div>
             <div className={`${s.weather}`}>
               <div className={`${s.todayDate} ${s.fadeIn}`}>
-                <div className={`${s.title}`}>今日</div>
+                <div className={`${s.title}`}>{t("home.today")}</div>
                 <div className={s.data}>
                   {todayMonth}/{todayDate}{" "}
                   <span>{t(`home.days.${todayDay}`)}</span>
                 </div>
               </div>
               <div className={`${s.todayTemp} ${s.fadeIn}`}>
-                <div className={s.title}>溫度</div>
+                <div className={s.title}>{t("home.temp")}</div>
                 <div className={s.data}>
                   {
                     weatherData?.weatherElement[1].time[0].parameter
@@ -504,14 +509,14 @@ function Home() {
                 </div>
               </div>
               <div className={`${s.tomorrowDate} ${s.fadeIn}`}>
-                <div className={s.title}>明日</div>
+                <div className={s.title}>{t("home.tomorrow")}</div>
                 <div className={s.data}>
                   {tomorrowMonth}/{tomorrowDate}{" "}
                   <span>{t(`home.days.${tomorrowDay}`)}</span>
                 </div>
               </div>
               <div className={`${s.tomorrowTemp} ${s.fadeIn}`}>
-                <div className={s.title}>溫度</div>
+                <div className={s.title}>{t("home.temp")}</div>
                 <div className={s.data}>
                   {
                     weatherData?.weatherElement[1].time[2].parameter
@@ -528,7 +533,7 @@ function Home() {
             </div>
           </div>
           <div className={s.hint}>
-            <p className={s.fadeIn}>向下滾動</p>
+            <p className={s.fadeIn}>{t("home.scrolldown")}</p>
             <div
               className={`${s.arrowContainer}`}
               onClick={scrollDown}
@@ -548,11 +553,11 @@ function Home() {
             <div className={s.deco}>
               <img src={coffeeBeanDeco2} alt="" />
             </div>
-            <div className={s.title}>美好年代</div>
+            <div className={s.title}>{t("home.greatTimes.title")}</div>
             <div className={s.content}>
-              用一杯好咖啡，回到過去，
+              {t("home.greatTimes.line1")}
               <br />
-              重溫台北的復古風情。
+              {t("home.greatTimes.line2")}
             </div>
           </div>
           <div className={s.handheldContainer}>
@@ -569,17 +574,18 @@ function Home() {
           <div className={s.deco}>
             <img src={coffeeBeanDeco1} alt="" />
           </div>
-          <h1>咖啡島 COFFEE ISLAND</h1>
+          <h1>{t("home.coffeIsland.title")}</h1>
           <div className={s.content}>
-            在這裡，咖啡不僅是飲品，
+            {t("home.coffeIsland.p")}
+            {/* {t("home.coffeIsland.line1")}
             <br />
-            更是探索台灣咖啡歷史的窗口。
+            {t("home.coffeIsland.line2")}
             <br />
-            選購專業濾杯、手沖壺，
+            {t("home.coffeIsland.line3")}
             <br />
-            並透過我們的地圖發掘台北的復古咖啡廳，
+            {t("home.coffeIsland.line4")}
             <br />
-            每一杯咖啡都是一次文化之旅。
+            {t("home.coffeIsland.line5")} */}
           </div>
         </div>
         {/* 待優化 */}
@@ -825,9 +831,9 @@ function Home() {
           </svg>
           {/* Film Image End */}
           <div className={s.description}>
-            每一杯咖啡都是故事的開端，
+            {t("home.filmStory.line1")}
             <br />
-            讓我們一起追溯台灣咖啡的歷史。
+            {t("home.filmStory.line2")}
           </div>
         </div>
       </section>
@@ -1018,15 +1024,15 @@ function Home() {
           <div className={s.title}>
             <div className={s.text}>
               <div className={s.titleEn}>Coffee Map</div>
-              <div className={s.titleCh}>咖啡地圖</div>
+              <div className={s.titleCh}>{t("home.map.title")}</div>
             </div>
             <div className={s.logo}>
               <img src={`${base}logo-sm.svg`} alt="" />
             </div>
           </div>
-          <div className={s.hint}>點選您想要去的區域</div>
+          <div className={s.hint}>{t("home.map.hint")}</div>
           <div className={s.list}>
-            {districtLabels.map(({ id, label }) => (
+            {districtLabels.map(({ id, label_zh, label_en }) => (
               <p
                 key={id}
                 data-id={id}
@@ -1037,7 +1043,7 @@ function Home() {
                 onMouseLeave={() => setHoveredDistrictId(null)}
                 onClick={() => onClickArea(id)}
               >
-                {label}
+                {language === "zh-TW" ? label_zh : label_en}
               </p>
             ))}
             {/* <p>中山區</p>

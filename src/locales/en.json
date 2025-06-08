@@ -16,6 +16,32 @@
       "4": "Thu.",
       "5": "Fri.",
       "6": "Sat."
+    },
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "temp": "Temp.",
+    "scrolldown": "Scroll Down",
+    "coffeIsland": {
+      "title": "COFFEE ISLAND",
+      "line1": "Coffee is not just a beverage,",
+      "line2": "but a window into Taiwanese coffee history.",
+      "line3": "Shop for professional drippers and kettles,",
+      "line4": "and use our map to uncover retro cafés in Taipei.",
+      "line5": "Every pour-over is a cultural journey.",
+      "p": "Coffee is not just a beverage, but a window into Taiwanese coffee history. Shop for professional drippers and kettles, and use our map to uncover retro cafés in Taipei. Every pour-over is a cultural journey."
+    },
+    "greatTimes": {
+      "title": "Great Times",
+      "line1": "With a good cup of coffee, travel back ",
+      "line2": "in time and relive the retro vibes of Taipei."
+    },
+    "filmStory": {
+      "line1": "Each cup of coffee tells a story—join us as",
+      "line2": "we explore the history of Taiwanese coffee."
+    },
+    "map": {
+      "title": "Taipei City",
+      "hint": "Click District"
     }
   },
   "map": {
@@ -26,5 +52,18 @@
       "more_info": "More info",
       "close": "Close"
     }
+  },
+  "products": {
+    "category": {
+      "gooseneck": "Kettle",
+      "filter": "Filter",
+      "beans": "Beans"
+    },
+    "discount": "Discount price",
+    "original": "Original price",
+    "buy": "Buy It",
+    "addToCart": "Add To Cart",
+    "feature": "Product Features",
+    "spec": "Product Specifications"
   }
 }

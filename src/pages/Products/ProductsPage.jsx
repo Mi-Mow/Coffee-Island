@@ -5,6 +5,7 @@ import { products } from "./Products";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useAuth } from "../../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -33,6 +34,9 @@ function ProductPage() {
   const [startIndex, setStartIndex] = useState(0);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMsg, setSnackbarMsg] = useState("");
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser")) || {}
+  );
 
   // 收藏資料的 key
   const FAVORITE_KEY = "favoriteProducts";
@@ -57,7 +61,20 @@ function ProductPage() {
     } else {
       updatedFavorite = [...favoriteList, currentProduct.id];
     }
+    const updatedUser = { ...currentUser };
+    updatedUser.favorite.products = updatedFavorite;
+    const users = JSON.parse(localStorage.getItem("users"));
+    const updatedUsers = users.map((user) => {
+      if (user.userEmail === currentUser.userEmail) {
+        return {
+          ...updatedUser,
+        };
+      }
+      return user;
+    });
     localStorage.setItem(FAVORITE_KEY, JSON.stringify(updatedFavorite));
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
     setIsFavorite(updatedFavorite.includes(currentProduct.id));
   };
 
@@ -141,6 +158,7 @@ function ProductPage() {
   };
 
   const productImages = currentProduct.images || [currentProduct.image, currentProduct.hoverImage];
+  const { t } = useTranslation();
 
   return (
     <>
@@ -191,13 +209,13 @@ function ProductPage() {
           </div>
 
           <div className="price">
-            折扣價：<span className="highlight">NT${currentProduct.price}</span>
-            <span className="old">原價：NT${currentProduct.oldPrice}</span>
+            {t("products.discount")}：<span className="highlight">NT${currentProduct.price}</span>
+            <span className="old">{t("products.original")}：NT${currentProduct.oldPrice}</span>
           </div>
 
           <div className="actions">
-            <button className="buy" onClick={handleBuyNow}>直接購買</button>
-            <button className="add" onClick={handleAddToCart}>加入購物車</button>
+            <button className="buy" onClick={handleBuyNow}>{t("products.buy")}</button>
+            <button className="add" onClick={handleAddToCart}>{t("products.addToCart")}</button>
           </div>
 
         </div>
@@ -217,7 +235,7 @@ function ProductPage() {
         <section className="product-specs">
           <div className="specs-container">
             <div className="description">
-              <h3>商品介紹</h3>
+              <h3>{t("products.feature")}</h3>
               {/* 商品介紹文案 */}
               <p>
                 {currentProduct.intro}
@@ -239,7 +257,7 @@ function ProductPage() {
             </div>
 
             <div className="spec-table">
-              <h3>商品規格</h3>
+              <h3>{t("products.spec")}</h3>
               <table>
                 <tbody>
                   {currentProduct.specs && Object.entries(currentProduct.specs).map(([key, value], idx) => (

@@ -35,6 +35,9 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("currentUser", JSON.stringify(user));
         navigate(localStorage.getItem("currentPath"));
         setSnackbarMsg(`${user.userName}，歡迎回來！`);
+        setTimeout(() => {
+          setSnackbarMsg(""); // 自動清除
+        }, 4200);
         return { success: true, message: `${user.userName}，歡迎回來！` };
       } else {
         // password is wrong
@@ -58,9 +61,9 @@ export const AuthProvider = ({ children }) => {
         userEmail: email,
         userPassword: btoa(password),
         favorite: {
-        cafes: [],
-        products: [],
-      },
+          cafes: [],
+          products: [],
+        },
       };
       users.push(newUser);
       localStorage.setItem("users", JSON.stringify(users));
@@ -69,12 +72,18 @@ export const AuthProvider = ({ children }) => {
       setIsLoggedIn(true);
       localStorage.setItem("isLoggedIn", true);
       setSnackbarMsg(`${name}，歡迎加入！`);
+      setTimeout(() => {
+        setSnackbarMsg(""); // 自動清除
+      }, 4200);
       return { success: true, message: `${name}，歡迎加入！` };
     }
   };
 
   const logout = () => {
     setSnackbarMsg("登出成功，下次見哦");
+    setTimeout(() => {
+      setSnackbarMsg(""); // 自動清除
+    }, 4200);
     localStorage.setItem("isLoggedIn", false);
     localStorage.removeItem("currentUser");
     setIsLoggedIn(false);

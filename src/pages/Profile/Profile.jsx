@@ -273,26 +273,29 @@ function Profile() {
                     </Box>
                     <CustomTabPanel value={value} index={0}>
                       <div className="cards">
-                        {favoriteCafes.map((cafe, index) => {
-                          const isFavorite = currentUser.favorite?.cafes.some(
-                            (item) => item.id === cafe.id
-                          );
+                        {favoriteCafes.length !== 0
+                          ? favoriteCafes.map((cafe, index) => {
+                              const isFavorite =
+                                currentUser.favorite?.cafes.some(
+                                  (item) => item.id === cafe.id
+                                );
 
-                          return (
-                            <CafeCard
-                              key={index}
-                              size="small"
-                              title={cafe.name_zh}
-                              desc={cafe.description}
-                              rating={cafe.rating}
-                              img={`${cafe.district_id}_${cafe?.id}_1`}
-                              cafe={cafe}
-                              displayFilter={[]}
-                              isFavorite={isFavorite}
-                              toggleFavorite={toggleFavorite}
-                            />
-                          );
-                        })}
+                              return (
+                                <CafeCard
+                                  key={index}
+                                  size="small"
+                                  title={cafe.name_zh}
+                                  desc={cafe.description}
+                                  rating={cafe.rating}
+                                  img={`${cafe.district_id}_${cafe?.id}_1`}
+                                  cafe={cafe}
+                                  displayFilter={[]}
+                                  isFavorite={isFavorite}
+                                  toggleFavorite={toggleFavorite}
+                                />
+                              );
+                            })
+                          : "無收藏店家"}
                       </div>
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
