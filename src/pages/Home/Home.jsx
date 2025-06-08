@@ -81,7 +81,6 @@ function Home() {
   const { t } = useTranslation();
   const [weatherData, setWeatherData] = useState(null);
 
-
   useEffect(() => {
     const fetchWeather = async () => {
       try {
@@ -145,57 +144,188 @@ function Home() {
 
   const carRef = useRef(null);
   const pathRef = useRef(null);
+  const roadRef = useRef(null);
   const animationRef = useRef(null);
 
   useEffect(() => {
-  const createAnimation = () => {
-    const path = pathRef.current;
-    const car = carRef.current;
+    const createAnimation = () => {
+      const path = pathRef.current;
+      const car = carRef.current;
 
-    if (!path || !car) return;
+      if (!path || !car) return;
 
-    // 清除前一個動畫
-    if (animationRef.current) {
-      animationRef.current.scrollTrigger?.kill();
-      animationRef.current.kill();
-    }
+      // 清除前一個動畫
+      if (animationRef.current) {
+        animationRef.current.scrollTrigger?.kill();
+        animationRef.current.kill();
+      }
 
-    animationRef.current = gsap.to(car, {
-      scrollTrigger: {
-        trigger: ".scrollContainer",
-        start: "top 350px",
-        end: "bottom -1400px",
-        scrub: 1,
-        invalidateOnRefresh: true,
-      },
-      motionPath: {
-        path: path,
-        align: path,
-        autoRotate: 90,
-        alignOrigin: [0.3, 0.5],
-      },
-      ease: "none",
+      animationRef.current = gsap.to(car, {
+        scrollTrigger: {
+          trigger: ".scrollContainer",
+          start: "top 350px",
+          end: "bottom -1400px",
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+        motionPath: {
+          path: path,
+          align: path,
+          autoRotate: 90,
+          alignOrigin: [0.3, 0.5],
+        },
+        ease: "none",
+      });
+    };
+
+    // 等待畫面真正載入後再啟動畫
+    const rafId = requestAnimationFrame(() => {
+      setTimeout(() => {
+        createAnimation();
+      }, 1800);
     });
-  };
 
-  // 等待畫面真正載入後再啟動畫
-  const rafId = requestAnimationFrame(() => {
-    setTimeout(() => {
-      createAnimation();
-    }, 200);
-  });
+    window.addEventListener("resize", createAnimation);
 
-  window.addEventListener("resize", createAnimation);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", createAnimation);
+      if (animationRef.current) {
+        animationRef.current.scrollTrigger?.kill();
+        animationRef.current.kill();
+      }
+    };
+  }, [location.pathname]);
 
-  return () => {
-    cancelAnimationFrame(rafId);
-    window.removeEventListener("resize", createAnimation);
-    if (animationRef.current) {
-      animationRef.current.scrollTrigger?.kill();
-      animationRef.current.kill();
-    }
-  };
-}, [location.pathname]);
+  const sectionRef = useRef(null);
+  const beanRefs = useRef([]);
+  const bannerRef = useRef();
+  const arrowRef = useRef();
+
+  useEffect(() => {
+    // 清空原本的 ScrollTrigger（避免多次觸發）
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    // 每顆豆子單獨出現
+    beanRefs.current.forEach((bean, i) => {
+      gsap.fromTo(
+        bean,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: i * 0.3, // 小延遲
+          scrollTrigger: {
+            trigger: bean,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
+
+    gsap.fromTo(
+      bannerRef.current,
+      { opacity: 0, y: 80 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.3,
+        delay: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: beanRefs.current[5],
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      arrowRef.current,
+      { opacity: 0, y: -5 },
+      {
+        opacity: 1,
+        y: 10,
+        duration: 0.8,
+        delay: 1.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: arrowRef.current,
+          start: "top 90%",
+          toggleActions: "play none none none",
+          onEnter: () => {
+            // 浮現後開始跳動
+            gsap.to(arrowRef.current, {
+              y: 15,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+              duration: 0.8,
+            });
+          },
+        },
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    const elems = sectionRef.current.querySelectorAll(`.${s.fadeIn}`);
+
+    gsap.fromTo(
+      elems,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: 0.8,
+        stagger: 0.3,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      roadRef.current,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: 1.2,
+        stagger: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: roadRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+    gsap.fromTo(
+      carRef.current,
+      { opacity: 0, y: 0 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: 2,
+        stagger: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: carRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  }, []);
 
   const [hoveredDistrictId, setHoveredDistrictId] = useState(null);
   const [hoveredDistrictText, setHoveredDistrictText] = useState(null);
@@ -283,6 +413,15 @@ function Home() {
     { id: "xinyi", img: xinyi },
   ];
 
+  const beans = [
+    coffeeBeanDark,
+    coffeeBeanLight,
+    coffeeBeanLight,
+    coffeeBeanLight,
+    coffeeBeanLight,
+    coffeeBeanLight,
+  ];
+
   const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
 
   const handlePrev = () => {
@@ -300,19 +439,22 @@ function Home() {
   return (
     <>
       <main>
-        <div className={s.coffeebeanContainer}>
-          <img src={coffeeBeanDark} alt="" />
-          <img src={coffeeBeanLight} alt="" />
-          <img src={coffeeBeanLight} alt="" />
-          <img src={coffeeBeanLight} alt="" />
-          <img src={coffeeBeanLight} alt="" />
-          <img src={coffeeBeanLight} alt="" />
-          <img src={coffeeBeanLight} alt="" />
-          <img src={coffeeBeanLight} alt="" />
-        </div>
-        <div className={s.banner}>
-          <div className={s.bannerContainer}>
+        <div className={s.bannerSection} ref={sectionRef}>
+          <div className={s.coffeebeanContainer}>
+            {beans.map((bean, index) => (
+              <div
+                key={index}
+                className={s.imgContainer}
+                ref={(el) => (beanRefs.current[index] = el)}
+              >
+                <img src={bean} alt={`咖啡豆 ${index}`} />
+              </div>
+            ))}
+          </div>
+          <div className={s.banner}>
             <svg
+              ref={bannerRef}
+              // className={s.fadeIn}
               viewBox="0 0 1002 669"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -335,49 +477,65 @@ function Home() {
               </g>
             </svg>
             {/* <img src={bannerGif} alt="" className={s.gif}/> */}
+            <div className={s.bannerContainerSm}>
+              <img src={bannerSm} alt="" />
+            </div>
+            <div className={`${s.weather}`}>
+              <div className={`${s.todayDate} ${s.fadeIn}`}>
+                <div className={`${s.title}`}>今日</div>
+                <div className={s.data}>
+                  {todayMonth}/{todayDate}{" "}
+                  <span>{t(`home.days.${todayDay}`)}</span>
+                </div>
+              </div>
+              <div className={`${s.todayTemp} ${s.fadeIn}`}>
+                <div className={s.title}>溫度</div>
+                <div className={s.data}>
+                  {
+                    weatherData?.weatherElement[1].time[0].parameter
+                      .parameterName
+                  }{" "}
+                  /
+                  {
+                    weatherData?.weatherElement[0].time[1].parameter
+                      .parameterName
+                  }
+                  ℃
+                </div>
+              </div>
+              <div className={`${s.tomorrowDate} ${s.fadeIn}`}>
+                <div className={s.title}>明日</div>
+                <div className={s.data}>
+                  {tomorrowMonth}/{tomorrowDate}{" "}
+                  <span>{t(`home.days.${tomorrowDay}`)}</span>
+                </div>
+              </div>
+              <div className={`${s.tomorrowTemp} ${s.fadeIn}`}>
+                <div className={s.title}>溫度</div>
+                <div className={s.data}>
+                  {
+                    weatherData?.weatherElement[1].time[2].parameter
+                      .parameterName
+                  }{" "}
+                  /
+                  {
+                    weatherData?.weatherElement[0].time[2].parameter
+                      .parameterName
+                  }
+                  ℃
+                </div>
+              </div>
+            </div>
           </div>
-          <div className={s.bannerContainerSm}>
-            <img src={bannerSm} alt="" />
-          </div>
-          <div className={s.weather}>
-            <div className={s.todayDate}>
-              <div className={s.title}>今日</div>
-              <div className={s.data}>
-                {todayMonth}/{todayDate}{" "}
-                <span>{t(`home.days.${todayDay}`)}</span>
-              </div>
+          <div className={s.hint}>
+            <p className={s.fadeIn}>向下滾動</p>
+            <div
+              className={`${s.arrowContainer}`}
+              onClick={scrollDown}
+              ref={arrowRef}
+            >
+              <img src={arrow} alt="" />
             </div>
-            <div className={s.todayTemp}>
-              <div className={s.title}>溫度</div>
-              <div className={s.data}>
-                {weatherData?.weatherElement[1].time[0].parameter.parameterName}{" "}
-                /
-                {weatherData?.weatherElement[0].time[1].parameter.parameterName}
-                ℃
-              </div>
-            </div>
-            <div className={s.tomorrowDate}>
-              <div className={s.title}>明日</div>
-              <div className={s.data}>
-                {tomorrowMonth}/{tomorrowDate}{" "}
-                <span>{t(`home.days.${tomorrowDay}`)}</span>
-              </div>
-            </div>
-            <div className={s.tomorrowTemp}>
-              <div className={s.title}>溫度</div>
-              <div className={s.data}>
-                {weatherData?.weatherElement[1].time[2].parameter.parameterName}{" "}
-                /
-                {weatherData?.weatherElement[0].time[2].parameter.parameterName}
-                ℃
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={s.hint}>
-          <p>向下滾動</p>
-          <div className={s.arrowContainer} onClick={scrollDown}>
-            <img src={arrow} alt="" />
           </div>
         </div>
       </main>
@@ -949,6 +1107,7 @@ function Home() {
       <div className={s.scrollContainer}>
         <svg
           className={s.road}
+          ref={roadRef}
           width="1600"
           height="2378"
           viewBox="0 0 1600 2378"
