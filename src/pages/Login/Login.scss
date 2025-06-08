@@ -3,10 +3,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 50px;
 }
 
 .login-card {
-    padding: 2px;
     width: 430px;
     text-align: left;
 }
@@ -32,24 +32,27 @@
     font-size: 14px;
     margin-bottom: 6px;
     color: #FFF1CB;
-    
+    letter-spacing: 1px;
     
 }
 
-.login-input {
+.input-item {
+    margin-bottom: 12px;
+}
 
+.login-input {
     width: 100%;
     max-width: 430px;
     height: 60px;
     padding: 10px 12px;
     font-size: 14px;
-    margin-bottom: 16px;
+    // margin-bottom: 16px;
     border-radius: 2px;
     border: 1px solid #ccc;
     background-color: #fff;
     box-sizing: border-box;
     outline: none;
-    
+    letter-spacing: 1px;
 }
 
 .options {
@@ -63,13 +66,14 @@
 
 .remember input {
     margin-right: 6px;
+    cursor: pointer;
 }
 
 .link1 {
     color: #A7A7A7;
-    text-align: left;
-
-
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .link2 {
@@ -78,7 +82,10 @@
     text-align: center;
     align-items:center;
     padding: 0 2px;
-
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .login-btn {
@@ -99,14 +106,19 @@
 }
 
 .login-btn:hover {
-    background-color: #8a5c35;
+    background-color: #7b4a1f;
     color: #d4b48c;
     
     border: 2px solid #d4b48c;
 }
 
 .footer {
-    text-align: center;
+    // text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-direction: column;
     font-size: 13px;
     margin-top: 24px;
     color: #FFF1CB;

@@ -6,11 +6,26 @@ import { AuthProvider } from "./context/AuthContext";
 import { CafeProvider } from "./components/CafeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import monster from "./assets/goUpMonster.svg";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handelScroll = () => {
+      setIsVisible(window.scrollY > 250);
+    };
+
+    window.addEventListener("scroll", handelScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handelScroll);
+    };
+  }, []);
+
   const goUp = () => {
-    window.scrollTo(0,0);
-  }
+    window.scrollTo(0, 0);
+  };
   return (
     <>
       <BrowserRouter>
@@ -19,7 +34,10 @@ function App() {
             <CafeProvider>
               <Header />
               <Pages />
-              <div className="monter-container" onClick={goUp}>
+              <div
+                className={`monster-container ${isVisible ? 'show' : 'hide'}`}
+                onClick={goUp}
+              >
                 <img src={monster} alt="" />
               </div>
             </CafeProvider>

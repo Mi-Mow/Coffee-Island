@@ -74,8 +74,8 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/paper-texture.png');
-  background-color: #122f30;
+  background-image: url('/background.png');
+  background-color: rgba(18, 47, 48, 0.35);
   background-repeat: repeat;
   background-size: cover;
   background-blend-mode: overlay;
@@ -83,13 +83,21 @@ body::before {
   z-index: -99;
 }
 
-.monter-container {
+.monster-container {
   width: 50px;
   position: fixed;
   right: 0;
   bottom: 0;
   cursor: pointer;
-  transition: 0.1s all ease-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.1s width ease-out;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
 
   &:hover {
     width: 55px;

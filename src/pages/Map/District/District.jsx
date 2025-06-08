@@ -23,9 +23,13 @@ import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 function District() {
   const location = useLocation();
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [msg, setMsg] = useState("");
   useEffect(() => {
     if (location.state?.scrollToFilter) {
       const filter = document.getElementById("filter");
@@ -36,6 +40,60 @@ function District() {
       window.scrollTo(0, 0);
     }
   }, []);
+
+  localStorage.setItem("currentPath", location.pathname);
+
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser")) || {}
+  );
+
+  const toggleFavorite = (cafe, event) => {
+    const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+    event.stopPropagation();
+    if (isLoggedIn) {
+      const users = JSON.parse(localStorage.getItem("users"));
+      const updatedUser = { ...currentUser };
+      const cafeExists = updatedUser.favorite.cafes.some(
+        (item) => item.id === cafe.id
+      );
+
+      if (cafeExists) {
+        // delete cafe
+        updatedUser.favorite.cafes = updatedUser.favorite.cafes.filter(
+          (item) => item.id !== cafe.id
+        );
+        setMsg("已從收藏中移除");
+        setOpenSnackBar(true);
+      } else {
+        // add cafe
+        updatedUser.favorite.cafes.push(cafe);
+        setMsg("已加入收藏");
+        setOpenSnackBar(true);
+      }
+      const updatedUsers = users.map((user) => {
+        if (user.userEmail === currentUser.userEmail) {
+          return {
+            ...updatedUser,
+          };
+        }
+        return user;
+      });
+      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      setCurrentUser(updatedUser); // 觸發 re-render
+    } else {
+      setMsg("要先登入才可以收藏哦！");
+      setOpenSnackBar(true);
+    }
+  };
+
+  const handleClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackBar(false);
+  };
 
   const { district } = useParams();
 
@@ -244,21 +302,28 @@ function District() {
           <div className={s.popular}>
             <div className={s.title}>{districtName} 熱門咖啡廳</div>
             <div className={s.cards}>
-              {displayPopular.slice(0, 3).map((cafe, index) => (
-                <CafeCard
-                  key={index}
-                  title={cafe.name_zh}
-                  desc={cafe.description}
-                  rating={cafe.rating}
-                  img={`${cafe.district_id}_${cafe?.id}_1`}
-                  cafe={cafe}
-                  displayFilter={
-                    selectedAreas.length === 0 && selectedTags.length === 0
-                      ? []
-                      : displayFilter
-                  }
-                />
-              ))}
+              {displayPopular.slice(0, 3).map((cafe, index) => {
+                const isFavorite = currentUser.favorite?.cafes.some(
+                  (item) => item.id === cafe.id
+                );
+                return (
+                  <CafeCard
+                    key={index}
+                    title={cafe.name_zh}
+                    desc={cafe.description}
+                    rating={cafe.rating}
+                    img={`${cafe.district_id}_${cafe?.id}_1`}
+                    cafe={cafe}
+                    displayFilter={
+                      selectedAreas.length === 0 && selectedTags.length === 0
+                        ? []
+                        : displayFilter
+                    }
+                    isFavorite={isFavorite}
+                    toggleFavorite={toggleFavorite}
+                  />
+                );
+              })}
             </div>
             <div className={s.btn}>
               <div className={s.btnBg} onClick={scrollDown}>
@@ -376,12 +441,12 @@ function District() {
             {allTags.map((tag) => (
               <button
                 key={tag.id}
-                className={`${s.tag} ${
+                className={`${s.tag} ${s.filterTag} ${
                   selectedTags.includes(tag.id) ? s.active : ""
                 }`}
                 onClick={() => toggleTag(tag.id)}
               >
-                {tag.zh}
+                <p>{tag.zh}</p>
                 {selectedTags.includes(tag.id) ? (
                   <div className={s.cross}>
                     <img src={cross} alt="" />
@@ -394,21 +459,29 @@ function District() {
           </div>
           <div className={s.content}>
             <div className={s.cards}>
-              {displayFilter.map((cafe, index) => (
-                <CafeCard
-                  key={index}
-                  title={cafe.name_zh}
-                  desc={cafe.description}
-                  rating={cafe.rating}
-                  img={`${cafe.district_id}_${cafe?.id}_1`}
-                  cafe={cafe}
-                  displayFilter={
-                    selectedAreas.length === 0 && selectedTags.length === 0
-                      ? []
-                      : displayFilter
-                  }
-                />
-              ))}
+              {displayFilter.map((cafe, index) => {
+                const isFavorite = currentUser.favorite?.cafes.some(
+                  (item) => item.id === cafe.id
+                );
+
+                return (
+                  <CafeCard
+                    key={index}
+                    title={cafe.name_zh}
+                    desc={cafe.description}
+                    rating={cafe.rating}
+                    img={`${cafe.district_id}_${cafe?.id}_1`}
+                    cafe={cafe}
+                    displayFilter={
+                      selectedAreas.length === 0 && selectedTags.length === 0
+                        ? []
+                        : displayFilter
+                    }
+                    isFavorite={isFavorite}
+                    toggleFavorite={toggleFavorite}
+                  />
+                );
+              })}
             </div>
             <div className={s.map}>
               <CafeMap filtered={displayFilter} />
@@ -416,6 +489,20 @@ function District() {
           </div>
         </div>
       </section>
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={2500}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%", backgroundColor: "#7b4519" }}
+        >
+          {msg}
+        </Alert>
+      </Snackbar>
     </>
   );
 }

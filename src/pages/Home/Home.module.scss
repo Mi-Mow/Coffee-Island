@@ -108,6 +108,7 @@ main {
     padding: 20px 0;
     cursor: pointer;
   }
+  
 }
 
 .carouselSection {
@@ -182,7 +183,7 @@ main {
       top: -50px;
     }
 
-    .title {
+    h1 {
       font-size: 24px;
       text-shadow: -2px -2px 0 #a4320e, 2px -2px 0 #a4320e, -2px 2px 0 #a4320e,
         2px 2px 0 #a4320e;
@@ -655,7 +656,7 @@ svg {
     .coffeeIsland {
       top: 23%;
       left: 20%;
-      .title {
+      h1 {
         font-size: 24px;
       }
       .content {
@@ -910,7 +911,7 @@ svg {
         display: none;
       }
 
-      .title {
+      h1 {
         font-size: 18px;
       }
       .content {
