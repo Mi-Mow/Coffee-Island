@@ -63,10 +63,10 @@ function ArticlePage() {
                 {/* 麵包屑區塊 */}
                 <nav className="breadcrumbs" aria-label="breadcrumb">
                     <ol style={{ listStyle: 'none', padding: 0, margin: '10px 0', display: 'flex', gap: '5px' }}>
-                        <li>
+                        {/* <li>
                             <Link to={`${base}`}>首頁</Link>
-                        </li>
-                        <li>&gt;</li>
+                        </li> */}
+                        {/* <li>&gt;</li> */}
                         <li>
                             <Link to={`${base}news`}>島嶼月報</Link>
                         </li>
