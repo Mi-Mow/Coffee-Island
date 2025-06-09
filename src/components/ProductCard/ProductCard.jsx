@@ -36,7 +36,7 @@ function ProductCard({ id, isFavorite, toggleFavorite }) {
         </div>
         <div
           className="heartContainer"
-          onClick={(e) => toggleFavorite(product, e)}
+          onClick={(e) => toggleFavorite("", e, "product", id)}
         >
           <img
             src={isFavorite ? heartFilled : heartOutline}

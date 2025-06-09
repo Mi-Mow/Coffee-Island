@@ -60,7 +60,7 @@ function CafeCard({
           <img src={`${base}cafe/${img}.jpg`} alt="" />
           <div
             className={s.heartContainer}
-            onClick={(e) => toggleFavorite(cafe, e)}
+            onClick={(e) => toggleFavorite(cafe, e, "cafe")}
           >
             <img
               src={isFavorite ? heartFilled : heartOutline}

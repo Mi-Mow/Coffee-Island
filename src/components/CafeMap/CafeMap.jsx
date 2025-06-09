@@ -6,6 +6,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
+import s from './CafeMap.module.scss';
 const GOOGLE_MAP_API = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 const base = import.meta.env.BASE_URL;
 
@@ -239,7 +240,10 @@ const CafeMap = ({filtered}) => {
             position={{ lat: selectedLocation.lat, lng: selectedLocation.lng }}
             onCloseClick={() => setSelectedLocation(null)}
           >
-            <div>
+            <div className={s.infoWindow}>
+              <div className={s.imgContainer}>
+                <img src={`${base}cafe/${selectedLocation.district_id}_${selectedLocation?.id}_1.jpg`} alt="" />
+              </div>
               <h3>{selectedLocation.name_zh}</h3>
               <h3>{selectedLocation.name_en}</h3>
             </div>

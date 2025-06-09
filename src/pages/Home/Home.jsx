@@ -236,7 +236,7 @@ function Home() {
         opacity: 1,
         y: 0,
         duration: 1,
-        delay: 0.5,
+        delay: 0.6,
         ease: "power2.out",
         scrollTrigger: {
           trigger: beanRefs.current[5],

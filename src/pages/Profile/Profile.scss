@@ -106,14 +106,16 @@
         }
       }
     }
-    .cards,
-    .products {
+    .cards {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       height: 70vh;
       overflow-y: auto;
       scrollbar-color: #fff1cb transparent;
+      .text {
+        color: #fff1cb;
+      }
     }
   }
 

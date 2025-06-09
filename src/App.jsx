@@ -7,6 +7,7 @@ import { CafeProvider } from "./components/CafeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import monster from "./assets/goUpMonster.svg";
 import { useEffect, useState } from "react";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,6 +41,7 @@ function App() {
               >
                 <img src={monster} alt="" />
               </div>
+              <Footer />
             </CafeProvider>
           </LanguageProvider>
         </AuthProvider>

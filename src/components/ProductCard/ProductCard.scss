@@ -4,14 +4,13 @@
   padding: 10px;
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeUp 0.6s ease forwards;
-  opacity: 0; // 初始透明
-  transform: translateY(10px); // 初始位置稍微往下
-  width: 30%;
+  transition: all 0.3s ease;
+  width: 31.5%;
+  height: 290px;
+  margin-top: 3px;
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   }
 

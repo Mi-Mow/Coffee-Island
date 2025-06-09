@@ -65,5 +65,9 @@
     "addToCart": "Add To Cart",
     "feature": "Product Features",
     "spec": "Product Specifications"
+  },
+  "profile": {
+    "nocafes": "No favorite cafes.",
+    "noproducts": "No favorite products."
   }
 }

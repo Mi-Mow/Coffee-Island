@@ -27,6 +27,7 @@ import CheckIcon from "../../assets/profile/check.svg";
 // import EditIcon from "@mui/icons-material/Edit";
 // import CheckIcon from "@mui/icons-material/Check";
 import Alert from "@mui/material/Alert";
+import ProductCard from "../../components/ProductCard/ProductCard";
 const base = import.meta.env.BASE_URL;
 
 function CustomTabPanel(props) {
@@ -95,24 +96,45 @@ function Profile() {
     }, 100);
   };
 
-  const toggleFavorite = (cafe, event) => {
+  const toggleFavorite = (cafe, event, type, productId) => {
     const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
     event.stopPropagation();
     if (isLoggedIn) {
       const users = JSON.parse(localStorage.getItem("users"));
       const updatedUser = { ...currentUser };
-      const cafeExists = updatedUser.favorite.cafes.some(
-        (item) => item.id === cafe.id
-      );
-
-      if (cafeExists) {
-        // delete cafe
-        updatedUser.favorite.cafes = updatedUser.favorite.cafes.filter(
-          (item) => item.id !== cafe.id
+      if (type === "cafe") {
+        const cafeExists = updatedUser.favorite.cafes.some(
+          (item) => item.id === cafe.id
         );
-        setFavoriteCafes(updatedUser.favorite.cafes);
-        setMsg("已從收藏中移除");
-        setOpenSnackBar(true);
+
+        if (cafeExists) {
+          // delete cafe
+          updatedUser.favorite.cafes = updatedUser.favorite.cafes.filter(
+            (item) => item.id !== cafe.id
+          );
+          setFavoriteCafes(updatedUser.favorite.cafes);
+          setMsg("已從收藏中移除");
+          setOpenSnackBar(true);
+        }
+      }
+      if (type === "product") {
+        let favoriteList = JSON.parse(localStorage.getItem("favoriteProducts")) || [];
+        let updatedFavorite;
+        if (favoriteList.includes(productId)) {
+          updatedFavorite = favoriteList.filter(
+            (id) => id !== productId
+          );
+          updatedUser.favorite.products = updatedUser.favorite.products.filter(
+            (item) => item !== productId
+          );
+          setFavoriteProducts(updatedUser.favorite.products);
+          setMsg("已從收藏中移除");
+          setOpenSnackBar(true);
+        } else {
+          updatedFavorite = [...favoriteList, productId];
+        }
+        localStorage.setItem("favoriteProducts", JSON.stringify(updatedFavorite));
+        updatedUser.favorite.products = updatedFavorite;
       }
       const updatedUsers = users.map((user) => {
         if (user.userEmail === currentUser.userEmail) {
@@ -159,7 +181,7 @@ function Profile() {
 
   const handleEditClick = () => {
     if (isEditing) {
-      // TODO: 儲存新的 userName，例如更新 localStorage
+      // TODO: 儲存新的 userName
       console.log("Saving new name:", editUserName);
     }
     setIsEditing(!isEditing);
@@ -295,11 +317,30 @@ function Profile() {
                                 />
                               );
                             })
-                          : "無收藏店家"}
+                          : <p className="text">{t("profile.nocafes")}</p>}
                       </div>
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
-                      <div className="products">無收藏商品</div>
+                        <div className="cards">
+                        {favoriteProducts.length !== 0
+                          ? favoriteProducts.map((id, index) => {
+                              const isFavorite =
+                                currentUser.favorite?.products.some(
+                                  (item) => item === id
+                                );
+
+                              return (
+                                <ProductCard
+                                  key={index}
+                                  // size="small"
+                                  id={id}
+                                  isFavorite={isFavorite}
+                                  toggleFavorite={toggleFavorite}
+                                />
+                              );
+                            })
+                          : <p className="text">{t("profile.noproducts")}</p>}
+                      </div>
                     </CustomTabPanel>
                     {/* <CustomTabPanel value={value} index={2}>
                     Item Three

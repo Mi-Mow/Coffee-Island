@@ -65,5 +65,9 @@
     "addToCart": "加入購物車",
     "feature": "商品介紹",
     "spec": "商品規格"
+  },
+  "profile": {
+    "nocafes": "無收藏店家",
+    "noproducts": "無收藏商品"
   }
 }

@@ -1,0 +1,20 @@
+footer {
+  display: flex;
+  background-color: #261C1A;
+  color: #fff;
+  height: 15vh;
+  align-items: center;
+  padding: 0 60px;
+  justify-content: space-between;
+  font-size: 14px;
+  letter-spacing: 1px;
+
+  .icons {
+    display: flex;
+    .icon-container {
+      width: 30px;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+  }
+}
