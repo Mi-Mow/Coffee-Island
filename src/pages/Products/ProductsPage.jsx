@@ -6,8 +6,7 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
-
-
+import { useLanguage } from "../../context/LanguageContext";
 
 const base = import.meta.env.BASE_URL;
 
@@ -18,15 +17,38 @@ const descData = [
 ];
 
 const recommendData = [
-  { img: `${base}products/gooseneck1.jpg`, name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
-  { img: `${base}products/gooseneck2.jpg`, name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
-  { img: `${base}products/gooseneck3.jpg`, name: "咖啡島．島民手沖壺-300ml", newPrice: 650, oldPrice: 1390 },
+  {
+    id: "1-1",
+    img: `${base}products/gooseneck1.jpg`,
+    name: "咖啡島．島民手沖壺-300ml",
+    newPrice: 1200,
+    oldPrice: 1350
+  },
+  {
+    id: "1-2",
+    img: `${base}products/gooseneck2.jpg`,
+    name: "咖啡島．島民手沖壺-300ml",
+    newPrice: 1000,
+    oldPrice: 1350
+  },
+  {
+    id: "1-3",
+    img: `${base}products/gooseneck3.jpg`,
+    name: "咖啡島．島民手沖壺-300ml",
+    newPrice: 890,
+    oldPrice: 1350
+  }
 ];
 
 function ProductPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { language } = useLanguage();
   const currentProduct = products.find((item) => item.id === id);
+  const localizedIntro = language === "zh-TW" ? currentProduct.intro : currentProduct.introEN;
+  const localizedDescription = language === "zh-TW" ? currentProduct.description : currentProduct.descriptionEN;
+  const localizedSpecs = language === "zh-TW" ? currentProduct.specs : currentProduct.specsEN;
+
   const { isLoggedIn } = useAuth();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(currentProduct.colors?.[0] || "");
@@ -37,6 +59,7 @@ function ProductPage() {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || {}
   );
+
 
   // 收藏資料的 key
   const FAVORITE_KEY = "favoriteProducts";
@@ -197,9 +220,11 @@ function ProductPage() {
 
           {/* 可以加上描述資料 */}
           <ul className="description">
-            {currentProduct.description
-              ? currentProduct.description.map((line, i) => <li key={i}>• {line}</li>)
-              : <li>暫無詳細說明</li>}
+            {localizedDescription && localizedDescription.length > 0 ? (
+              localizedDescription.map((line, i) => <li key={i}>• {line}</li>)
+            ) : (
+              <li>{language === "zh-TW" ? "暫無詳細說明" : "No description available"}</li>
+            )}
           </ul>
 
           <div className="quantity">
@@ -238,12 +263,11 @@ function ProductPage() {
               <h3>{t("products.feature")}</h3>
               {/* 商品介紹文案 */}
               <p>
-                {currentProduct.intro}
+                {localizedIntro}
               </p>
-              {/* 商品特色列表 */}
               <ul>
-                {currentProduct.description && currentProduct.description.map((line, idx) => (
-                  <li key={idx}>{line}</li>
+                {localizedDescription && localizedDescription.map((line, idx) => (
+                  <li key={idx}>• {line}</li>
                 ))}
               </ul>
               {/* 商品介紹圖片區塊 */}
@@ -260,7 +284,7 @@ function ProductPage() {
               <h3>{t("products.spec")}</h3>
               <table>
                 <tbody>
-                  {currentProduct.specs && Object.entries(currentProduct.specs).map(([key, value], idx) => (
+                  {localizedSpecs && Object.entries(localizedSpecs).map(([key, value], idx) => (
                     <tr key={idx}>
                       <td>{key}</td>
                       <td>{value}</td>
@@ -268,6 +292,7 @@ function ProductPage() {
                   ))}
                 </tbody>
               </table>
+
             </div>
           </div>
         </section>
@@ -280,7 +305,12 @@ function ProductPage() {
         </div>
         <div className="recommend-cards">
           {recommendData.map((item, idx) => (
-            <div className="product-card" key={idx}>
+            <div
+              className="product-card"
+              key={idx}
+              onClick={() => navigate(`/products/${item.id}`)}
+              style={{ cursor: "pointer" }}
+            >
               <span className="tag">優惠</span>
               <img src={item.img} alt={item.name} />
               <div className="info">
@@ -294,6 +324,9 @@ function ProductPage() {
           ))}
         </div>
       </section>
+
+
+
       <Snackbar
         open={openSnackbar}
         autoHideDuration={3000}
