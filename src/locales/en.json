@@ -63,10 +63,10 @@
     "original": "Original Price",
     "buy": "Buy Now",
     "addToCart": "Add to Cart",
-    "feature": "Product Features",
-    "spec": "Specifications"
+    "feature": "Product Features"
   },
   "cart": {
+    "paymentMethod": "Pay Method",
     "steps": {
       "confirm": "Confirm Products",
       "fill": "Fill in Details",

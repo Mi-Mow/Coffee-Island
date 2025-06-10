@@ -16,14 +16,15 @@ function CartPage() {
   const [cartItems, setCartItems] = useState([]);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    pay: "取貨付款",
-    invoice: "實體發票",
+    pay: "cod",              
+    invoice: "physical",     
     carrier: "",
     name: "",
     phone: "",
     email: "",
     address: ""
   });
+  
   const handleConfirm = () => {
     setStep(4);
   };
@@ -73,12 +74,12 @@ function CartPage() {
   const handleStep2Submit = () => {
     const pay = document.querySelector('input[name="pay"]:checked')?.value;
     const invoiceRadio = document.querySelector('input[name="invoice"]:checked');
-    const invoice = document.querySelector('input[name="invoice"]:checked')?.value;
+    const invoice = invoiceRadio?.value;
     const carrierInput = invoiceRadio?.parentElement.querySelector('input[type="text"]');
     const carrier = carrierInput?.value || "";
+
     const inputs = document.querySelectorAll(".recipient-info input");
     const [nameInput, phoneInput, emailInput, addressInput] = inputs;
-    const shippingFee = total >= 1000 ? 0 : 80;
 
     if (
       !pay ||
@@ -99,13 +100,15 @@ function CartPage() {
       pay,
       invoice,
       carrier,
-      name: nameInput?.value || "",
-      phone: phoneInput?.value || "",
-      email: emailInput?.value || "",
-      address: addressInput?.value || ""
+      name: nameInput.value,
+      phone: phoneInput.value,
+      email: emailInput.value,
+      address: addressInput.value
     });
+
     setStep(3);
   };
+
 
   return (
     <div className="cart-page">
@@ -214,11 +217,11 @@ function CartPage() {
               <div className="form-title">{t("cart.section.shipping")}</div>
               <div className="radio-with-input">
                 <label>
-                  <input type="radio" name="pay" value={t("cart.payment.transfer")} />
+                  <input type="radio" name="pay" value="transfer" />
                   {t("cart.payment.transfer")}
                 </label>
                 <label>
-                  <input type="radio" name="pay" value={t("cart.payment.cod")} defaultChecked />
+                  <input type="radio" name="pay" value="cod" defaultChecked />
                   {t("cart.payment.cod")}
                 </label>
               </div>
@@ -231,11 +234,11 @@ function CartPage() {
               <div className="form-title">{t("cart.section.invoice")}</div>
               <div className="radio-with-input">
                 <label>
-                  <input type="radio" name="invoice" value={t("cart.invoice.mobile")} />
+                  <input type="radio" name="invoice" value="mobile" />
                   {t("cart.invoice.mobile")}
                 </label>
                 <label>
-                  <input type="radio" name="invoice" value={t("cart.invoice.physical")} defaultChecked />
+                  <input type="radio" name="invoice" value="physical" defaultChecked />
                   {t("cart.invoice.physical")}
                 </label>
               </div>
@@ -280,79 +283,80 @@ function CartPage() {
 
 
 
-      {/* step 3: 預定明細確認 */}
-      {
-        step === 3 && (
-          <div className="cart-content">
-            <div className="cart-list">
-              <table className="cart-table table">
-                <thead>
-                  <tr>
-                    <th colSpan={2}>{t("cart.table.product")}</th>
-                    <th>{t("cart.table.price")}</th>
-                    <th>{t("cart.table.qty")}</th>
-                    <th>{t("cart.table.subtotal")}</th>
+
+      {step === 3 && (
+        <div className="cart-content">
+          <div className="cart-list">
+            <table className="cart-table table">
+              <thead>
+                <tr>
+                  <th colSpan={2}>{t("cart.table.product")}</th>
+                  <th>{t("cart.table.price")}</th>
+                  <th>{t("cart.table.qty")}</th>
+                  <th>{t("cart.table.subtotal")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((item, idx) => (
+                  <tr key={idx}>
+                    <th className="img">
+                      <img src={item.images?.[0] || item.image} alt={item.name} />
+                    </th>
+                    <th className="title">
+                      <span className="name">
+                        {language === "zh-TW" ? item.nameZH : item.nameEN}
+                      </span>
+                    </th>
+                    <td data-title={t("cart.table.price")}>
+                      ${item.price}
+                    </td>
+                    <td data-title={t("cart.table.qty")}>
+                      <span>{item.quantity || 1}</span>
+                    </td>
+                    <td data-title={t("cart.table.subtotal")}>
+                      ${item.price * (item.quantity || 1)}
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {cartItems.map((item, idx) => (
-                    <tr key={idx}>
-                      <th className="img">
-                        <img src={item.images?.[0] || item.image} alt={item.name} />
-                      </th>
-                      <th className="title">
-                        <span className="name">{item.name}</span>
-                        <div className="spec">{t("products.spec")} {item.selectedColor || t("defaultColor")}</div>
-                      </th>
-                      <td data-title={t("cart.table.price")}>
-                        ${item.price}
-                      </td>
-                      <td data-title={t("cart.table.qty")}>
-                        <span>{item.quantity || 1}</span>
-                      </td>
-                      <td data-title={t("cart.table.subtotal")}>
-                        ${item.price * (item.quantity || 1)}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                ))}
+              </tbody>
+            </table>
 
-              {/* 顯示表單資料 */}
-              <div className="order-info">
-                <div className="label">{t("cart.paymentMethod")}</div>
-                <div className="value">{formData.pay}</div>
+            {/* 顯示表單資料 */}
+            <div className="order-info">
+              <div className="label">{t("cart.paymentMethod")}</div>
+              <div className="value">{t(`cart.payment.${formData.pay}`)}</div>
 
-                <div className="label">{t("cart.form.name")}</div>
-                <div className="value">{formData.name}</div>
+              <div className="label">{t("cart.form.name")}</div>
+              <div className="value">{formData.name}</div>
 
-                <div className="label">{t("cart.form.phone")}</div>
-                <div className="value">{formData.phone}</div>
+              <div className="label">{t("cart.form.phone")}</div>
+              <div className="value">{formData.phone}</div>
 
-                <div className="label">{t("cart.form.email")}</div>
-                <div className="value">{formData.email}</div>
+              <div className="label">{t("cart.form.email")}</div>
+              <div className="value">{formData.email}</div>
 
-                <div className="label">{t("cart.form.address")}</div>
-                <div className="value">{formData.address}</div>
+              <div className="label">{t("cart.form.address")}</div>
+              <div className="value">{formData.address}</div>
 
-                <div className="label">{t("cart.section.invoice")}</div>
-                <div className="value">
-                  {formData.invoice}
-                  {formData.invoice === t("cart.invoice.mobile") && `：${formData.carrier}`}
-                </div>
+              <div className="label">{t("cart.section.invoice")}</div>
+              <div className="value">
+                {t(`cart.invoice.${formData.invoice}`)}
+                {formData.invoice === "mobile" && `：${formData.carrier}`}
               </div>
             </div>
 
-            <CartSummary
-              total={total}
-              onNext={handleConfirm}
-              onBack={() => setStep(2)}
-              nextLabel={t("cart.button.confirm")}
-              backLabel={t("cart.button.back")}
-            />
           </div>
-        )
-      }
+
+          <CartSummary
+            total={total}
+            onNext={handleConfirm}
+            onBack={() => setStep(2)}
+            nextLabel={t("cart.button.confirm")}
+            backLabel={t("cart.button.back")}
+          />
+        </div>
+      )}
+
 
       {/* step 4: 完成畫面 */}
       {
