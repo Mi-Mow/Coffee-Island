@@ -48,8 +48,8 @@ function About() {
           className="about__image"
         />
         <p>如果你準備好了，那就來場都市裡的味覺漫遊——</p>
-
-        <a href="#" className="about__button">探索旅程</a>
+    
+        <a href="/#map" className="about__button">探索旅程</a>
       </div>
     </section>
   );
