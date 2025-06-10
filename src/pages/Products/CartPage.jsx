@@ -5,11 +5,14 @@ import Confetti from 'react-confetti';
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import CartSummary from "../../components/CartSummary/CartSummary";
-
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "../../context/LanguageContext";
 
 const base = import.meta.env.BASE_URL;
 
 function CartPage() {
+  const { t } = useTranslation();
+  const { language } = useLanguage();
   const [cartItems, setCartItems] = useState([]);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -36,18 +39,15 @@ function CartPage() {
     localStorage.setItem("cartItems", JSON.stringify(items));
     setCartItems(items);
 
-    //cartUpdated 事件，讓 Header 更新購物車數量
     const total = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
     const cartCountEvent = new CustomEvent("cartUpdated", { detail: total });
     window.dispatchEvent(cartCountEvent);
   };
 
-
   const handleQuantityChange = (index, delta) => {
     const updated = [...cartItems];
     const newQuantity = (updated[index].quantity || 1) + delta;
     if (newQuantity <= 0) {
-      // 數量變成 0，直接刪除該商品
       updated.splice(index, 1);
     } else {
       updated[index].quantity = newQuantity;
@@ -71,16 +71,15 @@ function CartPage() {
   const [formShake, setFormShake] = useState(false);
 
   const handleStep2Submit = () => {
-    const pay = document.querySelector('input[name="pay"]:checked')?.nextSibling?.textContent.trim();
+    const pay = document.querySelector('input[name="pay"]:checked')?.value;
     const invoiceRadio = document.querySelector('input[name="invoice"]:checked');
-    const invoice = invoiceRadio?.nextSibling?.textContent.trim();
+    const invoice = document.querySelector('input[name="invoice"]:checked')?.value;
     const carrierInput = invoiceRadio?.parentElement.querySelector('input[type="text"]');
     const carrier = carrierInput?.value || "";
     const inputs = document.querySelectorAll(".recipient-info input");
     const [nameInput, phoneInput, emailInput, addressInput] = inputs;
     const shippingFee = total >= 1000 ? 0 : 80;
 
-    // 驗證
     if (
       !pay ||
       !invoice ||
@@ -89,7 +88,7 @@ function CartPage() {
       !emailInput?.value.trim() ||
       !addressInput?.value.trim()
     ) {
-      setSnackbarMsg("請完整填寫所有必填欄位");
+      setSnackbarMsg(t("cart.warning.incomplete"));
       setOpenSnackbar(true);
       setFormShake(true);
       setTimeout(() => setFormShake(false), 400);
@@ -110,59 +109,56 @@ function CartPage() {
 
   return (
     <div className="cart-page">
-      {/* 步驟導覽條 */}
       <div className="step-progress">
         <div className={`step-block show-mobile`}>
           <div className={`step-wrapper ${step === 1 ? "active" : ""}`}>
             <div className="circle">1</div>
-            <span className="label">確認商品</span>
+            <span className="label">{t("cart.steps.confirm")}</span>
           </div>
           <div className={`step-bar ${step > 1 ? "filled" : ""}`}></div>
         </div>
         <div className={`step-block ${step >= 2 ? "show-mobile" : ""}`}>
           <div className={`step-wrapper ${step === 2 ? "active" : ""}`}>
             <div className="circle">2</div>
-            <span className="label">填寫資料</span>
+            <span className="label">{t("cart.steps.fill")}</span>
           </div>
           <div className={`step-bar ${step > 2 ? "filled" : ""}`}></div>
         </div>
         <div className={`step-block ${step >= 3 ? "show-mobile" : ""}`}>
           <div className={`step-wrapper ${step === 3 ? "active" : ""}`}>
             <div className="circle">3</div>
-            <span className="label">訂單確認</span>
+            <span className="label">{t("cart.steps.review")}</span>
           </div>
           <div className={`step-bar ${step > 3 ? "filled" : ""}`}></div>
         </div>
         <div className={`step-block ${step >= 4 ? "show-mobile" : ""}`}>
           <div className={`step-wrapper ${step === 4 ? "active" : ""}`}>
             <div className="circle">4</div>
-            <span className="label">完成</span>
+            <span className="label">{t("cart.steps.complete")}</span>
           </div>
         </div>
       </div>
 
+      <h2 className="cart-title">{t("cart.title")}</h2>
 
 
-      <h2 className="cart-title">預定區訂單</h2>
-
-      {/* step 1: 確認商品項目 */}
       {step === 1 && (
         <div className="cart-content">
           <div className="cart-list">
             {cartItems.length === 0 ? (
               <div className="cart-empty">
-                購物車沒有東西，趕快去買吧！
+                {t("cart.empty")}
               </div>
             ) : (
               <>
                 <table className="cart-table">
                   <thead>
                     <tr>
-                      <th colSpan={2}>產品名稱</th>
-                      <th>單價</th>
-                      <th>數量</th>
-                      <th>小計</th>
-                      <th>刪除</th>
+                      <th colSpan={2}>{t("cart.table.product")}</th>
+                      <th>{t("cart.table.price")}</th>
+                      <th>{t("cart.table.qty")}</th>
+                      <th>{t("cart.table.subtotal")}</th>
+                      <th>{t("cart.table.remove")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -172,19 +168,20 @@ function CartPage() {
                           <img src={item.images?.[0] || item.image} alt={item.name} />
                         </th>
                         <th className="title">
-                          <span className="name">{item.name}</span>
-                          <div className="spec">規格 {item.selectedColor || '黑色'}</div>
+                          <span className="name">{language === "zh-TW" ? item.nameZH : item.nameEN}</span>
                         </th>
-                        <td data-title="單價">${item.price}</td>
-                        <td data-title="數量">
+                        <td data-title={t("cart.table.price")}>${item.price}</td>
+                        <td data-title={t("cart.table.qty")}>
                           <div className="quantity-control">
                             <button onClick={() => handleQuantityChange(idx, -1)}>－</button>
                             <span>{item.quantity || 1}</span>
                             <button onClick={() => handleQuantityChange(idx, 1)}>＋</button>
                           </div>
                         </td>
-                        <td data-title="小計">${(item.price * (item.quantity || 1)).toLocaleString()}</td>
-                        <td data-title="刪除">
+                        <td data-title={t("cart.table.subtotal")}>
+                          ${(item.price * (item.quantity || 1)).toLocaleString()}
+                        </td>
+                        <td data-title={t("cart.table.remove")}>
                           <button className="remove" onClick={() => handleRemove(idx)}>×</button>
                         </td>
                       </tr>
@@ -199,79 +196,89 @@ function CartPage() {
             onNext={() => setStep(2)}
             onBack={() => navigate(`${base}products`)}
             disableNext={cartItems.length === 0}
-            nextLabel="下一步"
-            backLabel="繼續選購"
+            nextLabel={t("cart.button.next")}
+            backLabel={t("cart.button.continue")}
           />
         </div>
       )}
 
 
 
+
       {/* step 2: 配送付款資訊 */}
-      {
-        step === 2 && (
-          <div className="cart-content">
-            <div className="cart-list form-list">
-              {/* 配送付款資訊 */}
-              <div className="form-section">
-                <div className="form-title">配送付款資訊</div>
-                {/* <label><input type="radio" name="pay" /> 線上刷卡 <span>支持分期付款</span></label> */}
-                <label><input type="radio" name="pay" /> 轉帳</label>
-                <label><input type="radio" name="pay" defaultChecked /> 取貨付款</label>
-              </div>
-
-              <hr />
-
-              {/* 發票資訊 */}
-              <div className="form-section">
-                <div className="form-title">發票資訊</div>
-                <div className="radio-with-input">
-                  <label><input type="radio" name="invoice" /> 手機條碼載具</label>
-                  <input type="text" />
-                </div>
-                {/* <label><input type="radio" name="invoice" /> 電子發票</label> */}
-                <label><input type="radio" name="invoice" defaultChecked /> 實體發票</label>
-              </div>
-
-              <hr />
-
-              {/* 收件人資訊 */}
-              <div className="form-section">
-                <div className="form-title">收件人資訊</div>
-                <div className="recipient-info">
-                  <div className="recipient-info">
-                    <div className="form-row">
-                      <label><span className="required-star">*</span>姓名</label>
-                      <input type="text" />
-                    </div>
-                    <div className="form-row">
-                      <label><span className="required-star">*</span>電話</label>
-                      <input type="text" />
-                    </div>
-                    <div className="form-row">
-                      <label><span className="required-star">*</span>電子信箱</label>
-                      <input type="email" />
-                    </div>
-                    <div className="form-row">
-                      <label><span className="required-star">*</span>地址</label>
-                      <input type="text" />
-                    </div>
-                  </div>
-
-
-                </div>
+      {step === 2 && (
+        <div className="cart-content">
+          <div className="cart-list form-list">
+            {/* 配送付款資訊 */}
+            <div className="form-section">
+              <div className="form-title">{t("cart.section.shipping")}</div>
+              <div className="radio-with-input">
+                <label>
+                  <input type="radio" name="pay" value={t("cart.payment.transfer")} />
+                  {t("cart.payment.transfer")}
+                </label>
+                <label>
+                  <input type="radio" name="pay" value={t("cart.payment.cod")} defaultChecked />
+                  {t("cart.payment.cod")}
+                </label>
               </div>
             </div>
 
-            <CartSummary
-              total={total}
-              onNext={handleStep2Submit}
-              onBack={() => setStep(1)}
-              nextLabel="下一步"
-              backLabel="返回上一步"
-            />
+            <hr />
+
+            {/* 發票資訊 */}
+            <div className="form-section">
+              <div className="form-title">{t("cart.section.invoice")}</div>
+              <div className="radio-with-input">
+                <label>
+                  <input type="radio" name="invoice" value={t("cart.invoice.mobile")} />
+                  {t("cart.invoice.mobile")}
+                </label>
+                <label>
+                  <input type="radio" name="invoice" value={t("cart.invoice.physical")} defaultChecked />
+                  {t("cart.invoice.physical")}
+                </label>
+              </div>
+            </div>
+
+            <hr />
+
+            {/* 收件人資訊 */}
+            <div className="form-section">
+              <div className="form-title">{t("cart.section.recipient")}</div>
+              <div className="recipient-info">
+                <div className="form-row">
+                  <label><span className="required-star">*</span>{t("cart.form.name")}</label>
+                  <input type="text" />
+                </div>
+                <div className="form-row">
+                  <label><span className="required-star">*</span>{t("cart.form.phone")}</label>
+                  <input type="text" />
+                </div>
+                <div className="form-row">
+                  <label><span className="required-star">*</span>{t("cart.form.email")}</label>
+                  <input type="email" />
+                </div>
+                <div className="form-row">
+                  <label><span className="required-star">*</span>{t("cart.form.address")}</label>
+                  <input type="text" />
+                </div>
+              </div>
+            </div>
           </div>
-        )}
+
+          <CartSummary
+            total={total}
+            onNext={handleStep2Submit}
+            onBack={() => setStep(1)}
+            nextLabel={t("cart.button.next")}
+            backLabel={t("cart.button.back")}
+          />
+        </div>
+      )}
+
+
+
 
       {/* step 3: 預定明細確認 */}
       {
@@ -281,10 +288,10 @@ function CartPage() {
               <table className="cart-table table">
                 <thead>
                   <tr>
-                    <th colSpan={2}>產品名稱</th>
-                    <th>單價</th>
-                    <th>數量</th>
-                    <th>小計</th>
+                    <th colSpan={2}>{t("cart.table.product")}</th>
+                    <th>{t("cart.table.price")}</th>
+                    <th>{t("cart.table.qty")}</th>
+                    <th>{t("cart.table.subtotal")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -295,13 +302,15 @@ function CartPage() {
                       </th>
                       <th className="title">
                         <span className="name">{item.name}</span>
-                        <div className="spec">規格 {item.selectedColor || "黑色"}</div>
+                        <div className="spec">{t("products.spec")} {item.selectedColor || t("defaultColor")}</div>
                       </th>
-                      <td data-title="單價">${item.price}</td>
-                      <td data-title="數量">
+                      <td data-title={t("cart.table.price")}>
+                        ${item.price}
+                      </td>
+                      <td data-title={t("cart.table.qty")}>
                         <span>{item.quantity || 1}</span>
                       </td>
-                      <td data-title="小計">
+                      <td data-title={t("cart.table.subtotal")}>
                         ${item.price * (item.quantity || 1)}
                       </td>
                     </tr>
@@ -311,36 +320,35 @@ function CartPage() {
 
               {/* 顯示表單資料 */}
               <div className="order-info">
-                <div className="label">付款方式：</div>
+                <div className="label">{t("cart.paymentMethod")}</div>
                 <div className="value">{formData.pay}</div>
 
-                <div className="label">收件人姓名：</div>
+                <div className="label">{t("cart.form.name")}</div>
                 <div className="value">{formData.name}</div>
 
-                <div className="label">電話：</div>
+                <div className="label">{t("cart.form.phone")}</div>
                 <div className="value">{formData.phone}</div>
 
-                <div className="label">電子信箱：</div>
+                <div className="label">{t("cart.form.email")}</div>
                 <div className="value">{formData.email}</div>
 
-                <div className="label">地址：</div>
+                <div className="label">{t("cart.form.address")}</div>
                 <div className="value">{formData.address}</div>
 
-                <div className="label">發票資訊：</div>
+                <div className="label">{t("cart.section.invoice")}</div>
                 <div className="value">
                   {formData.invoice}
-                  {formData.invoice === "手機條碼載具" && `：${formData.carrier}`}
+                  {formData.invoice === t("cart.invoice.mobile") && `：${formData.carrier}`}
                 </div>
               </div>
-
             </div>
 
             <CartSummary
               total={total}
               onNext={handleConfirm}
               onBack={() => setStep(2)}
-              nextLabel="確認訂單"
-              backLabel="返回上一步"
+              nextLabel={t("cart.button.confirm")}
+              backLabel={t("cart.button.back")}
             />
           </div>
         )
@@ -357,21 +365,22 @@ function CartPage() {
               style={{ width: 100, marginBottom: 20 }}
             />
             <div className="thankyou">
-              <h2>感謝您的預訂！</h2>
-              <p>我們已收到您的訂單，請至電子信箱查看確認信。</p>
+              <h2>{t("cart.done.title")}</h2>
+              <p>{t("cart.done.subtitle")}</p>
             </div>
-            <button className="keep" onClick={() => navigate(`${base}`)}>返回首頁</button>
+            <button className="keep" onClick={() => navigate(`${base}`)}>
+              {t("cart.button.home")}
+            </button>
           </div>
         )
       }
 
-      {/* 第二步驟填資料，若無填寫完整の提示 */}
       <Snackbar
         open={openSnackbar}
         autoHideDuration={3000}
         onClose={() => setOpenSnackbar(false)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        sx={{ right: { xs: 90, sm: 90 } }} // 小怪獸旁邊
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        sx={{ right: { xs: 90, sm: 90 } }}
       >
         <Alert
           severity="warning"
@@ -381,7 +390,7 @@ function CartPage() {
             color: "#fff",
             fontWeight: 600,
             fontSize: "15px",
-            alignItems: "center"
+            alignItems: "center",
           }}
           onClose={() => setOpenSnackbar(false)}
         >
@@ -389,7 +398,8 @@ function CartPage() {
         </Alert>
       </Snackbar>
     </div>
-  ); 
-} 
+  );
+}
+
 
 export default CartPage;

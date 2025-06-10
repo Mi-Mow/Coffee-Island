@@ -10,7 +10,7 @@ export const products = [
   {
     id: "1-1",
     nameZH: "咖啡島-鶴嘴手沖壺",
-    nameEN: "Coffee Island-Gooseneck Kettle",
+    nameEN: "Gooseneck Kettle",
     price: 1200,
     oldPrice: 1350,
     tagZH: "優選",
@@ -68,7 +68,7 @@ export const products = [
   {
     id: "1-2",
     nameZH: "咖啡島-魚嘴手沖壺300ml",
-    nameEN: "Coffee Island - Fish Spout Kettle 300ml",
+    nameEN: "Fish Spout Kettle 300ml",
     price: 1000,
     oldPrice: 1350,
     tagZH: "人氣",
@@ -126,7 +126,7 @@ export const products = [
   {
     id: "1-3",
     nameZH: "咖啡島-掛耳細口手沖 300ml",
-    nameEN: "Coffee Island-Narrow-spout Kettle 300ml",
+    nameEN: "Narrow-spout Kettle 300ml",
     price: 890,
     oldPrice: 1350,
     tagZH: "優選",
@@ -225,7 +225,7 @@ export const products = [
       表面處理: "高溫釉燒處理"
     },
     specsEN: {
-      Name: "Coffee Island - Filter A (Made in Japan)",
+      Name: "Filter A (Made in Japan)",
       Brand: "Coffee Island",
       Model: "Filter A",
       Color: "Ivory White",
@@ -283,7 +283,7 @@ export const products = [
       表面處理: "高溫釉燒處理"
     },
     specsEN: {
-      Name: "Coffee Island - Filter B (Made in Japan)",
+      Name: "Filter B (Made in Japan)",
       Brand: "Coffee Island",
       Model: "Filter B",
       Color: "Ivory White",
@@ -352,7 +352,7 @@ export const products = [
   {
     id: "3-2",
     nameZH: "咖啡島-關西咖啡豆250g",
-    nameEN: "Coffee Island - Guanxi Coffee Beans (250g)",
+    nameEN: "Guanxi Coffee Beans (250g)",
     price: 600,
     oldPrice: 700,
     tagZH: "熱銷",

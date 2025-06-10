@@ -1,55 +1,55 @@
 {
   "header": {
     "map": "Map",
-    "news": "News",
-    "products": "Products",
+    "news": "Monthly Report",
+    "products": "Limited Products",
     "about": "About Us",
     "login": "Login",
     "register": "Join Us"
   },
   "home": {
     "days": {
-      "0": "Sun.",
-      "1": "Mon.",
-      "2": "Tue.",
-      "3": "Wed.",
-      "4": "Thu.",
-      "5": "Fri.",
-      "6": "Sat."
+      "0": "Sun",
+      "1": "Mon",
+      "2": "Tue",
+      "3": "Wed",
+      "4": "Thu",
+      "5": "Fri",
+      "6": "Sat)"
     },
     "today": "Today",
     "tomorrow": "Tomorrow",
-    "temp": "Temp.",
+    "temp": "Temperature",
     "scrolldown": "Scroll Down",
     "coffeIsland": {
-      "title": "COFFEE ISLAND",
-      "line1": "Coffee is not just a beverage,",
-      "line2": "but a window into Taiwanese coffee history.",
-      "line3": "Shop for professional drippers and kettles,",
-      "line4": "and use our map to uncover retro cafés in Taipei.",
-      "line5": "Every pour-over is a cultural journey.",
-      "p": "Coffee is not just a beverage, but a window into Taiwanese coffee history. Shop for professional drippers and kettles, and use our map to uncover retro cafés in Taipei. Every pour-over is a cultural journey."
+      "title": "Coffee Island",
+      "line1": "Here, coffee is not just a drink,",
+      "line2": "but a window into Taiwan's coffee history.",
+      "line3": "Shop for professional filters and kettles,",
+      "line4": "and explore Taipei’s vintage cafés on our map.",
+      "line5": "Each cup is a journey through culture.",
+      "p": "Here, coffee is not just a drink, but a window into Taiwan's coffee history. Shop for professional filters and kettles, and explore Taipei’s vintage cafés on our map. Each cup is a journey through culture."
     },
     "greatTimes": {
-      "title": "Great Times",
-      "line1": "With a good cup of coffee, travel back ",
-      "line2": "in time and relive the retro vibes of Taipei."
+      "title": "The Good Old Days",
+      "line1": "Travel back in time with a great cup of coffee,",
+      "line2": "and relive the vintage charm of Taipei."
     },
     "filmStory": {
-      "line1": "Each cup of coffee tells a story—join us as",
-      "line2": "we explore the history of Taiwanese coffee."
+      "line1": "Every cup of coffee begins a story,",
+      "line2": "let's trace the history of coffee in Taiwan together."
     },
     "map": {
-      "title": "Taipei City",
-      "hint": "Click District"
+      "title": "Coffee Map",
+      "hint": "Click the area you'd like to visit"
     }
   },
   "map": {
     "cafe": {
-      "today_opening_hours": "Today's business hours",
-      "today_day_off": "Day off",
-      "opening_hours": "Business hours",
-      "more_info": "More info",
+      "today_opening_hours": "Today's Hours",
+      "today_day_off": "Closed Today",
+      "opening_hours": "Opening Hours",
+      "more_info": "More Info",
       "close": "Close"
     }
   },
@@ -59,15 +59,75 @@
       "filter": "Filter",
       "beans": "Beans"
     },
-    "discount": "Discount price",
-    "original": "Original price",
-    "buy": "Buy It",
-    "addToCart": "Add To Cart",
+    "discount": "Discount Price",
+    "original": "Original Price",
+    "buy": "Buy Now",
+    "addToCart": "Add to Cart",
     "feature": "Product Features",
-    "spec": "Product Specifications"
+    "spec": "Specifications"
   },
+  "cart": {
+    "steps": {
+      "confirm": "Confirm Products",
+      "fill": "Fill in Details",
+      "review": "Review Order",
+      "complete": "Complete"
+    },
+    "title": "Order Summary",
+    "empty": "Your cart is empty. Time to shop!",
+    "table": {
+      "product": "Product",
+      "price": "Price",
+      "qty": "Quantity",
+      "subtotal": "Subtotal",
+      "remove": "Remove"
+    },
+    "section": {
+      "shipping": "Shipping & Payment",
+      "invoice": "Invoice Info",
+      "recipient": "Recipient Info"
+    },
+    "form": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address"
+    },
+    "invoice": {
+      "mobile": "Mobile Barcode",
+      "physical": "Paper Invoice"
+    },
+    "payment": {
+      "transfer": "Bank Transfer",
+      "cod": "Cash on Delivery"
+    },
+    "warning": {
+      "incomplete": "Please complete all required fields."
+    },
+    "button": {
+      "next": "Next",
+      "back": "Back",
+      "continue": "Continue Shopping",
+      "confirm": "Confirm Order",
+      "home": "Back to Home"
+    },
+    "done": {
+      "title": "Thank you for your order!",
+      "subtitle": "We've received your order. Please check your email for confirmation."
+    }
+  },
+"cartSummary": {
+  "title": "Order Summary",
+  "subtotal": "Subtotal",
+  "shipping": "Shipping Fee",
+  "freeTip": "Free shipping on orders over NT$1000",
+  "total": "Total Amount",
+  "next": "Next Step",
+  "back": "Go Back"
+},
+
   "profile": {
-    "nocafes": "No favorite cafes.",
-    "noproducts": "No favorite products."
+    "nocafes": "No favorite cafés",
+    "noproducts": "No favorite products"
   }
 }

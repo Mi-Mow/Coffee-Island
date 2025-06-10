@@ -61,20 +61,20 @@
         font-weight: bold;
       }
 
-      &:hover .circle:not(.active),
-      &:focus .circle:not(.active) {
-        background: #fff1cb30;
-        color: #fff1cb;
-        box-shadow: 0 2px 10px 0 #fff1cb60;
-        transform: scale(1.09);
-        border-color: #fff1cb;
-      }
+      // &:hover .circle:not(.active),
+      // &:focus .circle:not(.active) {
+      //   //background: #fff1cb30;
+      //   //color: #fff1cb;
+      //   //box-shadow: 0 2px 10px 0 #fff1cb60;
+      //   //transform: scale(1.09);
+      //   //border-color: #fff1cb;
+      // }
 
-      &:hover .label:not(.active),
-      &:focus .label:not(.active) {
-        color: #fff1cb;
-        text-decoration: underline;
-      }
+      // &:hover .label:not(.active),
+      // &:focus .label:not(.active) {
+      //   //color: #fff1cb;
+        //text-decoration: underline;
+      // }
 
       &:active .circle {
         transform: scale(0.96);
@@ -182,12 +182,18 @@
 
 .cart-content {
   display: flex;
-  gap: 40px;
+  align-items: flex-start;
+  gap: 40px; // 左右間距可自行調整
 
-  .cart-list,
-  .form-list {
+  .cart-list {
     flex: 2;
   }
+
+  .cart-summary {
+    flex: 1;
+  }
+}
+
 
   // step1 商品資訊
   .cart-table {
@@ -510,7 +516,6 @@
       font-size: 14px;
     }
   }
-}
 
   // step4：預定完成
   .order-complete {
