@@ -116,18 +116,38 @@
       "subtitle": "We've received your order. Please check your email for confirmation."
     }
   },
-"cartSummary": {
-  "title": "Order Summary",
-  "subtotal": "Subtotal",
-  "shipping": "Shipping Fee",
-  "freeTip": "Free shipping on orders over NT$1000",
-  "total": "Total Amount",
-  "next": "Next Step",
-  "back": "Go Back"
-},
-
-  "profile": {
-    "nocafes": "No favorite cafés",
-    "noproducts": "No favorite products"
+  "cartSummary": {
+    "title": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping Fee",
+    "freeTip": "Free shipping on orders over NT$1000",
+    "total": "Total Amount",
+    "next": "Next Step",
+    "back": "Go Back"
+  },
+ "profile": {
+  "nocafes": "No favorite cafés",
+  "noproducts": "No favorite products",
+  "order": {
+    "title": "Order List",
+    "date": "Date",
+    "info": "Order Info",
+    "payment": "Payment",
+    "total": "Total",
+    "status": "Status",
+    "detailBtn": "View Details",
+    "empty": "No orders yet. Start shopping now!",
+    "productSummary": "{{name}} and {{count}} more items"
+  },
+  "orderStatus": {
+    "已完成": "Completed",
+    "處理中": "Processing"
+  },
+  "sidebar": {
+    "favorites": "My Favorites",
+    "orders": "Order Status",
+    "profile": "Profile Info",
+    "logout": "Logout"
   }
+}
 }

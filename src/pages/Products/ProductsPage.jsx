@@ -163,11 +163,32 @@ function ProductPage() {
       setOpenSnackbar(true);
       return;
     }
+  
     const newItem = { ...currentProduct, quantity, selectedColor };
-    const existing = JSON.parse(localStorage.getItem("cartItems")) || [];
-    localStorage.setItem("cartItems", JSON.stringify([...existing, newItem]));
+    let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+  
+    // 加入或更新商品
+    const existIndex = cart.findIndex(
+      (item) => item.id === newItem.id && item.selectedColor === newItem.selectedColor
+    );
+    if (existIndex !== -1) {
+      cart[existIndex].quantity = (cart[existIndex].quantity || 1) + (newItem.quantity || 1);
+    } else {
+      cart.push({ ...newItem });
+    }
+  
+    // 儲存回 localStorage
+    localStorage.setItem("cartItems", JSON.stringify(cart));
+  
+    //更新購物籃數量
+    const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    const cartCountEvent = new CustomEvent("cartUpdated", { detail: total });
+    window.dispatchEvent(cartCountEvent);
+  
+    // 導向購物車
     navigate(`${base}cart`);
   };
+  
 
   const handlePrev = () => {
     setCurrentImage((prev) =>

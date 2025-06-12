@@ -100,7 +100,6 @@
     "payment": {
       "transfer": "轉帳",
       "cod": "取貨付款"
-
     },
     "warning": {
       "incomplete": "請完整填寫所有必填欄位"
@@ -117,18 +116,39 @@
       "subtitle": "我們已收到您的訂單，請至電子信箱查看確認信。"
     }
   },
-"cartSummary": {
-  "title": "預訂摘要",
-  "subtotal": "金額小計",
-  "shipping": "運費",
-  "freeTip": "滿1000元，全館免運",
-  "total": "總計金額",
-  "next": "下一步",
-  "back": "返回上一步"
-},
-
+  "cartSummary": {
+    "title": "預訂摘要",
+    "subtotal": "金額小計",
+    "shipping": "運費",
+    "freeTip": "滿1000元，全館免運",
+    "total": "總計金額",
+    "next": "下一步",
+    "back": "返回上一步"
+  },
   "profile": {
-    "nocafes": "無收藏店家",
-    "noproducts": "無收藏商品"
+  "nocafes": "無收藏店家",
+  "noproducts": "無收藏商品",
+  "order": {
+    "title": "訂單列表",
+    "date": "訂購日期",
+    "info": "訂單資料",
+    "payment": "付款方式",
+    "total": "訂購總額",
+    "status": "訂單狀態",
+    "detailBtn": "查看明細",
+    "empty": "無訂單，趕快去挑喜歡的東西吧！",
+    "productSummary": "{{name}} 等 {{count}} 項商品"
+  },
+  "orderStatus": {
+    "已完成": "已完成",
+    "處理中": "處理中"
+  },
+  "sidebar": {
+    "favorites": "我的收藏",
+    "orders": "訂單狀態",
+    "profile": "會員資料",
+    "logout": "登出"
   }
+}
+
 }

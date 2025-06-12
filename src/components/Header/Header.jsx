@@ -39,16 +39,29 @@ function Header() {
 
   // 購物車數量狀態與監聽
   const [cartCount, setCartCount] = useState(() => {
-    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-    return items.reduce((sum, item) => sum + item.quantity, 0);
+    try {
+      const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+      return items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    } catch {
+      return 0;
+    }
   });
 
   useEffect(() => {
-    const updateCartCount = () => {
-      const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-      const total = items.reduce((sum, item) => sum + item.quantity, 0);
-      setCartCount(total);
+    const updateCartCount = (e) => {
+      if (e?.detail !== undefined) {
+        setCartCount(e.detail);
+      } else {
+        try {
+          const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+          const total = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+          setCartCount(total);
+        } catch {
+          setCartCount(0);
+        }
+      }
     };
+
     window.addEventListener("cartUpdated", updateCartCount);
     return () => window.removeEventListener("cartUpdated", updateCartCount);
   }, []);
@@ -58,6 +71,7 @@ function Header() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
 
   return (
     <div>
