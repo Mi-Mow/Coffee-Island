@@ -1,6 +1,6 @@
 .profile-page {
   display: flex;
-  padding: 110px 70px 30px;
+  padding: 110px 70px 72px;
   gap: 20px;
 }
 
@@ -29,6 +29,7 @@
     color: #fff0c8;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
+
     &:hover {
       background-color: #a77434;
       color: #fff;
@@ -42,6 +43,7 @@
 
   .logout-btn {
     border: 3px solid #814646;
+
     &:hover {
       background-color: #814646;
       color: #fff;
@@ -87,6 +89,7 @@
 
   .favorite {
     width: 100%;
+
     .top-section {
       display: flex;
       justify-content: flex-end;
@@ -106,13 +109,15 @@
         }
       }
     }
+
     .cards {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      height: 70vh;
+      height: 50vh;
       overflow-y: auto;
       scrollbar-color: #fff1cb transparent;
+
       .text {
         color: #fff1cb;
       }
@@ -135,6 +140,107 @@
       }
     }
   }
+
+  // 訂單狀況by怡璇
+  .order-section {
+    margin-top: 32px;
+    margin-bottom: 304px;
+
+    .order-title {
+      font-size: 32px;
+      font-weight: bold;
+      color: #fff0c8;
+      margin-bottom: 20px;
+    }
+
+    .order-table {
+      border: 1px solid #fff0c8;
+      border-radius: 8px;
+      overflow: hidden;
+      width: 100%;
+      //margin-bottom: 100px;
+    }
+
+    .order-header,
+    .order-row {
+      display: grid;
+      grid-template-columns: 1.5fr 4.5fr 1.5fr 1.5fr 1.5fr 1fr;
+      padding: 15px 20px;
+      align-items: center;
+      color: #fff0c8;
+    }
+
+    .order-header {
+      font-weight: bold;
+      border-bottom: 1px solid #fff0c8;
+      background-color: transparent;
+    }
+
+    .order-row {
+      border-bottom: 1px solid rgba(255, 240, 200, 0.3);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .order-btn {
+      background: transparent;
+      border: 1px solid #fff0c8;
+      padding: 5px 8px;
+      color: #fff0c8;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: #fff0c8;
+        color: #3b3021;
+      }
+    }
+
+    .no-orders {
+      padding: 40px;
+      text-align: center;
+      font-size: 18px;
+      color: #fff0c8;
+      border-top: 1px solid #fff0c8;
+    }
+
+    @media (max-width: 768px) {
+      .order-header {
+        display: none;
+      }
+
+      .order-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+        border: 1px solid #fff0c8;
+        border-radius: 8px;
+        margin-bottom: 16px;
+
+        .col {
+          margin-bottom: 8px;
+
+          &::before {
+            content: attr(data-label);
+            font-weight: bold;
+            margin-right: 8px;
+          }
+        }
+
+        .order-btn {
+          align-self: flex-start;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+
+
+
 }
 
 .count {

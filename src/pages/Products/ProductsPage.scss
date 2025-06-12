@@ -6,15 +6,15 @@
   display: flex;
   width: 100%;
   box-sizing: border-box;
-  align-items: flex-start; 
+  align-items: flex-start;
 
   .left {
     flex: 1.2;
     display: flex;
     justify-content: center;
-    align-self: flex-start; 
+    align-self: flex-start;
     position: relative;
-
+  
     .carousel {
       width: 100%;
       max-width: 500px;
@@ -22,13 +22,24 @@
       justify-content: center;
       align-items: center;
       position: relative;
-
+  
       img {
         width: 100%;
         object-fit: contain;
         border-radius: 12px;
+  
+        // ✅ 自動浮動動畫
+        animation: floatIn 0.6s ease-out forwards;
+  
+        // ✅ hover 也能浮動
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+        &:hover {
+          transform: translateY(-6px) scale(1.02);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
       }
-
+  
       .carousel-controls {
         position: absolute;
         top: 50%;
@@ -39,7 +50,7 @@
         justify-content: space-between;
         padding: 0 16px;
         pointer-events: none;
-
+  
         button {
           pointer-events: all;
           background: rgba(0, 0, 0, 0.5);
@@ -50,7 +61,7 @@
           font-size: 24px;
           border-radius: 50%;
           cursor: pointer;
-
+  
           &:hover {
             background: #7F7E5E;
           }
@@ -58,6 +69,19 @@
       }
     }
   }
+  
+  // ✅ 動畫關鍵影格
+  @keyframes floatIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.96);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }  
+
 
   .right {
     flex: 1;
@@ -461,7 +485,7 @@
 // 第四部分：推薦商品區
 .recommended-products {
   width: 100%;
-  margin:30px 0px 50px 0px;
+  margin: 30px 0px 50px 0px;
 
   // 讓整個區塊靠右
   display: flex;

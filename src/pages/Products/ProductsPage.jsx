@@ -129,6 +129,8 @@ function ProductPage() {
     const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
     const cartCountEvent = new CustomEvent("cartUpdated", { detail: total });
     window.dispatchEvent(cartCountEvent);
+    
+    
 
     // 飛豆動畫
     const startElem = e.target;

@@ -1,8 +1,8 @@
 {
   "header": {
     "map": "Map",
-    "news": "Monthly Report",
-    "products": "Limited Products",
+    "news": "News",
+    "products": "Products",
     "about": "About Us",
     "login": "Login",
     "register": "Join Us"
@@ -15,7 +15,7 @@
       "3": "Wed",
       "4": "Thu",
       "5": "Fri",
-      "6": "Sat)"
+      "6": "Sat"
     },
     "today": "Today",
     "tomorrow": "Tomorrow",

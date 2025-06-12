@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL;
 export const products = [
   {
     id: "1-1",
-    nameZH: "咖啡島-鶴嘴手沖壺",
+    nameZH: "鶴嘴手沖壺",
     nameEN: "Gooseneck Kettle",
     price: 1200,
     oldPrice: 1350,
@@ -41,7 +41,7 @@ export const products = [
       `${base}products/gooseneck1Des2.jpg`
     ],
     specs: {
-      商品名稱: "咖啡島-鶴嘴手沖壺",
+      商品名稱: "鶴嘴手沖壺",
       品牌: "咖啡島 Coffee Island",
       型號: "Island Kettle 01",
       顏色: "霧黑",
@@ -67,7 +67,7 @@ export const products = [
   },
   {
     id: "1-2",
-    nameZH: "咖啡島-魚嘴手沖壺300ml",
+    nameZH: "魚嘴手沖壺300ml",
     nameEN: "Fish Spout Kettle 300ml",
     price: 1000,
     oldPrice: 1350,
@@ -99,7 +99,7 @@ export const products = [
       `${base}products/gooseneck2Des2.jpg`
     ],
     specs: {
-      商品名稱: "咖啡島-魚嘴手沖壺300ml",
+      商品名稱: "魚嘴手沖壺300ml",
       品牌: "咖啡島 Coffee Island",
       型號: "Island Kettle 02",
       顏色: "霧黑",
@@ -125,7 +125,7 @@ export const products = [
   },
   {
     id: "1-3",
-    nameZH: "咖啡島-掛耳細口手沖 300ml",
+    nameZH: "掛耳細口手沖 300ml",
     nameEN: "Narrow-spout Kettle 300ml",
     price: 890,
     oldPrice: 1350,
@@ -156,7 +156,7 @@ export const products = [
       `${base}products/gooseneck3Des3.jpg`
     ],
     specs: {
-      商品名稱: "咖啡島-掛耳細口手沖壺700ml",
+      商品名稱: "掛耳細口手沖壺700ml",
       品牌: "咖啡島 Coffee Island",
       型號: "Island Kettle 03",
       顏色: "霧黑",
@@ -182,9 +182,9 @@ export const products = [
   },
   {
     id: "2-1",
-    nameZH: "咖啡島-日製濾杯款式A",
+    nameZH: "漏斗濾杯款式",
     nameEN: "Coffee Island-Filter A (Made in Japan)",
-    price: 420,
+    price: 500,
     oldPrice: 600,
     tagZH: "經典",
     tagEN: "Classic",
@@ -213,7 +213,7 @@ export const products = [
       `${base}products/coffeeFilter1Des2.jpg`
     ],
     specs: {
-      商品名稱: "咖啡島-日製濾杯款式A",
+      商品名稱: "漏斗濾杯款式",
       品牌: "咖啡島 Coffee Island",
       型號: "Filter A",
       顏色: "象牙白",
@@ -239,7 +239,7 @@ export const products = [
   },
   {
     id: "2-2",
-    nameZH: "咖啡島-日製濾杯款式B",
+    nameZH: "日製濾杯款式",
     nameEN: "Coffee Island - Filter B (Made in Japan)",
     price: 420,
     oldPrice: 600,
@@ -271,7 +271,7 @@ export const products = [
       `${base}products/coffeeFilter2Des2.jpg`
     ],
     specs: {
-      商品名稱: "咖啡島-日製濾杯款式B",
+      商品名稱: "日製濾杯款式",
       品牌: "咖啡島 Coffee Island",
       型號: "Filter B",
       顏色: "象牙白",
@@ -283,7 +283,7 @@ export const products = [
       表面處理: "高溫釉燒處理"
     },
     specsEN: {
-      Name: "Filter B (Made in Japan)",
+      Name: "Filter (Made in Japan)",
       Brand: "Coffee Island",
       Model: "Filter B",
       Color: "Ivory White",
@@ -298,7 +298,7 @@ export const products = [
 
   {
     id: "3-1",
-    nameZH: "咖啡島-古坑咖啡豆250g",
+    nameZH: "古坑咖啡豆250g",
     nameEN: "Coffee Island - Gukeng Coffee Beans (250g)",
     price: 550,
     oldPrice: 600,
@@ -329,7 +329,7 @@ export const products = [
       `${base}products/coffeeBean1Des2.jpg`
     ],
     specs: {
-      商品名稱: "咖啡島-古坑咖啡豆250g",
+      商品名稱: "古坑咖啡豆250g",
       品牌: "咖啡島 Coffee Island",
       產地: "台灣 雲林古坑",
       重量: "250g",
@@ -351,7 +351,7 @@ export const products = [
   },
   {
     id: "3-2",
-    nameZH: "咖啡島-關西咖啡豆250g",
+    nameZH: "關西咖啡豆250g",
     nameEN: "Guanxi Coffee Beans (250g)",
     price: 600,
     oldPrice: 700,
@@ -382,7 +382,7 @@ export const products = [
       `${base}products/coffeeBean3Des2.jpg`
     ],
     specs: {
-      商品名稱: "咖啡島-關西咖啡豆250g",
+      商品名稱: "關西咖啡豆250g",
       品牌: "咖啡島 Coffee Island",
       產地: "台灣 新竹關西",
       重量: "250g",
@@ -404,7 +404,7 @@ export const products = [
   },
   {
     id: "3-3",
-    nameZH: "咖啡島-阿里山咖啡豆250g",
+    nameZH: "阿里山咖啡豆250g",
     nameEN: "Alishan Coffee Beans (250g)",
     price: 600,
     oldPrice: 700,
@@ -435,7 +435,7 @@ export const products = [
       `${base}products/coffeeBean3Des2.jpg`
     ],
     specs: {
-      商品名稱: "咖啡島-阿里山咖啡豆250g",
+      商品名稱: "阿里山咖啡豆250g",
       品牌: "咖啡島 Coffee Island",
       產地: "台灣 嘉義阿里山",
       重量: "250g",

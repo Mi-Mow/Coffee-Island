@@ -16,18 +16,56 @@ function CartPage() {
   const [cartItems, setCartItems] = useState([]);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    pay: "cod",              
-    invoice: "physical",     
+    pay: "cod",
+    invoice: "physical",
     carrier: "",
     name: "",
     phone: "",
     email: "",
     address: ""
   });
-  
+  // 這邊是要把下訂單的資料帶入訂單明細(說不想做，但還是帶入了)
   const handleConfirm = () => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, "0")}.${String(today.getDate()).padStart(2, "0")}`;
+  
+    const firstProduct = cartItems[0];
+    const productName = cartItems.length === 1
+      ? firstProduct.nameZH
+      : `${firstProduct.nameZH} 等 ${cartItems.length} 項商品`;
+  
+    const totalAmount = cartItems.reduce(
+      (acc, item) => acc + item.price * (item.quantity || 1),
+      0
+    );
+  
+    const newOrder = {
+      date: formattedDate,
+      product: productName,
+      payment: formData.pay === "cod" ? "取貨付款" : "轉帳",
+      amount: totalAmount,
+      status: "已完成"
+    };
+  
+    const updatedUser = {
+      ...currentUser,
+      orders: [...(currentUser.orders || []), newOrder]
+    };
+  
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+    localStorage.removeItem("cartItems");
+    setCartItems([]);
+  
+    // 確認訂單後，讓右上角的icon清空
+    const cartCountEvent = new CustomEvent("cartUpdated", { detail: 0 });
+    window.dispatchEvent(cartCountEvent);
+  
     setStep(4);
   };
+  
+
 
   const navigate = useNavigate();
 

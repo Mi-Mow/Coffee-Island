@@ -207,25 +207,22 @@ function Profile() {
           </div>
           <div className="username">{currentUser.userName}</div>
           <button
-            className={`${
-              selectedSection === "favorite" ? "active" : ""
-            }  button-style`}
+            className={`${selectedSection === "favorite" ? "active" : ""
+              }  button-style`}
             onClick={() => setSelectedSection("favorite")}
           >
             我的收藏
           </button>
           <button
-            className={`${
-              selectedSection === "orders" ? "active" : ""
-            }  button-style`}
+            className={`${selectedSection === "orders" ? "active" : ""
+              }  button-style`}
             onClick={() => setSelectedSection("orders")}
           >
             訂單狀態
           </button>
           <button
-            className={`${
-              selectedSection === "profile" ? "active" : ""
-            }  button-style`}
+            className={`${selectedSection === "profile" ? "active" : ""
+              }  button-style`}
             onClick={() => setSelectedSection("profile")}
           >
             會員資料
@@ -297,48 +294,48 @@ function Profile() {
                       <div className="cards">
                         {favoriteCafes.length !== 0
                           ? favoriteCafes.map((cafe, index) => {
-                              const isFavorite =
-                                currentUser.favorite?.cafes.some(
-                                  (item) => item.id === cafe.id
-                                );
-
-                              return (
-                                <CafeCard
-                                  key={index}
-                                  size="small"
-                                  title={cafe.name_zh}
-                                  desc={cafe.description}
-                                  rating={cafe.rating}
-                                  img={`${cafe.district_id}_${cafe?.id}_1`}
-                                  cafe={cafe}
-                                  displayFilter={[]}
-                                  isFavorite={isFavorite}
-                                  toggleFavorite={toggleFavorite}
-                                />
+                            const isFavorite =
+                              currentUser.favorite?.cafes.some(
+                                (item) => item.id === cafe.id
                               );
-                            })
+
+                            return (
+                              <CafeCard
+                                key={index}
+                                size="small"
+                                title={cafe.name_zh}
+                                desc={cafe.description}
+                                rating={cafe.rating}
+                                img={`${cafe.district_id}_${cafe?.id}_1`}
+                                cafe={cafe}
+                                displayFilter={[]}
+                                isFavorite={isFavorite}
+                                toggleFavorite={toggleFavorite}
+                              />
+                            );
+                          })
                           : <p className="text">{t("profile.nocafes")}</p>}
                       </div>
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
-                        <div className="cards">
+                      <div className="cards">
                         {favoriteProducts.length !== 0
                           ? favoriteProducts.map((id, index) => {
-                              const isFavorite =
-                                currentUser.favorite?.products.some(
-                                  (item) => item === id
-                                );
-
-                              return (
-                                <ProductCard
-                                  key={index}
-                                  // size="small"
-                                  id={id}
-                                  isFavorite={isFavorite}
-                                  toggleFavorite={toggleFavorite}
-                                />
+                            const isFavorite =
+                              currentUser.favorite?.products.some(
+                                (item) => item === id
                               );
-                            })
+
+                            return (
+                              <ProductCard
+                                key={index}
+                                // size="small"
+                                id={id}
+                                isFavorite={isFavorite}
+                                toggleFavorite={toggleFavorite}
+                              />
+                            );
+                          })
                           : <p className="text">{t("profile.noproducts")}</p>}
                       </div>
                     </CustomTabPanel>
@@ -450,6 +447,42 @@ function Profile() {
                 </Box>
               )}
             </div>
+            {/* 訂單狀況by怡璇 */}
+            {selectedSection === "orders" && (
+              <div className="order-section">
+                <h2 className="order-title">訂單列表</h2>
+
+                {currentUser?.orders?.length > 0 ? (
+                  <div className="order-table">
+                    <div className="order-header">
+                      <div className="col">訂購日期</div>
+                      <div className="col">訂單資料</div>
+                      <div className="col">付款方式</div>
+                      <div className="col">訂購總額</div>
+                      <div className="col">訂單狀態</div>
+                      <div className="col"></div>
+                    </div>
+
+                    {currentUser.orders.map((order, index) => (
+                      <div className="order-row" key={index}>
+                        <div className="col">{order.date}</div>
+                        <div className="col">{order.product}</div>
+                        <div className="col">{order.payment}</div>
+                        <div className="col">NT$ {order.amount.toLocaleString()}</div>
+                        <div className="col">{order.status}</div>
+                        <div className="col">
+                          <button className="order-btn">查看明細</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="no-orders">
+                    無訂單，趕快去挑喜歡的東西吧！
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
