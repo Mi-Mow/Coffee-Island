@@ -1083,12 +1083,8 @@ input {
   background: #153837;
   display: flex;
   margin: 0 auto;
-  padding: 0 10%;
 
-  // max-width: 1280px;
-  // padding: 100px 0;
-
-  .breadcrumbs {
+  .breadcrumbs {   
     width: 100%;
     display: flex;
     justify-content: flex-start;

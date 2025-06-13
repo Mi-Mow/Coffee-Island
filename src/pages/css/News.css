@@ -1039,7 +1039,6 @@ input {
   background: #153837;
   display: flex;
   margin: 0 auto;
-  padding: 0 10%;
 }
 .article-detail-page .breadcrumbs,
 .event-detail-page .breadcrumbs {

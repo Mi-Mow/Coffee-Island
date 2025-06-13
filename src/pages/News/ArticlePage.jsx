@@ -57,8 +57,8 @@ function ArticlePage() {
     };
 
     return (
-        <div>
-            <main className="article-detail-page">
+        <div >
+            <main className="article-detail-page" >
 
                 {/* 麵包屑區塊 */}
                 <nav className="breadcrumbs" aria-label="breadcrumb">
