@@ -1,11 +1,15 @@
 {
   "header": {
+    "home": "主頁",
     "map": "地圖",
     "news": "島嶼月報",
     "products": "限定商品",
     "about": "關於我們",
     "login": "登入",
-    "register": "加入我們"
+    "register": "加入我們",
+    "cart": "購物車",
+    "logout": "登出",
+    "profile": "會員中心"
   },
   "footer": {
     "title": "咖啡島"
@@ -83,11 +87,93 @@
     "original": "原價",
     "buy": "直接購買",
     "addToCart": "加入購物車",
-    "feature": "商品介紹",
-    "spec": "商品規格"
+    "feature": "商品介紹"
+  },
+  "cart": {
+    "paymentMethod": "付款方式",
+    "steps": {
+      "confirm": "確認商品",
+      "fill": "填寫資料",
+      "review": "訂單確認",
+      "complete": "完成"
+    },
+    "title": "預定區訂單",
+    "empty": "購物車沒有東西，趕快去買吧！",
+    "table": {
+      "product": "產品名稱",
+      "price": "單價",
+      "qty": "數量",
+      "subtotal": "小計",
+      "remove": "刪除"
+    },
+    "section": {
+      "shipping": "配送付款資訊",
+      "invoice": "發票資訊",
+      "recipient": "收件人資訊"
+    },
+    "form": {
+      "name": "姓名",
+      "phone": "電話",
+      "email": "電子信箱",
+      "address": "地址"
+    },
+    "invoice": {
+      "mobile": "電子發票",
+      "physical": "實體發票"
+    },
+    "payment": {
+      "transfer": "轉帳",
+      "cod": "取貨付款"
+    },
+    "warning": {
+      "incomplete": "請完整填寫所有必填欄位"
+    },
+    "button": {
+      "next": "下一步",
+      "back": "返回上一步",
+      "continue": "繼續選購",
+      "confirm": "確認訂單",
+      "home": "返回首頁"
+    },
+    "done": {
+      "title": "感謝您的預訂！",
+      "subtitle": "我們已收到您的訂單，請至電子信箱查看確認信。"
+    }
+  },
+  "cartSummary": {
+    "title": "預訂摘要",
+    "subtotal": "金額小計",
+    "shipping": "運費",
+    "freeTip": "滿1000元，全館免運",
+    "total": "總計金額",
+    "next": "下一步",
+    "back": "返回上一步"
   },
   "profile": {
     "nocafes": "無收藏店家",
-    "noproducts": "無收藏商品"
+    "noproducts": "無收藏商品",
+    "favoriteCafes": "收藏店家",
+    "favoriteProducts": "收藏商品",
+    "order": {
+      "title": "訂單列表",
+      "date": "訂購日期",
+      "info": "訂單資料",
+      "payment": "付款方式",
+      "total": "訂購總額",
+      "status": "訂單狀態",
+      "detailBtn": "查看明細",
+      "empty": "無訂單，趕快去挑喜歡的東西吧！",
+      "productSummary": "{{name}} 等 {{count}} 項商品"
+    },
+    "orderStatus": {
+      "已完成": "已完成",
+      "處理中": "處理中"
+    },
+    "sidebar": {
+      "favorites": "我的收藏",
+      "orders": "訂單狀態",
+      "profile": "會員資料",
+      "logout": "登出"
+    }
   }
 }

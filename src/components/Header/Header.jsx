@@ -19,7 +19,6 @@ function Header() {
 
   const { t } = useTranslation();
   const nextLang = language === "zh-TW" ? "EN" : "繁中";
-
   // const toggleLang = () => {
   //   const currentLang = i18n.language;
   //   const newLang = currentLang === "zh-TW" ? "en" : "zh-TW";
@@ -32,23 +31,88 @@ function Header() {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   // setIsLoggedIn(localStorage.getItem("isLoggedIn"));
 
-  const { isLoggedIn } = useAuth();
-
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1140);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // 購物車數量狀態與監聽
   const [cartCount, setCartCount] = useState(() => {
-    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-    return items.reduce((sum, item) => sum + item.quantity, 0);
+    try {
+      const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+      return items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    } catch {
+      return 0;
+    }
   });
 
+  // 這邊是漢堡選單(by怡璇)
+  const { logout } = useAuth(); // ✅ 從 context 引入
+
+  // 然後用這個 function
+  const handleLogout = () => {
+    logout(); // ✅ 呼叫 context 提供的登出方法
+  };
+
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const navItems = [
+    {
+      name: "home",
+      path: `${base}`,
+      icon: "ham_home.png",
+      hover: "ham_home_hover.png",
+    },
+    {
+      name: "map",
+      path: `${base}#map`,
+      icon: "ham_map.png",
+      hover: "ham_map_hover.png",
+    },
+    {
+      name: "news",
+      path: `${base}news`,
+      icon: "ham_news.png",
+      hover: "ham_news_hover.png",
+    },
+    {
+      name: "products",
+      path: `${base}products`,
+      icon: "ham_prod.png",
+      hover: "ham_prod_hover.png",
+    },
+    {
+      name: "about",
+      path: `${base}about`,
+      icon: "ham_about.png",
+      hover: "ham_about_hover.png",
+    },
+    ...(isLoggedIn
+      ? [
+        {
+          name: "cart",
+          path: `${base}cart`,
+          icon: "ham_cart.png",
+          hover: "ham_cart_hover.png",
+        },
+      ]
+      : []),
+  ];
+
   useEffect(() => {
-    const updateCartCount = () => {
-      const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-      const total = items.reduce((sum, item) => sum + item.quantity, 0);
-      setCartCount(total);
+    const updateCartCount = (e) => {
+      if (e?.detail !== undefined) {
+        setCartCount(e.detail);
+      } else {
+        try {
+          const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+          const total = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+          setCartCount(total);
+        } catch {
+          setCartCount(0);
+        }
+      }
     };
+
     window.addEventListener("cartUpdated", updateCartCount);
     return () => window.removeEventListener("cartUpdated", updateCartCount);
   }, []);
@@ -59,13 +123,14 @@ function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+
   return (
     <div>
       <header>
         <NavLink to={`${base}`} className={s.logo}>
           <img src={logo} alt="" />
         </NavLink>
-
+        {/* 這邊是RWD漢堡選單的地方(by怡璇) */}
         <nav>
           {isMobile ? (
             <>
@@ -74,45 +139,84 @@ function Header() {
                   <img src={`${base}hamburger.svg`} alt="" />
                 </div>
               </div>
+
               {isMenuOpen && (
                 <>
                   <div className={s.menuDimmer}></div>
-
                   <div className={s.hamburgerOverlay}>
-                    <button className={s.closeBtn} onClick={() => setIsMenuOpen(false)}>
-                      ×
-                    </button>
+                    <button className={s.closeBtn} onClick={() => setIsMenuOpen(false)}>×</button>
 
+                    <ul className={s.menuList}>
+                      {navItems.map((item, index) => (
+                        <li key={index}>
+                          <NavLink
+                            to={item.path}
+                            end
+                            onClick={() => setIsMenuOpen(false)}
+                            className={s.menuLink}
+                          >
+                            {({ isActive }) => (
+                              <>
+                                <img
+                                  src={`${base}${isActive ? item.hover : item.icon}`}
+                                  alt={item.name}
+                                  className={s.icon}
+                                />
+                                <span className={isActive ? s.activeText : undefined}>
+                                  {t(`header.${item.name}`)}
+                                </span>
+
+                              </>
+                            )}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* 🌐 語言切換區塊 */}
+                    <div className={s.language} onClick={toggleLang}>
+                      <div className={s.earthContainer}>
+                        <img src={earth} alt="language" />
+                      </div>
+                      <p>{nextLang}</p>
+                    </div>
+
+                    {/* 👤 會員功能區 */}
                     {isLoggedIn ? (
                       <>
-                        <ul className={s.menuList}>
-                          <li><NavLink to={`${base}`} onClick={() => setIsMenuOpen(false)}>主頁</NavLink></li>
-                          <li><NavLink to={`${base}#map`} onClick={() => setIsMenuOpen(false)}>地圖</NavLink></li>
-                          <li><NavLink to={`${base}news`} onClick={() => setIsMenuOpen(false)}>島嶼月報</NavLink></li>
-                          <li><NavLink to={`${base}products`} onClick={() => setIsMenuOpen(false)}>限定商品</NavLink></li>
-                          <li><NavLink to={`${base}about`} onClick={() => setIsMenuOpen(false)}>關於我們</NavLink></li>
-                          <li><NavLink to={`${base}cart`} onClick={() => setIsMenuOpen(false)}>購物車</NavLink></li>
-                        </ul>
-
-                        <NavLink to={`${base}profile`} onClick={() => setIsMenuOpen(false)} className={s.memberButton}>
-                          會員中心
+                        <NavLink
+                          to={`${base}profile`}
+                          onClick={() => setIsMenuOpen(false)}
+                          className={s.memberButton}
+                        >
+                          {t("header.profile")}
                         </NavLink>
+
+                        <button
+                          className={s.logoutButton}
+                          onClick={() => {
+                            logout();
+                            setIsMenuOpen(false);
+                          }}
+                        >
+                          {t("header.logout")}
+                        </button>
                       </>
                     ) : (
-                      <>
-                        <ul className={s.menuList}>
-                          <li><NavLink to={`${base}`} onClick={() => setIsMenuOpen(false)}>主頁</NavLink></li>
-                          <li><NavLink to={`${base}#map`} onClick={() => setIsMenuOpen(false)}>地圖</NavLink></li>
-                          <li><NavLink to={`${base}news`} onClick={() => setIsMenuOpen(false)}>島嶼月報</NavLink></li>
-                          <li><NavLink to={`${base}products`} onClick={() => setIsMenuOpen(false)}>限定商品</NavLink></li>
-                          <li><NavLink to={`${base}about`} onClick={() => setIsMenuOpen(false)}>關於我們</NavLink></li>
-                        </ul>
-
-                        <NavLink to={`${base}login`} onClick={() => setIsMenuOpen(false)} className={s.memberButton}>
-                          會員登入
-                        </NavLink>
-                      </>
+                      <NavLink
+                        to={`${base}login`}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={s.memberButton}
+                      >
+                      </NavLink>
                     )}
+
+                    {/* <NavLink
+                      to={`${base}login`}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={s.memberButton}
+                    >
+                    </NavLink> */}
                   </div>
                 </>
               )}
@@ -162,8 +266,8 @@ function Header() {
                         <img src={cart} alt="" />
                         {cartCount > 0 && <span className={s.cartCount}>{cartCount}</span>}
                       </div>
-
                     </NavLink>
+
                     <NavLink to={`${base}profile`}>
                       <div className={s.profileContainer}>
                         <img src={profile} alt="" />
@@ -173,14 +277,10 @@ function Header() {
                 ) : (
                   <>
                     <NavLink to={`${base}login`}>
-                      <button className={s.loginBtn}>
-                        {t(`header.login`)}
-                      </button>
+                      <button className={s.loginBtn}>{t(`header.login`)}</button>
                     </NavLink>
                     <NavLink to={`${base}register`}>
-                      <button className={s.registerBtn}>
-                        {t(`header.register`)}
-                      </button>
+                      <button className={s.registerBtn}>{t(`header.register`)}</button>
                     </NavLink>
                   </>
                 )}
@@ -188,6 +288,7 @@ function Header() {
             </>
           )}
         </nav>
+
       </header>
     </div>
   );

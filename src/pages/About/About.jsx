@@ -3,6 +3,7 @@ import aboutImage from './image/about1.png';
 import aboutGirl1 from './image/about2.png';
 import aboutGirl2 from './image/about3.png';
 import aboutGirl3 from './image/about4.png';
+import aboutGirl4 from './image/about5.png';
 function About() {
   return (
     <section className="about">
@@ -19,6 +20,10 @@ function About() {
           </div>
           <div className="about__imagegirl">
             <img src={aboutGirl3} alt="girl3" />
+
+          </div>
+          <div className="about__imagegirl">
+            <img src={aboutGirl4} alt="girl4" />
 
           </div>
         </div>
@@ -43,8 +48,8 @@ function About() {
           className="about__image"
         />
         <p>如果你準備好了，那就來場都市裡的味覺漫遊——</p>
-
-        <a href="#" className="about__button">探索旅程</a>
+    
+        <a href="/#map" className="about__button">探索旅程</a>
       </div>
     </section>
   );

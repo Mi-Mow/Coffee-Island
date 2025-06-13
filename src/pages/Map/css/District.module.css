@@ -43,7 +43,7 @@
 }
 .recommend .popular .cards {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 15px;
 }
 .recommend .popular .btn {
@@ -117,27 +117,33 @@
   border: #f2dab2 3px solid;
   border-radius: 2px;
 }
+.filter .main .tags .tag p {
+  flex: 3;
+}
 .filter .main .tags .tag .cross {
-  width: 24px;
+  flex: 1;
   padding-left: 8px;
+}
+.filter .main .tags .filterTag {
+  width: 100px;
+  justify-content: center;
 }
 .filter .main .content {
   display: flex;
-  justify-content: space-between;
   height: 70vh;
   overflow: hidden;
   padding-top: 30px;
-  gap: 20px;
+  gap: 40px;
 }
 .filter .main .content .cards {
-  width: 60%;
+  flex: 3;
   height: 100%;
   gap: 10px;
   overflow-y: auto;
   scrollbar-color: #fff1cb transparent;
 }
 .filter .main .content .map {
-  width: 40%;
+  flex: 2;
   height: 100%;
 }
 

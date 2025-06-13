@@ -5,7 +5,7 @@ import event1 from '../../assets/news/activities/01.jpg';
 import event2 from '../../assets/news/activities/02.jpg';
 import event3 from '../../assets/news/activities/3.png';
 import event4 from '../../assets/news/activities/4.jpg';
-import event5 from '/cafe/neihu_16_1.jpg';
+import event5 from '../../assets/news/activities/event5.jpg';
 import event6 from '../../assets/news/activities/6.jpg';
 import event7 from '../../assets/news/activities/7.jpg';
 import NewsNav from './components/NewsNav';
@@ -125,7 +125,7 @@ TYPICA 的理念是讓咖啡的價值被公平體現，這不僅是一場品飲�
   },
   {
     id: 8,
-    imgSrc: `${base}cafe/neihu_16_2.jpg`,
+    imgSrc: `${base}news/event8.jpg`,
     tags: ['最新企劃', '復古咖啡廳'],
     date: '2025/05/30~2025/05/30',
     startDate: new Date('2025-05-30'),
