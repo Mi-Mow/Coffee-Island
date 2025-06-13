@@ -98,6 +98,7 @@ const tomorrowDay = tomorrow.getDay();
 function Home() {
   const { t } = useTranslation();
   const [weatherData, setWeatherData] = useState(null);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -215,7 +216,7 @@ function Home() {
         animationRef.current.kill();
       }
     };
-  }, [location.pathname]);
+  }, [location.pathname, language]);
 
   const sectionRef = useRef(null);
   const beanRefs = useRef([]);
@@ -454,8 +455,6 @@ function Home() {
       (prevIndex) => (prevIndex + 1) % carouselImages.length
     );
   };
-
-  const { language } = useLanguage();
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
