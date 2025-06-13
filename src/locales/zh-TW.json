@@ -9,7 +9,7 @@
     "register": "加入我們",
     "cart": "購物車",
     "logout": "登出",
-    "profile":"會員中心"
+    "profile": "會員中心"
   },
   "home": {
     "days": {
@@ -132,6 +132,8 @@
   "profile": {
     "nocafes": "無收藏店家",
     "noproducts": "無收藏商品",
+    "favoriteCafes": "收藏店家",
+    "favoriteProducts": "收藏商品",
     "order": {
       "title": "訂單列表",
       "date": "訂購日期",

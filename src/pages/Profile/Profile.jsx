@@ -247,11 +247,11 @@ function Profile() {
                 <>
                   <div className="top-section">
                     <div className="favorite-item">
-                      收藏店家
+                      {t("profile.favoriteCafes")}
                       <div className="count">{favoriteCafes.length}</div>
                     </div>
                     <div className="favorite-item">
-                      收藏商品
+                      {t("profile.favoriteProducts")}
                       <div className="count">{favoriteProducts.length}</div>
                     </div>
                     {/* <div className="favorite-item">

@@ -44,7 +44,7 @@
       "line2": "let's trace the history of coffee in Taiwan together."
     },
     "map": {
-      "title": "Coffee Map",
+      "title": "Taipei City",
       "hint": "Click the area you'd like to visit"
     }
   },
@@ -132,6 +132,8 @@
  "profile": {
   "nocafes": "No favorite cafés",
   "noproducts": "No favorite products",
+  "favoriteCafes": "Favorite Cafes",
+  "favoriteProducts": "Favorite Products",
   "order": {
     "title": "Order List",
     "date": "Date",
