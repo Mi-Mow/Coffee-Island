@@ -61,21 +61,6 @@
         font-weight: bold;
       }
 
-      &:hover .circle:not(.active),
-      &:focus .circle:not(.active) {
-        background: #fff1cb30;
-        color: #fff1cb;
-        box-shadow: 0 2px 10px 0 #fff1cb60;
-        transform: scale(1.09);
-        border-color: #fff1cb;
-      }
-
-      &:hover .label:not(.active),
-      &:focus .label:not(.active) {
-        color: #fff1cb;
-        text-decoration: underline;
-      }
-
       &:active .circle {
         transform: scale(0.96);
         filter: brightness(0.94);
@@ -133,7 +118,7 @@
 
 
     @media (max-width: 1000px) {
-     //justify-content: flex-start;
+      //justify-content: flex-start;
       gap: 8px;
 
       // .step-progress {
@@ -168,7 +153,8 @@
 
     }
   }
-//右方訂單區，做成component
+
+  //右方訂單區，做成component
 
   // 左方預定區訂單
   .cart-title {
@@ -182,366 +168,374 @@
 
 .cart-content {
   display: flex;
-  gap: 40px;
-
-  .cart-list,
-  .form-list {
-    flex: 2;
-  }
-
-  // step1 商品資訊
-  .cart-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 0;
-    font-family: inherit;
-    color: #fff1cb;
-    background: none;
-
-    thead {
-      background: none;
-
-      th {
-        color: #fff1cb;
-        background: none;
-        font-weight: bold;
-        font-size: 18px;
-        border-bottom: 2px solid #fff1cb;
-        text-align: center;
-        padding: 18px 10px;
-        letter-spacing: 2px;
-      }
-    }
-
-    tbody {
-      tr {
-        background: none;
-        border-bottom: 1px solid rgba(255, 241, 203, 0.25);
-      }
-
-      th,
-      td {
-        padding: 8px 10px;
-        vertical-align: middle;
-        font-size: 20px;
-      }
-
-      th.img {
-        width: 100px;
-
-        img {
-          display: block;
-          width: 80px;
-          height: 80px;
-          object-fit: cover;
-          border-radius: 10px;
-          background: #fff;
-          border: 1px solid #e7e2b3;
-          box-shadow: 0 2px 8px 0 rgba(60, 60, 30, 0.08);
-        }
-      }
-
-      th.title {
-        //width: 260px;
-        text-align: left;
-
-        .name {
-          font-size: 18px;
-          font-weight: bold;
-          display: block;
-        }
-
-        .spec {
-          font-size: 15px;
-          opacity: .75;
-          margin-top: 2px;
-        }
-      }
-
-      td {
-        text-align: center;
-        color: #fff1cb;
-        font-size: 16px;
-
-        .quantity-control {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          //gap: 10px;
-
-          button {
-            width: 28px;
-            height: 28px;
-            background: transparent;
-            color: #fff1cb;
-            border: 1px solid #fff1cb;
-            font-size: 14px;
-            border-radius: 6px;
-            cursor: pointer;
-
-            &:hover {
-              background: #476b67;
-            }
-          }
-
-          span {
-            width: 32px;
-            display: inline-block;
-            text-align: center;
-          }
-        }
-
-        .remove {
-          font-size: 22px;
-          border: none;
-          background: transparent;
-          color: #fff1cb;
-          cursor: pointer;
-          transition: color 0.15s;
-
-          &:hover {
-            color: #f25c54;
-          }
-        }
-      }
-    }
-  }
+  align-items: flex-start; // 垂直對齊方式：上對齊
+  gap: 40px; // 兩邊區塊的間距
 
   @media (max-width: 1000px) {
-    .cart-table {
-      thead {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        clip: rect(1px, 1px, 1px, 1px);
-        white-space: nowrap;
-      }
+    align-items: center;
 
-      tbody,
-      tbody tr,
-      tr,
-      th,
-      td {
-        display: block !important;
-        width: 100% !important;
-        text-align: right !important;
-        box-sizing: border-box;
-      }
-
-      tbody tr {
-        margin-bottom: 20px;
-        border-radius: 12px;
-        background: rgba(30, 50, 48, 0.97);
-        box-shadow: 0 4px 14px 0 rgba(20, 30, 20, 0.13);
-        border: 2px solid #fff1cb;
-        padding: 0 10px 0 10px;
-      }
-
-
-      th.title {
-        //background: #3e5f5b;
-        color: #fff1cb;
-        border-radius: 0 0 10px 10px;
-        margin-bottom: 10px;
-        padding: 8px 10px;
-        text-align: center !important;
-
-        .name {
-          font-size: 20px;
-        }
-
-        .spec {
-          font-size: 15px;
-        }
-      }
-
-      td[data-title]:before {
-        content: attr(data-title) "：";
-        float: left;
-        font-weight: bold;
-        color: #fff1cb;
-        opacity: .9;
-        font-size: 16px;
-        margin-right: 10px;
-      }
-
-      td,
-      th {
-        padding: 14px 8px;
-        font-size: 17px;
-        border: none;
-        background: none;
-      }
-
-      td .quantity-control button {
-        width: 30px;
-        height: 30px;
-        font-size: 15px;
-      }
-
-      td .quantity-control span {
-        width: 28px;
-        font-size: 17px;
-      }
-    }
-  }
-
-  // step2表單區
-  .form-list {
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-
-    hr {
-      border-color: #fff1cb;
-      opacity: 0.3;
-      margin: 0;
+    .cart-list {
+      flex: 2;
     }
 
-    .form-section {
-      display: flex;
-      flex-direction: column;
-      row-gap: 20px;
-
-      .form-title {
-        font-size: 22px;
-        font-weight: bold;
-        color: #fff1cb;
-      }
-
-      .radio-group {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .radio-with-input {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        align-items: center;
-        gap: 12px;
-
-        input[type="text"] {
-          padding: 8px 12px;
-          border: 2px solid #fff1cb;
-          border-radius: 8px;
-          background: transparent;
-          color: #fff1cb;
-          font-size: 16px;
-          width: 100%;
-        }
-      }
-
-      label {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #fff1cb;
-        font-size: 16px;
-
-        input[type="radio"] {
-          accent-color: #fff1cb;
-        }
-
-        span {
-          font-size: 14px;
-          color: rgba(255, 241, 203, 0.8);
-        }
-      }
-
-      .recipient-info {
-        .form-row {
-          display: flex;
-          align-items: center;
-          margin-bottom: 32px;
-
-          label {
-            width: 120px;
-            font-size: 16px;
-            color: #FFF1CB;
-            display: flex;
-            align-items: center;
-
-            .required-star {
-              color: #e74c3c;
-              font-size: 16px;
-              margin-right: 6px;
-            }
-          }
-
-          input {
-            flex: 1;
-            font-size: 16px;
-            padding: 10px 18px;
-            border-radius: 8px;
-            border: 2px solid #FFF1CB;
-            background: transparent;
-            color: #FFF1CB;
-            margin-left: 18px;
-            outline: none;
-          }
-        }
-      }
-    }
-  }
-
-  // step3 顯示使用者資料
-  .order-info {
-    margin-top: 40px;
-    padding: 32px;
-    border: 1px solid #fff1cb;
-    border-radius: 8px;
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    row-gap: 20px;
-    column-gap: 16px;
-    font-size: 20px;
-    color: #fff1cb;
-
-    .label {
-      font-weight: bold;
-      font-size: 16px;
-      white-space: nowrap;
-    }
-
-    .value {
-      //word-break: break-word;
-      font-size: 14px;
+    .cart-summary {
+      flex: 1;
     }
   }
 }
 
-  // step4：預定完成
-  .order-complete {
-    text-align: center;
-    padding: 80px 40px;
+// step1 商品資訊
+.cart-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0;
+  font-family: inherit;
+  color: #fff1cb;
+  background: none;
 
-    .thankyou {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      margin-bottom: 20px;
+  thead {
+    background: none;
+
+    th {
+      color: #fff1cb;
+      background: none;
+      font-weight: bold;
+      font-size: 18px;
+      border-bottom: 2px solid #fff1cb;
       text-align: center;
-      width: 100%;
+      padding: 18px 10px;
+      letter-spacing: 2px;
+    }
+  }
+
+  tbody {
+    tr {
+      background: none;
+      border-bottom: 1px solid rgba(255, 241, 203, 0.25);
     }
 
-    button.keep {
-      padding: 12px 24px;
-      font-size: 16px;
-      border: 1px solid #fff1cb;
-      border-radius: 4px;
-      background: transparent;
-      color: #fff1cb;
-      cursor: pointer;
+    th,
+    td {
+      padding: 8px 10px;
+      vertical-align: middle;
+      font-size: 20px;
+    }
 
-      &:hover {
-        background: #5e7d79;
+    th.img {
+      width: 100px;
+
+      img {
+        display: block;
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+        background: #fff;
+        border: 1px solid #e7e2b3;
+        box-shadow: 0 2px 8px 0 rgba(60, 60, 30, 0.08);
+      }
+    }
+
+    th.title {
+      //width: 260px;
+      text-align: left;
+
+      .name {
+        font-size: 18px;
+        font-weight: bold;
+        display: block;
+      }
+
+      .spec {
+        font-size: 15px;
+        opacity: .75;
+        margin-top: 2px;
+      }
+    }
+
+    td {
+      text-align: center;
+      color: #fff1cb;
+      font-size: 16px;
+
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        //gap: 10px;
+
+        button {
+          width: 28px;
+          height: 28px;
+          background: transparent;
+          color: #fff1cb;
+          border: 1px solid #fff1cb;
+          font-size: 14px;
+          border-radius: 6px;
+          cursor: pointer;
+
+          &:hover {
+            background: #476b67;
+          }
+        }
+
+        span {
+          width: 32px;
+          display: inline-block;
+          text-align: center;
+        }
+      }
+
+      .remove {
+        font-size: 22px;
+        border: none;
+        background: transparent;
+        color: #fff1cb;
+        cursor: pointer;
+        transition: color 0.15s;
+
+        &:hover {
+          color: #f25c54;
+        }
       }
     }
   }
+}
+
+@media (max-width: 1000px) {
+  .cart-table {
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
+
+    tbody,
+    tbody tr,
+    tr,
+    th,
+    td {
+      display: block !important;
+      width: 100% !important;
+      text-align: right !important;
+      box-sizing: border-box;
+    }
+
+    tbody tr {
+      margin-bottom: 20px;
+      border-radius: 12px;
+      background: rgba(30, 50, 48, 0.97);
+      box-shadow: 0 4px 14px 0 rgba(20, 30, 20, 0.13);
+      border: 2px solid #fff1cb;
+      padding: 0 10px 0 10px;
+      width: 70%;
+    }
+
+
+    th.title {
+      color: #fff1cb;
+      border-radius: 0 0 10px 10px;
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      text-align: center !important;
+
+      .name {
+        font-size: 20px;
+      }
+
+      .spec {
+        font-size: 15px;
+      }
+    }
+
+    td[data-title]:before {
+      content: attr(data-title) "：";
+      float: left;
+      font-weight: bold;
+      color: #fff1cb;
+      opacity: .9;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    td,
+    th {
+      padding: 14px 8px;
+      font-size: 17px;
+      border: none;
+      background: none;
+    }
+
+    td .quantity-control button {
+      width: 30px;
+      height: 30px;
+      font-size: 15px;
+    }
+
+    td .quantity-control span {
+      width: 28px;
+      font-size: 17px;
+    }
+  }
+}
+
+// step2表單區
+.form-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  hr {
+    border-color: #fff1cb;
+    opacity: 0.3;
+    margin: 0;
+  }
+
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    .form-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff1cb;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .radio-with-input {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 12px;
+
+      input[type="text"] {
+        padding: 8px 12px;
+        border: 2px solid #fff1cb;
+        border-radius: 8px;
+        background: transparent;
+        color: #fff1cb;
+        font-size: 16px;
+        width: 100%;
+      }
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff1cb;
+      font-size: 16px;
+
+      input[type="radio"] {
+        accent-color: #fff1cb;
+      }
+
+      span {
+        font-size: 14px;
+        color: rgba(255, 241, 203, 0.8);
+      }
+    }
+
+    .recipient-info {
+      .form-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 32px;
+
+        label {
+          width: 120px;
+          font-size: 16px;
+          color: #FFF1CB;
+          display: flex;
+          align-items: center;
+
+          .required-star {
+            color: #e74c3c;
+            font-size: 16px;
+            margin-right: 6px;
+          }
+        }
+
+        input {
+          flex: 1;
+          font-size: 16px;
+          padding: 10px 18px;
+          border-radius: 8px;
+          border: 2px solid #FFF1CB;
+          background: transparent;
+          color: #FFF1CB;
+          margin-left: 18px;
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+// step3 顯示使用者資料
+.order-info {
+  margin-top: 40px;
+  padding: 32px;
+  border: 1px solid #fff1cb;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  row-gap: 20px;
+  column-gap: 16px;
+  font-size: 20px;
+  color: #fff1cb;
+
+  .label {
+    font-weight: bold;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .value {
+    //word-break: break-word;
+    font-size: 14px;
+  }
+}
+
+// step4：預定完成
+.order-complete {
+  text-align: center;
+  padding: 80px 40px;
+
+  .thankyou {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+  }
+
+  button.keep {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: 1px solid #fff1cb;
+    border-radius: 4px;
+    background: transparent;
+    color: #fff1cb;
+    cursor: pointer;
+
+    &:hover {
+      background: #5e7d79;
+    }
+  }
+}
 
 .endmoster-swing {
   display: block;

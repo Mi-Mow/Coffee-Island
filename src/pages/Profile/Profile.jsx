@@ -201,39 +201,41 @@ function Profile() {
     <>
       <div className="profile-page">
         {/* <!-- 左邊功能欄 --> */}
+        {/* import {useTranslation} from "react-i18next";
+
+        ...
+
+        const {t} = useTranslation();
+
+        return ( */}
         <div className="sidebar">
           <div>
-            <img src={avatar} alt="#" />
+            <img src={avatar} alt="avatar" />
           </div>
           <div className="username">{currentUser.userName}</div>
           <button
-            className={`${
-              selectedSection === "favorite" ? "active" : ""
-            }  button-style`}
+            className={`${selectedSection === "favorite" ? "active" : ""} button-style`}
             onClick={() => setSelectedSection("favorite")}
           >
-            我的收藏
+            {t("profile.sidebar.favorites")}
           </button>
           <button
-            className={`${
-              selectedSection === "orders" ? "active" : ""
-            }  button-style`}
+            className={`${selectedSection === "orders" ? "active" : ""} button-style`}
             onClick={() => setSelectedSection("orders")}
           >
-            訂單狀態
+            {t("profile.sidebar.orders")}
           </button>
           <button
-            className={`${
-              selectedSection === "profile" ? "active" : ""
-            }  button-style`}
+            className={`${selectedSection === "profile" ? "active" : ""} button-style`}
             onClick={() => setSelectedSection("profile")}
           >
-            會員資料
+            {t("profile.sidebar.profile")}
           </button>
           <button className="button-style logout-btn" onClick={handleLogout}>
-            登出
+            {t("profile.sidebar.logout")}
           </button>
         </div>
+        {/* ); */}
 
         {/*  <!-- 右邊內容區 --> */}
         <div className="right-content">
@@ -245,11 +247,11 @@ function Profile() {
                 <>
                   <div className="top-section">
                     <div className="favorite-item">
-                      收藏店家
+                      {t("profile.favoriteCafes")}
                       <div className="count">{favoriteCafes.length}</div>
                     </div>
                     <div className="favorite-item">
-                      收藏商品
+                      {t("profile.favoriteProducts")}
                       <div className="count">{favoriteProducts.length}</div>
                     </div>
                     {/* <div className="favorite-item">
@@ -297,48 +299,48 @@ function Profile() {
                       <div className="cards">
                         {favoriteCafes.length !== 0
                           ? favoriteCafes.map((cafe, index) => {
-                              const isFavorite =
-                                currentUser.favorite?.cafes.some(
-                                  (item) => item.id === cafe.id
-                                );
-
-                              return (
-                                <CafeCard
-                                  key={index}
-                                  size="small"
-                                  title={cafe.name_zh}
-                                  desc={cafe.description}
-                                  rating={cafe.rating}
-                                  img={`${cafe.district_id}_${cafe?.id}_1`}
-                                  cafe={cafe}
-                                  displayFilter={[]}
-                                  isFavorite={isFavorite}
-                                  toggleFavorite={toggleFavorite}
-                                />
+                            const isFavorite =
+                              currentUser.favorite?.cafes.some(
+                                (item) => item.id === cafe.id
                               );
-                            })
+
+                            return (
+                              <CafeCard
+                                key={index}
+                                size="small"
+                                title={cafe.name_zh}
+                                desc={cafe.description}
+                                rating={cafe.rating}
+                                img={`${cafe.district_id}_${cafe?.id}_1`}
+                                cafe={cafe}
+                                displayFilter={[]}
+                                isFavorite={isFavorite}
+                                toggleFavorite={toggleFavorite}
+                              />
+                            );
+                          })
                           : <p className="text">{t("profile.nocafes")}</p>}
                       </div>
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
-                        <div className="cards">
+                      <div className="cards">
                         {favoriteProducts.length !== 0
                           ? favoriteProducts.map((id, index) => {
-                              const isFavorite =
-                                currentUser.favorite?.products.some(
-                                  (item) => item === id
-                                );
-
-                              return (
-                                <ProductCard
-                                  key={index}
-                                  // size="small"
-                                  id={id}
-                                  isFavorite={isFavorite}
-                                  toggleFavorite={toggleFavorite}
-                                />
+                            const isFavorite =
+                              currentUser.favorite?.products.some(
+                                (item) => item === id
                               );
-                            })
+
+                            return (
+                              <ProductCard
+                                key={index}
+                                // size="small"
+                                id={id}
+                                isFavorite={isFavorite}
+                                toggleFavorite={toggleFavorite}
+                              />
+                            );
+                          })
                           : <p className="text">{t("profile.noproducts")}</p>}
                       </div>
                     </CustomTabPanel>
@@ -450,6 +452,63 @@ function Profile() {
                 </Box>
               )}
             </div>
+            {/* 訂單狀況by怡璇 */}
+            {selectedSection === "orders" && (
+              <div className="order-section">
+                <h2 className="order-title">{t("profile.order.title")}</h2>
+
+                {currentUser?.orders?.length > 0 ? (
+                  <div className="order-table">
+                    <div className="order-header">
+                      <div className="col">{t("profile.order.date")}</div>
+                      <div className="col">{t("profile.order.info")}</div>
+                      <div className="col">{t("profile.order.payment")}</div>
+                      <div className="col">{t("profile.order.total")}</div>
+                      <div className="col">{t("profile.order.status")}</div>
+                      <div className="col"></div>
+                    </div>
+
+                    {currentUser.orders.map((order, index) => {
+                      const productList = order.productList || [];
+                      const productCount = productList.length;
+                      const firstProductName =
+                        productCount > 0
+                          ? language === "zh-TW"
+                            ? productList[0].nameZH
+                            : productList[0].nameEN
+                          : "";
+
+                      return (
+                        <div className="order-row" key={index}>
+                          <div className="col">{order.date}</div>
+                          <div className="col">
+                            {productCount > 1
+                              ? t("profile.order.productSummary", {
+                                name: firstProductName,
+                                count: productCount,
+                              })
+                              : firstProductName}
+                          </div>
+                          <div className="col">
+                            {t(
+                              `cart.payment.${order.payment === "取貨付款" ? "cod" : "transfer"}`
+                            )}
+                          </div>
+                          <div className="col">NT$ {order.amount.toLocaleString()}</div>
+                          <div className="col">{t(`profile.orderStatus.${order.status}`)}</div>
+                          <div className="col">
+                            <button className="order-btn">{t("profile.order.detailBtn")}</button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="no-orders">{t("profile.order.empty")}</div>
+                )}
+              </div>
+            )}
+
           </div>
         </div>
       </div>

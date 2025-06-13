@@ -1,49 +1,61 @@
 import "./CartSummary.scss";
+import { useTranslation } from "react-i18next";
 
 function CartSummary({
     total,
     onNext,
     onBack,
-    nextLabel = "下一步",
-    backLabel = "返回上一步",
+    nextLabel,
+    backLabel,
     showBack = true,
     disableNext = false,
     showShipping = true,
 }) {
-    // 運費判斷
+    const { t } = useTranslation();
+
     const shippingFee = total >= 1000 ? 0 : 80;
 
     return (
         <div className="cart-summary">
-            <h3 className="summary-title">預訂摘要</h3>
+            <h3 className="summary-title">{t("cartSummary.title")}</h3>
+
             <div className="summary-line">
-                <span>金額小計</span>
-                <span className="total-price">NT${total}</span>
+                <span>{t("cartSummary.subtotal")}</span>
+                <span className="total-price">
+                    NT${total.toLocaleString("zh-TW")}
+                </span>
             </div>
+
             {showShipping && (
                 <>
                     <div className="summary-line total-line">
-                        <span>運費</span>
+                        <span>{t("cartSummary.shipping")}</span>
                         <span className="total-price red">
-                            NT${shippingFee}
+                            NT${shippingFee.toLocaleString("zh-TW")}
                         </span>
                     </div>
-                    <div className="free-shipping-tip" style={{ color: "#fff", fontSize: "12px", marginBottom: "12px" }}>
-                        滿1000元，全館免運
+                    <div
+                        className="free-shipping-tip"
+                        style={{ color: "#fff", fontSize: "12px", marginBottom: "12px" }}
+                    >
+                        {t("cartSummary.freeTip")}
                     </div>
                     <div className="summary-line total-line grand-total">
-                        <span>總計金額</span>
-                        <span className="total-price">NT${total + shippingFee}</span>
+                        <span>{t("cartSummary.total")}</span>
+                        <span className="total-price">
+                            NT${(total + shippingFee).toLocaleString("zh-TW")}
+                        </span>
                     </div>
                 </>
             )}
+
             <div className="button-group">
                 <button className="next" onClick={onNext} disabled={disableNext}>
-                    {nextLabel}
+                    {nextLabel || t("cartSummary.next")}
                 </button>
                 {showBack && (
                     <button className="keep" onClick={onBack}>
-                        {backLabel}
+                        {backLabel || t("cartSummary.back")}
                     </button>
                 )}
             </div>
