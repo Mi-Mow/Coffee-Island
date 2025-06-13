@@ -1,45 +1,58 @@
 @charset "UTF-8";
 .profile-page {
   display: flex;
-  padding: 100px 70px 0;
-  gap: 40px;
-  color: #FFF0C8;
+  padding: 110px 70px 30px;
+  gap: 20px;
 }
 
 /* 左側：功能選單欄 */
 .sidebar {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   width: 200px;
-  gap: 24px;
+  gap: 16px;
+  /* 按鈕樣式統一：我的收藏、訂單狀態、瀏覽紀錄、登出 */
+}
+.sidebar .button-style {
+  display: flex;
+  width: 110px;
+  height: 50px;
+  padding: 20px 16px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: 3px solid #a77434;
+  border-radius: 2px;
+  background: none;
+  color: #fff0c8;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.sidebar .button-style:hover {
+  background-color: #a77434;
+  color: #fff;
+}
+.sidebar .active {
+  background-color: #a77434;
+  color: #fff;
+}
+.sidebar .logout-btn {
+  border: 3px solid #814646;
+}
+.sidebar .logout-btn:hover {
+  background-color: #814646;
+  color: #fff;
 }
 
 /* 右側區塊（上下分） */
 .right-content {
-  flex: 1;
+  flex: 5;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-}
-
-.top-section {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 40px;
-}
-.top-section .favorite-item {
-  text-align: center;
-  font-size: 16px;
-  color: #FFF0C8;
-  position: relative;
-}
-.top-section .favorite-item .count {
-  font-size: 48px;
-  color: #FFF0C8;
-  margin-top: 4px;
-  display: block;
+  gap: 10px;
 }
 
 /* 右中下區塊（主內容） */
@@ -47,6 +60,49 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+.main-section .favorite {
+  width: 100%;
+}
+.main-section .favorite .top-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 40px;
+  color: #fff0c8;
+}
+.main-section .favorite .top-section .favorite-item {
+  text-align: center;
+  font-size: 16px;
+  position: relative;
+}
+.main-section .favorite .top-section .favorite-item .count {
+  font-size: 38px;
+  margin-top: 4px;
+  display: block;
+}
+.main-section .favorite .cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: 70vh;
+  overflow-y: auto;
+  scrollbar-color: #fff1cb transparent;
+}
+.main-section .favorite .cards .text {
+  color: #fff1cb;
+}
+.main-section .profile .edit {
+  display: flex;
+  align-items: center;
+}
+.main-section .profile .edit .MuiTextField-root {
+  flex: 1;
+}
+.main-section .profile .edit .edit-icon-container {
+  margin-left: 8px;
+  cursor: pointer;
+  width: 30px;
 }
 
 .count {
@@ -58,11 +114,11 @@
   cursor: pointer;
   padding: 10px;
   font-size: 14px;
-  color: #FFF0C8;
+  color: #fff0c8;
 }
 
 .count-item:hover {
-  border-bottom: #FFF0C8 2px solid;
+  border-bottom: #fff0c8 2px solid;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   transition-delay: 0s;
@@ -74,32 +130,9 @@
   margin-bottom: 4px;
 }
 
-/* 按鈕樣式統一：我的收藏、訂單狀態、瀏覽紀錄、登出 */
-.button-style {
-  display: flex;
-  width: 113px;
-  height: 56px;
-  padding: 19px 16px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border: 2px solid #A77434;
-  border-radius: 2px;
-  background: none;
-  color: #FFF0C8;
-  cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.button-style:hover {
-  background-color: #A77434;
-  color: #fff;
-}
-
 /* 使用者名稱欄 */
 .username {
   margin: 24px 0;
-  font-size: 16px;
-  color: #FFF0C8;
+  font-size: 24px;
+  color: #fff0c8;
 }

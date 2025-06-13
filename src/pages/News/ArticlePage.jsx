@@ -89,11 +89,13 @@ function ArticlePage() {
                         <h1>{article.title}</h1>
                         <p>文 陳誠成 攝 郭董郭</p>
                     </div>
+                    {/* 大圖 */}
+                    <figure>
+                        <img src={article.image} alt={article.title} />
+                    </figure>
                     {/* 內文區 */}
                     <div className="content-container">
-                        <figure>
-                            <img src={article.image} alt={article.title} />
-                        </figure>
+
                         {/* 文章段落 */}
                         <p style={{ margin: '20px 0' }}>{article.content}</p>
 
@@ -118,6 +120,10 @@ function ArticlePage() {
                                         </div>
                                     );
                                 })}
+
+                                <div className="article-button-container">
+                                    <button onClick={handleShare}>分享文章</button>
+                                </div>
                             </div>
                         )}
                     </div>
@@ -125,19 +131,25 @@ function ArticlePage() {
 
                     {/* 資訊區 */}
                     <div className="info-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="315" height="2" viewBox="0 0 315 2" fill="none">
-                            <path d="M0 1.47754H315" stroke="#FFF1CB" />
-                        </svg>
+
                         <div className="info-text-container">
                             <p>店家資訊</p>
-                            <p>{article.info}</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="315" height="2" viewBox="0 0 315 2" fill="none">
+                                <path d="M0 1.47754H315" stroke="#FFF1CB" />
+                            </svg>
+                            {Array.isArray(article.info) && article.info.length > 0 ? (
+                                article.info.map((line, idx) => (
+                                    <p key={idx}>{line}</p>
+                                ))
+                            ) : (
+                                <p className="note">很抱歉，暫無資料。</p>
+                            )}
+
                         </div>
                     </div>
                 </section>
 
-                <div className="article-button-container">
-                    <button onClick={handleShare}>分享文章</button>
-                </div>
+
 
 
 

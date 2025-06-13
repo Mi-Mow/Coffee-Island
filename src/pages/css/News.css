@@ -21,6 +21,7 @@
   align-self: center;
   margin: 0 auto;
   /* h1 */
+  /* 呼吸動畫定義 */
   /* nav */
   /* 預設隱藏手機版導覽 */
   /* 桌面版顯示 */
@@ -159,6 +160,17 @@
     font-size: 10px;
   }
 }
+@keyframes breathing {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 #news .nav-news,
 #findArticles .nav-news,
 #findEvent .nav-news,
@@ -180,6 +192,7 @@
   width: 56px;
   height: 56px;
   flex-shrink: 0;
+  animation: breathing 3s ease-in-out infinite;
 }
 @media (max-width:640px) {
   #news .nav-news svg,
@@ -272,6 +285,31 @@
   margin-right: 16px;
   margin-top: 8px;
   /* Space between SVG and text */
+  transition: transform 0.3s ease;
+}
+#news .nav-news ul li a:hover svg,
+#findArticles .nav-news ul li a:hover svg,
+#findEvent .nav-news ul li a:hover svg,
+.article-detail-page .nav-news ul li a:hover svg,
+.event-detail-page .nav-news ul li a:hover svg {
+  transform: scale(1.2);
+  /* Scale up the icon */
+}
+#news .nav-news ul li a:active svg,
+#findArticles .nav-news ul li a:active svg,
+#findEvent .nav-news ul li a:active svg,
+.article-detail-page .nav-news ul li a:active svg,
+.event-detail-page .nav-news ul li a:active svg {
+  transform: scale(1);
+  /* Reset scale on active state */
+}
+#news .nav-news ul li a:hover .link-text,
+#findArticles .nav-news ul li a:hover .link-text,
+#findEvent .nav-news ul li a:hover .link-text,
+.article-detail-page .nav-news ul li a:hover .link-text,
+.event-detail-page .nav-news ul li a:hover .link-text {
+  transform: scale(1.1);
+  /* Slight zoom for text */
 }
 #news .reco-button a,
 #news button,
@@ -289,9 +327,8 @@
   justify-content: center;
   cursor: pointer;
   font-weight: 900;
-  color: #904118 !important;
+  color: #904118;
   border-radius: 2px;
-  border: 3px solid #904118;
   background-color: #E1BB98;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -344,7 +381,7 @@
 .event-detail-page button:hover {
   color: #fff1cb !important;
   border: 2px solid #FFF1CB;
-  background-color: #7B4519;
+  background-color: #904118;
 }
 
 .event-card {
@@ -386,6 +423,9 @@
   height: 2rem;
 }
 
+.article-buttonGroup-container {
+  gap: 2rem;
+}
 .article-buttonGroup-container button {
   font-size: 24px;
 }
@@ -738,7 +778,6 @@ input {
   font-weight: 900;
   color: #904118;
   border-radius: 2px;
-  border: 3px solid #904118;
   background-color: #E1BB98;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -822,7 +861,6 @@ input {
   font-weight: 900;
   color: #904118;
   border-radius: 2px;
-  border: 3px solid #904118;
   background-color: #E1BB98;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -1001,9 +1039,11 @@ input {
   background: #153837;
   display: flex;
   margin: 0 auto;
+  padding: 0 10%;
 }
 .article-detail-page .breadcrumbs,
 .event-detail-page .breadcrumbs {
+  width: 100%;
   display: flex;
   justify-content: flex-start;
 }
@@ -1042,7 +1082,6 @@ input {
 .event-detail-page section {
   display: flex;
   padding: 36px 0px;
-  margin: 0px 40px;
   flex-direction: column;
 }
 .article-detail-page section .title-container,
@@ -1066,25 +1105,27 @@ input {
   line-height: 160%;
   letter-spacing: 0.8px;
 }
+.article-detail-page section figure,
+.event-detail-page section figure {
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.article-detail-page section figure img,
+.event-detail-page section figure img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
 .article-detail-page section .content-container,
 .event-detail-page section .content-container {
+  margin: 0 20%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;
-}
-.article-detail-page section .content-container figure,
-.event-detail-page section .content-container figure {
-  height: 480px;
-  overflow: hidden;
-  margin: 0 auto;
-}
-.article-detail-page section .content-container figure img,
-.event-detail-page section .content-container figure img {
-  width: 100%;
-  object-fit: cover;
-  height: 100%;
 }
 .article-detail-page section .content-container .article-paragraphs,
 .event-detail-page section .content-container .article-paragraphs {
@@ -1092,6 +1133,7 @@ input {
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  text-align: justify;
 }
 .article-detail-page section .content-container .article-paragraphs .paragraph-block,
 .event-detail-page section .content-container .article-paragraphs .paragraph-block {
@@ -1111,26 +1153,35 @@ input {
 }
 .article-detail-page section .info-container,
 .event-detail-page section .info-container {
+  margin: 0 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
   align-self: stretch;
 }
 .article-detail-page section .info-container .info-text-container,
 .event-detail-page section .info-container .info-text-container {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 50%;
-  padding: 36px 0px;
   align-items: center;
-  gap: 24px;
+  gap: 1rem;
+}
+.article-detail-page section .info-container .info-text-container .note,
+.event-detail-page section .info-container .info-text-container .note {
+  font-size: 1rem;
 }
 .article-detail-page .article-buttonGroup-container,
 .event-detail-page .article-buttonGroup-container {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 2.5rem;
+  padding: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 @media (max-width:640px) {
   .article-detail-page .article-buttonGroup-container,
@@ -1148,12 +1199,16 @@ input {
   border: 3px solid #fff1cb;
   background-color: transparent;
   display: flex;
-  width: 200px;
-  height: 80px;
-  padding: 20px 0px;
+  width: 160px;
+  height: 72px;
+  padding: 1rem 0px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+.article-detail-page .article-buttonGroup-container .article-button-container button a,
+.event-detail-page .article-buttonGroup-container .article-button-container button a {
+  color: #fff1cb;
 }
 @media (max-width:640px) {
   .article-detail-page .article-buttonGroup-container .article-button-container button,
@@ -1164,7 +1219,7 @@ input {
 }
 .article-detail-page .article-buttonGroup-container .article-button-container button:hover,
 .event-detail-page .article-buttonGroup-container .article-button-container button:hover {
-  color: #a2b9bc;
+  background-color: #904118;
   border: 2px solid #FFF1CB;
 }
 
