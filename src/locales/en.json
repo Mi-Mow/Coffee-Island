@@ -1,11 +1,15 @@
 {
   "header": {
+    "home":"Home",
     "map": "Map",
     "news": "News",
     "products": "Products",
     "about": "About Us",
     "login": "Login",
-    "register": "Join Us"
+    "register": "Join Us",
+    "cart":"Cart",
+    "logout": "Logout",
+    "profile":"Profile"
   },
   "home": {
     "days": {
