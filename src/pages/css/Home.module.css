@@ -1,92 +1,98 @@
-main {
+main .bannerSection {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 40px 0;
+  padding: 80px 70px 0;
 }
-main .coffeebeanContainer img {
+main .bannerSection .coffeebeanContainer img {
   margin: 12px 0;
 }
-main .banner {
+main .bannerSection .banner {
   position: relative;
   margin: 0 20px;
   width: 85%;
+  flex: 1;
 }
-main .banner .bannerContainerSm {
+main .bannerSection .banner .bannerContainerSm {
   display: none;
 }
-main .banner img {
+main .bannerSection .banner img {
   width: 100%;
   height: auto;
   display: block;
 }
-main .weather {
+main .bannerSection .weather {
   position: absolute;
   bottom: 2%;
   right: 0;
   display: flex;
 }
-main .weather .todayDate,
-main .weather .todayTemp,
-main .weather .tomorrowDate,
-main .weather .tomorrowTemp {
+main .bannerSection .weather .todayDate,
+main .bannerSection .weather .todayTemp,
+main .bannerSection .weather .tomorrowDate,
+main .bannerSection .weather .tomorrowTemp {
   display: flex;
   flex-direction: column;
   justify-content: end;
   padding-left: 20px;
 }
-main .weather .title {
+main .bannerSection .weather .title {
   color: #fff0c8;
   font-weight: 700;
 }
-main .weather .todayDate .title {
+main .bannerSection .weather .todayDate .title {
   font-size: 32px;
 }
-main .weather .todayTemp .title {
+main .bannerSection .weather .todayTemp .title {
   font-size: 28px;
 }
-main .weather .tomorrowDate .title {
+main .bannerSection .weather .tomorrowDate .title {
   font-size: 24px;
 }
-main .weather .tomorrowTemp .title {
+main .bannerSection .weather .tomorrowTemp .title {
   font-size: 20px;
 }
-main .weather .data {
+main .bannerSection .weather .data {
   color: #fff;
 }
-main .weather .todayDate .data {
+main .bannerSection .weather .todayDate .data {
   font-size: 32px;
 }
-main .weather .todayTemp .data {
+main .bannerSection .weather .todayTemp .data {
   font-size: 28px;
 }
-main .weather .tomorrowDate .data {
+main .bannerSection .weather .tomorrowDate .data {
   font-size: 24px;
 }
-main .weather .tomorrowTemp .data {
+main .bannerSection .weather .tomorrowTemp .data {
   font-size: 20px;
 }
-main .bg-mask {
+main .bannerSection .bg-mask {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   width: 200px;
   height: 200px;
 }
-main .hint {
+main .bannerSection .hint {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 7%;
 }
-main .hint p {
+main .bannerSection .hint p {
   color: #fff0c8;
   font-weight: 800;
   font-size: 16px;
-  /* writing-mode: vertical-rl */
+  text-align: center;
+  line-height: 1.5;
+  letter-spacing: 1px;
 }
-main .arrowContainer {
+main .bannerSection .arrowContainer {
   width: 30px;
   padding: 20px 0;
   cursor: pointer;
+  opacity: 0;
 }
 
 .carouselSection {
@@ -124,12 +130,13 @@ main .arrowContainer {
   line-height: 2;
   font-size: 16px;
   letter-spacing: 3px;
+  width: 230px;
 }
 .carouselSection .greatTime .handheldContainer {
   position: absolute;
   width: 250px;
   top: 5%;
-  right: 0;
+  right: -20px;
 }
 .carouselSection .greatTime .hotCoffeeContainer {
   position: absolute;
@@ -145,7 +152,7 @@ main .arrowContainer {
 }
 .carouselSection .coffeeIsland {
   position: absolute;
-  top: 12%;
+  top: 5%;
   left: 15%;
 }
 .carouselSection .coffeeIsland .deco {
@@ -154,7 +161,7 @@ main .arrowContainer {
   left: -50px;
   top: -50px;
 }
-.carouselSection .coffeeIsland .title {
+.carouselSection .coffeeIsland h1 {
   font-size: 24px;
   text-shadow: -2px -2px 0 #a4320e, 2px -2px 0 #a4320e, -2px 2px 0 #a4320e, 2px 2px 0 #a4320e;
   color: #fff1cb;
@@ -166,6 +173,7 @@ main .arrowContainer {
   line-height: 2;
   font-size: 16px;
   letter-spacing: 3px;
+  width: 400px;
 }
 .carouselSection .mainCarousel {
   position: absolute;
@@ -360,6 +368,7 @@ main .arrowContainer {
   color: #fff1cb;
   font-size: 32px;
   font-weight: 700;
+  margin-bottom: 8px;
 }
 .map .textBox .title .titleCh {
   color: #fff1cb;
@@ -376,9 +385,11 @@ main .arrowContainer {
   margin-top: 10px;
   line-height: 2;
   letter-spacing: 3px;
+  width: 100%;
+  text-align: center;
 }
 .map .textBox .list {
-  width: 100px;
+  width: 100%;
   text-align: center;
 }
 .map .textBox .list p {
@@ -511,6 +522,11 @@ svg {
   z-index: -80;
 }
 
+.fadeIn {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
 @media (min-width: 1600px) {
   .carouselSection {
     height: 900px;
@@ -543,7 +559,7 @@ svg {
     top: 23%;
     left: 20%;
   }
-  .carouselSection .coffeeIsland .title {
+  .carouselSection .coffeeIsland h1 {
     font-size: 24px;
   }
   .carouselSection .coffeeIsland .content {
@@ -653,7 +669,7 @@ svg {
     right: 20px;
   }
   main .banner .weather .todayDate .title {
-    font-size: 22px;
+    font-size: 20px;
   }
   main .banner .weather .todayTemp .title {
     font-size: 18px;
@@ -740,7 +756,7 @@ svg {
   .carouselSection .coffeeIsland .deco {
     display: none;
   }
-  .carouselSection .coffeeIsland .title {
+  .carouselSection .coffeeIsland h1 {
     font-size: 18px;
   }
   .carouselSection .coffeeIsland .content {
