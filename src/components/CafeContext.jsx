@@ -52,12 +52,13 @@ export const CafeProvider = ({ children }) => {
           lat: row[16],
           lng: row[17],
           map_link: row[18],
-          description: row[19],
+          desc_zh: row[19],
           tags: row[20]?.split(","),
           rating: row[21],
           district_id: row[22],
           img_q: row[23],
           address_en: row[24],
+          desc_en: row[25]
         }));
 
         localStorage.setItem("cafes", JSON.stringify(parsed));

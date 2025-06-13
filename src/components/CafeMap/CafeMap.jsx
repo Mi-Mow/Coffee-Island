@@ -6,7 +6,8 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
-import s from './CafeMap.module.scss';
+import s from "./CafeMap.module.scss";
+import { useLanguage } from "../../context/LanguageContext";
 const GOOGLE_MAP_API = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 const base = import.meta.env.BASE_URL;
 
@@ -181,10 +182,11 @@ const mapStyles = [
   },
 ];
 
-const CafeMap = ({filtered}) => {
+const CafeMap = ({ filtered }) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [customIcon, setCustomIcon] = useState(null);
   const [animation, setAnimation] = useState(null);
+  const { language } = useLanguage();
 
   const onMapLoad = useCallback(() => {
     const icon = {
@@ -200,13 +202,18 @@ const CafeMap = ({filtered}) => {
     if (window.google) {
       setAnimation(window.google.Animation?.DROP);
     }
-  }, [])
+  }, []);
 
   // 咖啡廳資料
   const cafeLocations = filtered;
+  console.log("lang: ", language);
 
   return (
-    <LoadScriptNext googleMapsApiKey={GOOGLE_MAP_API}>
+    <LoadScriptNext
+      key={language}
+      googleMapsApiKey={GOOGLE_MAP_API}
+      language={language === "zh-TW" ? "zh-TW" : "en"}
+    >
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -216,7 +223,7 @@ const CafeMap = ({filtered}) => {
           colorScheme: "DARK",
           zoomControl: true,
           disableDefaultUI: true,
-          keyboardShortcuts: false
+          keyboardShortcuts: false,
           // scaleControl: false,
           // mapTypeControl: false,
           // streetViewControl: false,
@@ -242,7 +249,10 @@ const CafeMap = ({filtered}) => {
           >
             <div className={s.infoWindow}>
               <div className={s.imgContainer}>
-                <img src={`${base}cafe/${selectedLocation.district_id}_${selectedLocation?.id}_1.jpg`} alt="" />
+                <img
+                  src={`${base}cafe/${selectedLocation.district_id}_${selectedLocation?.id}_1.jpg`}
+                  alt=""
+                />
               </div>
               <h3>{selectedLocation.name_zh}</h3>
               <h3>{selectedLocation.name_en}</h3>

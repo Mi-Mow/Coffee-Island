@@ -14,6 +14,8 @@ import xinyi from "../../../assets/home/district/xinyi.svg";
 import nangang from "../../../assets/home/district/nangang.svg";
 import wenshan from "../../../assets/home/district/wenshan.svg";
 import cross from "../../../assets/map/cross.svg";
+import filter from "../../../assets/map/filter.svg";
+import distBg from "../../../assets/map/distBg.svg";
 import CafeMap from "../../../components/CafeMap/CafeMap";
 import CafeCard from "../../../components/CafeCard/CafeCard";
 import Select from "@mui/material/Select";
@@ -25,12 +27,24 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import ProductCard from "../../../components/ProductCard/ProductCard";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import monsterRecommend from "../../../assets/map/monster-recommend.svg";
+import useIsMobile from "../../../hooks/useIsMobile";
+import { useLanguage } from "../../../context/LanguageContext";
+import { useTranslation } from "react-i18next";
 
 function District() {
   const location = useLocation();
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [msg, setMsg] = useState("");
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const isMobile = useIsMobile();
+  const { language } = useLanguage();
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (location.state?.scrollToFilter) {
       const filter = document.getElementById("filter");
@@ -101,54 +115,69 @@ function District() {
   const districtMap = {
     beitou: {
       name: "北投區",
+      nameEN: "Beitou",
       img: beitou,
     },
     shilin: {
       name: "士林區",
+      nameEN: "Shilin",
       img: shilin,
     },
     datong: {
       name: "大同區",
+      nameEN: "Datong",
       img: datong,
     },
     zhongshan: {
       name: "中山區",
+      nameEN: "Zhongshan",
       img: zhongshan,
     },
     songshan: {
       name: "松山區",
+      nameEN: "Songshan",
       img: songshan,
     },
     neihu: {
       name: "內湖區",
+      nameEN: "Neihu",
       img: neihu,
     },
     wanhua: {
       name: "萬華區",
+      nameEN: "Wanhua",
       img: wanhua,
     },
     zhongzheng: {
       name: "中正區",
+      nameEN: "Zhongzheng",
       img: zhongzheng,
     },
     daan: {
       name: "大安區",
+      nameEN: "Daan",
       img: daan,
     },
     xinyi: {
       name: "信義區",
+      nameEN: "Xinyi",
       img: xinyi,
     },
     nangang: {
       name: "南港區",
+      nameEN: "Nangang",
       img: nangang,
     },
     wenshan: {
       name: "文山區",
+      nameEN: "Wenshan",
       img: wenshan,
     },
   };
-  const districtName = districtMap[district].name;
+  const districtName =
+    language === "zh-TW"
+      ? districtMap[district].name
+      : districtMap[district].nameEN;
   const districtImg = districtMap[district].img;
 
   const allTags = [
@@ -206,18 +235,18 @@ function District() {
 
   // let selectedTags = [];
   const districtLabels = [
-    { id: "beitou", label: "北投區" },
-    { id: "shilin", label: "士林區" },
-    { id: "datong", label: "大同區" },
-    { id: "zhongshan", label: "中山區" },
-    { id: "songshan", label: "松山區" },
-    { id: "neihu", label: "內湖區" },
-    { id: "wenshan", label: "文山區" },
-    { id: "wanhua", label: "萬華區" },
-    { id: "zhongzheng", label: "中正區" },
-    { id: "daan", label: "大安區" },
-    { id: "nangang", label: "南港區" },
-    { id: "xinyi", label: "信義區" },
+    { id: "beitou", label: "北投區", labelEN: "Beitou" },
+    { id: "shilin", label: "士林區", labelEN: "Shilin" },
+    { id: "datong", label: "大同區", labelEN: "Datong" },
+    { id: "zhongshan", label: "中山區", labelEN: "Zhongshan" },
+    { id: "songshan", label: "松山區", labelEN: "Songshan" },
+    { id: "neihu", label: "內湖區", labelEN: "Neihu" },
+    { id: "wenshan", label: "文山區", labelEN: "Wenshan" },
+    { id: "wanhua", label: "萬華區", labelEN: "Wanhua" },
+    { id: "zhongzheng", label: "中正區", labelEN: "Zhongzheng" },
+    { id: "daan", label: "大安區", labelEN: "Daan" },
+    { id: "nangang", label: "南港區", labelEN: "Nangang" },
+    { id: "xinyi", label: "信義區", labelEN: "Xinyi" },
   ];
 
   const cafes = JSON.parse(localStorage.getItem("cafes"));
@@ -291,25 +320,56 @@ function District() {
   displayPopular = cafes.filter((cafe) => cafe.district_id === district);
   // console.log("popular", displayPopular);
 
+  const clearTags = () => {
+    setSelectedTags([]);
+    setSelectedAreas([]);
+  };
+
+  const openFilter = () => {
+    console.log("open");
+    setIsOpenFilter(true);
+  };
+
+  const handleCloseFilter = (event, reason) => {
+    if (reason && reason === "backdropClick") {
+      return
+    }
+    setIsOpenFilter(false);
+  };
+
   return (
     <>
       <section className={s.recommend}>
         <div className={s.content}>
           {/* Left side */}
-          <div className={s.districtImg}>
-            <img src={districtImg} alt="" />
-          </div>
+          {!isMobile && (
+            <div className={s.districtImg}>
+              <img src={districtImg} alt="" />
+            </div>
+          )}
           {/* Right side */}
           <div className={s.popular}>
-            <div className={s.title}>{districtName} 熱門咖啡廳</div>
+            <div className={s.title}>
+              <h1>
+                {districtName} {t("map.district.popular")}
+              </h1>
+              <div className={s.monsterContainer}>
+                <img src={monsterRecommend} alt="" />
+              </div>
+            </div>
+            {isMobile && (
+              <div className={s.districtImg}>
+                <img src={districtImg} alt="" />
+              </div>
+            )}
             <div className={s.cards}>
-              {/* <ProductCard id={"1-1"}/> */}
               {displayPopular.slice(0, 3).map((cafe, index) => {
                 const isFavorite = currentUser.favorite?.cafes.some(
                   (item) => item.id === cafe.id
                 );
                 return (
                   <CafeCard
+                    size="popularCard"
                     key={index}
                     title={cafe.name_zh}
                     desc={cafe.description}
@@ -329,7 +389,7 @@ function District() {
             </div>
             <div className={s.btn}>
               <div className={s.btnBg} onClick={scrollDown}>
-                <button>查看更多</button>
+                <button>{t("map.district.more")}</button>
               </div>
             </div>
           </div>
@@ -338,127 +398,219 @@ function District() {
       {/* Filter Section */}
       <section className={s.filter} ref={filterRef} id="filter">
         <div className={s.main}>
-          <div className={s.tags}>
-            <div className={s.areasTag}>
-              {/* <button
-                className={`${s.tag} ${s.areasTag} ${
-                  selectedAreas.length > 0 ? s.active : ""
-                }`}
-              >
-                區域
-              </button> */}
-              {/* <div className={s.areas}> */}
-              <FormControl>
-                <InputLabel
-                  id="demo-multiple-checkbox-label"
-                  sx={{
-                    color: "#904118",
-                    backgroundColor: "#fff1cb",
-                    width: "60px",
-                    borderRadius: "99px",
-                    textAlign: "center",
-                    fontSize: "16px",
-                    lineHeight: "22px",
-                    alignItems: "center",
-                    "&.Mui-focused": {
+          {isMobile && (
+            <div className={s.map}>
+              <CafeMap filtered={displayFilter} />
+            </div>
+          )}
+          {!isMobile && (
+            <div className={s.tags}>
+              <div className={s.areasTag}>
+                <FormControl>
+                  <InputLabel
+                    id="demo-multiple-checkbox-label"
+                    sx={{
+                      fontFamily: "Noto Serif TC",
+                      fontWeight: "600",
                       color: "#904118",
-                    },
-                  }}
-                >
-                  區域
-                </InputLabel>
-                <Select
-                  className={`${s.tag} ${s.areasTag} ${
-                    selectedAreas.length > 0 ? s.active : ""
-                  }`}
-                  labelId="demo-multiple-checkbox-label"
-                  id="demo-multiple-checkbox"
-                  multiple
-                  value={selectedAreas}
-                  onChange={handleChange}
-                  input={<OutlinedInput label={district.label} />}
-                  renderValue={(selected) =>
-                    selected
-                      .map(
-                        (id) =>
-                          districtLabels.find((district) => district.id === id)
-                            ?.label
-                      )
-                      .join(", ")
-                  }
-                  sx={{
-                    width: "150px",
-                    // height: "100px",
-                    borderRadius: "0",
-                    color: "#fff1cb",
-                    transition: "0.2s background-color ease-in",
-                    "&.Mui-focused": {
-                      borderColor: "#fff1cb",
-                      outline: "none",
-                    },
-                    "&:hover": {
-                      backgroundColor: "#9e4a1d",
-                    },
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      border: "none",
-                    },
-                  }}
-                  MenuProps={menuProps}
-                >
-                  {districtLabels.map((district) => (
-                    <MenuItem
-                      key={district.id}
-                      value={district.id}
-                      sx={{
-                        backgroundColor: "#904118",
-                        color: "#fff1cb",
-                        "&:hover": {
-                          backgroundColor: "#a84f1f",
-                        },
-                        "&.Mui-selected:hover": {
-                          backgroundColor: "#c55d24", // 選中且滑過的背景色
-                        },
-                        "&.Mui-selected": {
-                          backgroundColor: "#b35320", // 選中時的背景色
-                          color: "#fff",
-                        },
-                      }}
-                    >
-                      <Checkbox
-                        checked={selectedAreas.includes(district.id)}
+                      backgroundColor: "#fff1cb",
+                      padding: "0 10px",
+                      borderRadius: "99px",
+                      textAlign: "center",
+                      fontSize: "15px",
+                      lineHeight: "22px",
+                      alignItems: "center",
+                      "&.Mui-focused": {
+                        color: "#904118",
+                      },
+                    }}
+                  >
+                    {t("map.district.district")}
+                  </InputLabel>
+                  <Select
+                    className={`${s.tag} ${s.areasTag} ${
+                      selectedAreas.length > 0 ? s.active : ""
+                    }`}
+                    labelId="demo-multiple-checkbox-label"
+                    id="demo-multiple-checkbox"
+                    multiple
+                    value={selectedAreas}
+                    onChange={handleChange}
+                    input={<OutlinedInput label={district.label} />}
+                    renderValue={(selected) =>
+                      selected
+                        .map(
+                          (id) =>
+                            districtLabels.find(
+                              (district) => district.id === id
+                            )?.label
+                        )
+                        .join(", ")
+                    }
+                    sx={{
+                      fontFamily: "Noto Serif TC",
+                      width: "150px",
+                      borderRadius: "0",
+                      color: "#fff1cb",
+                      transition: "0.2s background-color ease-in",
+                      "&.Mui-focused": {
+                        borderColor: "#fff1cb",
+                        outline: "none",
+                      },
+                      "&:hover": {
+                        backgroundColor: "#9e4a1d",
+                      },
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        border: "none",
+                      },
+                    }}
+                    MenuProps={menuProps}
+                  >
+                    {districtLabels.map((district) => (
+                      <MenuItem
+                        key={district.id}
+                        value={district.id}
                         sx={{
-                          color: "#fff",
-                          "&.Mui-checked": {
-                            color: "#fff1cb", // checkbox color
+                          fontFamily: "Noto Serif TC",
+                          backgroundColor: "#904118",
+                          color: "#fff1cb",
+                          "&:hover": {
+                            backgroundColor: "#a84f1f",
+                          },
+                          "&.Mui-selected:hover": {
+                            backgroundColor: "#c55d24", // 選中且滑過的背景色
+                          },
+                          "&.Mui-selected": {
+                            backgroundColor: "#b35320", // 選中時的背景色
+                            color: "#fff",
                           },
                         }}
-                      />
-                      <ListItemText primary={district.label} />
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              {/* </div> */}
+                      >
+                        <Checkbox
+                          checked={selectedAreas.includes(district.id)}
+                          sx={{
+                            color: "#fff",
+                            "&.Mui-checked": {
+                              color: "#fff1cb", // checkbox color
+                            },
+                          }}
+                        />
+                        <ListItemText
+                          primary={
+                            language === "zh-TW"
+                              ? district.label
+                              : district.labelEN
+                          }
+                        />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              {allTags.map((tag) => (
+                <button
+                  key={tag.id}
+                  className={`${s.tag} ${s.filterTag} ${
+                    selectedTags.includes(tag.id) ? s.active : ""
+                  }`}
+                  onClick={() => toggleTag(tag.id)}
+                >
+                  <p>{language === "zh-TW" ? tag.zh : tag.en}</p>
+                  {selectedTags.includes(tag.id) ? (
+                    <div className={s.cross}>
+                      <img src={cross} alt="" />
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </button>
+              ))}
+              {selectedTags.length > 0 || selectedAreas.length > 0 ? (
+                <button className={s.clearBtn} onClick={clearTags}>
+                  {t("map.district.clear")}
+                </button>
+              ) : (
+                ""
+              )}
             </div>
-            {allTags.map((tag) => (
+          )}
+
+          {isMobile && (
+            <div className={`${s.tags}`}>
               <button
-                key={tag.id}
-                className={`${s.tag} ${s.filterTag} ${
-                  selectedTags.includes(tag.id) ? s.active : ""
+                className={`${s.tag} ${s.filterTag} ${s.filterBtn} ${
+                  selectedTags.length > 0 || selectedAreas.length > 0
+                    ? s.active
+                    : ""
                 }`}
-                onClick={() => toggleTag(tag.id)}
+                onClick={openFilter}
               >
-                <p>{tag.zh}</p>
-                {selectedTags.includes(tag.id) ? (
-                  <div className={s.cross}>
-                    <img src={cross} alt="" />
-                  </div>
+                <p>{t("map.cafe.filter")}</p>
+                <div className={s.iconContainer}>
+                  <img src={filter} alt="" />
+                </div>
+              </button>
+            </div>
+          )}
+          <Dialog onClose={handleCloseFilter} open={isOpenFilter} sx={{}} className={s.dialog}>
+            <DialogTitle
+              sx={{
+                fontFamily: "Noto Serif TC",
+                backgroundImage: `url(${distBg})`,
+                backgroundRepeat: "repeat",
+                backgroundSize: "25px 25px",
+                backgroundColor: "#427066",
+                color: "#FFFFFF",
+                fontWeight: "bold",
+              }}
+            >
+              {t("map.cafe.filter")}
+            </DialogTitle>
+            <List
+              sx={{
+                pt: 0,
+                paddingX: 1,
+                pb: 3,
+                width: "320px",
+                backgroundImage: `url(${distBg})`,
+                backgroundRepeat: "repeat",
+                backgroundSize: "25px 25px",
+                backgroundColor: "#427066",
+                color: "#7B4519",
+              }}
+            >
+              <div className={s.tags}>
+                {allTags.map((tag) => (
+                  <button
+                    key={tag.id}
+                    className={`${s.tag} ${s.filterTag} ${
+                      selectedTags.includes(tag.id) ? s.active : ""
+                    }`}
+                    onClick={() => toggleTag(tag.id)}
+                  >
+                    <p>{language === "zh-TW" ? tag.zh : tag.en}</p>
+                    {selectedTags.includes(tag.id) ? (
+                      <div className={s.cross}>
+                        <img src={cross} alt="" />
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </button>
+                ))}
+                {selectedTags.length > 0 || selectedAreas.length > 0 ? (
+                  <button className={s.clearBtn} onClick={clearTags}>
+                    {t("map.district.clear")}
+                  </button>
                 ) : (
                   ""
                 )}
-              </button>
-            ))}
-          </div>
+              </div>
+            </List>
+            <button className={s.confirmBtn} onClick={handleCloseFilter}>
+              {t("map.cafe.confirm")}
+            </button>
+          </Dialog>
           <div className={s.content}>
             <div className={s.cards}>
               {displayFilter.map((cafe, index) => {
@@ -485,9 +637,11 @@ function District() {
                 );
               })}
             </div>
-            <div className={s.map}>
-              <CafeMap filtered={displayFilter} />
-            </div>
+            {!isMobile && (
+              <div className={s.map}>
+                <CafeMap filtered={displayFilter} />
+              </div>
+            )}
           </div>
         </div>
       </section>

@@ -16,6 +16,7 @@ import Dialog from "@mui/material/Dialog";
 import CafeCard from "../../../components/CafeCard/CafeCard";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import monsterFilter from "../../../assets/map/monster-refilter.svg";
 const base = import.meta.env.BASE_URL;
 
 const getRandom = (data) => {
@@ -280,11 +281,14 @@ function Cafe() {
         <section className="cafe-info" ref={infoRef} id="cafeInfo">
           <div className="header">
             <div className="title">
-              {language === "zh-TW" ? (
-                <>{cafe?.name_zh}</>
-              ) : (
-                <>{cafe?.name_en}</>
-              )}
+              <h1>
+                {" "}
+                {language === "zh-TW" ? (
+                  <>{cafe?.name_zh}</>
+                ) : (
+                  <>{cafe?.name_en}</>
+                )}
+              </h1>
             </div>
             <div className="icon">
               <div
@@ -312,7 +316,9 @@ function Cafe() {
               ))}
             </div>
           </div>
-          <div className="desc">{cafe?.description}</div>
+          <div className="desc">
+            {language === "zh-TW" ? <>{cafe?.desc_zh}</> : <>{cafe?.desc_en}</>}
+          </div>
           {/* Slider */}
           <Slider
             imageQ={cafe?.img_q}
@@ -355,7 +361,7 @@ function Cafe() {
               <p>{cafe?.price_level}</p>
             </div>
           </div>
-          <Dialog onClose={handleClose} open={isOpen} sx={{}}>
+          <Dialog onClose={handleClose} open={isOpen} sx={{}} className="cafe-dialog">
             <DialogTitle
               sx={{
                 fontFamily: "Noto Serif TC",
@@ -401,7 +407,7 @@ function Cafe() {
         </section>
         <section className="recommend">
           <div className="content">
-            <div className="title">更多咖啡廳</div>
+            <div className="title">{t("map.cafe.morecafes")}</div>
             <div className="cards">
               {randomDataRef.current?.map((cafe, index) => {
                 const isFavorite = currentUser.favorite?.cafes.some(
@@ -425,8 +431,11 @@ function Cafe() {
             </div>
             <div className="btn-container">
               <button onClick={backToFilter} className="back-btn">
-                返回篩選
+                {t("map.cafe.back")}
               </button>
+              <div className="monsterContainer">
+                <img src={monsterFilter} alt="" />
+              </div>
             </div>
           </div>
         </section>
