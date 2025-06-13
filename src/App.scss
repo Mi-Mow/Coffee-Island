@@ -93,6 +93,7 @@ body::before {
   // visibility: hidden;
   transition: 0.2s width ease-out;
   // transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 99;
 
   &.show {
     opacity: 1;

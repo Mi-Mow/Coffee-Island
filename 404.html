@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      // 把使用者導向 index.html 並保留原本的路由
+      const redirectUrl =
+        window.location.origin +
+        "/Coffee-Island" +
+        "/index.html" +
+        window.location.search +
+        window.location.hash;
+      window.location.replace(redirectUrl);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>

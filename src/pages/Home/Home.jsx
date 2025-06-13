@@ -13,6 +13,10 @@ import coffeeBeanMask from "../../assets/home/coffeeBeanMask.svg";
 import hotCoffee from "../../assets/home/hotCoffee.png";
 import greenBlock from "../../assets/home/greenBlock.png";
 import handheld from "../../assets/home/handheld.png";
+import camera from "../../assets/home/camera.png";
+import player from "../../assets/home/player.png";
+import coffeeCup from "../../assets/home/coffeeCup.png";
+import standingSign from "../../assets/home/standingSign.png";
 import carousel1 from "../../assets/home/carousel1.png";
 import carousel2 from "../../assets/home/carousel2.png";
 import carousel3 from "../../assets/home/carousel3.png";
@@ -461,7 +465,7 @@ function Home() {
 
   return (
     <>
-      <main>
+      <main id="home">
         <section className={s.bannerSection} ref={sectionRef}>
           <div className={s.coffeebeanContainer}>
             {beans.map((bean, index) => (
@@ -576,13 +580,17 @@ function Home() {
                 <br />
                 {t("home.greatTimes.line2")}
               </div>
+              {/* <div className={s.coffeeCupContainer}>
+                <img src={coffeeCup} alt="" />
+              </div> */}
             </div>
-            <div className={s.handheldContainer}>
-              <img src={handheld} alt="" />
+            {/* <div className={s.playerContainer}>
+              <img src={player} alt="" />
+            </div> */}
+            <div className={s.cameraContainer}>
+              <img src={camera} alt="" />
             </div>
-            <div className={s.hotCoffeeContainer}>
-              <img src={hotCoffee} alt="" />
-            </div>
+
           </div>
           <div className={s.maskContainer}>
             <img src={coffeeBeanMask} alt="" />
@@ -1083,7 +1091,8 @@ function Home() {
                 <div className={s.titleCh}>{t("home.map.title")}</div>
               </div>
               <div className={s.logo}>
-                <img src={`${base}logo-sm.svg`} alt="" />
+                {/* <img src={`${base}logo-sm.svg`} alt="" /> */}
+                <img src={standingSign} alt="" />
               </div>
             </div>
             <div className={s.hint}>{t("home.map.hint")}</div>

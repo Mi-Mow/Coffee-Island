@@ -1,6 +1,7 @@
 main {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   .bannerSection {
     width: 100%;
     display: flex;
@@ -211,19 +212,25 @@ main {
           letter-spacing: 2px;
           width: 230px;
         }
+        .coffeeCupContainer {
+          position: absolute;
+          width: 120px;
+          top: 0;
+          right: -120px;
+        }
       }
-      .handheldContainer {
+      .cameraContainer {
         position: absolute;
-        width: 250px;
-        top: 5%;
+        width: 200px;
+        top: 8%;
         right: -20px;
       }
-      .hotCoffeeContainer {
-        position: absolute;
-        width: 220px;
-        top: 0;
-        right: -150px;
-      }
+      // .playerContainer {
+      //   position: absolute;
+      //   width: 220px;
+      //   top: 30px;
+      //   right: -200px;
+      // }
     }
 
     .maskContainer {
@@ -314,7 +321,7 @@ main {
         }
         .customSwiperButtonNext {
           top: 42%;
-          left: 0;
+          left: -20px;
         }
         width: 100%;
         position: relative;
@@ -599,7 +606,7 @@ main {
 
         .titleEn {
           color: #fff1cb;
-          font-size: 32px;
+          font-size: 28px;
           font-weight: 700;
           margin-bottom: 8px;
         }
@@ -609,7 +616,8 @@ main {
           font-weight: 700;
         }
         .logo {
-          margin-left: 10px;
+          margin-left: 3px;
+          width: 95px;
         }
       }
 
