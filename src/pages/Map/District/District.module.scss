@@ -7,6 +7,14 @@
   align-items: center;
   justify-content: center;
 
+  @media (max-width: 860px) {
+    padding: 120px 40px 0;
+  }
+
+  @media (max-width: 680px) {
+    padding: 120px 25px 0;
+  }
+
   &::before {
     content: "";
     position: fixed;
@@ -29,31 +37,80 @@
   .content {
     display: flex;
     align-items: center;
+    @media (max-width: 860px) {
+      flex-direction: column;
+    }
   }
 
   .districtImg {
     flex: 1;
+    @media (max-width: 860px) {
+      width: 50%;
+    }
+    @media (max-width: 530px) {
+      width: 60%;
+    }
   }
 
   .popular {
     flex: 2;
     padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (max-width: 860px) {
+      align-items: center;
+      padding-left: 0;
+    }
     .title {
-      font-size: 32px;
-      font-weight: bold;
-      color: #fff;
-      padding-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      h1 {
+        font-size: 30px;
+        font-weight: bold;
+        color: #fff;
+        @media (max-width: 860px) {
+          font-size: 26px;
+        }
+        @media (max-width: 530px) {
+          font-size: 18px;
+        }
+      }
+      .monsterContainer {
+        width: 55px;
+        @media (max-width: 530px) {
+          width: 42px;
+        }
+      }
     }
 
     .cards {
       display: flex;
       flex-wrap: nowrap;
       gap: 15px;
+
+      @media (max-width: 768px) {
+        flex-wrap: wrap;
+      }
+      @media (max-width: 680px) {
+        gap: 10px;
+      }
+
+      @media (max-width: 530px) {
+        flex-direction: column;
+        align-items: center;
+      }
     }
     .btn {
       margin: 20px 0;
+      @media (max-width: 860px) {
+        margin-top: 0;
+        margin-bottom: 50px;
+      }
       .btnBg {
-        background-color: #7B4519;
+        background-color: #7b4519;
         height: 50px;
         width: 150px;
         display: block;
@@ -65,24 +122,24 @@
         transition: all 0.3s ease-out;
 
         &:hover {
-          background-color: #EEB17E;
+          background-color: #eeb17e;
         }
 
         button {
           margin: auto;
           background-color: transparent;
-          color: #FFF1CB;
+          color: #fff1cb;
           font-size: 16px;
           font-weight: bold;
-          border: 3px solid #EEB17E;
+          border: 3px solid #eeb17e;
           width: 140px;
           height: 40px;
           cursor: pointer;
           border-radius: 2px;
           transition: all 0.3s ease-out;
           &:hover {
-            color: #7B4519;
-            border: 3px solid #7B4519;
+            color: #7b4519;
+            border: 3px solid #7b4519;
           }
         }
       }
@@ -92,20 +149,34 @@
 
 // section filter
 .filter {
-  height: calc(100vh - 80px);
-  background-image: url("/paper-texture.png");
+  height: auto;
+  background-image: url("/background.png");
   background-repeat: repeat;
   background-size: cover;
-  background-color: #122f30;
+  background-color: rgba(18, 47, 48, 0.35);
   background-blend-mode: overlay;
-  padding: 0 80px;
-  padding-top: 20px;
+  padding: 60px 40px 30px;
+  // padding-top: 80px;
+
+  @media (max-width: 860px) {
+    padding: 0 0 30px;
+  }
 
   .main {
     .tags {
       display: flex;
       justify-content: center;
       gap: 8px;
+      flex-wrap: wrap;
+
+      @media (max-width: 1024px) {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      @media (max-width: 860px) {
+        padding: 0 30px;
+      }
 
       .tag {
         background-color: #904118;
@@ -113,7 +184,7 @@
         color: #fff1cb;
         height: 50px;
         font-weight: 600;
-        padding: 10px 15px;
+        padding: 10px;
         font-size: 15px;
         cursor: pointer;
         display: flex;
@@ -134,57 +205,56 @@
         }
 
         .cross {
-          flex: 1;
-          padding-left: 8px;
+          width: 14px;
+          padding-left: 2px;
         }
       }
 
       .filterTag {
-        width: 100px;
+        width: 110px;
         justify-content: center;
       }
 
-      // .areasTag {
-      //   position: relative;
-      //   .areas {
-      //     position: absolute;
-      //     left: 0;
-      //     background-color: #904118;
-      //     border: #bc7c33 1px solid;
-      //     color: #fff1cb;
-      //     font-size: 15px;
-      //     width: 150px;
-      //     // display: flex;
-      //     // flex-wrap: wrap;
+      .filterBtn {
+        margin-top: 10px;
 
-      //     .options {
-      //       padding: 8px;
-      //       display: flex;
-      //       align-items: center;
+        .iconContainer {
+          width: 28px;
+        }
+      }
 
-      //       // .customCheckbox {
-      //         // display: inline-flex;
-      //         // align-items: center;
+      .clearBtn {
+        background-color: #3c3833;
+        border: #afa68e 1px solid;
+        color: #fff1cb;
+        width: 70px;
+        height: 50px;
+        font-weight: 600;
+        padding: 10px 15px;
+        font-size: 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border-radius: 2px;
+        transition: 0.2s background-color ease-in;
 
-      //         input[type="checkbox"] {
-      //           // display: none;
-      //           cursor: pointer;
-      //           width: 20px;
-      //           height: 20px;
-      //           margin-right: 10px;
-      //         }
-      //       // }
-      //     }
-      //   }
-      // }
+        &:hover {
+          background-color: #4c4740;
+        }
+      }
     }
     .content {
       display: flex;
       // justify-content: space-between;
-      height: 70vh;
+      height: 74vh;
       overflow: hidden;
       padding-top: 30px;
-      gap: 40px;
+      gap: 35px;
+
+      @media (max-width: 860px) {
+        padding: 10px 30px;
+        height: 60vh;
+      }
 
       .cards {
         flex: 3;
@@ -193,12 +263,115 @@
         overflow-y: auto;
         scrollbar-color: #fff1cb transparent;
       }
-
-      .map {
-        flex: 2;
-        // width: 40%;
-        height: 100%;
+    }
+    .map {
+      flex: 2;
+      height: 100%;
+      @media (max-width: 860px) {
+        width: 100%;
+        height: 40vh;
       }
+      @media (max-width: 530px) {
+        height: 30vh;
+      }
+    }
+  }
+
+}
+.dialog {
+  .tags {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+
+    @media (max-width: 1024px) {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    @media (max-width: 860px) {
+      padding: 0 30px;
+    }
+
+    .tag {
+      background-color: #904118;
+      border: #bc7c33 1px solid;
+      color: #fff1cb;
+      height: 50px;
+      font-weight: 600;
+      padding: 10px;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: 0.2s background-color ease-in;
+
+      &:hover {
+        background-color: #9e4a1d;
+      }
+
+      &.active {
+        border: #f2dab2 3px solid;
+        border-radius: 2px;
+      }
+
+      p {
+        flex: 3;
+      }
+
+      .cross {
+        width: 14px;
+        padding-left: 2px;
+      }
+    }
+
+    .filterTag {
+      width: 110px;
+      justify-content: center;
+    }
+
+    .filterBtn {
+      margin-top: 10px;
+
+      .iconContainer {
+        width: 28px;
+      }
+    }
+
+    .clearBtn {
+      background-color: #3c3833;
+      border: #afa68e 1px solid;
+      color: #fff1cb;
+      width: 110px;
+      height: 50px;
+      font-weight: 600;
+      padding: 10px 15px;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      transition: 0.2s background-color ease-in;
+
+      &:hover {
+        background-color: #4c4740;
+      }
+    }
+  }
+  .confirmBtn {
+    height: 40px;
+    background-color: #174a3e;
+    color: #fff1cb;
+    border: none;
+    font-size: 16px;
+    line-height: 30px;
+    cursor: pointer;
+    transition: 0.3s all ease-out;
+  
+    &:hover {
+      background-color: #144036;
     }
   }
 }

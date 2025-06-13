@@ -4,7 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import { Mousewheel, Pagination } from "swiper/modules";
+import "swiper/css/navigation";
+import { Mousewheel, Pagination, Navigation } from "swiper/modules";
 // import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { gsap } from "gsap";
 const base = import.meta.env.BASE_URL;
@@ -16,7 +17,7 @@ function Slider({ imageQ, district, id }) {
     const screenWidth = window.innerWidth;
     if (swiperWrapperRef.current) {
       swiperWrapperRef.current.style.marginLeft =
-        screenWidth <= 600 ? "-75px" : screenWidth <= 900 ? "-90px" : "-80px";
+        screenWidth <= 600 ? "-100px" : screenWidth <= 900 ? "-200px" : "0";
     }
   };
 
@@ -28,64 +29,39 @@ function Slider({ imageQ, district, id }) {
   return (
     <div className="swiper-container">
       <div className="container">
-        {/* <Swiper
-          // install Swiper modules
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={10}
-          //   slidesPerView={2}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => {
-            swiperWrapperRef.current = swiper.wrapperEl;
-            swiper.on("resize", adjustMargin);
-          }}
-          onSlideChange={(swiper) => {
-            const activeSlide = swiper.slides[swiper.activeIndex];
-            gsap.fromTo(
-              activeSlide,
-              { scale: 0.5 },
-              { scale: 1, duration: 0.5, ease: "back.inOut" }
-            );
-          }}
-        >
-          <SwiperSlide>
-            <img src="/cafe/beitou_1_1.jpg" alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/cafe/beitou_2_1.jpg" alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/cafe/beitou_1_2.jpg" alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/cafe/beitou_1_3.jpg" alt="" />
-          </SwiperSlide>
-        </Swiper> */}
         <Swiper
-          modules={[Mousewheel, Pagination]}
+          modules={[Mousewheel, Pagination, Navigation]}
           grabCursor={true}
           initialSlide={1}
           centeredSlides={true}
           slidesPerView={2}
-          spaceBetween={10}
           speed={1000}
-          //loop造成loading第一張會卡
-          //   loop={true}
+          loop={true}
           autoplay={{ delay: 1000 }}
+          navigation={true}
           pagination={{ clickable: true }}
           mousewheel={{ thresholdDelta: 30 }}
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 80,
-            depth: 350,
-            modifier: 1,
-            slideShadows: true,
+          // coverflowEffect={{
+          //   rotate: 0,
+          //   stretch: 80,
+          //   depth: 350,
+          //   modifier: 1,
+          //   slideShadows: true,
+          // }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 8,
+            },
+            1025: {
+              slidesPerView: 2,
+              spaceBetween: 8,
+            },
           }}
-          onSwiper={(swiper) => {
-            swiperWrapperRef.current = swiper.wrapperEl;
-            swiper.on("resize", adjustMargin);
-          }}
+          // onSwiper={(swiper) => {
+          //   swiperWrapperRef.current = swiper.wrapperEl;
+          //   swiper.on("resize", adjustMargin);
+          // }}
           onSlideChange={(swiper) => {
             const activeSlide = swiper.slides[swiper.activeIndex];
             gsap.fromTo(

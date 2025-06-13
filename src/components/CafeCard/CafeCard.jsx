@@ -5,6 +5,7 @@ import heartFilled from "../../assets/map/icon-heart-red.svg";
 import { useEffect, useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import { useLanguage } from "../../context/LanguageContext";
 const base = import.meta.env.BASE_URL;
 
 function CafeCard({
@@ -20,6 +21,7 @@ function CafeCard({
 }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const { language } = useLanguage();
   // const [isFavorite, setIsFavorite] = useState(false);
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [msg, setMsg] = useState("");
@@ -53,7 +55,7 @@ function CafeCard({
   return (
     <>
       <div
-        className={`${s.card} ${size === "small" ? s.small : ""}`}
+        className={`${s.card} ${size === "small" ? s.small : ""} ${size === "popularCard" ? s.popularCard : ""}`}
         onClick={handleClick}
       >
         <div className={s.imgContainer}>
@@ -71,10 +73,12 @@ function CafeCard({
         </div>
         <div className={s.text}>
           <div className={s.cardTitle}>
-            <div className={s.name}>{title}</div>
+            <div className={s.name}>{language === "zh-TW" ? <>{cafe?.name_zh}</> : <>{cafe?.name_en}</>}</div>
             <div className={s.rating}>★ {rating}</div>
           </div>
-          <div className={s.description}>{desc}</div>
+          <div className={s.description}>
+            {language === "zh-TW" ? <>{cafe?.desc_zh}</> : <>{cafe?.desc_en}</>}
+          </div>
         </div>
       </div>
       <Snackbar
@@ -93,7 +97,6 @@ function CafeCard({
           {msg}
         </Alert>
       </Snackbar>
-
     </>
   );
 }

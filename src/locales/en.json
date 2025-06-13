@@ -7,6 +7,9 @@
     "login": "Login",
     "register": "Join Us"
   },
+  "footer": {
+    "title": "Coffee Island"
+  },
   "home": {
     "days": {
       "0": "Sun.",
@@ -37,20 +40,37 @@
     },
     "filmStory": {
       "line1": "Each cup of coffee tells a story—join us as",
-      "line2": "we explore the history of Taiwanese coffee."
+      "line2": "we explore the history of Taiwanese coffee.",
+      "subtitle": "Click Filmstrip"
     },
     "map": {
       "title": "Taipei City",
       "hint": "Click District"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "paragraph": "We are a group of creators who love coffee and retro culture, and we are committed to presenting Taiwan's coffee history and characteristics to everyone who loves coffee. In this nostalgic atmosphere, savor the time and invite you to experience the charm of retro coffee.",
+      "viceBanner": "Collect selected stores, limited product sales, real-time craftsman workshops and articles.",
+      "btn": "Join Us"
     }
   },
   "map": {
+    "district": {
+      "popular": "Popular Retro Cafés",
+      "more": "More Cafés",
+      "clear": "Clear Tags",
+      "district" : "District"
+    },
     "cafe": {
       "today_opening_hours": "Today's business hours",
       "today_day_off": "Day off",
       "opening_hours": "Business hours",
       "more_info": "More info",
-      "close": "Close"
+      "close": "Close",
+      "morecafes": "More Cafés",
+      "back": "Back",
+      "filter": "Filter",
+      "confirm": "Confirm"
     }
   },
   "products": {
