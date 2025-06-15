@@ -414,6 +414,9 @@ main {
         top: 260px;
         width: 370px;
       }
+      @media (max-width: 393px) {
+        width: 350px;
+      }
       .container {
         position: relative;
         .customSwiperButtonPrev,
