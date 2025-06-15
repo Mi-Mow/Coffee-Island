@@ -8,6 +8,8 @@ import {
 import { useCallback, useEffect, useState } from "react";
 import s from "./CafeMap.module.scss";
 import { useLanguage } from "../../context/LanguageContext";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const GOOGLE_MAP_API = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 const base = import.meta.env.BASE_URL;
 
@@ -187,6 +189,9 @@ const CafeMap = ({ filtered }) => {
   const [customIcon, setCustomIcon] = useState(null);
   const [animation, setAnimation] = useState(null);
   const { language } = useLanguage();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  
 
   const onMapLoad = useCallback(() => {
     const icon = {
@@ -207,6 +212,12 @@ const CafeMap = ({ filtered }) => {
   // 咖啡廳資料
   const cafeLocations = filtered;
   console.log("lang: ", language);
+
+  const handleClickMoreInfo = (cafe) => {
+    navigate(`${base}map/${cafe.district_id}/cafe/${cafe.id}`, {
+      state: { cafe, displayFilter: [] },
+    });
+  };
 
   return (
     <LoadScriptNext
@@ -254,8 +265,12 @@ const CafeMap = ({ filtered }) => {
                   alt=""
                 />
               </div>
-              <h3>{selectedLocation.name_zh}</h3>
-              <h3>{selectedLocation.name_en}</h3>
+              <h3>
+                {language === "zh-TW"
+                  ? selectedLocation.name_zh
+                  : selectedLocation.name_en}
+              </h3>
+              <button className={s.infoBtn} onClick={() => handleClickMoreInfo(selectedLocation)}>{t("map.cafe.more_detail")}</button>
             </div>
           </InfoWindow>
         )}
