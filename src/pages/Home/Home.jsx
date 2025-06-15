@@ -36,6 +36,11 @@ import wenshan from "../../assets/home/district/wenshan.svg";
 import xinyi from "../../assets/home/district/xinyi.svg";
 import zhongshan from "../../assets/home/district/zhongshan.svg";
 import zhongzheng from "../../assets/home/district/zhongzheng.svg";
+import monsterD from "../../assets/home/monster-d.svg";
+import monsterE from "../../assets/home/monster-e.svg";
+import monsterL from "../../assets/home/monster-l.svg";
+import monsterH from "../../assets/home/monster-h.svg";
+//../../assets/home/monster-h.svg
 import avatar from "../../assets/home/avatar.png";
 import viceBanner from "../../assets/home/viceBanner.png";
 import carImg from "../../assets/home/scooter-little.svg";
@@ -185,11 +190,15 @@ function Home() {
         animationRef.current.kill();
       }
 
+      const width = window.innerWidth;
+      const start = width <= 430 ? "top 120px" : width <= 820 ? "top 0" : width <= 1440 ? "top 200px" : "top 350px";
+      const end = width <= 430 ? "bottom -750px" : width <= 820 ? "bottom -450px" : width <= 1440 ? "bottom -1300px" : "bottom -2000px";
+
       animationRef.current = gsap.to(car, {
         scrollTrigger: {
           trigger: ".scrollContainer",
-          start: "top 350px",
-          end: "bottom -1400px",
+          start,
+          end,
           scrub: 1,
           invalidateOnRefresh: true,
         },
@@ -465,7 +474,7 @@ function Home() {
 
   return (
     <>
-      <main id="home">
+      <main>
         <section className={s.bannerSection} ref={sectionRef}>
           <div className={s.coffeebeanContainer}>
             {beans.map((bean, index) => (
@@ -576,9 +585,9 @@ function Home() {
               </div>
               <div className={s.title}>{t("home.greatTimes.title")}</div>
               <div className={s.content}>
-                {t("home.greatTimes.line1")}
-                <br />
-                {t("home.greatTimes.line2")}
+                {t("home.greatTimes.p")}
+                {/* <br />
+                {t("home.greatTimes.line2")} */}
               </div>
               {/* <div className={s.coffeeCupContainer}>
                 <img src={coffeeCup} alt="" />
@@ -590,7 +599,6 @@ function Home() {
             <div className={s.cameraContainer}>
               <img src={camera} alt="" />
             </div>
-
           </div>
           <div className={s.maskContainer}>
             <img src={coffeeBeanMask} alt="" />
@@ -634,12 +642,20 @@ function Home() {
                   prevEl: prevRef.current,
                   nextEl: nextRef.current,
                 }}
-                  onInit={(swiper) => {
-                    swiper.params.navigation.prevEl = prevRef.current;
-                    swiper.params.navigation.nextEl = nextRef.current;
-                    swiper.navigation.init();
-                    swiper.navigation.update();
-                  }}
+                onInit={(swiper) => {
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  swiper.params.navigation.nextEl = nextRef.current;
+                  swiper.navigation.init();
+                  swiper.navigation.update();
+                }}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1.7,
+                  },
+                  431: {
+                    slidesPerView: 1.3,
+                  },
+                }}
               >
                 {carouselImages.map((image, index) => (
                   <>
@@ -649,7 +665,9 @@ function Home() {
                           <img src={image.img} />
                           <div className={s.textBg}>
                             <img src={textBg} alt="" />
-                            <p>{ language === 'zh-TW' ? image.text : image.textEN}</p>
+                            <p>
+                              {language === "zh-TW" ? image.text : image.textEN}
+                            </p>
                           </div>
                         </div>
                       </Link>
@@ -657,7 +675,6 @@ function Home() {
                   </>
                 ))}
               </Swiper>
-
             </div>
           </div>
           {/* 待優化 */}
@@ -1121,32 +1138,34 @@ function Home() {
             <div className={s.team}>
               <div className={s.avatar}>
                 <div className={s.avatarContainer}>
-                  <img src={avatar} alt="" />
+                  <img src={monsterL} alt="" />
                 </div>
                 <p>Ling</p>
               </div>
               <div className={s.avatar}>
                 <div className={s.avatarContainer}>
-                  <img src={avatar} alt="" />
+                  <img src={monsterE} alt="" />
                 </div>
                 <p>Eve</p>
               </div>
               <div className={s.avatar}>
                 <div className={s.avatarContainer}>
-                  <img src={avatar} alt="" />
+                  <img src={monsterD} alt="" />
                 </div>
                 <p>Dasper</p>
               </div>
               <div className={s.avatar}>
                 <div className={s.avatarContainer}>
-                  <img src={avatar} alt="" />
+                  <img src={monsterH} alt="" />
                 </div>
                 <p>Hsin</p>
               </div>
             </div>
           </div>
           <div className={s.viceBanner}>
-            <img src={viceBanner} alt="" />
+            {/* <div className="viceBannerContainer"> */}
+              <img src={viceBanner} alt="" />
+            {/* </div> */}
             <div className={s.textContainer}>
               <p>{t("home.contact.viceBanner")}</p>
               <button
