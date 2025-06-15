@@ -20,12 +20,13 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  InputAdornment,
 } from "@mui/material";
 
 import EditIcon from "../../assets/profile/pen.svg";
 import CheckIcon from "../../assets/profile/check.svg";
-// import EditIcon from "@mui/icons-material/Edit";
-// import CheckIcon from "@mui/icons-material/Check";
+import eyes from "../../assets/register/eyes.png";
+import eyelashes from "../../assets/register/eyelashes.png";
 import Alert from "@mui/material/Alert";
 import ProductCard from "../../components/ProductCard/ProductCard";
 const base = import.meta.env.BASE_URL;
@@ -87,6 +88,10 @@ function Profile() {
   });
   const [msg, setMsg] = useState("");
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const navigate = useNavigate();
   const handleLogout = () => {
     navigate(`${base}`);
@@ -118,12 +123,11 @@ function Profile() {
         }
       }
       if (type === "product") {
-        let favoriteList = JSON.parse(localStorage.getItem("favoriteProducts")) || [];
+        let favoriteList =
+          JSON.parse(localStorage.getItem("favoriteProducts")) || [];
         let updatedFavorite;
         if (favoriteList.includes(productId)) {
-          updatedFavorite = favoriteList.filter(
-            (id) => id !== productId
-          );
+          updatedFavorite = favoriteList.filter((id) => id !== productId);
           updatedUser.favorite.products = updatedUser.favorite.products.filter(
             (item) => item !== productId
           );
@@ -133,7 +137,10 @@ function Profile() {
         } else {
           updatedFavorite = [...favoriteList, productId];
         }
-        localStorage.setItem("favoriteProducts", JSON.stringify(updatedFavorite));
+        localStorage.setItem(
+          "favoriteProducts",
+          JSON.stringify(updatedFavorite)
+        );
         updatedUser.favorite.products = updatedFavorite;
       }
       const updatedUsers = users.map((user) => {
@@ -181,52 +188,130 @@ function Profile() {
 
   const handleEditClick = () => {
     if (isEditing) {
-      // TODO: 儲存新的 userName
-      console.log("Saving new name:", editUserName);
+      if (editUserName !== currentUser.userName) {
+        const updatedUser = { ...currentUser };
+        const users = JSON.parse(localStorage.getItem("users"));
+
+        updatedUser.userName = editUserName;
+        const updatedUsers = users.map((user) => {
+          if (user.userEmail === currentUser.userEmail) {
+            return {
+              ...updatedUser,
+            };
+          }
+          return user;
+        });
+        localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
+        setCurrentUser(updatedUser);
+        setMsg("會員名稱更新成功！");
+        setOpenSnackBar(true);
+      }
     }
     setIsEditing(!isEditing);
   };
 
   const handlePasswordChange = (e) => {
-    setPasswordForm({ ...passwordForm, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setPasswordForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // setPasswordForm({ ...passwordForm, [e.target.name]: e.target.value });
   };
 
   const handlePasswordSubmit = () => {
     console.log("Change password form:", passwordForm);
-    // TODO: 驗證密碼 & 更新
+    if (!passwordForm.current || !passwordForm.new || !passwordForm.confirm) {
+      setMsg("請填寫所有欄位！");
+      setOpenSnackBar(true);
+      return;
+    } else {
+      const updatedUser = { ...currentUser };
+
+      if (atob(updatedUser.userPassword) === passwordForm.current) {
+        //
+        if (passwordForm.new.length < 6) {
+          setMsg("新密碼長度須為6碼以上");
+          setOpenSnackBar(true);
+          return;
+        } else {
+          if (passwordForm.new !== passwordForm.confirm) {
+            setMsg("新密碼與確認新密碼不一致！");
+            setOpenSnackBar(true);
+            return;
+          } else {
+            updatedUser.userPassword = btoa(passwordForm.new);
+
+            const users = JSON.parse(localStorage.getItem("users"));
+            const updatedUsers = users.map((user) => {
+              if (user.userEmail === currentUser.userEmail) {
+                return {
+                  ...updatedUser,
+                };
+              }
+              return user;
+            });
+            localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+            localStorage.setItem("users", JSON.stringify(updatedUsers));
+            setOpenPasswordDialog(false);
+            setMsg("密碼更新成功！");
+            setOpenSnackBar(true);
+            setPasswordForm({
+              current: "",
+              new: "",
+              confirm: "",
+            });
+          }
+        }
+      } else {
+        setMsg("目前密碼不正確！");
+        setOpenSnackBar(true);
+        return;
+      }
+    }
+  };
+
+  const closePasswordDialog = () => {
+    setPasswordForm({
+      current: "",
+      new: "",
+      confirm: "",
+    });
+    setShowPassword(false);
+    setShowNewPassword(false);
+    setShowConfirmPassword(false);
     setOpenPasswordDialog(false);
   };
 
   return (
     <>
       <div className="profile-page">
-        {/* <!-- 左邊功能欄 --> */}
-        {/* import {useTranslation} from "react-i18next";
-
-        ...
-
-        const {t} = useTranslation();
-
-        return ( */}
         <div className="sidebar">
           <div>
             <img src={avatar} alt="avatar" />
           </div>
           <div className="username">{currentUser.userName}</div>
           <button
-            className={`${selectedSection === "favorite" ? "active" : ""} button-style`}
+            className={`${
+              selectedSection === "favorite" ? "active" : ""
+            } button-style`}
             onClick={() => setSelectedSection("favorite")}
           >
             {t("profile.sidebar.favorites")}
           </button>
           <button
-            className={`${selectedSection === "orders" ? "active" : ""} button-style`}
+            className={`${
+              selectedSection === "orders" ? "active" : ""
+            } button-style`}
             onClick={() => setSelectedSection("orders")}
           >
             {t("profile.sidebar.orders")}
           </button>
           <button
-            className={`${selectedSection === "profile" ? "active" : ""} button-style`}
+            className={`${
+              selectedSection === "profile" ? "active" : ""
+            } button-style`}
             onClick={() => setSelectedSection("profile")}
           >
             {t("profile.sidebar.profile")}
@@ -246,20 +331,23 @@ function Profile() {
               {selectedSection === "favorite" && (
                 <>
                   <div className="top-section">
-                    <div className="favorite-item">
-                      {t("profile.favoriteCafes")}
-                      <div className="count">{favoriteCafes.length}</div>
-                    </div>
-                    <div className="favorite-item">
-                      {t("profile.favoriteProducts")}
-                      <div className="count">{favoriteProducts.length}</div>
-                    </div>
-                    {/* <div className="favorite-item">
+                    <div className="title">我的收藏</div>
+                    <div className="favorite-items">
+                      <div className="favorite-item">
+                        {t("profile.favoriteCafes")}
+                        <div className="count">{favoriteCafes.length}</div>
+                      </div>
+                      <div className="favorite-item">
+                        {t("profile.favoriteProducts")}
+                        <div className="count">{favoriteProducts.length}</div>
+                      </div>
+                      {/* <div className="favorite-item">
                       收藏活動
                       <div className="count">1</div>
                     </div> */}
+                    </div>
                   </div>
-                  <Box sx={{ width: "100%" }}>
+                  <Box sx={{ width: "100%", pt: 2 }}>
                     <Box sx={{}}>
                       <Tabs
                         value={value}
@@ -297,12 +385,11 @@ function Profile() {
                     </Box>
                     <CustomTabPanel value={value} index={0}>
                       <div className="cards">
-                        {favoriteCafes.length !== 0
-                          ? favoriteCafes.map((cafe, index) => {
-                            const isFavorite =
-                              currentUser.favorite?.cafes.some(
-                                (item) => item.id === cafe.id
-                              );
+                        {favoriteCafes.length !== 0 ? (
+                          favoriteCafes.map((cafe, index) => {
+                            const isFavorite = currentUser.favorite?.cafes.some(
+                              (item) => item.id === cafe.id
+                            );
 
                             return (
                               <CafeCard
@@ -319,13 +406,15 @@ function Profile() {
                               />
                             );
                           })
-                          : <p className="text">{t("profile.nocafes")}</p>}
+                        ) : (
+                          <p className="text">{t("profile.nocafes")}</p>
+                        )}
                       </div>
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
                       <div className="cards">
-                        {favoriteProducts.length !== 0
-                          ? favoriteProducts.map((id, index) => {
+                        {favoriteProducts.length !== 0 ? (
+                          favoriteProducts.map((id, index) => {
                             const isFavorite =
                               currentUser.favorite?.products.some(
                                 (item) => item === id
@@ -341,7 +430,9 @@ function Profile() {
                               />
                             );
                           })
-                          : <p className="text">{t("profile.noproducts")}</p>}
+                        ) : (
+                          <p className="text">{t("profile.noproducts")}</p>
+                        )}
                       </div>
                     </CustomTabPanel>
                     {/* <CustomTabPanel value={value} index={2}>
@@ -351,108 +442,7 @@ function Profile() {
                 </>
               )}
             </div>
-            <div>{/* 訂單狀態 */}</div>
-            {/* 會員資料 */}
-            <div className="profile">
-              {selectedSection === "profile" && (
-                <Box
-                  sx={{
-                    maxWidth: 500,
-                    mx: "auto",
-                    mt: 4,
-                    p: 3,
-                    border: "1px solid #ccc",
-                    borderRadius: 2,
-                  }}
-                >
-                  {/* 會員名字欄位 */}
-                  <Box display="flex" alignItems="center" mb={3}>
-                    <div className="edit">
-                      <TextField
-                        label="會員名稱"
-                        value={editUserName}
-                        onChange={(e) => setEditUserName(e.target.value)}
-                        disabled={!isEditing}
-                        fullWidth
-                      />
-                      <div
-                        className="edit-icon-container"
-                        onClick={handleEditClick}
-                      >
-                        <img src={isEditing ? CheckIcon : EditIcon} alt="" />
-                      </div>
-                    </div>
-                  </Box>
-
-                  {/* 帳號欄位（不可編輯） */}
-                  <TextField
-                    label="會員帳號"
-                    value={currentUser.userEmail}
-                    disabled
-                    fullWidth
-                    sx={{ mb: 3 }}
-                  />
-
-                  {/* 修改密碼按鈕 */}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => setOpenPasswordDialog(true)}
-                  >
-                    修改密碼
-                  </Button>
-
-                  {/* 修改密碼 Dialog */}
-                  <Dialog
-                    open={openPasswordDialog}
-                    onClose={() => setOpenPasswordDialog(false)}
-                  >
-                    <DialogTitle>修改密碼</DialogTitle>
-                    <DialogContent>
-                      <TextField
-                        name="current"
-                        label="目前密碼"
-                        type="password"
-                        fullWidth
-                        margin="dense"
-                        value={passwordForm.current}
-                        onChange={handlePasswordChange}
-                      />
-                      <TextField
-                        name="new"
-                        label="新密碼"
-                        type="password"
-                        fullWidth
-                        margin="dense"
-                        value={passwordForm.new}
-                        onChange={handlePasswordChange}
-                      />
-                      <TextField
-                        name="confirm"
-                        label="確認新密碼"
-                        type="password"
-                        fullWidth
-                        margin="dense"
-                        value={passwordForm.confirm}
-                        onChange={handlePasswordChange}
-                      />
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={() => setOpenPasswordDialog(false)}>
-                        取消
-                      </Button>
-                      <Button
-                        onClick={handlePasswordSubmit}
-                        variant="contained"
-                      >
-                        確認修改
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
-                </Box>
-              )}
-            </div>
-            {/* 訂單狀況by怡璇 */}
+            {/* 訂單狀態by怡璇 */}
             {selectedSection === "orders" && (
               <div className="order-section">
                 <h2 className="order-title">{t("profile.order.title")}</h2>
@@ -484,20 +474,30 @@ function Profile() {
                           <div className="col">
                             {productCount > 1
                               ? t("profile.order.productSummary", {
-                                name: firstProductName,
-                                count: productCount,
-                              })
+                                  name: firstProductName,
+                                  count: productCount,
+                                })
                               : firstProductName}
                           </div>
                           <div className="col">
                             {t(
-                              `cart.payment.${order.payment === "取貨付款" ? "cod" : "transfer"}`
+                              `cart.payment.${
+                                order.payment === "取貨付款"
+                                  ? "cod"
+                                  : "transfer"
+                              }`
                             )}
                           </div>
-                          <div className="col">NT$ {order.amount.toLocaleString()}</div>
-                          <div className="col">{t(`profile.orderStatus.${order.status}`)}</div>
                           <div className="col">
-                            <button className="order-btn">{t("profile.order.detailBtn")}</button>
+                            NT$ {order.amount.toLocaleString()}
+                          </div>
+                          <div className="col">
+                            {t(`profile.orderStatus.${order.status}`)}
+                          </div>
+                          <div className="col">
+                            <button className="order-btn">
+                              {t("profile.order.detailBtn")}
+                            </button>
                           </div>
                         </div>
                       );
@@ -508,7 +508,465 @@ function Profile() {
                 )}
               </div>
             )}
+            {/* 會員資料 */}
+            <div className="profile">
+              {selectedSection === "profile" && (
+                <>
+                  <div className="profile-title">會員資料</div>
+                  <Box
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      mx: "auto",
+                      mt: 4,
+                      py: 2,
+                    }}
+                  >
+                    {/* 會員名字欄位 */}
+                    <Box alignItems="center" mb={3}>
+                      <div className="edit">
+                        <TextField
+                          label="會員名稱"
+                          value={editUserName}
+                          onChange={(e) => setEditUserName(e.target.value)}
+                          disabled={!isEditing}
+                          // fullWidth
+                          InputLabelProps={{
+                            sx: {
+                              color: "#fff",
+                              zIndex: 1,
+                              fontSize: "16px",
+                              "&.Mui-disabled": {
+                                color: "#fff1cb",
+                              },
+                            },
+                          }}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  onClick={handleEditClick}
+                                  edge="end"
+                                >
+                                  <img
+                                    src={isEditing ? CheckIcon : EditIcon}
+                                    alt="edit"
+                                    style={{ width: 40, height: 40 }}
+                                  />
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                            sx: {
+                              "& .MuiInputBase-input": {
+                                color: "#fff1cb",
+                                "&.Mui-disabled": {
+                                  "-webkit-text-fill-color":
+                                    "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
+                                },
+                              },
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#fff1cb",
+                              },
+                            },
+                          }}
+                          sx={{
+                            width: "50%",
+                            minWidth: "200px",
+                            // border: "3px solid #fff1cb",
+                            "& label.Mui-focused": {
+                              color: "#fff1cb",
+                            },
+                            "& .MuiOutlinedInput-root": {
+                              "& fieldset": {
+                                borderColor: "#fff1cb",
+                                color: "#fff1cb",
+                              },
+                              "&:hover fieldset": {
+                                borderColor: "#ffe580",
+                              },
+                              "&.Mui-focused fieldset": {
+                                borderColor: "#fff1cb",
+                              },
+                              "&.Mui-disabled fieldset": {
+                                borderColor: "rgba(255, 241, 203, 0.75)",
+                              },
+                            },
+                          }}
+                        />
+                      </div>
+                    </Box>
 
+                    <TextField
+                      label="會員帳號"
+                      value={currentUser.userEmail}
+                      disabled
+                      // fullWidth
+                      InputLabelProps={{
+                        sx: {
+                          color: "#fff",
+                          zIndex: 1,
+                          fontSize: "16px",
+                          "&.Mui-disabled": {
+                            color: "#fff1cb",
+                          },
+                        },
+                      }}
+                      InputProps={{
+                        sx: {
+                          "& .MuiInputBase-input": {
+                            color: "#fff1cb",
+                            "&.Mui-disabled": {
+                              "-webkit-text-fill-color":
+                                "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
+                            },
+                          },
+                          "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "#fff1cb",
+                          },
+                        },
+                      }}
+                      sx={{
+                        width: "50%",
+                        minWidth: "200px",
+                        mb: 3,
+                        "& label.Mui-focused": {
+                          color: "#fff1cb",
+                        },
+                        "& .MuiOutlinedInput-root": {
+                          "& fieldset": {
+                            borderColor: "#fff1cb",
+                            color: "#fff1cb",
+                          },
+                          "&:hover fieldset": {
+                            borderColor: "#ffe580",
+                          },
+                          "&.Mui-focused fieldset": {
+                            borderColor: "#fff1cb",
+                          },
+                          "&.Mui-disabled fieldset": {
+                            borderColor: "rgba(255, 241, 203, 0.75)",
+                          },
+                        },
+                      }}
+                    />
+                    {/* <br/> */}
+
+                    {/* 修改密碼按鈕 */}
+                    <Button
+                      // variant="contained"
+                      onClick={() => setOpenPasswordDialog(true)}
+                      sx={{
+                        display: "block",
+                        backgroundColor: "#fbce97",
+                        color: "#684412",
+                        border: "#684412 2px solid",
+                        borderRadius: "2px",
+                        width: "150px",
+                        fontFamily: "Noto Serif TC",
+                        fontWeight: "600",
+                        fontSize: "16px",
+                        "&:hover": {
+                          backgroundColor: "#fddeb8",
+                        },
+                      }}
+                    >
+                      修改密碼
+                    </Button>
+
+                    {/* 修改密碼 Dialog */}
+                    <Dialog
+                      open={openPasswordDialog}
+                      onClose={closePasswordDialog}
+                    >
+                      <DialogTitle
+                        sx={{
+                          backgroundColor: "#184f42",
+                          color: "#fff1cb",
+                          fontFamily: "Noto Serif TC",
+                          fontSize: "30px",
+                        }}
+                      >
+                        修改密碼
+                      </DialogTitle>
+                      <DialogContent
+                        sx={{
+                          backgroundColor: "#184f42",
+                          py: 1,
+                        }}
+                      >
+                        <TextField
+                          name="current"
+                          label="目前密碼"
+                          type={showPassword ? "text" : "password"}
+                          fullWidth
+                          margin="dense"
+                          value={passwordForm.current}
+                          onChange={handlePasswordChange}
+                          InputLabelProps={{
+                            sx: {
+                              color: "rgba(255,255,255,0.8)",
+                              zIndex: 1,
+                              fontSize: "16px",
+                              fontFamily: "Noto Serif TC",
+                              "&.Mui-disabled": {
+                                color: "#ffd39d",
+                              },
+                            },
+                          }}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  onClick={() =>
+                                    setShowPassword((prev) => !prev)
+                                  }
+                                  edge="end"
+                                  sx={{
+                                    pr: 2,
+                                  }}
+                                >
+                                  <img
+                                    src={showPassword ? eyes : eyelashes}
+                                    alt=""
+                                    style={{ width: 40, height: 40 }}
+                                  />
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                            sx: {
+                              "& .MuiInputBase-input": {
+                                color: "#fff1cb",
+                                "&.Mui-disabled": {
+                                  "-webkit-text-fill-color":
+                                    "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
+                                },
+                              },
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#fff1cb",
+                              },
+                            },
+                          }}
+                          sx={{
+                            width: "100%",
+                            mb: 3,
+                            "& label.Mui-focused": {
+                              color: "#fff1cb",
+                            },
+                            "& .MuiOutlinedInput-root": {
+                              "& fieldset": {
+                                borderColor: "#fff1cb",
+                                color: "#fff1cb",
+                              },
+                              "&:hover fieldset": {
+                                borderColor: "#ffe580",
+                              },
+                              "&.Mui-focused fieldset": {
+                                borderColor: "#fff1cb",
+                              },
+                              "&.Mui-disabled fieldset": {
+                                borderColor: "rgba(255, 241, 203, 0.75)",
+                              },
+                            },
+                          }}
+                        />
+                        <TextField
+                          name="new"
+                          label="新密碼，長度須為6碼以上"
+                          type={showNewPassword ? "text" : "password"}
+                          fullWidth
+                          margin="dense"
+                          value={passwordForm.new}
+                          onChange={handlePasswordChange}
+                          InputLabelProps={{
+                            sx: {
+                              color: "rgba(255,255,255,0.8)",
+                              zIndex: 1,
+                              fontSize: "16px",
+                              fontFamily: "Noto Serif TC",
+                              "&.Mui-disabled": {
+                                color: "#ffd39d",
+                              },
+                            },
+                          }}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  onClick={() =>
+                                    setShowNewPassword((prev) => !prev)
+                                  }
+                                  edge="end"
+                                  sx={{
+                                    pr: 2,
+                                  }}
+                                >
+                                  <img
+                                    src={showNewPassword ? eyes : eyelashes}
+                                    alt=""
+                                    style={{ width: 40, height: 40 }}
+                                  />
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                            sx: {
+                              "& .MuiInputBase-input": {
+                                color: "#fff1cb",
+                                "&.Mui-disabled": {
+                                  "-webkit-text-fill-color":
+                                    "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
+                                },
+                              },
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#fff1cb",
+                              },
+                            },
+                          }}
+                          sx={{
+                            width: "100%",
+                            mb: 3,
+                            "& label.Mui-focused": {
+                              color: "#fff1cb",
+                            },
+                            "& .MuiOutlinedInput-root": {
+                              "& fieldset": {
+                                borderColor: "#fff1cb",
+                                color: "#fff1cb",
+                              },
+                              "&:hover fieldset": {
+                                borderColor: "#ffe580",
+                              },
+                              "&.Mui-focused fieldset": {
+                                borderColor: "#fff1cb",
+                              },
+                              "&.Mui-disabled fieldset": {
+                                borderColor: "rgba(255, 241, 203, 0.75)",
+                              },
+                            },
+                          }}
+                        />
+                        <TextField
+                          name="confirm"
+                          label="確認新密碼"
+                          type={showConfirmPassword ? "text" : "password"}
+                          fullWidth
+                          margin="dense"
+                          value={passwordForm.confirm}
+                          onChange={handlePasswordChange}
+                          InputLabelProps={{
+                            sx: {
+                              color: "rgba(255,255,255,0.8)",
+                              zIndex: 1,
+                              fontSize: "16px",
+                              fontFamily: "Noto Serif TC",
+                              "&.Mui-disabled": {
+                                color: "#ffd39d",
+                              },
+                            },
+                          }}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  onClick={() =>
+                                    setShowConfirmPassword((prev) => !prev)
+                                  }
+                                  edge="end"
+                                  sx={{
+                                    pr: 2,
+                                  }}
+                                >
+                                  <img
+                                    src={showConfirmPassword ? eyes : eyelashes}
+                                    alt=""
+                                    style={{ width: 40, height: 40 }}
+                                  />
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                            sx: {
+                              "& .MuiInputBase-input": {
+                                color: "#fff1cb",
+                                "&.Mui-disabled": {
+                                  "-webkit-text-fill-color":
+                                    "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
+                                },
+                              },
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#fff1cb",
+                              },
+                            },
+                          }}
+                          sx={{
+                            width: "100%",
+                            mb: 3,
+                            "& label.Mui-focused": {
+                              color: "#fff1cb",
+                            },
+                            "& .MuiOutlinedInput-root": {
+                              "& fieldset": {
+                                borderColor: "#fff1cb",
+                                color: "#fff1cb",
+                              },
+                              "&:hover fieldset": {
+                                borderColor: "#ffe580",
+                              },
+                              "&.Mui-focused fieldset": {
+                                borderColor: "#fff1cb",
+                              },
+                              "&.Mui-disabled fieldset": {
+                                borderColor: "rgba(255, 241, 203, 0.75)",
+                              },
+                            },
+                          }}
+                        />
+                      </DialogContent>
+                      <DialogActions
+                        sx={{
+                          backgroundColor: "#184f42",
+                          px: 3,
+                          pb: 2,
+                        }}
+                      >
+                        <Button
+                          onClick={closePasswordDialog}
+                          sx={{
+                            width: "150px",
+                            color: "#ad7d30",
+                            borderRadius: "2px",
+                            fontFamily: "Noto Serif TC",
+                            fontSize: "16px",
+                            fontWeight: "600",
+                            "&:hover": {
+                              backgroundColor: "rgba(255,255,255,0.1)",
+                            },
+                          }}
+                        >
+                          取消
+                        </Button>
+                        <Button
+                          onClick={handlePasswordSubmit}
+                          sx={{
+                            backgroundColor: "#fbce97",
+                            color: "#684412",
+                            border: "#684412 2px solid",
+                            borderRadius: "2px",
+                            width: "150px",
+                            fontFamily: "Noto Serif TC",
+                            fontSize: "16px",
+                            fontWeight: "600",
+                            "&:hover": {
+                              backgroundColor: "#fddeb8",
+                            },
+                          }}
+                        >
+                          確認修改
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                  </Box>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>

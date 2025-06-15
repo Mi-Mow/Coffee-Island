@@ -216,7 +216,7 @@ main {
 
     .greatTime {
       position: absolute;
-      right: 150px;
+      right: 50px;
       top: 10%;
 
       @media (min-width: 1600px) {
@@ -225,7 +225,7 @@ main {
       }
 
       .greenBlockContainer {
-        width: 550px;
+        width: 530px;
         @media (min-width: 1600px) {
           width: 620px;
         }
@@ -236,7 +236,7 @@ main {
       .textContainer {
         position: absolute;
         top: 30%;
-        left: 20%;
+        left: 17%;
 
         @media (max-width: 1024px) {
           display: none;
@@ -262,7 +262,7 @@ main {
           line-height: 1.8;
           font-size: 16px;
           letter-spacing: 2px;
-          width: 230px;
+          width: 250px;
 
           @media (min-width: 1600px) {
             width: 280px;
@@ -320,7 +320,7 @@ main {
 
     .coffeeIsland {
       position: absolute;
-      top: 20%;
+      top: 220px;
       left: 13%;
 
       @media (max-width: 1024px) {
@@ -329,7 +329,6 @@ main {
       }
 
       @media (max-width: 820px) {
-        top: 200px;
         left: 10%;
       }
 
@@ -376,7 +375,7 @@ main {
         line-height: 1.8;
         font-size: 16px;
         letter-spacing: 2px;
-        width: 370px;
+        width: 420px;
         @media (min-width: 1600px) {
           width: 450px;
         }
@@ -793,20 +792,20 @@ main {
             }
           }
 
-          // .text {
-          //   position: absolute;
-          //   top: 50%;
-          //   left: 50%;
-          //   font-size: 36px;
-          //   transform: translate(-50%, -50%);
-          // }
+          .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 36px;
+            transform: translate(-50%, -50%);
+          }
 
-          // .district.hovered {
-          //   transform: translateY(-40px) translateX(-15px) scale(1.18);
-          //   filter: drop-shadow(0 0 10px #aeaeae);
-          //   stroke: #d3d3d3;
-          //   stroke-width: 5;
-          // }
+          .district.hovered {
+            transform: translateY(-40px) translateX(-15px) scale(1.18);
+            filter: drop-shadow(0 0 10px #aeaeae);
+            stroke: #d3d3d3;
+            stroke-width: 5;
+          }
         }
       }
     }
@@ -1134,7 +1133,6 @@ main {
     transform: translate(-50%, 0);
     z-index: -88;
 
-    
     @media (min-width: 1600px) {
       top: 13%;
     }

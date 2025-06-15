@@ -2,6 +2,7 @@
   display: flex;
   padding: 110px 70px 72px;
   gap: 20px;
+  min-height: 85vh;
 }
 
 /* 左側：功能選單欄 */
@@ -92,10 +93,21 @@
 
     .top-section {
       display: flex;
-      justify-content: flex-end;
-      align-items: flex-start;
-      gap: 40px;
+      justify-content: space-between;
+      // align-items: flex-start;
       color: #fff0c8;
+
+      .title {
+        display: flex;
+        font-size: 32px;
+        font-weight: bold;
+        align-items: end;
+      }
+
+      .favorite-items {
+        display: flex;
+        gap: 40px;
+      }
 
       .favorite-item {
         text-align: center;
@@ -120,23 +132,6 @@
 
       .text {
         color: #fff1cb;
-      }
-    }
-  }
-
-  .profile {
-    .edit {
-      display: flex;
-      align-items: center;
-
-      .MuiTextField-root {
-        flex: 1; // 讓 TextField 吃滿剩下寬度
-      }
-
-      .edit-icon-container {
-        margin-left: 8px;
-        cursor: pointer;
-        width: 30px;
       }
     }
   }
@@ -200,7 +195,7 @@
     }
 
     .no-orders {
-      padding: 40px 0;
+      padding: 20px 0;
       text-align: center;
       font-size: 18px;
       color: #fff0c8;
@@ -239,8 +234,34 @@
     }
   }
 
+  .profile {
+    width: 100%;
+    .profile-title {
+      font-size: 32px;
+      font-weight: bold;
+      color: #fff1cb;
+      margin-top: 32px;
+    }
+    .edit {
+      display: flex;
+      align-items: center;
 
+      .MuiTextField-root {
+        // flex: 1; // 讓 TextField 吃滿剩下寬度
+      }
 
+      .edit-icon-container {
+        // margin-left: 8px;
+        cursor: pointer;
+        width: 48px;
+        transition: all 0.1s ease-in;
+        
+        &:hover {
+          width: 52px;
+        }
+      }
+    }
+  }
 }
 
 .count {

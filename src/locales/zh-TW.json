@@ -172,7 +172,7 @@
     },
     "sidebar": {
       "favorites": "我的收藏",
-      "orders": "訂單狀態",
+      "orders": "訂單列表",
       "profile": "會員資料",
       "logout": "登出"
     }
