@@ -75,8 +75,12 @@
     padding: 100px 160px;
   }
 
+  @media ($media-1024) {
+    padding: 100px 80px;
+  }
+
   @media ($media-820) {
-    padding: 80px 40px;
+    padding: 100px 40px;
   }
 
   @media ($media-640) {
@@ -121,7 +125,7 @@
     letter-spacing: 8px;
 
     @media (max-width: 640px) {
-      font-size: 16px;
+      font-size: 20px;
     }
   }
 
@@ -131,7 +135,7 @@
     letter-spacing: 0.8px;
 
     @media (max-width: 640px) {
-      font-size: 14px;
+      font-size: 16px;
     }
   }
 
@@ -143,7 +147,7 @@
     letter-spacing: 0.84px;
     line-height: 0.8rem;
 
-    @media (max-width: 640px) {
+    @media (max-width: 1024px) {
       font-size: 10px;
     }
   }
@@ -173,6 +177,10 @@
     width: 100px;
     z-index: 99;
 
+    @media ($media-1024) {
+      left: 4px;
+    }
+
     svg {
       width: 56px;
       height: 56px;
@@ -180,9 +188,14 @@
 
       animation: breathing 3s ease-in-out infinite; // 套用呼吸動畫
 
+      @media ($media-1024) {
+        width: 32px;
+        height: 32px;
+      }
+
       @media($media-640) {
-        width: 48px;
-        height: 48px;
+        width: 32px;
+        height: 32px;
       }
 
     }
@@ -218,6 +231,7 @@
   // 小怪獸搭配文字動畫
   .nav-news ul li a .link-text {
     /* Hide the text by default */
+    font-size: 14px;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -311,6 +325,9 @@
 
   .title-container {
     height: 2rem;
+
+
+
   }
 }
 
@@ -361,9 +378,9 @@
     transition: border-color 0.3s, color 0.3s;
 
     @media ($media-640) {
-      padding: 0px 8px;
-      width: 300px;
-      height: 30px;
+      // padding: 0px 8px;
+      // width: 300px;
+      // height: 30px;
     }
 
     &::placeholder {
@@ -411,7 +428,7 @@ input {
   .cover-story {
     width: 100%;
     display: flex;
-    padding: 8px 0px 24px;
+    padding: 8px 0px 48px;
     flex-direction: column;
     align-items: flex-start;
     overflow: hidden;
@@ -426,8 +443,12 @@ input {
         height: 400px;
         align-self: stretch;
 
+        @media($media-1024) {
+          height: 30vh;
+        }
+
         @media($media-640) {
-          height: 150px;
+          height: 20vh;
           margin-bottom: 16px;
         }
 
@@ -441,10 +462,14 @@ input {
 
     display: flex;
     justify-content: space-between; // 讓左右有空間
-    gap: 80px; // 中間間距  
+    gap: 5%; // 中間間距  
 
     width: 100%;
     align-self: stretch;
+
+    @media($media-1024) {
+      justify-content: center;
+    }
 
     @media ($media-640) {
       justify-content: center;
@@ -481,7 +506,11 @@ input {
       padding-bottom: 48px;
       flex-direction: column;
       align-items: flex-start;
-      gap: 32px;
+      gap: 24px;
+    }
+
+    @media($media-1024) {
+      padding-bottom: 0px;
     }
 
 
@@ -492,16 +521,19 @@ input {
       gap: 16px;
       align-self: stretch;
 
-      img {
-        // height: 300px;
 
+      img {
+        object-fit: cover;
         align-self: stretch;
+
+        @media($media-1024) {
+          height: 30vh;
+        }
       }
 
       p {
         color: $textcolor;
         font-weight: 400;
-        line-height: normal;
         letter-spacing: 1.6px;
       }
     }
@@ -513,7 +545,7 @@ input {
       gap: 24px;
       align-self: stretch;
 
-      @media ($media-640) {
+      @media ($media-1024) {
         width: 100%;
         overflow-x: hidden;
         gap: 16px;
@@ -524,16 +556,26 @@ input {
         height: 350px;
         // height: 100%;
         align-items: center;
-        gap: 35px;
+        gap: 40px;
 
-        @media ($media-640) {
+        @media ($media-1024) {
+          gap: 10%;
           flex-direction: row;
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
           scroll-snap-type: x mandatory;
           // padding-bottom: 16px;
           max-width: 100%; // ← 防止超過畫面
-          height: 300px;
+          height: 100%;
+
+          // 隱藏滾動條
+          overflow: auto; // 或 scroll
+          -ms-overflow-style: none; // IE, Edge
+          scrollbar-width: none; // Firefox
+
+          &::-webkit-scrollbar {
+            display: none; // Chrome, Safari
+          }
 
         }
 
@@ -542,7 +584,7 @@ input {
           height: 100%;
           flex: 1;
 
-          @media ($media-640) {
+          @media ($media-1024) {
             scroll-snap-align: start;
             flex: 0 0 75%; // 每張卡片寬度（視需要可調整為 100%, 75% 等）
             display: block;
@@ -560,6 +602,10 @@ input {
               width: 100%;
               height: 240px;
               object-fit: cover;
+
+              @media($media-1024) {
+                height: 20vh;
+              }
             }
 
             h3 {
@@ -626,6 +672,7 @@ input {
     .reco-cards {
       @media($media-640) {
         width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: row;
         gap: 24px;
@@ -648,11 +695,17 @@ input {
         gap: 24px;
         align-self: stretch;
 
-        @media ($media-640) {
+        @media ($media-1024) {
           scroll-snap-align: start;
-          flex-direction: column;
+
           flex: 0 0 60%; // 每張卡片佔 80% 寬度
           padding: 16px 0;
+          max-height: none;
+          margin-bottom: 1rem;
+        }
+
+        @media ($media-640) {
+          flex-direction: column;
         }
 
 
@@ -660,6 +713,8 @@ input {
           height: 88px;
           width: 132px;
           flex: 1 0 0;
+          object-fit: cover;
+
 
           @media ($media-640) {
             height: auto;
@@ -684,6 +739,10 @@ input {
             -webkit-line-clamp: 2;
             overflow: hidden;
             text-overflow: ellipsis;
+
+            @media ($media-1024) {
+              font-size: 16px;
+            }
 
           }
 
@@ -896,7 +955,7 @@ input {
   flex-direction: column;
 
   @media ($media-820) {
-    padding: 40px 0px;
+    padding: 0px 0px 48px;
     width: 100%;
   }
 
@@ -969,7 +1028,8 @@ input {
         display: flex;
         flex-direction: column;
         padding: 8px;
-        input{
+
+        input {
           width: 100%;
           display: flex;
         }
@@ -1071,8 +1131,12 @@ input {
     align-items: flex-start;
     align-self: stretch;
 
+    @media ($media-820) {
+      padding: 1.5rem 0;
+    }
+
     @media ($media-640) {
-      padding: 24px 0px;
+      padding: 1.5rem 0;
     }
 
 
@@ -1119,6 +1183,14 @@ input {
     width: 80px;
     right: 2vw;
 
+    @media ($media-1024) {
+      right: -2%;
+    }
+
+    @media ($media-640) {
+      right: -8vw;
+    }
+
     button {
       all: unset;
 
@@ -1133,15 +1205,20 @@ input {
 
       cursor: pointer;
 
+      svg {
+        width: 24px;
+        height: 24px;
+
+        @media ($media-640) {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
       a {
         color: $textcolor;
       }
 
-
-      @media ($media-640) {
-        width: 120px;
-        height: 56px;
-      }
 
       &:hover {
         // color: $primary_1;
@@ -1254,11 +1331,11 @@ input {
       align-self: stretch;
 
       @media ($media-1024) {
-        margin: 0 5%;
+        margin: 0 8%;
       }
 
       @media ($media-640) {
-        margin: 0 5%;
+        margin: 0 8%;
       }
 
       .article-paragraphs {
@@ -1559,6 +1636,7 @@ input {
 
         @media ($media-640) {
           width: 100%;
+          gap: 1rem;
         }
 
 
@@ -1578,10 +1656,10 @@ input {
 
           @media ($media-640) {
             padding: 0px 8px;
-            background-color: #122f30;
-            backdrop-filter: blur(8px);
-            background-color: rgba(18, 47, 48, 0.6); // 深綠半透明
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            // background-color: #122f30;
+            // backdrop-filter: blur(8px);
+            // background-color: rgba(18, 47, 48, 0.6); // 深綠半透明
+            // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 
           }
 
@@ -1590,9 +1668,12 @@ input {
             display: flex;
             color: $textcolor;
 
-            // &:hover {
-            //   color: $primary_1;
-            // }
+            @media ($media-640) {
+            font-size: 12px;
+
+          }
+
+
           }
 
           &:hover {
@@ -1699,7 +1780,7 @@ input {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 820px) {
 
   img {
     max-width: 100%;
@@ -1732,7 +1813,14 @@ input {
   }
 
   .nav-news-mobile {
-    display: block !important;
+    display: flex !important;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    ul {
+      width: 100%;
+      flex-direction: row !important;
+    }
   }
 
   .nav-news-mobile .text-nav {
@@ -1759,7 +1847,7 @@ input {
     z-index: 0;
 
     ul {
-      width: 100%;
+      // width: 40%;
       justify-content: space-between;
 
       li {
