@@ -89,7 +89,8 @@
     "original": "原價",
     "buy": "直接購買",
     "addToCart": "加入購物車",
-    "feature": "商品介紹"
+    "feature": "商品介紹",
+    "spec": "產品規格"
   },
   "cart": {
     "paymentMethod": "付款方式",
@@ -156,6 +157,7 @@
     "noproducts": "無收藏商品",
     "favoriteCafes": "收藏店家",
     "favoriteProducts": "收藏商品",
+    "back": "返回選單",
     "order": {
       "title": "訂單列表",
       "date": "訂購日期",
@@ -176,6 +178,11 @@
       "orders": "訂單列表",
       "profile": "會員資料",
       "logout": "登出"
+    },
+    "profileInfo": {
+      "changePassword": "修改密碼",
+      "cancel": "取消",
+      "confirm": "確認修改"
     }
   }
 }

@@ -89,7 +89,8 @@
     "original": "Original Price",
     "buy": "Buy Now",
     "addToCart": "Add to Cart",
-    "feature": "Product Features"
+    "feature": "Product Features",
+    "spec": "Product Spec."
   },
   "cart": {
     "paymentMethod": "Pay Method",
@@ -154,10 +155,11 @@
   "profile": {
     "nocafes": "No favorite cafés",
     "noproducts": "No favorite products",
-    "favoriteCafes": "Favorite Cafes",
-    "favoriteProducts": "Favorite Products",
+    "favoriteCafes": "Cafés",
+    "favoriteProducts": "Products",
+    "back": "Back To Menu",
     "order": {
-      "title": "Order List",
+      "title": "Order Lists",
       "date": "Date",
       "info": "Order Info",
       "payment": "Payment",
@@ -173,9 +175,14 @@
     },
     "sidebar": {
       "favorites": "My Favorites",
-      "orders": "Order Status",
+      "orders": "Order Lists",
       "profile": "Profile Info",
       "logout": "Logout"
+    },
+    "profileInfo": {
+      "changePassword": "Change Password",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
     }
   }
 }

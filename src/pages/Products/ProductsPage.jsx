@@ -1,10 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./ProductsPage.scss";
 import { products } from "./Products";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { useAuth } from "../../context/AuthContext";
+import { AuthContext, useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -55,11 +55,16 @@ function ProductPage() {
   const [currentImage, setCurrentImage] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [snackbarMsg, setSnackbarMsg] = useState("");
+  const [msg, setMsg] = useState("");
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || {}
   );
+  const { snackbarMsg } = useContext(AuthContext);
+  localStorage.setItem("currentPath", location.pathname);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // 收藏資料的 key
   const FAVORITE_KEY = "favoriteProducts";
@@ -73,7 +78,7 @@ function ProductPage() {
   // 處理愛心點擊
   const handleFavoriteClick = () => {
     if (!isLoggedIn) {
-      setSnackbarMsg("要先登入會員唷！");
+      setMsg("要先登入會員唷！");
       setOpenSnackbar(true);
       return;
     }
@@ -81,8 +86,12 @@ function ProductPage() {
     let updatedFavorite;
     if (favoriteList.includes(currentProduct.id)) {
       updatedFavorite = favoriteList.filter(id => id !== currentProduct.id);
+      setMsg("已從收藏中移除");
+      setOpenSnackbar(true);
     } else {
       updatedFavorite = [...favoriteList, currentProduct.id];
+      setMsg("已加入收藏");
+      setOpenSnackbar(true);
     }
     const updatedUser = { ...currentUser };
     updatedUser.favorite.products = updatedFavorite;
@@ -108,10 +117,27 @@ function ProductPage() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (snackbarMsg) {
+      setOpenSnackbar(true);
+      setMsg(snackbarMsg);
+    } else {
+      setOpenSnackbar(false);
+    }
+  }, [snackbarMsg]);
+
+  const handleSnackBarClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
+
   // 加入購物車（含動畫、未登入提示）
   const handleAddToCart = (e) => {
     if (!isLoggedIn) {
-      setSnackbarMsg("要先登入會員唷！");
+      setMsg("要先登入會員唷！");
       setOpenSnackbar(true);
       return;
     }
@@ -159,7 +185,7 @@ function ProductPage() {
   // 直接購買
   const handleBuyNow = () => {
     if (!isLoggedIn) {
-      setSnackbarMsg("要先登入會員唷！");
+      setMsg("要先登入會員唷！");
       setOpenSnackbar(true);
       return;
     }
@@ -221,25 +247,26 @@ function ProductPage() {
         </div>
 
         <div className="right">
-          {/* ❤️ 愛心收藏按鈕 */}
-          <div
-            className="heart-wrapper"
-            style={{ marginBottom: "16px", width: "40px", cursor: "pointer" }}
-            onClick={handleFavoriteClick}
-          >
-            <img
-              src={
-                isFavorite
-                  ? `${base}products/icon-heart-red.svg`
-                  : `${base}products/icon-heart-white.svg`
-              }
-              alt="favorite"
-              style={{ width: "40px", height: "40px", transition: "0.2s" }}
-            />
+          <div className="title">
+            <h2>
+              <span className="highlight">{language === 'zh-TW' ? currentProduct.nameZH : currentProduct.nameEN}</span>
+            </h2>
+            {/* ❤️ 愛心收藏按鈕 */}
+            <div
+              className="heart-wrapper"
+              // style={{ marginBottom: "16px", width: "40px", cursor: "pointer" }}
+              onClick={handleFavoriteClick}
+            >
+              <img
+                src={
+                  isFavorite
+                    ? `${base}products/icon-heart-red.svg`
+                    : `${base}products/icon-heart-white.svg`
+                }
+                alt="favorite"
+              />
+            </div>
           </div>
-          <h2>
-            <span className="highlight">{currentProduct.name}</span>
-          </h2>
 
           {/* 可以加上描述資料 */}
           <ul className="description">
@@ -352,13 +379,14 @@ function ProductPage() {
 
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={3000}
-        onClose={() => setOpenSnackbar(false)}
+        autoHideDuration={2500}
+        onClose={handleSnackBarClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        sx={{ right: { xs: 90, sm: 90 } }}
+        sx={{ right: { xs: 70, sm: 70 } }}
       >
         <Alert
-          severity="warning"
+          severity="success"
+          onClose={handleSnackBarClose}
           sx={{
             backgroundColor: "#a46230",
             color: "#fff",
@@ -368,7 +396,7 @@ function ProductPage() {
           }}
           variant="filled"
         >
-          {snackbarMsg}
+          {msg}
         </Alert>
       </Snackbar>
     </>

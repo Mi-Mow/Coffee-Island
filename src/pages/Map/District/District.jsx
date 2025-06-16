@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import s from "./District.module.scss";
 import beitou from "../../../assets/home/district/beitou.svg";
@@ -35,6 +35,7 @@ import monsterRecommend from "../../../assets/map/monster-recommend.svg";
 import useIsMobile from "../../../hooks/useIsMobile";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useTranslation } from "react-i18next";
+import { AuthContext } from "../../../context/AuthContext";
 
 function District() {
   const location = useLocation();
@@ -44,6 +45,7 @@ function District() {
   const isMobile = useIsMobile();
   const { language } = useLanguage();
   const { t } = useTranslation();
+  const { snackbarMsg } = useContext(AuthContext);
 
   useEffect(() => {
     if (location.state?.scrollToFilter) {
@@ -55,6 +57,15 @@ function District() {
       window.scrollTo(0, 0);
     }
   }, []);
+
+  useEffect(() => {
+    if (snackbarMsg) {
+      setOpenSnackBar(true);
+      setMsg(snackbarMsg);
+    } else {
+      setOpenSnackBar(false);
+    }
+  }, [snackbarMsg]);
 
   localStorage.setItem("currentPath", location.pathname);
 
@@ -332,7 +343,7 @@ function District() {
 
   const handleCloseFilter = (event, reason) => {
     if (reason && reason === "backdropClick") {
-      return
+      return;
     }
     setIsOpenFilter(false);
   };
@@ -552,7 +563,12 @@ function District() {
               </button>
             </div>
           )}
-          <Dialog onClose={handleCloseFilter} open={isOpenFilter} sx={{}} className={s.dialog}>
+          <Dialog
+            onClose={handleCloseFilter}
+            open={isOpenFilter}
+            sx={{}}
+            className={s.dialog}
+          >
             <DialogTitle
               sx={{
                 fontFamily: "Noto Serif TC",

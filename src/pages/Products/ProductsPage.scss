@@ -90,11 +90,26 @@
     justify-content: center;
     padding: 50px;
 
-    h2 {
-      font-size: 30px;
-      margin-bottom: 24px;
-      color: #FFF1CB;
+    .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 5px;
+      .heart-wrapper {
+        width: 48px;
+        cursor: pointer;
+        transition: 0.1s transform ease-in;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+  
+      h2 {
+        font-size: 30px;
+        color: #FFF1CB;
+      }
     }
+
 
     .description {
       font-size: 18px;

@@ -68,7 +68,9 @@ function Profile() {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || {}
   );
-  const [selectedSection, setSelectedSection] = useState("favorite");
+  const [selectedSection, setSelectedSection] = useState(
+    window.innerWidth > 430 ? "favorite" : ""
+  );
   const [favoriteCafes, setFavoriteCafes] = useState(
     currentUser?.favorite.cafes || []
   );
@@ -91,6 +93,8 @@ function Profile() {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
+  const [showContent, setShowContent] = useState(false);
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -221,7 +225,6 @@ function Profile() {
   };
 
   const handlePasswordSubmit = () => {
-    console.log("Change password form:", passwordForm);
     if (!passwordForm.current || !passwordForm.new || !passwordForm.confirm) {
       setMsg("請填寫所有欄位！");
       setOpenSnackBar(true);
@@ -238,6 +241,10 @@ function Profile() {
         } else {
           if (passwordForm.new !== passwordForm.confirm) {
             setMsg("新密碼與確認新密碼不一致！");
+            setOpenSnackBar(true);
+            return;
+          } else if (passwordForm.new === atob(updatedUser.userPassword)) {
+            setMsg("新密碼不得與舊密碼相同！");
             setOpenSnackBar(true);
             return;
           } else {
@@ -287,7 +294,7 @@ function Profile() {
   return (
     <>
       <div className="profile-page">
-        <div className="sidebar">
+        <div className={`${selectedSection !== "" ? "hide" : ""} sidebar`}>
           <div>
             <img src={avatar} alt="avatar" />
           </div>
@@ -296,7 +303,11 @@ function Profile() {
             className={`${
               selectedSection === "favorite" ? "active" : ""
             } button-style`}
-            onClick={() => setSelectedSection("favorite")}
+            onClick={() => {
+              setSelectedSection("favorite");
+              setShowContent(true);
+              setShowMenu(false);
+            }}
           >
             {t("profile.sidebar.favorites")}
           </button>
@@ -304,7 +315,10 @@ function Profile() {
             className={`${
               selectedSection === "orders" ? "active" : ""
             } button-style`}
-            onClick={() => setSelectedSection("orders")}
+            onClick={() => {
+              setSelectedSection("orders");
+              setShowContent(true);
+            }}
           >
             {t("profile.sidebar.orders")}
           </button>
@@ -312,7 +326,10 @@ function Profile() {
             className={`${
               selectedSection === "profile" ? "active" : ""
             } button-style`}
-            onClick={() => setSelectedSection("profile")}
+            onClick={() => {
+              setSelectedSection("profile");
+              setShowContent(true);
+            }}
           >
             {t("profile.sidebar.profile")}
           </button>
@@ -323,7 +340,7 @@ function Profile() {
         {/* ); */}
 
         {/*  <!-- 右邊內容區 --> */}
-        <div className="right-content">
+        <div className={`right-content ${showContent ? "active" : ""}`}>
           {/* <!-- 右中下：主內容區 --> */}
           <div className="main-section">
             {/* 我的收藏 */}
@@ -331,7 +348,9 @@ function Profile() {
               {selectedSection === "favorite" && (
                 <>
                   <div className="top-section">
-                    <div className="title">我的收藏</div>
+                    <div className="title">
+                      {t("profile.sidebar.favorites")}
+                    </div>
                     <div className="favorite-items">
                       <div className="favorite-item">
                         {t("profile.favoriteCafes")}
@@ -435,9 +454,6 @@ function Profile() {
                         )}
                       </div>
                     </CustomTabPanel>
-                    {/* <CustomTabPanel value={value} index={2}>
-                    Item Three
-                  </CustomTabPanel> */}
                   </Box>
                 </>
               )}
@@ -512,7 +528,9 @@ function Profile() {
             <div className="profile">
               {selectedSection === "profile" && (
                 <>
-                  <div className="profile-title">會員資料</div>
+                  <div className="profile-title">
+                    {t("profile.sidebar.profile")}
+                  </div>
                   <Box
                     sx={{
                       width: "100%",
@@ -520,13 +538,21 @@ function Profile() {
                       mx: "auto",
                       mt: 4,
                       py: 2,
+                      "@media (max-width: 430px)": {
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }
                     }}
                   >
                     {/* 會員名字欄位 */}
-                    <Box alignItems="center" mb={3}>
+                    <Box alignItems="center" mb={3} sx={{
+                      width: "100%"
+                    }}>
                       <div className="edit">
                         <TextField
-                          label="會員名稱"
+                          label={language === "zh-TW" ? "會員名稱" : "Name"}
+                          //"會員名稱"
                           value={editUserName}
                           onChange={(e) => setEditUserName(e.target.value)}
                           disabled={!isEditing}
@@ -536,6 +562,7 @@ function Profile() {
                               color: "#fff",
                               zIndex: 1,
                               fontSize: "16px",
+                              fontFamily: "Noto Serif TC",
                               "&.Mui-disabled": {
                                 color: "#fff1cb",
                               },
@@ -557,10 +584,11 @@ function Profile() {
                               </InputAdornment>
                             ),
                             sx: {
+                              fontFamily: "Noto Serif TC",
                               "& .MuiInputBase-input": {
                                 color: "#fff1cb",
                                 "&.Mui-disabled": {
-                                  "-webkit-text-fill-color":
+                                  WebkitTextFillColor:
                                     "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
                                 },
                               },
@@ -570,8 +598,11 @@ function Profile() {
                             },
                           }}
                           sx={{
-                            width: "50%",
-                            minWidth: "200px",
+                            width: {
+                              xs: "100%", // < 600px
+                              sm: "55%", // > 600px
+                            },
+                            minWidth: "250px",
                             // border: "3px solid #fff1cb",
                             "& label.Mui-focused": {
                               color: "#fff1cb",
@@ -597,7 +628,7 @@ function Profile() {
                     </Box>
 
                     <TextField
-                      label="會員帳號"
+                      label={language === "zh-TW" ? "會員帳號" : "Account"}
                       value={currentUser.userEmail}
                       disabled
                       // fullWidth
@@ -606,6 +637,7 @@ function Profile() {
                           color: "#fff",
                           zIndex: 1,
                           fontSize: "16px",
+                          fontFamily: "Noto Serif TC",
                           "&.Mui-disabled": {
                             color: "#fff1cb",
                           },
@@ -613,11 +645,11 @@ function Profile() {
                       }}
                       InputProps={{
                         sx: {
+                          fontFamily: "Noto Serif TC",
                           "& .MuiInputBase-input": {
                             color: "#fff1cb",
                             "&.Mui-disabled": {
-                              "-webkit-text-fill-color":
-                                "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
+                              WebkitTextFillColor: "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
                             },
                           },
                           "& .MuiOutlinedInput-notchedOutline": {
@@ -626,8 +658,11 @@ function Profile() {
                         },
                       }}
                       sx={{
-                        width: "50%",
-                        minWidth: "200px",
+                        width: {
+                          xs: "100%", // < 600px
+                          sm: "55%", // > 600px
+                        },
+                        minWidth: "250px",
                         mb: 3,
                         "& label.Mui-focused": {
                           color: "#fff1cb",
@@ -665,12 +700,14 @@ function Profile() {
                         fontFamily: "Noto Serif TC",
                         fontWeight: "600",
                         fontSize: "16px",
+                        textTransform: "none",
+                        lineHeight: "1.3",
                         "&:hover": {
                           backgroundColor: "#fddeb8",
                         },
                       }}
                     >
-                      修改密碼
+                      {t("profile.profileInfo.changePassword")}
                     </Button>
 
                     {/* 修改密碼 Dialog */}
@@ -686,7 +723,7 @@ function Profile() {
                           fontSize: "30px",
                         }}
                       >
-                        修改密碼
+                        {t("profile.profileInfo.changePassword")}
                       </DialogTitle>
                       <DialogContent
                         sx={{
@@ -696,7 +733,11 @@ function Profile() {
                       >
                         <TextField
                           name="current"
-                          label="目前密碼"
+                          label={
+                            language === "zh-TW"
+                              ? "目前密碼"
+                              : "Current Password"
+                          }
                           type={showPassword ? "text" : "password"}
                           fullWidth
                           margin="dense"
@@ -737,7 +778,7 @@ function Profile() {
                               "& .MuiInputBase-input": {
                                 color: "#fff1cb",
                                 "&.Mui-disabled": {
-                                  "-webkit-text-fill-color":
+                                  WebkitTextFillColor:
                                     "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
                                 },
                               },
@@ -771,7 +812,11 @@ function Profile() {
                         />
                         <TextField
                           name="new"
-                          label="新密碼，長度須為6碼以上"
+                          label={
+                            language === "zh-TW"
+                              ? "新密碼，長度須為6碼以上"
+                              : "New Password. At least 6 characters"
+                          }
                           type={showNewPassword ? "text" : "password"}
                           fullWidth
                           margin="dense"
@@ -812,7 +857,7 @@ function Profile() {
                               "& .MuiInputBase-input": {
                                 color: "#fff1cb",
                                 "&.Mui-disabled": {
-                                  "-webkit-text-fill-color":
+                                  WebkitTextFillColor:
                                     "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
                                 },
                               },
@@ -846,7 +891,11 @@ function Profile() {
                         />
                         <TextField
                           name="confirm"
-                          label="確認新密碼"
+                          label={
+                            language === "zh-TW"
+                              ? "確認新密碼"
+                              : "Confirm New Password"
+                          }
                           type={showConfirmPassword ? "text" : "password"}
                           fullWidth
                           margin="dense"
@@ -887,7 +936,7 @@ function Profile() {
                               "& .MuiInputBase-input": {
                                 color: "#fff1cb",
                                 "&.Mui-disabled": {
-                                  "-webkit-text-fill-color":
+                                  WebkitTextFillColor:
                                     "rgba(255, 241, 203, 0.75)", // disabled 時文字顏色
                                 },
                               },
@@ -941,7 +990,7 @@ function Profile() {
                             },
                           }}
                         >
-                          取消
+                          {t("profile.profileInfo.cancel")}
                         </Button>
                         <Button
                           onClick={handlePasswordSubmit}
@@ -959,7 +1008,7 @@ function Profile() {
                             },
                           }}
                         >
-                          確認修改
+                          {t("profile.profileInfo.confirm")}
                         </Button>
                       </DialogActions>
                     </Dialog>
@@ -969,6 +1018,15 @@ function Profile() {
             </div>
           </div>
         </div>
+        <button
+          className={`${selectedSection === "" ? "hide" : ""} back-btn`}
+          onClick={() => {
+            setSelectedSection("");
+            setShowContent(false);
+          }}
+        >
+          {t("profile.back")}
+        </button>
       </div>
       <Snackbar
         open={openSnackBar}

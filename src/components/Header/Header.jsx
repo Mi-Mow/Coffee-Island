@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import s from "./Header.module.scss";
 import logo from "../../assets/logo-lg.svg";
 import earth from "../../assets/header/earth-white.svg";
+import earthPixel from "../../assets/header/earth-pixel.svg";
 import cart from "../../assets/header/cart.svg";
 import profile from "../../assets/header/profile.svg";
 import { useTranslation } from "react-i18next";
@@ -47,11 +48,6 @@ function Header() {
 
   // 這邊是漢堡選單(by怡璇)
   const { logout } = useAuth(); // ✅ 從 context 引入
-
-  // 然後用這個 function
-  const handleLogout = () => {
-    logout(); // ✅ 呼叫 context 提供的登出方法
-  };
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -176,7 +172,7 @@ function Header() {
                     {/* 🌐 語言切換區塊 */}
                     <div className={s.language} onClick={toggleLang}>
                       <div className={s.earthContainer}>
-                        <img src={earth} alt="language" />
+                        <img src={earthPixel} alt="language" />
                       </div>
                       <p>{nextLang}</p>
                     </div>
@@ -187,7 +183,9 @@ function Header() {
                         <NavLink
                           to={`${base}profile`}
                           onClick={() => setIsMenuOpen(false)}
-                          className={s.memberButton}
+                          className={({ isActive }) => 
+                          isActive ? `${s.memberButton} ${s.active}` : s.memberButton
+                        }
                         >
                           {t("header.profile")}
                         </NavLink>
@@ -208,6 +206,7 @@ function Header() {
                         onClick={() => setIsMenuOpen(false)}
                         className={s.memberButton}
                       >
+                        {t("header.login")}
                       </NavLink>
                     )}
 
