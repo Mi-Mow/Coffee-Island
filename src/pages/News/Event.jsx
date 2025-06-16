@@ -219,7 +219,7 @@ function Event() {
                     style={{
                       cursor: 'pointer',
                       fontWeight: filterTime === label ? 'bold' : 'normal',
-                      backgroundColor: filterTime === label ? '#122f30' : '',
+                      backgroundColor: filterTime === label ? '#904118' : '',
                     }}
                   >
                     <p>{label}</p>

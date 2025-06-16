@@ -2,6 +2,7 @@ import { useParams, useNavigate, Link } from "react-router-dom"
 // 文章資料
 import { articles, hotArticles } from './Article'
 import { useEffect } from "react";
+import shareIcon from "../../assets/news/icon-share.svg"
 const base = import.meta.env.BASE_URL;
 
 
@@ -95,6 +96,14 @@ function ArticlePage() {
                     </ol>
                 </nav>
 
+                <div className="article-share-container">
+                    <button onClick={handleShare}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18.4434 18.7568H17.0352V19.9912H15.7852V21.457H5.78516V19.9912H4.55273V18.7402H5.80273V19.957H15.7852V18.7402H16.9434V13.8408H18.4434V18.7568ZM5.70312 8.66309V9.91309H4.55078V18.7568L3.05078 18.7559V9.89648H4.45312V8.66309H5.70312ZM14.127 3.79297H15.5898V5.04297H16.9258V6.29297H18.3086V7.54297H19.7422V8.41797H20.9492V9.66797H19.7422V10.543H18.3086V11.793H16.9258V13.043H15.5898V14.293H14.127V15.543H12.627V11.043H11.5352V12.0381H10.0703V13.0381H8.94531V14.2266H9.44531V15.4766H8.19531V14.293H7.44531V11.293H8.57031V10.0381H10.0352V8.03809H11.1309V7.04297H12.627V2.54297H14.127V3.79297ZM8.19531 8.6377H5.70312V7.1377H8.19531V8.6377Z" fill="#fff1cb" />
+                        </svg>
+                    </button>
+                </div>
+
                 <section>
                     {/* 標題區 */}
                     <div className="title-container">
@@ -137,9 +146,7 @@ function ArticlePage() {
                                     );
                                 })}
 
-                                <div className="article-button-container">
-                                    <button onClick={handleShare}>分享文章</button>
-                                </div>
+
                             </div>
                         )}
                     </div>
@@ -173,11 +180,13 @@ function ArticlePage() {
 
                 {nextArticle && (
                     <div className="article-next">
-                        <a onClick={() => {navigate(`${base}news/article/${nextArticle.id}`);
-                    window.scrollTo(0, 0); }}>
+                        <a onClick={() => {
+                            navigate(`${base}news/article/${nextArticle.id}`);
+                            window.scrollTo(0, 0);
+                        }}>
                             下一篇：{nextArticle.title.length > 30 ? nextArticle.title.slice(0, 30) + '…' : nextArticle.title}
-                             <img src={nextArticle.image} alt={nextArticle.title} />
-                            
+                            <img src={nextArticle.image} alt={nextArticle.title} />
+
                         </a>
                     </div>
                 )}

@@ -88,7 +88,7 @@ function EventPage() {
                                     style={{ textDecoration: "underline" }}
                                 >點此前往</a>
                             ) : (
-                                <div className="reco-button">
+                                <div className="book-button">
                                     <button onClick={() => alert('前往報名')}>點此預約</button>
                                 </div>
                             )}
