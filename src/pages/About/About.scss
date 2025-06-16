@@ -141,7 +141,11 @@
         }
     }
 
-    @media (max-width: 390px) {
+    @media (max-width: 430px) {
+        .about__content{
+            padding:10px 20px
+        }
+
         &__imagegroup__imagegirl {
             opacity: 0;
             max-height: 0;

@@ -177,5 +177,50 @@
       "profile": "Profile Info",
       "logout": "Logout"
     }
+  },
+  "login": {
+    "title": "Member Login",
+    "welcome": "Welcome Back",
+    "email": "Email*",
+    "password": "Password*",
+    "remember": "Remember Me",
+    "forgot": "Forgot Password",
+    "button": "Login",
+    "notMember": "Not a member?",
+    "registerNow": "Register Now",
+    "emptyWarning": "Please enter both email and password",
+    "success": "Login successful",
+    "fail": "Login failed. Please check your credentials",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password"
+  },
+  "forgot": {
+    "title": "Forgot Password",
+    "instruction": "Please enter your registered email. We’ll send you a password reset link.",
+    "email": "Email",
+    "cancel": "Cancel",
+    "send": "Send",
+    "success": "Please check your email for verification",
+    "ok": "OK"
+  },
+  "register": {
+  "title": "Register",
+  "subtitle": "Join for Free",
+  "name": "Your Name*",
+  "namePlaceholder": "Enter your name",
+  "email": "Set Account*",
+  "emailPlaceholder": "Enter your email",
+  "password": "Set Password*",
+  "passwordPlaceholder": "Enter password (at least 6 characters)",
+  "confirmPassword": "Confirm Password*",
+  "confirmPasswordPlaceholder": "Re-enter your password",
+  "button": "Register",
+  "error": {
+    "nameRequired": "Please enter your name",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "passwordMismatch": "Password and confirm password do not match"
   }
+}
+
 }
