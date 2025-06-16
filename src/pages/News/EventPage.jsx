@@ -80,10 +80,12 @@ function EventPage() {
                         <p>
                             <strong>更多資訊：</strong>{event.p}
                             {event.link ? (
-                                <a href={event.link} target="_blank" rel="noopener noreferrer">點此前往</a>
+                                <a href={event.link} target="_blank" rel="noopener noreferrer"
+                                style={{textDecoration:"underline"}}
+                                >點此前往</a>
                             ) : (
                                 <div className="reco-button">
-                                    <button onClick={() => alert('前往報名')}>點此報名</button>
+                                    <button onClick={() => alert('前往報名')}>點此預約</button>
                                 </div>
                             )}
 

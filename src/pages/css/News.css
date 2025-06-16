@@ -416,7 +416,7 @@
   align-self: stretch;
 }
 .event-card .date {
-  font-size: 14px;
+  font-size: 12px;
   color: #fff !important;
 }
 .event-card .title-container {
@@ -1077,6 +1077,12 @@ input {
   justify-content: center;
   letter-spacing: 0.24px;
 }
+@media (max-width:640px) {
+  .article-detail-page p,
+  .event-detail-page p {
+    font-size: 14px;
+  }
+}
 .article-detail-page section,
 .event-detail-page section {
   display: flex;
@@ -1104,6 +1110,12 @@ input {
   line-height: 160%;
   letter-spacing: 0.8px;
 }
+@media (max-width:640px) {
+  .article-detail-page section .title-container h1,
+  .event-detail-page section .title-container h1 {
+    font-size: 24px;
+  }
+}
 .article-detail-page section figure,
 .event-detail-page section figure {
   width: 100%;
@@ -1117,6 +1129,13 @@ input {
   object-fit: cover;
   height: 100%;
 }
+@media (max-width:640px) {
+  .article-detail-page section figure,
+  .event-detail-page section figure {
+    width: 80%;
+    height: 120px;
+  }
+}
 .article-detail-page section .content-container,
 .event-detail-page section .content-container {
   margin: 0 20%;
@@ -1125,6 +1144,12 @@ input {
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;
+}
+@media (max-width:640px) {
+  .article-detail-page section .content-container,
+  .event-detail-page section .content-container {
+    margin: 0 5%;
+  }
 }
 .article-detail-page section .content-container .article-paragraphs,
 .event-detail-page section .content-container .article-paragraphs {
@@ -1145,6 +1170,13 @@ input {
 .event-detail-page section .content-container .article-paragraphs .paragraph-block .smImg {
   width: 560px;
   height: 315px;
+}
+@media (max-width:640px) {
+  .article-detail-page section .content-container .article-paragraphs .paragraph-block .smImg,
+  .event-detail-page section .content-container .article-paragraphs .paragraph-block .smImg {
+    width: 80%;
+    height: 120px;
+  }
 }
 .article-detail-page section .content-container .article-paragraphs .paragraph-block:last-child p,
 .event-detail-page section .content-container .article-paragraphs .paragraph-block:last-child p {
@@ -1447,7 +1479,7 @@ input {
   #findArticles .nav-news ul li,
   #findEvent .nav-news ul li {
     flex: 1;
-    margin: 0px 24px;
+    margin: 0px 8px;
     text-align: center;
   }
   #findArticles .nav-news ul li li > a:last-child,

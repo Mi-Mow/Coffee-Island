@@ -297,7 +297,7 @@
   }
 
   .date {
-    font-size: 14px;
+    font-size: 12px;
     color: $tagcolor !important;
   }
 
@@ -1084,7 +1084,7 @@ input {
   display: flex;
   margin: 0 auto;
 
-  .breadcrumbs {   
+  .breadcrumbs {
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -1116,6 +1116,10 @@ input {
     justify-content: center;
     letter-spacing: 0.24px;
 
+    @media ($media-640) {
+      font-size: 14px;
+    }
+
   }
 
   section {
@@ -1142,6 +1146,10 @@ input {
         font-weight: 700;
         line-height: 160%;
         letter-spacing: 0.8px;
+
+        @media ($media-640) {
+          font-size: 24px;
+        }
       }
 
     }
@@ -1158,6 +1166,11 @@ input {
         object-fit: cover;
         height: 100%;
       }
+
+      @media ($media-640) {
+        width: 80%;
+        height: 120px;
+      }
     }
 
     .content-container {
@@ -1167,6 +1180,10 @@ input {
       align-items: flex-start;
       gap: 12px;
       align-self: stretch;
+
+      @media ($media-640) {
+        margin: 0 5%;
+      }
 
 
 
@@ -1186,6 +1203,11 @@ input {
           .smImg {
             width: 560px;
             height: 315px;
+
+            @media ($media-640) {
+              width: 80%;
+              height: 120px;
+            }
           }
 
 
@@ -1596,7 +1618,7 @@ input {
 
       li {
         flex: 1;
-        margin: 0px 24px;
+        margin: 0px 8px;
         text-align: center;
 
         li>a:last-child {
