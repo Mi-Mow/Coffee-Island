@@ -1,6 +1,6 @@
 footer {
   display: flex;
-  background-color: #261C1A;
+  background-color: #261c1a;
   color: #fff;
   height: 15vh;
   align-items: center;
@@ -9,11 +9,27 @@ footer {
   font-size: 14px;
   letter-spacing: 1px;
 }
+@media (max-width: 530px) {
+  footer {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+    font-size: 12px;
+    gap: 12px;
+  }
+}
+footer .copyright {
+  line-height: 1.5;
+}
 footer .icons {
   display: flex;
 }
 footer .icons .icon-container {
-  width: 30px;
-  margin-right: 12px;
+  width: 54px;
   cursor: pointer;
+}
+@media (max-width: 768px) {
+  footer .icons .icon-container {
+    width: 48px;
+  }
 }

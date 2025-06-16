@@ -87,6 +87,7 @@ body::before {
   bottom: 0;
   cursor: pointer;
   transition: 0.2s width ease-out;
+  z-index: 99;
 }
 .monster-container.show {
   opacity: 1;

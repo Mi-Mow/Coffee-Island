@@ -76,7 +76,7 @@ function ArticlePage() {
                         </li>
                         <li>&gt;</li>
                         <li aria-current="page">
-                            {article.title} {/* 當前文章標題 */}
+                            {article.title.length > 10 ? article.title.slice(0, 10) + '…' : article.title} {/* 當前文章標題 */}
                         </li>
                     </ol>
                 </nav>
@@ -84,10 +84,10 @@ function ArticlePage() {
                 <section>
                     {/* 標題區 */}
                     <div className="title-container">
-                        <p>咖啡島 老臺北特輯</p>
+                        <p>咖啡島 <span>{article.tag}</span></p>
                         {/* SEO h1 */}
                         <h1>{article.title}</h1>
-                        <p>文 陳誠成 攝 郭董郭</p>
+                        <p>文 <span>{article.author}</span></p>
                     </div>
                     {/* 大圖 */}
                     <figure>

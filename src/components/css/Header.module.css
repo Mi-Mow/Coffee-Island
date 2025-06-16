@@ -125,7 +125,7 @@ main {
   width: 220px;
   background-color: #28574f;
   z-index: 1000;
-  padding: 40px 35px 30px 75px;
+  padding: 30px 40px;
   box-shadow: -4px 0 12px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
@@ -143,28 +143,51 @@ main {
   cursor: pointer;
 }
 .hamburgerOverlay .menuList {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-top: 80px;
+  list-style: none;
+  padding: 0;
+  margin: 40px 0;
 }
 .hamburgerOverlay .menuList li {
-  list-style: none;
-  width: 100%;
+  margin: 14px 0;
 }
-.hamburgerOverlay .menuList li a {
-  display: block;
-  width: 100%;
-  text-align: left;
-  font-size: 18px;
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: 0.5px;
+.hamburgerOverlay .menuList li .menuLink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: white;
   text-decoration: none;
-  transition: transform 0.2s ease;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  padding: 8px 5px;
 }
-.hamburgerOverlay .menuList li a:hover {
-  transform: translateX(-4px);
+.hamburgerOverlay .menuList li .menuLink .icon {
+  width: 28px;
+  height: 30px;
+  transition: 0.2s ease-in-out;
+}
+.hamburgerOverlay .menuList li .menuLink span {
+  font-size: 18px;
+}
+.hamburgerOverlay .menuList li .menuLink:hover {
+  color: #ffe38f;
+}
+.hamburgerOverlay .menuList li .menuLink:active {
+  background-color: #ffe38f;
+  color: #1d1d1d;
+}
+.hamburgerOverlay .logoutButton {
+  margin-top: 12px;
+  background: transparent;
+  border: 1px solid #fff1cb;
+  color: #fff1cb;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.hamburgerOverlay .logoutButton:hover {
+  background: rgba(255, 241, 203, 0.1);
 }
 
 @keyframes slideInRight {
@@ -187,21 +210,18 @@ main {
 }
 
 .memberButton {
-  margin-top: 50px;
-  display: block;
-  width: 100%;
-  text-align: center;
-  background-color: #c8a968;
-  color: black;
+  margin-top: 12px;
+  background: transparent;
+  border: 1px solid #fff1cb;
+  color: #fff1cb;
   font-size: 16px;
-  font-weight: bold;
-  padding: 8px 0;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
 }
 .memberButton:hover {
-  background-color: #b18e4a;
+  background: rgba(255, 241, 203, 0.1);
 }
 
 .cartContainer {
