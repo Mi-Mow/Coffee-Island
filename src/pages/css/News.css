@@ -416,7 +416,7 @@
   align-self: stretch;
 }
 .event-card .date {
-  font-size: 14px;
+  font-size: 12px;
   color: #fff !important;
 }
 .event-card .title-container {
@@ -1207,7 +1207,7 @@ input {
 }
 .article-detail-page .article-buttonGroup-container .article-button-container button a,
 .event-detail-page .article-buttonGroup-container .article-button-container button a {
-  color: #fff1cb;
+  color: #fff1cb !important;
 }
 @media (max-width:640px) {
   .article-detail-page .article-buttonGroup-container .article-button-container button,
@@ -1447,7 +1447,7 @@ input {
   #findArticles .nav-news ul li,
   #findEvent .nav-news ul li {
     flex: 1;
-    margin: 0px 24px;
+    margin: 0px 8px;
     text-align: center;
   }
   #findArticles .nav-news ul li li > a:last-child,

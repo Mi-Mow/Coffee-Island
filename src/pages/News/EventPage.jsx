@@ -4,6 +4,9 @@ import { useEffect, useRef } from "react";
 const base = import.meta.env.BASE_URL;
 
 function EventPage() {
+    useEffect(() => {
+        window.scrollTo(0, 0); // 捲動到頁面頂部
+    }, []);
     const { id } = useParams();
     const navigate = useNavigate();
 
