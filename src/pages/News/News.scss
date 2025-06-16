@@ -5,6 +5,57 @@
   max-width: 1280px;
 }
 
+#news,
+#findArticles,
+#findEvent {
+
+  //按鈕
+  .reco-button a,
+  button {
+    position: relative;
+    display: flex;
+    padding: 15px 60px;
+    justify-content: center;
+    cursor: pointer;
+
+    font-weight: 900;
+    color: $btn-color;
+    border-radius: 2px;
+    // border: 3px solid $textcolor;
+    background-color: #E1BB98;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 1;
+
+    @media ($media-640) {
+      font-size: 12px;
+    }
+
+
+    // 疊上透明背景圖（紙張材質）
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('/paper-texture.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      opacity: 0.3; // 材質透明度 30%
+      z-index: 1;
+      transition: background-color 0.3s, opacity 0.3s;
+    }
+
+    &:hover {
+      color: $textcolor !important;
+      border: 2px solid $bordercolor;
+      background-color: #904118;
+    }
+  }
+
+
+}
+
 /* 島嶼月報 all */
 #news,
 #findArticles,
@@ -215,49 +266,6 @@
     /* Slight zoom for text */
   }
 
-  //按鈕
-  .reco-button a,
-  button {
-    position: relative;
-    display: flex;
-    padding: 15px 60px;
-    justify-content: center;
-    cursor: pointer;
-
-    font-weight: 900;
-    color: $btn-color;
-    border-radius: 2px;
-    // border: 3px solid $textcolor;
-    background-color: #E1BB98;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    z-index: 1;
-
-    @media ($media-640) {
-      font-size: 12px;
-    }
-
-
-    // 疊上透明背景圖（紙張材質）
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: url('/paper-texture.png');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      opacity: 0.3; // 材質透明度 30%
-      z-index: 1;
-      transition: background-color 0.3s, opacity 0.3s;
-    }
-
-    &:hover {
-      color: $textcolor !important;
-      border: 2px solid $bordercolor;
-      background-color: #904118;
-    }
-  }
 
 }
 
@@ -297,7 +305,7 @@
   }
 
   .date {
-    font-size: 14px;
+    font-size: 12px;
     color: $tagcolor !important;
   }
 
@@ -321,6 +329,7 @@
 
 /* 關鍵字搜尋 */
 .searchBar {
+  width: 100%;
   display: flex;
   padding: 24px auto;
   flex-direction: column;
@@ -339,9 +348,10 @@
   }
 
   input {
+    width: 100%;
     background-color: transparent;
     display: flex;
-    width: 400px;
+    // width: 400px;
     height: 40px;
     padding: 0px 20px;
     gap: 10px;
@@ -377,16 +387,7 @@
 
 }
 
-// 文章關鍵字搜尋
-.search-container .suggestion-list {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
 
-  li {
-    padding-top: 8px;
-  }
-}
 
 input {
   letter-spacing: 1.6px;
@@ -565,6 +566,8 @@ input {
               height: 80px;
               align-self: stretch;
               justify-content: center;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
 
@@ -954,6 +957,33 @@ input {
   //   }
 
   // }
+  .sec1 {
+    width: 100%;
+
+    .searchBar {
+      width: 100%;
+
+      // 文章關鍵字搜尋
+      .search-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        input{
+          width: 100%;
+          display: flex;
+        }
+
+        li {
+          padding-top: 8px;
+        }
+      }
+
+    }
+
+  }
+
+
 
   .articleCard {
     cursor: pointer;
@@ -1084,7 +1114,45 @@ input {
   display: flex;
   margin: 0 auto;
 
-  .breadcrumbs {   
+  .article-share-container {
+    position: fixed;
+    width: 80px;
+    right: 2vw;
+
+    button {
+      all: unset;
+
+      border-radius: 99px;
+      // border: 2px solid $textcolor;
+      background-color: transparent;
+
+      display: flex;
+      padding: 1rem;
+      justify-content: center;
+      align-items: center;
+
+      cursor: pointer;
+
+      a {
+        color: $textcolor;
+      }
+
+
+      @media ($media-640) {
+        width: 120px;
+        height: 56px;
+      }
+
+      &:hover {
+        // color: $primary_1;
+        background-color: #904118;
+        // border: 2px solid $bordercolor;
+      }
+
+    }
+  }
+
+  .breadcrumbs {
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -1104,6 +1172,10 @@ input {
 
       @media ($media-640) {
         font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
       }
     }
   }
@@ -1115,6 +1187,10 @@ input {
     line-height: 200%;
     justify-content: center;
     letter-spacing: 0.24px;
+
+    @media ($media-640) {
+      font-size: 14px;
+    }
 
   }
 
@@ -1142,6 +1218,10 @@ input {
         font-weight: 700;
         line-height: 160%;
         letter-spacing: 0.8px;
+
+        @media ($media-640) {
+          font-size: 24px;
+        }
       }
 
     }
@@ -1158,6 +1238,11 @@ input {
         object-fit: cover;
         height: 100%;
       }
+
+      @media ($media-640) {
+        width: 80%;
+        height: 120px;
+      }
     }
 
     .content-container {
@@ -1168,7 +1253,13 @@ input {
       gap: 12px;
       align-self: stretch;
 
+      @media ($media-1024) {
+        margin: 0 5%;
+      }
 
+      @media ($media-640) {
+        margin: 0 5%;
+      }
 
       .article-paragraphs {
         display: flex;
@@ -1186,6 +1277,17 @@ input {
           .smImg {
             width: 560px;
             height: 315px;
+            object-fit: cover;
+
+            @media ($media-1024) {
+              width: 80%;
+              height: 240px;
+            }
+
+            @media ($media-640) {
+              width: 80%;
+              height: 120px;
+            }
           }
 
 
@@ -1196,8 +1298,43 @@ input {
 
         }
 
+
+
       }
 
+    }
+
+    p {
+
+      .book-button {
+
+        button {
+          margin-top: 1.5rem;
+          border-radius: 2px;
+          border: 3px solid $textcolor;
+          background-color: transparent;
+
+          display: flex;
+          width: 160px;
+          height: 72px;
+          padding: 1rem 0px;
+          justify-content: center;
+          align-items: center;
+
+          cursor: pointer;
+
+          a {
+            color: $textcolor;
+          }
+
+          &:hover {
+            // color: $primary_1;
+            background-color: #904118;
+            border: 2px solid $bordercolor;
+          }
+
+        }
+      }
     }
 
     .info-container {
@@ -1225,7 +1362,31 @@ input {
     }
   }
 
+  .article-next {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 2.5rem;
 
+    a {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      line-height: 200%;
+      width: 100%;
+      cursor: pointer;
+
+      img {
+        height: 240px;
+        object-fit: cover;
+
+        @media ($media-640) {
+          height: 120px;
+        }
+      }
+    }
+  }
 
   .article-buttonGroup-container {
     display: flex;
@@ -1284,6 +1445,7 @@ input {
 /* 找活動 */
 #findEvent {
   main {
+    width: 100%;
     display: flex;
     padding: 0px;
     flex-direction: column;
@@ -1351,6 +1513,7 @@ input {
 
 
   .filterBar {
+    width: 100%;
 
     display: flex;
     // padding: 48px auto;
@@ -1371,22 +1534,24 @@ input {
     }
 
     .timeBar {
+      width: 100%;
       display: flex;
       justify-content: center;
+      flex-wrap: nowrap;
       align-items: center;
       gap: 36px;
       align-self: stretch;
 
       @media ($media-640) {
         // flex-wrap: wrap;
-
-
         gap: 12px;
         justify-content: flex-start;
         font-size: 12px;
       }
 
       div {
+        width: 100%;
+        justify-content: center;
         display: flex;
         // width: 363px;
         align-items: center;
@@ -1398,6 +1563,8 @@ input {
 
 
         .time {
+
+          max-width: 120px;
 
           display: flex;
           height: 40px;
@@ -1423,17 +1590,18 @@ input {
             display: flex;
             color: $textcolor;
 
-            &:hover {
-              color: $primary_1;
-            }
+            // &:hover {
+            //   color: $primary_1;
+            // }
           }
 
           &:hover {
-
-            border: 2px solid $primary_1;
+            background-color: #904118;
+            // border: 2px solid $primary_1;
           }
 
         }
+
       }
     }
 
@@ -1596,7 +1764,7 @@ input {
 
       li {
         flex: 1;
-        margin: 0px 24px;
+        margin: 0px 8px;
         text-align: center;
 
         li>a:last-child {

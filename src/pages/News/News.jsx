@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './News.scss'
 const base = import.meta.env.BASE_URL;
 // 活動資料
@@ -17,6 +17,12 @@ function News() {
   useEffect(() => {
     window.scrollTo(0, 0); // 捲動到頁面頂部
   }, []);
+
+  const navigate = useNavigate();
+
+  function onClickArea(id) {
+    navigate(`${base}news/event/${id}`);
+  }
 
   return (
     <>
@@ -99,6 +105,7 @@ function News() {
 
           <div className="events">
             {/* 標題 */}
+            
             <div className="event-title">
               <h2>Events</h2>
               <svg xmlns="http://www.w3.org/2000/svg" width="321" height="3" viewBox="0 0 321 3" fill="none">
@@ -114,6 +121,7 @@ function News() {
                 <EventCard
                   className="event-card"
                   key={index}
+                  onClick={() => onClickArea(event.id)}
                   imgSrc={event.imgSrc}
                   tags={event.tags}
                   date={event.date}

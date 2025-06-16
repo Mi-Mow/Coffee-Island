@@ -3,6 +3,16 @@
   cursor: pointer;
   transition: 0.2s transform ease-out;
 }
+@media (max-width: 680px) {
+  .card {
+    width: 48%;
+  }
+}
+@media (max-width: 530px) {
+  .card {
+    width: 96%;
+  }
+}
 .card:hover {
   transform: translateY(-2px);
 }
@@ -64,7 +74,41 @@
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
+@media (max-width: 530px) {
+  .card .description {
+    margin-top: 5px;
+  }
+}
 
 .small {
-  width: 23.5%;
+  width: 23.8%;
+}
+@media screen and (max-width: 1024px) {
+  .small {
+    width: 31.2%;
+  }
+}
+@media (max-width: 768px) {
+  .small {
+    width: 48%;
+  }
+}
+@media (max-width: 530px) {
+  .small {
+    width: 100%;
+  }
+}
+
+.popularCard {
+  width: 31.8%;
+}
+@media (max-width: 768px) {
+  .popularCard {
+    width: 48%;
+  }
+}
+@media (max-width: 530px) {
+  .popularCard {
+    width: 100%;
+  }
 }

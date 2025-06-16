@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import EventCard from './components/EventCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import event1 from '../../assets/news/activities/01.jpg';
 import event2 from '../../assets/news/activities/02.jpg';
 import event3 from '../../assets/news/activities/3.png';
@@ -127,22 +127,34 @@ TYPICA 的理念是讓咖啡的價值被公平體現，這不僅是一場品飲�
     id: 8,
     imgSrc: `${base}news/event8.jpg`,
     tags: ['最新企劃', '復古咖啡廳'],
-    date: '2025/05/30~2025/05/30',
-    startDate: new Date('2025-05-30'),
-    endDate: new Date('2025-05-30'),
+    date: '2025/06/24~2025/06/24',
+    startDate: new Date('2025-06-24'),
+    endDate: new Date('2025-06-24'),
     time: '', // 無時間
-    title: '徐明志｜品一杯草莓果醬味咖啡',
-    link: `${base}news/event/1` // 活動內容頁面
+    title: '品一杯草莓果醬味咖啡',
+    content: `邀請你走進台北市區的隱藏咖啡園與烘焙坊，體驗都市中難得的咖啡小旅行。
+專業咖啡農及烘焙師將分享咖啡品種、處理法及風味特色，讓你了解咖啡從產地到杯中的完整故事。
+特別邀請來自台灣與義大利的咖啡師，現場示範多種沖煮技巧，並帶來獨家城市風味手沖咖啡。
+這場融合國際文化與本地風情的咖啡體驗，將帶你探索台北獨有的咖啡魅力。`,
+    p: '咖啡島限定，免費報名。',
+    organizer: "咖啡島",
+    note: '假想文案，僅供網站設計練習使用',
   },
 ];
 
 function Event() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // 捲動到頁面頂部
+  }, []);
 
   const navigate = useNavigate();
 
   function onClickArea(id) {
     navigate(`${base}news/event/${id}`);
   }
+
+
+  const [searchKeyword, setSearchKeyword] = useState('');
 
 
   // setFilter
@@ -153,19 +165,24 @@ function Event() {
   const tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
   const filterEventDates = events.filter(ev => {
-    switch (filterTime) {
-      case '今日':
-        return isSameDay(ev.startDate, today);
-      case '明日':
-        return isSameDay(ev.startDate, tomorrow);
-      case '當月':
-        return ev.startDate.getMonth() === today.getMonth();
-      case '將結束':
-        const endSoon = (ev.endDate - today) / (1000 * 60 * 60 * 24);
-        return endSoon <= 7 && endSoon >= 0; //定義7天內為即將結束
-      default:
-        return true;
-    }
+    const matchTime = (() => {
+      switch (filterTime) {
+        case '今日':
+          return isSameDay(ev.startDate, today);
+        case '明日':
+          return isSameDay(ev.startDate, tomorrow);
+        case '當月':
+          return ev.startDate.getMonth() === today.getMonth();
+        case '將結束':
+          const endSoon = (ev.endDate - today) / (1000 * 60 * 60 * 24);
+          return endSoon <= 7 && endSoon >= 0; //定義7天內為即將結束
+        default:
+          return true;
+      }
+    })();
+    const matchKeyword = ev.title.includes(searchKeyword) || ev.content?.includes(searchKeyword);
+
+    return matchTime && (!searchKeyword || matchKeyword);
   });
 
   function isSameDay(date1, date2) {
@@ -202,7 +219,7 @@ function Event() {
                     style={{
                       cursor: 'pointer',
                       fontWeight: filterTime === label ? 'bold' : 'normal',
-                      backgroundColor: filterTime === label ? '#122f30' : '',
+                      backgroundColor: filterTime === label ? '#904118' : '',
                     }}
                   >
                     <p>{label}</p>
@@ -214,7 +231,10 @@ function Event() {
 
             {/* 關鍵字搜尋 */}
             <div className="searchBar">
-              <input type="text" placeholder="想找什麼活動嗎？例如：咖啡展" />
+              <input type="text"
+                placeholder="想找什麼活動嗎？例如：咖啡展"
+                onChange={(e) => setSearchKeyword(e.target.value)}
+              />
             </div>
           </section>
 

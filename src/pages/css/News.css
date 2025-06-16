@@ -7,6 +7,63 @@
   max-width: 1280px;
 }
 
+#news .reco-button a,
+#news button,
+#findArticles .reco-button a,
+#findArticles button,
+#findEvent .reco-button a,
+#findEvent button {
+  position: relative;
+  display: flex;
+  padding: 15px 60px;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 900;
+  color: #904118;
+  border-radius: 2px;
+  background-color: #E1BB98;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
+}
+@media (max-width:640px) {
+  #news .reco-button a,
+  #news button,
+  #findArticles .reco-button a,
+  #findArticles button,
+  #findEvent .reco-button a,
+  #findEvent button {
+    font-size: 12px;
+  }
+}
+#news .reco-button a::before,
+#news button::before,
+#findArticles .reco-button a::before,
+#findArticles button::before,
+#findEvent .reco-button a::before,
+#findEvent button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/paper-texture.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: 1;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+#news .reco-button a:hover,
+#news button:hover,
+#findArticles .reco-button a:hover,
+#findArticles button:hover,
+#findEvent .reco-button a:hover,
+#findEvent button:hover {
+  color: #fff1cb !important;
+  border: 2px solid #FFF1CB;
+  background-color: #904118;
+}
+
 /* 島嶼月報 all */
 #news,
 #findArticles,
@@ -311,78 +368,6 @@
   transform: scale(1.1);
   /* Slight zoom for text */
 }
-#news .reco-button a,
-#news button,
-#findArticles .reco-button a,
-#findArticles button,
-#findEvent .reco-button a,
-#findEvent button,
-.article-detail-page .reco-button a,
-.article-detail-page button,
-.event-detail-page .reco-button a,
-.event-detail-page button {
-  position: relative;
-  display: flex;
-  padding: 15px 60px;
-  justify-content: center;
-  cursor: pointer;
-  font-weight: 900;
-  color: #904118;
-  border-radius: 2px;
-  background-color: #E1BB98;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  z-index: 1;
-}
-@media (max-width:640px) {
-  #news .reco-button a,
-  #news button,
-  #findArticles .reco-button a,
-  #findArticles button,
-  #findEvent .reco-button a,
-  #findEvent button,
-  .article-detail-page .reco-button a,
-  .article-detail-page button,
-  .event-detail-page .reco-button a,
-  .event-detail-page button {
-    font-size: 12px;
-  }
-}
-#news .reco-button a::before,
-#news button::before,
-#findArticles .reco-button a::before,
-#findArticles button::before,
-#findEvent .reco-button a::before,
-#findEvent button::before,
-.article-detail-page .reco-button a::before,
-.article-detail-page button::before,
-.event-detail-page .reco-button a::before,
-.event-detail-page button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("/paper-texture.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  opacity: 0.3;
-  z-index: 1;
-  transition: background-color 0.3s, opacity 0.3s;
-}
-#news .reco-button a:hover,
-#news button:hover,
-#findArticles .reco-button a:hover,
-#findArticles button:hover,
-#findEvent .reco-button a:hover,
-#findEvent button:hover,
-.article-detail-page .reco-button a:hover,
-.article-detail-page button:hover,
-.event-detail-page .reco-button a:hover,
-.event-detail-page button:hover {
-  color: #fff1cb !important;
-  border: 2px solid #FFF1CB;
-  background-color: #904118;
-}
 
 .event-card {
   width: 100%;
@@ -416,7 +401,7 @@
   align-self: stretch;
 }
 .event-card .date {
-  font-size: 14px;
+  font-size: 12px;
   color: #fff !important;
 }
 .event-card .title-container {
@@ -437,6 +422,7 @@
 
 /* 關鍵字搜尋 */
 .searchBar {
+  width: 100%;
   display: flex;
   padding: 24px auto;
   flex-direction: column;
@@ -457,9 +443,9 @@
   }
 }
 .searchBar input {
+  width: 100%;
   background-color: transparent;
   display: flex;
-  width: 400px;
   height: 40px;
   padding: 0px 20px;
   gap: 10px;
@@ -490,15 +476,6 @@
 }
 .searchBar input:focus {
   outline: 2px solid #a2b9bc;
-}
-
-.search-container .suggestion-list {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-}
-.search-container .suggestion-list li {
-  padding-top: 8px;
 }
 
 input {
@@ -655,6 +632,8 @@ input {
   height: 80px;
   align-self: stretch;
   justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #news > main .recommendation::-webkit-scrollbar {
   display: none;
@@ -931,6 +910,25 @@ input {
     width: 100%;
   }
 }
+#findArticles main .sec1 {
+  width: 100%;
+}
+#findArticles main .sec1 .searchBar {
+  width: 100%;
+}
+#findArticles main .sec1 .searchBar .search-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+#findArticles main .sec1 .searchBar .search-container input {
+  width: 100%;
+  display: flex;
+}
+#findArticles main .sec1 .searchBar .search-container li {
+  padding-top: 8px;
+}
 #findArticles main .articleCard {
   cursor: pointer;
   display: flex;
@@ -1040,6 +1038,38 @@ input {
   display: flex;
   margin: 0 auto;
 }
+.article-detail-page .article-share-container,
+.event-detail-page .article-share-container {
+  position: fixed;
+  width: 80px;
+  right: 2vw;
+}
+.article-detail-page .article-share-container button,
+.event-detail-page .article-share-container button {
+  all: unset;
+  border-radius: 99px;
+  background-color: transparent;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.article-detail-page .article-share-container button a,
+.event-detail-page .article-share-container button a {
+  color: #fff1cb;
+}
+@media (max-width:640px) {
+  .article-detail-page .article-share-container button,
+  .event-detail-page .article-share-container button {
+    width: 120px;
+    height: 56px;
+  }
+}
+.article-detail-page .article-share-container button:hover,
+.event-detail-page .article-share-container button:hover {
+  background-color: #904118;
+}
 .article-detail-page .breadcrumbs,
 .event-detail-page .breadcrumbs {
   width: 100%;
@@ -1066,6 +1096,10 @@ input {
   .article-detail-page .breadcrumbs li > a,
   .event-detail-page .breadcrumbs li > a {
     font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
   }
 }
 .article-detail-page p,
@@ -1076,6 +1110,12 @@ input {
   line-height: 200%;
   justify-content: center;
   letter-spacing: 0.24px;
+}
+@media (max-width:640px) {
+  .article-detail-page p,
+  .event-detail-page p {
+    font-size: 14px;
+  }
 }
 .article-detail-page section,
 .event-detail-page section {
@@ -1104,6 +1144,12 @@ input {
   line-height: 160%;
   letter-spacing: 0.8px;
 }
+@media (max-width:640px) {
+  .article-detail-page section .title-container h1,
+  .event-detail-page section .title-container h1 {
+    font-size: 24px;
+  }
+}
 .article-detail-page section figure,
 .event-detail-page section figure {
   width: 100%;
@@ -1117,6 +1163,13 @@ input {
   object-fit: cover;
   height: 100%;
 }
+@media (max-width:640px) {
+  .article-detail-page section figure,
+  .event-detail-page section figure {
+    width: 80%;
+    height: 120px;
+  }
+}
 .article-detail-page section .content-container,
 .event-detail-page section .content-container {
   margin: 0 20%;
@@ -1125,6 +1178,18 @@ input {
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;
+}
+@media (max-width:1024px) {
+  .article-detail-page section .content-container,
+  .event-detail-page section .content-container {
+    margin: 0 5%;
+  }
+}
+@media (max-width:640px) {
+  .article-detail-page section .content-container,
+  .event-detail-page section .content-container {
+    margin: 0 5%;
+  }
 }
 .article-detail-page section .content-container .article-paragraphs,
 .event-detail-page section .content-container .article-paragraphs {
@@ -1145,10 +1210,48 @@ input {
 .event-detail-page section .content-container .article-paragraphs .paragraph-block .smImg {
   width: 560px;
   height: 315px;
+  object-fit: cover;
+}
+@media (max-width:1024px) {
+  .article-detail-page section .content-container .article-paragraphs .paragraph-block .smImg,
+  .event-detail-page section .content-container .article-paragraphs .paragraph-block .smImg {
+    width: 80%;
+    height: 240px;
+  }
+}
+@media (max-width:640px) {
+  .article-detail-page section .content-container .article-paragraphs .paragraph-block .smImg,
+  .event-detail-page section .content-container .article-paragraphs .paragraph-block .smImg {
+    width: 80%;
+    height: 120px;
+  }
 }
 .article-detail-page section .content-container .article-paragraphs .paragraph-block:last-child p,
 .event-detail-page section .content-container .article-paragraphs .paragraph-block:last-child p {
   padding-bottom: 36px;
+}
+.article-detail-page section p .book-button button,
+.event-detail-page section p .book-button button {
+  margin-top: 1.5rem;
+  border-radius: 2px;
+  border: 3px solid #fff1cb;
+  background-color: transparent;
+  display: flex;
+  width: 160px;
+  height: 72px;
+  padding: 1rem 0px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.article-detail-page section p .book-button button a,
+.event-detail-page section p .book-button button a {
+  color: #fff1cb;
+}
+.article-detail-page section p .book-button button:hover,
+.event-detail-page section p .book-button button:hover {
+  background-color: #904118;
+  border: 2px solid #FFF1CB;
 }
 .article-detail-page section .info-container,
 .event-detail-page section .info-container {
@@ -1173,6 +1276,34 @@ input {
 .article-detail-page section .info-container .info-text-container .note,
 .event-detail-page section .info-container .info-text-container .note {
   font-size: 1rem;
+}
+.article-detail-page .article-next,
+.event-detail-page .article-next {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 2.5rem;
+}
+.article-detail-page .article-next a,
+.event-detail-page .article-next a {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 160%;
+  letter-spacing: 0.8px;
+  line-height: 200%;
+  width: 100%;
+  cursor: pointer;
+}
+.article-detail-page .article-next a img,
+.event-detail-page .article-next a img {
+  height: 240px;
+  object-fit: cover;
+}
+@media (max-width:640px) {
+  .article-detail-page .article-next a img,
+  .event-detail-page .article-next a img {
+    height: 120px;
+  }
 }
 .article-detail-page .article-buttonGroup-container,
 .event-detail-page .article-buttonGroup-container {
@@ -1224,6 +1355,7 @@ input {
 
 /* 找活動 */
 #findEvent main {
+  width: 100%;
   display: flex;
   padding: 0px;
   flex-direction: column;
@@ -1284,6 +1416,7 @@ input {
   }
 }
 #findEvent .filterBar {
+  width: 100%;
   display: flex;
   margin: 24px auto 48px;
   flex-direction: column;
@@ -1299,8 +1432,10 @@ input {
   }
 }
 #findEvent .filterBar .timeBar {
+  width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 36px;
   align-self: stretch;
@@ -1313,6 +1448,8 @@ input {
   }
 }
 #findEvent .filterBar .timeBar div {
+  width: 100%;
+  justify-content: center;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -1323,6 +1460,7 @@ input {
   }
 }
 #findEvent .filterBar .timeBar div .time {
+  max-width: 120px;
   display: flex;
   height: 40px;
   padding: 0px 16px;
@@ -1346,11 +1484,8 @@ input {
   display: flex;
   color: #fff1cb;
 }
-#findEvent .filterBar .timeBar div .time p:hover {
-  color: #a2b9bc;
-}
 #findEvent .filterBar .timeBar div .time:hover {
-  border: 2px solid #a2b9bc;
+  background-color: #904118;
 }
 @media (max-width:640px) {
   #findEvent .filterBar .searchBar {
@@ -1447,7 +1582,7 @@ input {
   #findArticles .nav-news ul li,
   #findEvent .nav-news ul li {
     flex: 1;
-    margin: 0px 24px;
+    margin: 0px 8px;
     text-align: center;
   }
   #findArticles .nav-news ul li li > a:last-child,
