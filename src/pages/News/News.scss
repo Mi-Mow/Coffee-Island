@@ -1187,6 +1187,10 @@ input {
       gap: 12px;
       align-self: stretch;
 
+      @media ($media-1024) {
+        margin: 0 5%;
+      }
+
       @media ($media-640) {
         margin: 0 5%;
       }
@@ -1209,6 +1213,11 @@ input {
           .smImg {
             width: 560px;
             height: 315px;
+            object-fit: cover;
+            @media ($media-1024) {
+              width: 80%;
+              height: 240px;
+            }
 
             @media ($media-640) {
               width: 80%;
@@ -1253,7 +1262,24 @@ input {
     }
   }
 
-
+.article-next {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 2.5rem;
+  a {
+    line-height: 200%;
+    width: 100%;
+    cursor: pointer;
+    img {
+      height: 240px;
+      object-fit: cover;
+      @media ($media-640){
+        height: 120px;
+      }
+    }
+  }
+}
 
   .article-buttonGroup-container {
     display: flex;

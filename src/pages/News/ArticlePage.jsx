@@ -10,7 +10,7 @@ function ArticlePage() {
     useEffect(() => {
         window.scrollTo(0, 0); // 捲動到頁面頂部
     }, []);
-    
+
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -172,10 +172,13 @@ function ArticlePage() {
                 <br />
 
                 {nextArticle && (
-                    <div className="article-button-container">
-                        <button onClick={() => navigate(`${base}news/article/${nextArticle.id}`)}>
-                            下一篇：{nextArticle.title.length > 10 ? nextArticle.title.slice(0, 10) + '…' : nextArticle.title}
-                        </button>
+                    <div className="article-next">
+                        <a onClick={() => {navigate(`${base}news/article/${nextArticle.id}`);
+                    window.scrollTo(0, 0); }}>
+                            下一篇：{nextArticle.title.length > 30 ? nextArticle.title.slice(0, 30) + '…' : nextArticle.title}
+                             <img src={nextArticle.image} alt={nextArticle.title} />
+                            
+                        </a>
                     </div>
                 )}
 
