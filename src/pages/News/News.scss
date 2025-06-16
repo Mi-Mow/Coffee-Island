@@ -378,9 +378,9 @@
     transition: border-color 0.3s, color 0.3s;
 
     @media ($media-640) {
-      padding: 0px 8px;
-      width: 300px;
-      height: 30px;
+      // padding: 0px 8px;
+      // width: 300px;
+      // height: 30px;
     }
 
     &::placeholder {
@@ -1183,6 +1183,14 @@ input {
     width: 80px;
     right: 2vw;
 
+    @media ($media-1024) {
+      right: -2%;
+    }
+
+    @media ($media-640) {
+      right: -8vw;
+    }
+
     button {
       all: unset;
 
@@ -1197,15 +1205,20 @@ input {
 
       cursor: pointer;
 
+      svg {
+        width: 24px;
+        height: 24px;
+
+        @media ($media-640) {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
       a {
         color: $textcolor;
       }
 
-
-      @media ($media-640) {
-        width: 120px;
-        height: 56px;
-      }
 
       &:hover {
         // color: $primary_1;
@@ -1318,11 +1331,11 @@ input {
       align-self: stretch;
 
       @media ($media-1024) {
-        margin: 0 5%;
+        margin: 0 8%;
       }
 
       @media ($media-640) {
-        margin: 0 5%;
+        margin: 0 8%;
       }
 
       .article-paragraphs {
@@ -1623,6 +1636,7 @@ input {
 
         @media ($media-640) {
           width: 100%;
+          gap: 1rem;
         }
 
 
@@ -1642,10 +1656,10 @@ input {
 
           @media ($media-640) {
             padding: 0px 8px;
-            background-color: #122f30;
-            backdrop-filter: blur(8px);
-            background-color: rgba(18, 47, 48, 0.6); // 深綠半透明
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            // background-color: #122f30;
+            // backdrop-filter: blur(8px);
+            // background-color: rgba(18, 47, 48, 0.6); // 深綠半透明
+            // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 
           }
 
@@ -1654,9 +1668,12 @@ input {
             display: flex;
             color: $textcolor;
 
-            // &:hover {
-            //   color: $primary_1;
-            // }
+            @media ($media-640) {
+            font-size: 12px;
+
+          }
+
+
           }
 
           &:hover {
