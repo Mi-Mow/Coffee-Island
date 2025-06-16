@@ -1,8 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import "./Products.scss";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import { useTranslation } from "react-i18next";
+import { AuthContext } from "../../context/AuthContext";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 const base = import.meta.env.BASE_URL;
 
 //商品頁區
@@ -462,7 +465,13 @@ export const products = [
     const dropdownRef = useRef(); // 用來指向下拉選單的區域，幫忙偵測是否點在外面，點選就關掉
     const navigate = useNavigate(); //用來導向productpage
     const [hoveredId, setHoveredId] = useState(null);
+    const { snackbarMsg } = useContext(AuthContext);
+    const [openSnackBar, setOpenSnackBar] = useState(false);
+    localStorage.setItem("currentPath", location.pathname);
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
     //篩選下拉選單，第一步設定：如果點擊下拉選單以外的地方，就會為false
     useEffect(() => {
@@ -476,6 +485,22 @@ export const products = [
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }, []);
+
+    useEffect(() => {
+      if (snackbarMsg) {
+        setOpenSnackBar(true);
+      } else {
+        setOpenSnackBar(false);
+      }
+    }, [snackbarMsg]);
+
+    const handleClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackBar(false);
+  };
 
     //篩選下拉選單，第二步設定：
     const filteredProducts = products.filter(
@@ -599,6 +624,25 @@ export const products = [
             <p className="no-data">此分類目前沒有商品</p>
           )}
         </div>
+        <Snackbar
+          open={openSnackBar}
+          autoHideDuration={4000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          sx={{ right: { xs: 70, sm: 70 } }}
+        >
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            variant="filled"
+            sx={{
+              width: "100%",
+              backgroundColor: "#0a7e5d",
+            }}
+          >
+            {snackbarMsg}
+          </Alert>
+        </Snackbar>
       </div>
     );
   }

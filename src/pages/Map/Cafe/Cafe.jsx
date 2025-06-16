@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Cafe.scss";
 import heartOutline from "../../../assets/map/icon-heart-white.svg";
 import heartFilled from "../../../assets/map/icon-heart-red.svg";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import Slider from "../../../components/Slider/Slider";
 import address from "../../../assets/map/icon-location.svg";
@@ -17,6 +17,7 @@ import CafeCard from "../../../components/CafeCard/CafeCard";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import monsterFilter from "../../../assets/map/monster-refilter.svg";
+import { AuthContext } from "../../../context/AuthContext";
 const base = import.meta.env.BASE_URL;
 
 const getRandom = (data) => {
@@ -42,6 +43,7 @@ function Cafe() {
   const [tags, setTags] = useState([]);
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [msg, setMsg] = useState("");
+  const { snackbarMsg } = useContext(AuthContext);
 
   // localStorage.setItem("currentPath", location.pathname);
 
@@ -90,6 +92,15 @@ function Cafe() {
       }
     }
   }, [location.state]);
+
+  useEffect(() => {
+    if (snackbarMsg) {
+      setOpenSnackBar(true);
+      setMsg(snackbarMsg);
+    } else {
+      setOpenSnackBar(false);
+    }
+  }, [snackbarMsg]);
 
   // console.log("displayFilter", displayFilter);
 
@@ -361,7 +372,12 @@ function Cafe() {
               <p>{cafe?.price_level}</p>
             </div>
           </div>
-          <Dialog onClose={handleClose} open={isOpen} sx={{}} className="cafe-dialog">
+          <Dialog
+            onClose={handleClose}
+            open={isOpen}
+            sx={{}}
+            className="cafe-dialog"
+          >
             <DialogTitle
               sx={{
                 fontFamily: "Noto Serif TC",
@@ -451,7 +467,7 @@ function Cafe() {
           onClose={handleSnackBarClose}
           severity="success"
           variant="filled"
-          sx={{ width: "100%", backgroundColor: "#7b4519" }}
+          sx={{ width: "100%", backgroundColor: "#0a7e5d" }}
         >
           {msg}
         </Alert>

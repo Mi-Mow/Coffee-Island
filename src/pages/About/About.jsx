@@ -1,14 +1,41 @@
+import { useContext, useEffect, useState } from 'react';
 import './About.scss';
 import aboutImage from './image/about1.png';
 import aboutGirl1 from './image/about2.png';
 import aboutGirl2 from './image/about3.png';
 import aboutGirl3 from './image/about4.png';
 import aboutGirl4 from './image/about5.png';
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import { AuthContext } from '../../context/AuthContext';
 import { useTranslation } from "react-i18next";
-
 function About() {
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [msg, setMsg] = useState("");
+  const { snackbarMsg } = useContext(AuthContext);
   const { i18n } = useTranslation();
   const lang = i18n.language === "zh-TW" ? "zh" : "en";
+  localStorage.setItem("currentPath", location.pathname);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    if (snackbarMsg) {
+      setOpenSnackBar(true);
+      setMsg(snackbarMsg);
+    } else {
+      setOpenSnackBar(false);
+    }
+  }, [snackbarMsg]);
+
+  const handleSnackBarClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackBar(false);
+   }
 
   const aboutTexts = {
     intro: {
@@ -77,6 +104,22 @@ It also captures the unique charm of Taipei's own take on romance.`
         <p>{aboutTexts.invite[lang]}</p>
         <a href="/#map" className="about__button">{aboutTexts.button[lang]}</a>
       </div>
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={2500}
+        onClose={handleSnackBarClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        sx={{ right: { xs: 70, sm: 70 } }}
+      >
+        <Alert
+          onClose={handleSnackBarClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%", backgroundColor: "#0a7e5d" }}
+        >
+          {msg}
+        </Alert>
+      </Snackbar>
     </section>
   );
 }

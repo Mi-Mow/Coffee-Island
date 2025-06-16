@@ -110,6 +110,10 @@ function Home() {
   const { language } = useLanguage();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchWeather = async () => {
       try {
         const url = `${CONFIG.url_base}datastore/${CONFIG.datastore}?Authorization=${WEATHER_API_KEY}&format=${CONFIG.format}&locationName=${CONFIG.locationName}&elementName=${CONFIG.elementName}`;
@@ -191,8 +195,22 @@ function Home() {
       }
 
       const width = window.innerWidth;
-      const start = width <= 430 ? "top 120px" : width <= 820 ? "top 0" : width <= 1440 ? "top 200px" : "top 350px";
-      const end = width <= 430 ? "bottom -750px" : width <= 820 ? "bottom -450px" : width <= 1440 ? "bottom -1300px" : "bottom -2000px";
+      const start =
+        width <= 430
+          ? "top 120px"
+          : width <= 820
+          ? "top 0"
+          : width <= 1440
+          ? "top 200px"
+          : "top 350px";
+      const end =
+        width <= 430
+          ? "bottom -750px"
+          : width <= 820
+          ? "bottom -450px"
+          : width <= 1440
+          ? "bottom -1300px"
+          : "bottom -2000px";
 
       animationRef.current = gsap.to(car, {
         scrollTrigger: {
@@ -1164,7 +1182,7 @@ function Home() {
           </div>
           <div className={s.viceBanner}>
             {/* <div className="viceBannerContainer"> */}
-              <img src={viceBanner} alt="" />
+            <img src={viceBanner} alt="" />
             {/* </div> */}
             <div className={s.textContainer}>
               <p>{t("home.contact.viceBanner")}</p>
