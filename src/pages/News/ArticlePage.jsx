@@ -1,10 +1,16 @@
 import { useParams, useNavigate, Link } from "react-router-dom"
 // 文章資料
 import { articles, hotArticles } from './Article'
+import { useEffect } from "react";
+import shareIcon from "../../assets/news/icon-share.svg"
 const base = import.meta.env.BASE_URL;
 
 
 function ArticlePage() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0); // 捲動到頁面頂部
+    }, []);
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -56,6 +62,15 @@ function ArticlePage() {
         }
     };
 
+
+    // 找到目前文章在 allArticles 的索引
+    const currentIndex = allArticles.findIndex(a => a.id === articleId);
+
+    // 取得下一篇文章（可選是否循環）
+    const nextArticle = currentIndex >= 0 && currentIndex < allArticles.length - 1
+        ? allArticles[currentIndex + 1]
+        : allArticles[0]; //循環回第一篇
+
     return (
         <div >
             <main className="article-detail-page" >
@@ -76,18 +91,26 @@ function ArticlePage() {
                         </li>
                         <li>&gt;</li>
                         <li aria-current="page">
-                            {article.title} {/* 當前文章標題 */}
+                            {article.title.length > 10 ? article.title.slice(0, 10) + '…' : article.title} {/* 當前文章標題 */}
                         </li>
                     </ol>
                 </nav>
 
+                <div className="article-share-container">
+                    <button onClick={handleShare}>
+                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none">
+                            <path d="M18.4434 18.7568H17.0352V19.9912H15.7852V21.457H5.78516V19.9912H4.55273V18.7402H5.80273V19.957H15.7852V18.7402H16.9434V13.8408H18.4434V18.7568ZM5.70312 8.66309V9.91309H4.55078V18.7568L3.05078 18.7559V9.89648H4.45312V8.66309H5.70312ZM14.127 3.79297H15.5898V5.04297H16.9258V6.29297H18.3086V7.54297H19.7422V8.41797H20.9492V9.66797H19.7422V10.543H18.3086V11.793H16.9258V13.043H15.5898V14.293H14.127V15.543H12.627V11.043H11.5352V12.0381H10.0703V13.0381H8.94531V14.2266H9.44531V15.4766H8.19531V14.293H7.44531V11.293H8.57031V10.0381H10.0352V8.03809H11.1309V7.04297H12.627V2.54297H14.127V3.79297ZM8.19531 8.6377H5.70312V7.1377H8.19531V8.6377Z" fill="#fff1cb" />
+                        </svg>
+                    </button>
+                </div>
+
                 <section>
                     {/* 標題區 */}
                     <div className="title-container">
-                        <p>咖啡島 老臺北特輯</p>
+                        <p>咖啡島 <span>{article.tag}</span></p>
                         {/* SEO h1 */}
                         <h1>{article.title}</h1>
-                        <p>文 陳誠成 攝 郭董郭</p>
+                        <p>文 <span>{article.author}</span></p>
                     </div>
                     {/* 大圖 */}
                     <figure>
@@ -103,6 +126,7 @@ function ArticlePage() {
                         {article.paragraphs && (
                             <div className="article-paragraphs">
                                 {Object.values(article.paragraphs).map((p, idx) => {
+
                                     const smImages = article.smImg || [];
                                     const hasImage = smImages[idx];
 
@@ -116,14 +140,13 @@ function ArticlePage() {
                                             <div key={idx} style={{ margin: '20px 0' }}>
                                                 {/* html <br> 換行 */}
                                                 <p dangerouslySetInnerHTML={{ __html: p }} />
+                                                {/* {renderParagraphWithLinks(p)} */}
                                             </div>
                                         </div>
                                     );
                                 })}
 
-                                <div className="article-button-container">
-                                    <button onClick={handleShare}>分享文章</button>
-                                </div>
+
                             </div>
                         )}
                     </div>
@@ -154,6 +177,19 @@ function ArticlePage() {
 
 
                 <br />
+
+                {nextArticle && (
+                    <div className="article-next">
+                        <a onClick={() => {
+                            navigate(`${base}news/article/${nextArticle.id}`);
+                            window.scrollTo(0, 0);
+                        }}>
+                            下一篇：{nextArticle.title.length > 30 ? nextArticle.title.slice(0, 30) + '…' : nextArticle.title}
+                            <img src={nextArticle.image} alt={nextArticle.title} />
+
+                        </a>
+                    </div>
+                )}
 
                 {/* 按鈕區 */}
                 <div className="article-buttonGroup-container">

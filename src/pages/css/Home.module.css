@@ -1,9 +1,27 @@
+main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 main .bannerSection {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 80px 70px 0;
+}
+@media (max-width: 1024px) {
+  main .bannerSection {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 0 0;
+    position: relative;
+  }
+}
+@media (max-width: 1024px) {
+  main .bannerSection .coffeebeanContainer {
+    display: none;
+  }
 }
 main .bannerSection .coffeebeanContainer img {
   margin: 12px 0;
@@ -13,6 +31,12 @@ main .bannerSection .banner {
   margin: 0 20px;
   width: 85%;
   flex: 1;
+}
+@media (max-width: 1024px) {
+  main .bannerSection .banner {
+    width: 100%;
+    margin: 0;
+  }
 }
 main .bannerSection .banner .bannerContainerSm {
   display: none;
@@ -28,6 +52,16 @@ main .bannerSection .weather {
   right: 0;
   display: flex;
 }
+@media (max-width: 1024px) {
+  main .bannerSection .weather {
+    right: 20px;
+  }
+}
+@media (max-width: 730px) {
+  main .bannerSection .weather {
+    display: none;
+  }
+}
 main .bannerSection .weather .todayDate,
 main .bannerSection .weather .todayTemp,
 main .bannerSection .weather .tomorrowDate,
@@ -37,6 +71,14 @@ main .bannerSection .weather .tomorrowTemp {
   justify-content: end;
   padding-left: 20px;
 }
+@media (max-width: 820px) {
+  main .bannerSection .weather .todayDate,
+  main .bannerSection .weather .todayTemp,
+  main .bannerSection .weather .tomorrowDate,
+  main .bannerSection .weather .tomorrowTemp {
+    padding-left: 12px;
+  }
+}
 main .bannerSection .weather .title {
   color: #fff0c8;
   font-weight: 700;
@@ -44,14 +86,49 @@ main .bannerSection .weather .title {
 main .bannerSection .weather .todayDate .title {
   font-size: 32px;
 }
+@media (max-width: 1024px) {
+  main .bannerSection .weather .todayDate .title {
+    font-size: 20px;
+  }
+}
+@media (max-width: 820px) {
+  main .bannerSection .weather .todayDate .title {
+    font-size: 16px;
+  }
+}
 main .bannerSection .weather .todayTemp .title {
   font-size: 28px;
+}
+@media (max-width: 1024px) {
+  main .bannerSection .weather .todayTemp .title {
+    font-size: 18px;
+  }
+}
+@media (max-width: 820px) {
+  main .bannerSection .weather .todayTemp .title {
+    font-size: 16px;
+  }
 }
 main .bannerSection .weather .tomorrowDate .title {
   font-size: 24px;
 }
+@media (max-width: 1024px) {
+  main .bannerSection .weather .tomorrowDate .title {
+    font-size: 16px;
+  }
+}
 main .bannerSection .weather .tomorrowTemp .title {
   font-size: 20px;
+}
+@media (max-width: 1024px) {
+  main .bannerSection .weather .tomorrowTemp .title {
+    font-size: 14px;
+  }
+}
+@media (max-width: 820px) {
+  main .bannerSection .weather .tomorrowTemp .title {
+    font-size: 16px;
+  }
 }
 main .bannerSection .weather .data {
   color: #fff;
@@ -59,14 +136,54 @@ main .bannerSection .weather .data {
 main .bannerSection .weather .todayDate .data {
   font-size: 32px;
 }
+@media (max-width: 1024px) {
+  main .bannerSection .weather .todayDate .data {
+    font-size: 22px;
+  }
+}
+@media (max-width: 820px) {
+  main .bannerSection .weather .todayDate .data {
+    font-size: 18px;
+  }
+}
 main .bannerSection .weather .todayTemp .data {
   font-size: 28px;
+}
+@media (max-width: 1024px) {
+  main .bannerSection .weather .todayTemp .data {
+    font-size: 18px;
+  }
+}
+@media (max-width: 820px) {
+  main .bannerSection .weather .todayTemp .data {
+    font-size: 18x;
+  }
 }
 main .bannerSection .weather .tomorrowDate .data {
   font-size: 24px;
 }
+@media (max-width: 1024px) {
+  main .bannerSection .weather .tomorrowDate .data {
+    font-size: 16px;
+  }
+}
+@media (max-width: 820px) {
+  main .bannerSection .weather .tomorrowDate .data {
+    font-size: 18px;
+  }
+}
 main .bannerSection .weather .tomorrowTemp .data {
   font-size: 20px;
+}
+@media (max-width: 1024px) {
+  main .bannerSection .weather .tomorrowTemp .data {
+    font-size: 14px;
+  }
+}
+@media (max-width: 820px) {
+  main .bannerSection .weather .tomorrowTemp .data {
+    font-size: 18px;
+  }
 }
 main .bannerSection .bg-mask {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
@@ -80,6 +197,13 @@ main .bannerSection .hint {
   align-items: center;
   width: 7%;
 }
+@media (max-width: 1024px) {
+  main .bannerSection .hint {
+    position: absolute;
+    bottom: -20px;
+    width: 140px;
+  }
+}
 main .bannerSection .hint p {
   color: #fff0c8;
   font-weight: 800;
@@ -88,124 +212,317 @@ main .bannerSection .hint p {
   line-height: 1.5;
   letter-spacing: 1px;
 }
+@media (max-width: 768px) {
+  main .bannerSection .hint p {
+    font-size: 14px;
+  }
+}
 main .bannerSection .arrowContainer {
   width: 30px;
   padding: 20px 0;
   cursor: pointer;
   opacity: 0;
 }
-
-.carouselSection {
+@media (max-width: 768px) {
+  main .bannerSection .arrowContainer {
+    width: 20px;
+  }
+}
+main .carouselSection {
+  width: 100%;
   height: 650px;
   position: relative;
-  margin: 40px 0;
 }
-.carouselSection .greatTime {
+@media (max-width: 820px) {
+  main .carouselSection {
+    height: 600px;
+  }
+}
+@media (max-width: 430px) {
+  main .carouselSection {
+    height: 450px;
+  }
+}
+main .carouselSection .greatTime {
   position: absolute;
-  right: 150px;
-  top: 5%;
+  right: 50px;
+  top: 10%;
 }
-.carouselSection .greatTime .greenBlockContainer {
-  width: 550px;
+@media (min-width: 1600px) {
+  main .carouselSection .greatTime {
+    right: 50px;
+    top: 9%;
+  }
 }
-.carouselSection .greatTime .textContainer {
+main .carouselSection .greatTime .greenBlockContainer {
+  width: 530px;
+}
+@media (min-width: 1600px) {
+  main .carouselSection .greatTime .greenBlockContainer {
+    width: 620px;
+  }
+}
+@media (max-width: 1024px) {
+  main .carouselSection .greatTime .greenBlockContainer {
+    display: none;
+  }
+}
+main .carouselSection .greatTime .textContainer {
   position: absolute;
   top: 30%;
-  left: 20%;
+  left: 17%;
 }
-.carouselSection .greatTime .textContainer .deco {
+@media (max-width: 1024px) {
+  main .carouselSection .greatTime .textContainer {
+    display: none;
+  }
+}
+main .carouselSection .greatTime .textContainer .deco {
   position: absolute;
   top: -50px;
   width: 70px;
 }
-.carouselSection .greatTime .textContainer .title {
+main .carouselSection .greatTime .textContainer .title {
   font-size: 20px;
   text-shadow: -2px -2px 0 #a4320e, 2px -2px 0 #a4320e, -2px 2px 0 #a4320e, 2px 2px 0 #a4320e;
   color: #fff1cb;
   font-weight: 800;
   margin-bottom: 10px;
 }
-.carouselSection .greatTime .textContainer .content {
+main .carouselSection .greatTime .textContainer .content {
   color: #fff1cb;
-  line-height: 2;
+  line-height: 1.8;
   font-size: 16px;
-  letter-spacing: 3px;
-  width: 230px;
-}
-.carouselSection .greatTime .handheldContainer {
-  position: absolute;
+  letter-spacing: 2px;
   width: 250px;
-  top: 5%;
+}
+@media (min-width: 1600px) {
+  main .carouselSection .greatTime .textContainer .content {
+    width: 280px;
+  }
+}
+main .carouselSection .greatTime .textContainer .coffeeCupContainer {
+  position: absolute;
+  width: 120px;
+  top: 0;
+  right: -120px;
+}
+main .carouselSection .greatTime .cameraContainer {
+  position: absolute;
+  width: 200px;
+  top: 8%;
   right: -20px;
 }
-.carouselSection .greatTime .hotCoffeeContainer {
-  position: absolute;
-  width: 220px;
-  top: 0;
-  right: -150px;
+@media (min-width: 1600px) {
+  main .carouselSection .greatTime .cameraContainer {
+    width: 220px;
+  }
 }
-.carouselSection .maskContainer {
+@media (max-width: 820px) {
+  main .carouselSection .greatTime .cameraContainer {
+    width: 150px;
+    right: 0;
+  }
+}
+@media (max-width: 430px) {
+  main .carouselSection .greatTime .cameraContainer {
+    top: -20px;
+    right: -5px;
+    width: 90px;
+  }
+}
+@media (max-width: 393px) {
+  main .carouselSection .greatTime .cameraContainer {
+    right: -15px;
+  }
+}
+main .carouselSection .maskContainer {
   width: 300px;
   position: absolute;
-  left: -13%;
+  left: -200px;
   top: 15%;
 }
-.carouselSection .coffeeIsland {
-  position: absolute;
-  top: 5%;
-  left: 15%;
+@media (max-width: 1024px) {
+  main .carouselSection .maskContainer {
+    display: none;
+  }
 }
-.carouselSection .coffeeIsland .deco {
+main .carouselSection .coffeeIsland {
+  position: absolute;
+  top: 220px;
+  left: 13%;
+}
+@media (max-width: 1024px) {
+  main .carouselSection .coffeeIsland {
+    top: 200px;
+    left: 13%;
+  }
+}
+@media (max-width: 820px) {
+  main .carouselSection .coffeeIsland {
+    left: 10%;
+  }
+}
+@media (max-width: 430px) {
+  main .carouselSection .coffeeIsland {
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+main .carouselSection .coffeeIsland .deco {
   width: 70px;
   position: absolute;
   left: -50px;
   top: -50px;
 }
-.carouselSection .coffeeIsland h1 {
+@media (max-width: 1024px) {
+  main .carouselSection .coffeeIsland .deco {
+    width: 50px;
+    top: -40px;
+    left: -40px;
+  }
+}
+@media (max-width: 430px) {
+  main .carouselSection .coffeeIsland .deco {
+    width: 40px;
+    top: -30px;
+    left: -30px;
+  }
+}
+main .carouselSection .coffeeIsland h1 {
   font-size: 24px;
   text-shadow: -2px -2px 0 #a4320e, 2px -2px 0 #a4320e, -2px 2px 0 #a4320e, 2px 2px 0 #a4320e;
   color: #fff1cb;
   font-weight: 800;
   margin-bottom: 10px;
 }
-.carouselSection .coffeeIsland .content {
+@media (max-width: 1024px) {
+  main .carouselSection .coffeeIsland h1 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 430px) {
+  main .carouselSection .coffeeIsland h1 {
+    font-size: 18px;
+  }
+}
+main .carouselSection .coffeeIsland .content {
   color: #fff1cb;
-  line-height: 2;
+  line-height: 1.8;
   font-size: 16px;
-  letter-spacing: 3px;
-  width: 400px;
+  letter-spacing: 2px;
+  width: 420px;
 }
-.carouselSection .mainCarousel {
+@media (min-width: 1600px) {
+  main .carouselSection .coffeeIsland .content {
+    width: 450px;
+  }
+}
+@media (max-width: 1024px) {
+  main .carouselSection .coffeeIsland .content {
+    font-size: 14px;
+    width: 450px;
+  }
+}
+@media (max-width: 430px) {
+  main .carouselSection .coffeeIsland .content {
+    width: 290px;
+    letter-spacing: 1.5px;
+  }
+}
+main .carouselSection .mainCarousel {
   position: absolute;
-  top: 45%;
+  top: 51%;
   right: 0;
+  width: 430px;
 }
-.carouselSection .mainCarousel .carousel {
+@media (min-width: 1600px) {
+  main .carouselSection .mainCarousel {
+    width: 550px;
+  }
+}
+@media (max-width: 1024px) {
+  main .carouselSection .mainCarousel {
+    top: 58%;
+  }
+}
+@media (max-width: 820px) {
+  main .carouselSection .mainCarousel {
+    width: 380px;
+  }
+}
+@media (max-width: 430px) {
+  main .carouselSection .mainCarousel {
+    top: 260px;
+    width: 370px;
+  }
+}
+@media (max-width: 393px) {
+  main .carouselSection .mainCarousel {
+    width: 350px;
+  }
+}
+main .carouselSection .mainCarousel .container {
+  position: relative;
+  width: 100%;
+  position: relative;
+}
+main .carouselSection .mainCarousel .container .customSwiperButtonPrev,
+main .carouselSection .mainCarousel .container .customSwiperButtonNext {
+  position: absolute;
+  color: #fff1cb;
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid #fff1cb;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin: 0 auto;
+  transition: all 0.2s ease-in-out;
+  z-index: 7;
+  box-shadow: 0 0 5px transparent;
+  background: url(../../assets/home/coffeeBeanLight.svg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
 }
-.carouselSection .mainCarousel .carousel .arrowContainer {
-  width: 48px;
+main .carouselSection .mainCarousel .container .customSwiperButtonPrev:hover,
+main .carouselSection .mainCarousel .container .customSwiperButtonNext:hover {
+  box-shadow: 0 0 8px #fff1cb;
+  background-color: rgba(255, 241, 203, 0.1);
   cursor: pointer;
 }
-.carouselSection .mainCarousel .carousel .imageContainer {
-  width: 400px;
-  overflow: hidden;
-  position: relative;
+main .carouselSection .mainCarousel .container .customSwiperButtonPrev::after,
+main .carouselSection .mainCarousel .container .customSwiperButtonNext::after {
+  font-size: 18px;
 }
-.carouselSection .mainCarousel .carousel .imageContainer img {
+main .carouselSection .mainCarousel .container .customSwiperButtonPrev {
+  top: 42%;
+  left: -20px;
+}
+main .carouselSection .mainCarousel .container .customSwiperButtonNext {
+  top: 42%;
+  right: 0;
+}
+main .carouselSection .mainCarousel .container .swiper {
+  width: 100%;
+}
+main .carouselSection .mainCarousel .container img {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: center;
 }
-.carouselSection .mainCarousel .carousel .imageContainer .textBg {
+main .carouselSection .mainCarousel .container .textBg {
   position: absolute;
   right: 10px;
   bottom: 5px;
   width: 140px;
+  z-index: 99;
 }
-.carouselSection .mainCarousel .carousel .imageContainer .textBg p {
+main .carouselSection .mainCarousel .container .textBg p {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -213,59 +530,106 @@ main .bannerSection .arrowContainer {
   color: #fff;
   font-weight: 900;
 }
-
-.filmContainer {
+main .carouselSection .mainCarousel .carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+main .carouselSection .mainCarousel .carousel .arrowContainer {
+  width: 48px;
+  cursor: pointer;
+}
+main .carouselSection .mainCarousel .carousel .imageContainer {
+  width: 400px;
+  overflow: hidden;
+  position: relative;
+}
+main .carouselSection .mainCarousel .carousel .imageContainer img {
+  object-fit: cover;
+}
+main .carouselSection .mainCarousel .carousel .imageContainer .textBg {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  width: 140px;
+}
+main .carouselSection .mainCarousel .carousel .imageContainer .textBg p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 900;
+}
+main .film {
+  width: 100%;
+}
+main .film .filmContainer {
   position: relative;
   margin-top: 50px;
 }
-.filmContainer .filmSvg {
-  height: 450px;
+@media (max-width: 430px) {
+  main .film .filmContainer .filmSvg {
+    margin-top: 60px;
+  }
 }
-.filmContainer .filmSvg .filmGroup {
+main .film .filmContainer .filmSvg .filmGroup {
   cursor: pointer;
 }
-.filmContainer .filmSvg .filmGroup .filmImg {
+main .film .filmContainer .filmSvg .filmGroup .filmImg {
   transition: all 0.4s ease;
   transform-origin: center;
 }
-.filmContainer .filmSvg .filmGroup .filmMask,
-.filmContainer .filmSvg .filmGroup .filmTitle {
+main .film .filmContainer .filmSvg .filmGroup .filmMask,
+main .film .filmContainer .filmSvg .filmGroup .filmTitle {
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
-.filmContainer .filmSvg .filmGroup text {
+main .film .filmContainer .filmSvg .filmGroup text {
   font-size: 16px;
 }
-.filmContainer .filmSvg .filmGroup:hover .filmImg1 {
+main .film .filmContainer .filmSvg .filmGroup:hover .filmImg1 {
   width: 900px;
 }
-.filmContainer .filmSvg .filmGroup:hover .filmImg2 {
+main .film .filmContainer .filmSvg .filmGroup:hover .filmImg2 {
   width: 400px;
 }
-.filmContainer .filmSvg .filmGroup:hover .filmImg3 {
+main .film .filmContainer .filmSvg .filmGroup:hover .filmImg3 {
   width: 280px;
 }
-.filmContainer .filmSvg .filmGroup:hover .filmMask,
-.filmContainer .filmSvg .filmGroup:hover .filmTitle {
+main .film .filmContainer .filmSvg .filmGroup:hover .filmMask,
+main .film .filmContainer .filmSvg .filmGroup:hover .filmTitle {
   opacity: 1;
 }
-.filmContainer .filmSvg .filmTitle {
+main .film .filmContainer .filmSvg .filmTitle {
   fill: white;
   font-size: 28px;
 }
-.filmContainer .filmSvg .filmImg:hover .filmMask {
+main .film .filmContainer .filmSvg .filmImg:hover .filmMask {
   opacity: 1;
 }
-.filmContainer .titleContainer {
+main .film .filmContainer .titleContainer {
   position: absolute;
   top: 5%;
-  left: 10%;
+  left: 6%;
 }
-.filmContainer .titleContainer .title {
+@media (max-width: 1024px) {
+  main .film .filmContainer .titleContainer {
+    top: 0;
+  }
+}
+@media (max-width: 430px) {
+  main .film .filmContainer .titleContainer {
+    top: 15px;
+  }
+}
+main .film .filmContainer .titleContainer .title {
   display: flex;
 }
-.filmContainer .titleContainer .title p {
+main .film .filmContainer .titleContainer .title p {
   background-color: #a84e12;
   border: #e9c02c 1px solid;
   font-size: 24px;
@@ -278,13 +642,44 @@ main .bannerSection .arrowContainer {
   text-align: center;
   margin: 0 -3px;
 }
-.filmContainer .titleContainer .subtitle {
+@media (max-width: 1024px) {
+  main .film .filmContainer .titleContainer .title p {
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-weight: 600;
+  }
+}
+@media (max-width: 430px) {
+  main .film .filmContainer .titleContainer .title p {
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 600;
+  }
+}
+main .film .filmContainer .titleContainer .subtitle {
   color: #ffd96c;
   font-weight: 700;
   margin-top: 10px;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
-.filmContainer .description {
+@media (max-width: 1024px) {
+  main .film .filmContainer .titleContainer .subtitle {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+@media (max-width: 430px) {
+  main .film .filmContainer .titleContainer .subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+  }
+}
+main .film .filmContainer .description {
   position: absolute;
   top: 70%;
   left: 50%;
@@ -292,16 +687,19 @@ main .bannerSection .arrowContainer {
   color: #fff1cb;
   line-height: 2;
   font-size: 16px;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
-
-.bg-mask {
+@media (max-width: 1024px) {
+  main .film .filmContainer .description {
+    display: none;
+  }
+}
+main .film .bg-mask {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   width: 200px;
   height: 200px;
 }
-
-.historyImg::before {
+main .film .historyImg::before {
   content: "";
   position: fixed;
   top: 0;
@@ -313,47 +711,115 @@ main .bannerSection .arrowContainer {
   background-size: cover;
   opacity: 0.2;
 }
-
-.area:hover {
+main .film .area:hover {
   fill: #155652;
   cursor: pointer;
 }
-
-.map {
+main .map {
   margin-top: 100px;
   position: relative;
+  width: 100%;
 }
-.map .mapBox {
+@media (max-width: 1024px) {
+  main .map {
+    margin-top: 30px;
+  }
+}
+@media (max-width: 820px) {
+  main .map {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 430px) {
+  main .map {
+    margin-top: 60px;
+  }
+}
+@media (max-width: 430px) {
+  main .map {
+    margin-top: 0;
+  }
+}
+main .map .mapBox {
   width: 80%;
   position: relative;
 }
-.map .mapBox .northTwContainer .northBox {
+@media (max-width: 1024px) {
+  main .map .mapBox {
+    width: 77%;
+  }
+}
+@media (max-width: 430px) {
+  main .map .mapBox {
+    width: 98%;
+  }
+}
+@media (max-width: 430px) {
+  main .map .mapBox .northTwContainer {
+    margin-top: 145px;
+  }
+}
+main .map .mapBox .northTwContainer .northBox {
   width: 90%;
 }
-.map .mapBox .northTwContainer .districtsContainer {
+@media (max-width: 430px) {
+  main .map .mapBox .northTwContainer .northBox {
+    width: 100%;
+  }
+}
+main .map .mapBox .northTwContainer .districtsContainer {
   position: absolute;
   width: 48%;
   top: 3%;
   left: 25%;
 }
-.map .mapBox .northTwContainer .districtsContainer .district {
+@media (max-width: 1024px) {
+  main .map .mapBox .northTwContainer .districtsContainer {
+    width: 67%;
+    left: 14%;
+    top: -30px;
+  }
+}
+@media (max-width: 820px) {
+  main .map .mapBox .northTwContainer .districtsContainer {
+    width: 77%;
+    left: 12%;
+    top: -40px;
+  }
+}
+@media (max-width: 430px) {
+  main .map .mapBox .northTwContainer .districtsContainer {
+    width: 85%;
+    left: 7%;
+  }
+}
+main .map .mapBox .northTwContainer .districtsContainer .district {
   transition: transform 0.3s ease, filter 0.3s ease, stroke 0.3s ease;
   transform-origin: center;
   cursor: pointer;
+  stroke: transparent;
+  stroke-width: 8;
 }
-.map .mapBox .northTwContainer .districtsContainer .district:hover {
+main .map .mapBox .northTwContainer .districtsContainer .district:hover {
+  transform: translateY(-30px) translateX(-15px) scale(1.18);
+  filter: drop-shadow(0 0 10px #aeaeae);
+  stroke: #d3d3d3;
+  stroke-width: 8;
+}
+main .map .mapBox .northTwContainer .districtsContainer .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 36px;
+  transform: translate(-50%, -50%);
+}
+main .map .mapBox .northTwContainer .districtsContainer .district.hovered {
   transform: translateY(-40px) translateX(-15px) scale(1.18);
   filter: drop-shadow(0 0 10px #aeaeae);
   stroke: #d3d3d3;
   stroke-width: 5;
 }
-.map .mapBox .northTwContainer .districtsContainer .district.hovered {
-  transform: translateY(-40px) translateX(-15px) scale(1.18);
-  filter: drop-shadow(0 0 10px #aeaeae);
-  stroke: #d3d3d3;
-  stroke-width: 5;
-}
-.map .textBox {
+main .map .textBox {
   position: absolute;
   top: 5%;
   right: 5%;
@@ -361,38 +827,94 @@ main .bannerSection .arrowContainer {
   flex-direction: column;
   align-items: end;
 }
-.map .textBox .title {
+@media (max-width: 430px) {
+  main .map .textBox {
+    top: 8%;
+  }
+}
+main .map .textBox .title {
   display: flex;
 }
-.map .textBox .title .titleEn {
+main .map .textBox .title .titleEn {
   color: #fff1cb;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: 8px;
 }
-.map .textBox .title .titleCh {
+@media (max-width: 1024px) {
+  main .map .textBox .title .titleEn {
+    font-size: 20px;
+  }
+}
+@media (max-width: 430px) {
+  main .map .textBox .title .titleEn {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+}
+main .map .textBox .title .titleCh {
   color: #fff1cb;
   font-size: 40px;
   font-weight: 700;
 }
-.map .textBox .title .logo {
-  margin-left: 10px;
+@media (max-width: 1024px) {
+  main .map .textBox .title .titleCh {
+    font-size: 30px;
+  }
 }
-.map .textBox .hint {
+@media (max-width: 430px) {
+  main .map .textBox .title .titleCh {
+    font-size: 22px;
+  }
+}
+main .map .textBox .title .logo {
+  margin-left: 3px;
+  width: 95px;
+}
+@media (max-width: 1024px) {
+  main .map .textBox .title .logo {
+    width: 75px;
+  }
+}
+@media (max-width: 430px) {
+  main .map .textBox .title .logo {
+    width: 60px;
+  }
+}
+main .map .textBox .hint {
   color: #ffd96c;
   font-size: 18px;
   font-weight: 700;
   margin-top: 10px;
   line-height: 2;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   width: 100%;
   text-align: center;
 }
-.map .textBox .list {
+@media (max-width: 1024px) {
+  main .map .textBox .hint {
+    margin-top: 0;
+    font-size: 16px;
+  }
+}
+@media (max-width: 430px) {
+  main .map .textBox .hint {
+    margin-top: 0;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-align: end;
+  }
+}
+main .map .textBox .list {
   width: 100%;
   text-align: center;
 }
-.map .textBox .list p {
+@media (max-width: 640px) {
+  main .map .textBox .list {
+    display: none;
+  }
+}
+main .map .textBox .list p {
   font-size: 18px;
   color: #ddcea1;
   font-weight: 700;
@@ -401,22 +923,49 @@ main .bannerSection .arrowContainer {
   transition: all 0.3s ease-out;
   letter-spacing: 3px;
 }
-.map .textBox .list p:hover {
+@media (max-width: 1024px) {
+  main .map .textBox .list p {
+    font-size: 16px;
+    line-height: 2.7;
+  }
+}
+main .map .textBox .list p:hover {
   color: #fff4d6;
   font-size: 24px;
   filter: drop-shadow(0 0 8px #bababa);
 }
-.map .textBox .list p.hovered {
+main .map .textBox .list p.hovered {
   color: #fff4d6;
   font-size: 24px;
   filter: drop-shadow(0 0 8px #bababa);
 }
-
-.contact {
+main .contact {
   margin-bottom: 60px;
   padding: 0 80px;
+  width: 100%;
 }
-.contact .title {
+@media (max-width: 1024px) {
+  main .contact {
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+@media (max-width: 935px) {
+  main .contact {
+    margin-top: 80px;
+  }
+}
+@media (max-width: 820px) {
+  main .contact {
+    margin-top: 120px;
+  }
+}
+@media (max-width: 430px) {
+  main .contact {
+    margin-top: 20px;
+  }
+}
+main .contact .title {
   font-size: 40px;
   text-shadow: -2px -2px 0 #a4320e, 2px -2px 0 #a4320e, -2px 2px 0 #a4320e, 2px 2px 0 #a4320e;
   color: #fff1cb;
@@ -424,43 +973,114 @@ main .bannerSection .arrowContainer {
   text-align: center;
   z-index: 10;
 }
-.contact .description {
+@media (max-width: 820px) {
+  main .contact .title {
+    font-size: 36px;
+  }
+}
+@media (max-width: 430px) {
+  main .contact .title {
+    font-size: 24px;
+  }
+}
+main .contact .description {
   display: flex;
   padding: 20px 0;
+  gap: 10px;
 }
-.contact .description .text {
-  padding-right: 40px;
+@media (max-width: 1024px) {
+  main .contact .description {
+    flex-direction: column;
+    padding: 15px 30px;
+  }
+}
+main .contact .description .text {
   color: #fff;
   font-size: 18px;
-  line-height: 2;
-  letter-spacing: 3px;
+  line-height: 1.8;
+  letter-spacing: 2px;
 }
-.contact .description .team {
+@media (max-width: 1024px) {
+  main .contact .description .text {
+    padding: 0 45px;
+    order: 1;
+  }
+}
+@media (max-width: 430px) {
+  main .contact .description .text {
+    letter-spacing: 1.2px;
+    font-size: 14px;
+    padding: 0 15px;
+  }
+}
+main .contact .description .team {
   display: flex;
+  gap: 20px;
 }
-.contact .description .team .avatar {
-  margin-left: 20px;
-  width: 100px;
+@media (max-width: 1024px) {
+  main .contact .description .team {
+    order: 0;
+    justify-content: center;
+  }
+}
+@media (max-width: 430px) {
+  main .contact .description .team {
+    font-size: 24px;
+  }
+}
+main .contact .description .team .avatar {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.contact .description .team .avatar .avatarContainer {
-  width: 100px;
+@media (max-width: 1024px) {
+  main .contact .description .team .avatar {
+    flex: 0;
+  }
 }
-.contact .description .team .avatar p {
+main .contact .description .team .avatar .avatarContainer {
+  width: 80px;
+}
+@media (max-width: 430px) {
+  main .contact .description .team .avatar .avatarContainer {
+    width: 60px;
+  }
+}
+main .contact .description .team .avatar p {
   font-size: 16px;
   color: #fff;
   font-size: 18px;
   font-weight: 700;
   line-height: 2;
-  letter-spacing: 3px;
+  letter-spacing: 1.5px;
 }
-.contact .viceBanner {
+@media (max-width: 430px) {
+  main .contact .description .team .avatar p {
+    letter-spacing: 1.2px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+main .contact .viceBanner {
   position: relative;
 }
-.contact .viceBanner::after {
+@media (max-width: 430px) {
+  main .contact .viceBanner {
+    height: 20vh;
+  }
+}
+main .contact .viceBanner img {
+  object-fit: cover;
+  height: 100%;
+}
+@media (max-width: 430px) {
+  main .contact .viceBanner img {
+    object-position: -10px 0;
+  }
+}
+main .contact .viceBanner::after {
   content: "";
   position: absolute;
   top: 0;
@@ -470,7 +1090,7 @@ main .bannerSection .arrowContainer {
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
-.contact .viceBanner .textContainer {
+main .contact .viceBanner .textContainer {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -481,13 +1101,19 @@ main .bannerSection .arrowContainer {
   align-items: center;
   gap: 20px;
   z-index: 2;
+  width: 70%;
 }
-.contact .viceBanner .textContainer p {
+main .contact .viceBanner .textContainer p {
   color: #fff;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   line-height: 1.5;
 }
-.contact .viceBanner .textContainer .registerButton {
+@media (max-width: 430px) {
+  main .contact .viceBanner .textContainer p {
+    display: none;
+  }
+}
+main .contact .viceBanner .textContainer .registerButton {
   background-color: #29453b;
   color: #fbf7f4;
   width: 200px;
@@ -495,34 +1121,94 @@ main .bannerSection .arrowContainer {
   font-size: 14px;
   border-radius: 5px;
   border: none;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   cursor: pointer;
   transition: all 0.3s ease-out;
 }
-.contact .viceBanner .textContainer .registerButton:hover {
+@media (max-width: 430px) {
+  main .contact .viceBanner .textContainer .registerButton {
+    letter-spacing: 1.5px;
+  }
+}
+main .contact .viceBanner .textContainer .registerButton:hover {
   background-color: #253731;
 }
-
-svg {
+main .scrollContainer svg {
   width: 100%;
 }
-
-.road {
+@media (max-width: 1024px) {
+  main .scrollContainer svg {
+    width: 98%;
+  }
+}
+main .road {
   position: absolute;
   top: 6%;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: -88;
-  width: 100%;
 }
-
-.car {
+@media (min-width: 1600px) {
+  main .road {
+    top: 13%;
+  }
+}
+@media (min-width: 1900px) {
+  main .road {
+    top: 15%;
+  }
+}
+@media (max-width: 1024px) {
+  main .road {
+    top: 120px;
+  }
+}
+@media (max-width: 935px) {
+  main .road {
+    top: 30px;
+  }
+}
+@media (max-width: 870px) {
+  main .road {
+    top: 0;
+  }
+}
+@media (max-width: 820px) {
+  main .road {
+    top: -50px;
+  }
+}
+@media (max-width: 768px) {
+  main .road {
+    top: -100px;
+  }
+}
+@media (max-width: 430px) {
+  main .road {
+    top: -150px;
+  }
+}
+@media (max-width: 393px) {
+  main .road {
+    top: -210px;
+  }
+}
+main .car {
   position: absolute;
   width: 80px;
   z-index: -80;
 }
-
-.fadeIn {
+@media (max-width: 935px) {
+  main .car {
+    width: 65px;
+  }
+}
+@media (max-width: 430px) {
+  main .car {
+    width: 40px;
+  }
+}
+main .fadeIn {
   opacity: 0;
   transform: translateY(40px);
 }
@@ -544,6 +1230,7 @@ svg {
   }
   .carouselSection .greatTime .textContainer .content {
     font-size: 18px;
+    width: 250px;
   }
   .carouselSection .greatTime .handheldContainer {
     width: 350px;
@@ -557,7 +1244,7 @@ svg {
   }
   .carouselSection .coffeeIsland {
     top: 23%;
-    left: 20%;
+    left: 16%;
   }
   .carouselSection .coffeeIsland h1 {
     font-size: 24px;
@@ -571,258 +1258,5 @@ svg {
   .road,
   .car {
     top: 15%;
-  }
-}
-@media (max-width: 1200px) {
-  .carouselSection .greatTime .greenBlockContainer {
-    width: 500px;
-  }
-  .carouselSection .greatTime .handheldContainer {
-    width: 200px;
-    right: -8%;
-  }
-  .carouselSection .greatTime .hotCoffeeContainer {
-    width: 180px;
-  }
-  .carouselSection .coffeeIsland {
-    top: 38%;
-  }
-  .road {
-    top: 250px;
-    width: 1100px;
-  }
-}
-@media (max-width: 1150px) {
-  .carouselSection {
-    height: 900px;
-    margin-top: 50px;
-  }
-  .carouselSection .greatTime .greenBlockContainer {
-    display: none;
-  }
-  .carouselSection .greatTime .textContainer {
-    display: none;
-  }
-  .carouselSection .greatTime .handheldContainer {
-    width: 230px;
-    right: -40px;
-  }
-  .carouselSection .maskContainer {
-    width: 300px;
-    transform: scaleX(-1);
-  }
-  .carouselSection .coffeeIsland {
-    top: 15%;
-    left: 30%;
-  }
-  .carouselSection .mainCarousel {
-    top: 50%;
-    right: auto;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 60%;
-  }
-  .carouselSection .mainCarousel .carousel .imageContainer {
-    width: 100%;
-  }
-  .contact .description {
-    flex-direction: column;
-  }
-  .contact .description .text {
-    order: 1;
-    padding: 0;
-    font-size: 14px;
-  }
-  .contact .description .team {
-    justify-content: center;
-    padding: 20px 0;
-  }
-  .contact .description .team .avatar {
-    margin: 0 15px;
-  }
-  .road {
-    top: 700px;
-    width: 850px;
-  }
-  .car {
-    width: 50px;
-  }
-}
-@media (max-width: 1000px) {
-  main {
-    display: flex;
-    flex-direction: column;
-    padding: 80px 0 0;
-    position: relative;
-  }
-  main .coffeebeanContainer {
-    display: none;
-  }
-  main .banner {
-    width: 100%;
-    margin: 0;
-  }
-  main .banner img {
-    clip-path: none;
-  }
-  main .banner .weather {
-    right: 20px;
-  }
-  main .banner .weather .todayDate .title {
-    font-size: 20px;
-  }
-  main .banner .weather .todayTemp .title {
-    font-size: 18px;
-  }
-  main .banner .weather .tomorrowDate .title {
-    font-size: 14px;
-  }
-  main .banner .weather .tomorrowTemp .title {
-    font-size: 12px;
-  }
-  main .banner .weather .todayDate .data {
-    font-size: 22px;
-  }
-  main .banner .weather .todayTemp .data {
-    font-size: 18px;
-  }
-  main .banner .weather .tomorrowDate .data {
-    font-size: 14px;
-  }
-  main .banner .weather .tomorrowTemp .data {
-    font-size: 12px;
-  }
-  main .hint {
-    position: absolute;
-    bottom: -50px;
-  }
-  .carouselSection {
-    height: 680px;
-    margin-top: 50px;
-  }
-  .carouselSection .maskContainer {
-    left: -25%;
-  }
-  .carouselSection .coffeeIsland {
-    left: 18%;
-  }
-  .contact {
-    padding-top: 80px;
-  }
-  .road {
-    top: 500px;
-    width: 750px;
-  }
-}
-@media (max-width: 800px) {
-  main .banner .bannerContainer {
-    display: none;
-  }
-  main .banner .bannerContainerSm {
-    display: block;
-  }
-  main .banner .weather {
-    display: none;
-  }
-  .carouselSection {
-    height: 600px;
-  }
-  .carouselSection .maskContainer {
-    display: none;
-  }
-  .carouselSection .coffeeIsland {
-    top: 10%;
-    left: 10%;
-  }
-  .carouselSection .mainCarousel {
-    top: 50%;
-  }
-  .road {
-    top: 400px;
-    width: 700px;
-  }
-}
-@media (max-width: 430px) {
-  .carouselSection {
-    height: 450px;
-  }
-  .carouselSection .greatTime .handheldContainer {
-    display: none;
-  }
-  .carouselSection .greatTime .hotCoffeeContainer {
-    width: 140px;
-    top: -30px;
-  }
-  .carouselSection .coffeeIsland .deco {
-    display: none;
-  }
-  .carouselSection .coffeeIsland h1 {
-    font-size: 18px;
-  }
-  .carouselSection .coffeeIsland .content {
-    font-size: 14px;
-  }
-  .carouselSection .mainCarousel {
-    top: 65%;
-  }
-  .map {
-    margin-top: 0;
-    height: 500px;
-  }
-  .map .mapBox .northTwContainer .northBox {
-    display: none;
-  }
-  .map .mapBox .northTwContainer .districtsContainer {
-    width: 80%;
-    top: 50px;
-    left: 5%;
-  }
-  .map .textBox {
-    top: 0;
-  }
-  .map .textBox .title .titleEn {
-    font-size: 20px;
-  }
-  .map .textBox .title .titleCh {
-    font-size: 22px;
-  }
-  .map .textBox .title .logo {
-    width: 60px;
-  }
-  .map .textBox .hint {
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  .map .textBox .list p {
-    font-size: 14px;
-  }
-  .contact {
-    padding: 0 40px;
-  }
-  .contact .title {
-    font-size: 24px;
-  }
-  .contact .description .text {
-    font-size: 14px;
-  }
-  .contact .description .team .avatar .avatarContainer {
-    width: 50px;
-  }
-  .contact .description .team .avatar p {
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 2px;
-  }
-  .contact .viceBanner .textContainer p {
-    display: none;
-  }
-  .contact .viceBanner .textContainer .registerButton {
-    width: 150px;
-    height: 35px;
-    font-size: 12px;
-  }
-  .road,
-  .car {
-    display: none;
   }
 }

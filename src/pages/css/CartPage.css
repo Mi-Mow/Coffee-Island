@@ -57,17 +57,6 @@
 .cart-page .step-progress .step-wrapper.active .label {
   font-weight: bold;
 }
-.cart-page .step-progress .step-wrapper:hover .circle:not(.active), .cart-page .step-progress .step-wrapper:focus .circle:not(.active) {
-  background: rgba(255, 241, 203, 0.1882352941);
-  color: #fff1cb;
-  box-shadow: 0 2px 10px 0 rgba(255, 241, 203, 0.3764705882);
-  transform: scale(1.09);
-  border-color: #fff1cb;
-}
-.cart-page .step-progress .step-wrapper:hover .label:not(.active), .cart-page .step-progress .step-wrapper:focus .label:not(.active) {
-  color: #fff1cb;
-  text-decoration: underline;
-}
 .cart-page .step-progress .step-wrapper:active .circle {
   transform: scale(0.96);
   filter: brightness(0.94);
@@ -147,13 +136,22 @@
 
 .cart-content {
   display: flex;
+  align-items: flex-start;
   gap: 40px;
 }
-.cart-content .cart-list,
-.cart-content .form-list {
-  flex: 2;
+@media (max-width: 1000px) {
+  .cart-content {
+    align-items: center;
+  }
+  .cart-content .cart-list {
+    flex: 2;
+  }
+  .cart-content .cart-summary {
+    flex: 1;
+  }
 }
-.cart-content .cart-table {
+
+.cart-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 0;
@@ -161,10 +159,10 @@
   color: #fff1cb;
   background: none;
 }
-.cart-content .cart-table thead {
+.cart-table thead {
   background: none;
 }
-.cart-content .cart-table thead th {
+.cart-table thead th {
   color: #fff1cb;
   background: none;
   font-weight: bold;
@@ -174,20 +172,20 @@
   padding: 18px 10px;
   letter-spacing: 2px;
 }
-.cart-content .cart-table tbody tr {
+.cart-table tbody tr {
   background: none;
   border-bottom: 1px solid rgba(255, 241, 203, 0.25);
 }
-.cart-content .cart-table tbody th,
-.cart-content .cart-table tbody td {
+.cart-table tbody th,
+.cart-table tbody td {
   padding: 8px 10px;
   vertical-align: middle;
   font-size: 20px;
 }
-.cart-content .cart-table tbody th.img {
+.cart-table tbody th.img {
   width: 100px;
 }
-.cart-content .cart-table tbody th.img img {
+.cart-table tbody th.img img {
   display: block;
   width: 80px;
   height: 80px;
@@ -197,30 +195,30 @@
   border: 1px solid #e7e2b3;
   box-shadow: 0 2px 8px 0 rgba(60, 60, 30, 0.08);
 }
-.cart-content .cart-table tbody th.title {
+.cart-table tbody th.title {
   text-align: left;
 }
-.cart-content .cart-table tbody th.title .name {
+.cart-table tbody th.title .name {
   font-size: 18px;
   font-weight: bold;
   display: block;
 }
-.cart-content .cart-table tbody th.title .spec {
+.cart-table tbody th.title .spec {
   font-size: 15px;
   opacity: 0.75;
   margin-top: 2px;
 }
-.cart-content .cart-table tbody td {
+.cart-table tbody td {
   text-align: center;
   color: #fff1cb;
   font-size: 16px;
 }
-.cart-content .cart-table tbody td .quantity-control {
+.cart-table tbody td .quantity-control {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.cart-content .cart-table tbody td .quantity-control button {
+.cart-table tbody td .quantity-control button {
   width: 28px;
   height: 28px;
   background: transparent;
@@ -230,15 +228,15 @@
   border-radius: 6px;
   cursor: pointer;
 }
-.cart-content .cart-table tbody td .quantity-control button:hover {
+.cart-table tbody td .quantity-control button:hover {
   background: #476b67;
 }
-.cart-content .cart-table tbody td .quantity-control span {
+.cart-table tbody td .quantity-control span {
   width: 32px;
   display: inline-block;
   text-align: center;
 }
-.cart-content .cart-table tbody td .remove {
+.cart-table tbody td .remove {
   font-size: 22px;
   border: none;
   background: transparent;
@@ -246,11 +244,12 @@
   cursor: pointer;
   transition: color 0.15s;
 }
-.cart-content .cart-table tbody td .remove:hover {
+.cart-table tbody td .remove:hover {
   color: #f25c54;
 }
+
 @media (max-width: 1000px) {
-  .cart-content .cart-table thead {
+  .cart-table thead {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -258,38 +257,39 @@
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;
   }
-  .cart-content .cart-table tbody,
-  .cart-content .cart-table tbody tr,
-  .cart-content .cart-table tr,
-  .cart-content .cart-table th,
-  .cart-content .cart-table td {
+  .cart-table tbody,
+  .cart-table tbody tr,
+  .cart-table tr,
+  .cart-table th,
+  .cart-table td {
     display: block !important;
     width: 100% !important;
     text-align: right !important;
     box-sizing: border-box;
   }
-  .cart-content .cart-table tbody tr {
+  .cart-table tbody tr {
     margin-bottom: 20px;
     border-radius: 12px;
     background: rgba(30, 50, 48, 0.97);
     box-shadow: 0 4px 14px 0 rgba(20, 30, 20, 0.13);
     border: 2px solid #fff1cb;
     padding: 0 10px 0 10px;
+    width: 70%;
   }
-  .cart-content .cart-table th.title {
+  .cart-table th.title {
     color: #fff1cb;
     border-radius: 0 0 10px 10px;
     margin-bottom: 10px;
     padding: 8px 10px;
     text-align: center !important;
   }
-  .cart-content .cart-table th.title .name {
+  .cart-table th.title .name {
     font-size: 20px;
   }
-  .cart-content .cart-table th.title .spec {
+  .cart-table th.title .spec {
     font-size: 15px;
   }
-  .cart-content .cart-table td[data-title]:before {
+  .cart-table td[data-title]:before {
     content: attr(data-title) "：";
     float: left;
     font-weight: bold;
@@ -298,55 +298,55 @@
     font-size: 16px;
     margin-right: 10px;
   }
-  .cart-content .cart-table td,
-  .cart-content .cart-table th {
+  .cart-table td,
+  .cart-table th {
     padding: 14px 8px;
     font-size: 17px;
     border: none;
     background: none;
   }
-  .cart-content .cart-table td .quantity-control button {
+  .cart-table td .quantity-control button {
     width: 30px;
     height: 30px;
     font-size: 15px;
   }
-  .cart-content .cart-table td .quantity-control span {
+  .cart-table td .quantity-control span {
     width: 28px;
     font-size: 17px;
   }
 }
-.cart-content .form-list {
+.form-list {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
 }
-.cart-content .form-list hr {
+.form-list hr {
   border-color: #fff1cb;
   opacity: 0.3;
   margin: 0;
 }
-.cart-content .form-list .form-section {
+.form-list .form-section {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
 }
-.cart-content .form-list .form-section .form-title {
+.form-list .form-section .form-title {
   font-size: 22px;
   font-weight: bold;
   color: #fff1cb;
 }
-.cart-content .form-list .form-section .radio-group {
+.form-list .form-section .radio-group {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.cart-content .form-list .form-section .radio-with-input {
+.form-list .form-section .radio-with-input {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 12px;
 }
-.cart-content .form-list .form-section .radio-with-input input[type=text] {
+.form-list .form-section .radio-with-input input[type=text] {
   padding: 8px 12px;
   border: 2px solid #fff1cb;
   border-radius: 8px;
@@ -355,38 +355,38 @@
   font-size: 16px;
   width: 100%;
 }
-.cart-content .form-list .form-section label {
+.form-list .form-section label {
   display: flex;
   align-items: center;
   gap: 8px;
   color: #fff1cb;
   font-size: 16px;
 }
-.cart-content .form-list .form-section label input[type=radio] {
+.form-list .form-section label input[type=radio] {
   accent-color: #fff1cb;
 }
-.cart-content .form-list .form-section label span {
+.form-list .form-section label span {
   font-size: 14px;
   color: rgba(255, 241, 203, 0.8);
 }
-.cart-content .form-list .form-section .recipient-info .form-row {
+.form-list .form-section .recipient-info .form-row {
   display: flex;
   align-items: center;
   margin-bottom: 32px;
 }
-.cart-content .form-list .form-section .recipient-info .form-row label {
+.form-list .form-section .recipient-info .form-row label {
   width: 120px;
   font-size: 16px;
   color: #FFF1CB;
   display: flex;
   align-items: center;
 }
-.cart-content .form-list .form-section .recipient-info .form-row label .required-star {
+.form-list .form-section .recipient-info .form-row label .required-star {
   color: #e74c3c;
   font-size: 16px;
   margin-right: 6px;
 }
-.cart-content .form-list .form-section .recipient-info .form-row input {
+.form-list .form-section .recipient-info .form-row input {
   flex: 1;
   font-size: 16px;
   padding: 10px 18px;
@@ -397,7 +397,8 @@
   margin-left: 18px;
   outline: none;
 }
-.cart-content .order-info {
+
+.order-info {
   margin-top: 40px;
   padding: 32px;
   border: 1px solid #fff1cb;
@@ -409,12 +410,12 @@
   font-size: 20px;
   color: #fff1cb;
 }
-.cart-content .order-info .label {
+.order-info .label {
   font-weight: bold;
   font-size: 16px;
   white-space: nowrap;
 }
-.cart-content .order-info .value {
+.order-info .value {
   font-size: 14px;
 }
 

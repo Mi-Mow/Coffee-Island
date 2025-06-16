@@ -23,7 +23,6 @@ export const products = [
     image: `${base}products/gooseneck1.jpg`,
     hoverImage: `${base}products/gooseneck1Hover.jpg`,
     images: [
-      //`${base}products/gooseneck1.jpg`,
       `${base}products/gooseneck1Hover.jpg`,
       `${base}products/gooseneck1Des1.jpg`
     ],

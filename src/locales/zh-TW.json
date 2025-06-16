@@ -64,7 +64,7 @@
       "popular": "熱門咖啡廳",
       "more": "查看更多",
       "clear": "清除篩選",
-      "district" : "區域"
+      "district": "區域"
     },
     "cafe": {
       "today_opening_hours": "今日營業時間",
@@ -184,5 +184,50 @@
       "cancel": "取消",
       "confirm": "確認修改"
     }
+  },
+  "login": {
+    "title": "會員登入",
+    "welcome": "歡迎回來",
+    "email": "帳號*",
+    "password": "密碼*",
+    "remember": "記住密碼",
+    "forgot": "忘記密碼",
+    "button": "登入",
+    "notMember": "還不是會員？",
+    "registerNow": "立即註冊",
+    "emptyWarning": "帳號跟密碼都要輸入哦",
+    "success": "登入成功",
+    "fail": "登入失敗，請確認帳號與密碼",
+    "emailPlaceholder": "請輸入電子郵件",
+    "login.passwordPlaceholder": "請輸入密碼"
+  },
+  "forgot": {
+    "title": "忘記密碼",
+    "instruction": "請輸入您註冊時使用的 Email，我們會寄送重設密碼連結給您",
+    "email": "Email",
+    "cancel": "取消",
+    "send": "送出",
+    "success": "請至信箱收信認證",
+    "ok": "確定"
+  },
+  "register": {
+  "title": "會員註冊",
+  "subtitle": "免費加入",
+  "name": "您的名字*",
+  "namePlaceholder": "請輸入您的名字",
+  "email": "設定帳號*",
+  "emailPlaceholder": "請輸入電子郵件",
+  "password": "設定密碼*",
+  "passwordPlaceholder": "請輸入密碼，長度需6碼以上",
+  "confirmPassword": "確認密碼*",
+  "confirmPasswordPlaceholder": "請再輸入一次密碼",
+  "button": "註冊",
+  "error": {
+    "nameRequired": "請輸入您的名字",
+    "invalidEmail": "請輸入有效的電子郵件格式",
+    "passwordTooShort": "密碼長度須為6碼以上",
+    "passwordMismatch": "設定密碼與確認密碼不一致"
   }
+}
+
 }

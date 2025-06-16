@@ -5,6 +5,8 @@ import Alert from "@mui/material/Alert";
 import eyes from "../../assets/register/eyes.png";
 import eyelashes from "../../assets/register/eyelashes.png";
 import "./Register.scss";
+import { useTranslation } from "react-i18next";
+
 
 function Register() {
   const { register } = useAuth();
@@ -16,35 +18,35 @@ function Register() {
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { t } = useTranslation();
 
   const validate = (name, email, password, confirmPassword) => {
     if (!name) {
-      setErrMsg("請輸入您的名字");
+      setErrMsg(t("register.error.nameRequired"));
       setOpenSnackBar(true);
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 常用 email 格式檢查 regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setErrMsg("請輸入有效的電子郵件格式");
-      setOpenSnackBar(true);
-      return;
-    }
-    // 檢核密碼長度
-    if (password.length < 6) {
-      setErrMsg("密碼長度須為6碼以上");
-      setOpenSnackBar(true);
-      return;
-    }
-    // 密碼與確認密碼
-    if (password !== confirmPassword) {
-      setErrMsg("設定密碼與確認密碼不一致");
+      setErrMsg(t("register.error.invalidEmail"));
       setOpenSnackBar(true);
       return;
     }
 
-    return true;
+    if (password.length < 6) {
+      setErrMsg(t("register.error.passwordTooShort"));
+      setOpenSnackBar(true);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrMsg(t("register.error.passwordMismatch"));
+      setOpenSnackBar(true);
+      return;
+    }
   };
+
 
   const handleRegister = () => {
     const validateResult = validate(name, email, password, confirmPassword);
@@ -69,54 +71,45 @@ function Register() {
     <>
       <div className="login-wrapper">
         <div className="login-card">
-          <p className="sub-title">會員註冊</p>
-          <h2 className="main-title">免費加入</h2>
+          <p className="sub-title">{t("register.title")}</p>
+          <h2 className="main-title">{t("register.subtitle")}</h2>
+
           <div className="input-item">
-            <label className="input-label" htmlFor="name">
-              您的名字*
-            </label>
+            <label className="input-label" htmlFor="name">{t("register.name")}</label>
             <input
               className="register-input"
-              type="name"
+              type="text"
               id="name"
-              placeholder="請輸入您的名字"
+              placeholder={t("register.namePlaceholder")}
               value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
+
           <div className="input-item">
-            <label className="input-label" htmlFor="email">
-              設定帳號*
-            </label>
+            <label className="input-label" htmlFor="email">{t("register.email")}</label>
             <input
               className="register-input"
               type="email"
               id="email"
-              placeholder="請輸入電子郵件"
+              placeholder={t("register.emailPlaceholder")}
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
+
           <div className="input-item">
-            <label className="input-label" htmlFor="password">
-              設定密碼*
-            </label>
+            <label className="input-label" htmlFor="password">{t("register.password")}</label>
             <div className="password">
               <input
                 className="register-input"
                 type={showPassword ? "text" : "password"}
                 id="password"
-                placeholder="請輸入密碼，長度需6碼以上"
+                placeholder={t("register.passwordPlaceholder")}
                 value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <div
@@ -127,20 +120,17 @@ function Register() {
               </div>
             </div>
           </div>
+
           <div className="input-item">
-            <label className="input-label" htmlFor="password">
-              確認密碼*
-            </label>
+            <label className="input-label" htmlFor="confirm-password">{t("register.confirmPassword")}</label>
             <div className="password">
               <input
                 className="register-input"
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirm-password"
-                placeholder="請再輸入一次密碼"
+                placeholder={t("register.confirmPasswordPlaceholder")}
                 value={confirmPassword}
-                onChange={(e) => {
-                  setConfirmPassword(e.target.value);
-                }}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
               <div
@@ -153,10 +143,11 @@ function Register() {
           </div>
 
           <button className="register-btn" onClick={handleRegister}>
-            註冊
+            {t("register.button")}
           </button>
         </div>
       </div>
+
       <Snackbar
         open={openSnackBar}
         autoHideDuration={4000}
@@ -177,6 +168,7 @@ function Register() {
         </Alert>
       </Snackbar>
     </>
+
   );
 }
 export default Register;
