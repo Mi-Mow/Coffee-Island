@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import EventCard from './components/EventCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import event1 from '../../assets/news/activities/01.jpg';
 import event2 from '../../assets/news/activities/02.jpg';
 import event3 from '../../assets/news/activities/3.png';
@@ -143,6 +143,9 @@ TYPICA 的理念是讓咖啡的價值被公平體現，這不僅是一場品飲�
 ];
 
 function Event() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // 捲動到頁面頂部
+  }, []);
 
   const navigate = useNavigate();
 

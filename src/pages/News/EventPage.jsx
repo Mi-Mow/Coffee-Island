@@ -4,6 +4,10 @@ import { useEffect, useRef } from "react";
 const base = import.meta.env.BASE_URL;
 
 function EventPage() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0); // 捲動到頁面頂部
+    }, []);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -81,7 +85,7 @@ function EventPage() {
                             <strong>更多資訊：</strong>{event.p}
                             {event.link ? (
                                 <a href={event.link} target="_blank" rel="noopener noreferrer"
-                                style={{textDecoration:"underline"}}
+                                    style={{ textDecoration: "underline" }}
                                 >點此前往</a>
                             ) : (
                                 <div className="reco-button">

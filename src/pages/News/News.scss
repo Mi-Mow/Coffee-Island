@@ -565,6 +565,8 @@ input {
               height: 80px;
               align-self: stretch;
               justify-content: center;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
 

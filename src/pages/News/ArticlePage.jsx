@@ -1,11 +1,16 @@
 import { useParams, useNavigate, Link } from "react-router-dom"
 // 文章資料
 import { articles, hotArticles } from './Article'
+import { useEffect } from "react";
 const base = import.meta.env.BASE_URL;
 
 
 function ArticlePage() {
 
+    useEffect(() => {
+        window.scrollTo(0, 0); // 捲動到頁面頂部
+    }, []);
+    
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -56,6 +61,15 @@ function ArticlePage() {
         }
     };
 
+
+    // 找到目前文章在 allArticles 的索引
+    const currentIndex = allArticles.findIndex(a => a.id === articleId);
+
+    // 取得下一篇文章（可選是否循環）
+    const nextArticle = currentIndex >= 0 && currentIndex < allArticles.length - 1
+        ? allArticles[currentIndex + 1]
+        : allArticles[0]; //循環回第一篇
+
     return (
         <div >
             <main className="article-detail-page" >
@@ -103,6 +117,7 @@ function ArticlePage() {
                         {article.paragraphs && (
                             <div className="article-paragraphs">
                                 {Object.values(article.paragraphs).map((p, idx) => {
+
                                     const smImages = article.smImg || [];
                                     const hasImage = smImages[idx];
 
@@ -116,6 +131,7 @@ function ArticlePage() {
                                             <div key={idx} style={{ margin: '20px 0' }}>
                                                 {/* html <br> 換行 */}
                                                 <p dangerouslySetInnerHTML={{ __html: p }} />
+                                                {/* {renderParagraphWithLinks(p)} */}
                                             </div>
                                         </div>
                                     );
@@ -154,6 +170,14 @@ function ArticlePage() {
 
 
                 <br />
+
+                {nextArticle && (
+                    <div className="article-button-container">
+                        <button onClick={() => navigate(`${base}news/article/${nextArticle.id}`)}>
+                            下一篇：{nextArticle.title.length > 10 ? nextArticle.title.slice(0, 10) + '…' : nextArticle.title}
+                        </button>
+                    </div>
+                )}
 
                 {/* 按鈕區 */}
                 <div className="article-buttonGroup-container">
