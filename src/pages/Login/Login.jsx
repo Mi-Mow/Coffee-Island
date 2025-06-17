@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./Login.scss";
 import { useState } from "react";
@@ -114,7 +114,12 @@ function Login() {
 
           <div className="footer">
             <p>{t("login.notMember")}</p>
-            <p className="link2">{t("login.registerNow")}</p>
+            <p className="link2" onClick={() => {
+              navigate(`${base}register`);
+            }}
+            >{t("login.registerNow")}</p>
+
+
           </div>
         </div>
       </div>
@@ -166,7 +171,7 @@ function Login() {
         <DialogTitle sx={{ color: "#ffffff" }}>{t("login.forgot")}</DialogTitle>
         <DialogContent>
           <DialogContentText
-          sx={{color:"#fff1cb"}}
+            sx={{ color: "#fff1cb" }}
           >{t("forgot.instruction")}</DialogContentText>
           <TextField
             autoFocus

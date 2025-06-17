@@ -88,6 +88,7 @@ body::before {
   cursor: pointer;
   transition: 0.2s width ease-out;
   z-index: 99;
+  animation: pulse 5s infinite;
 }
 .monster-container.show {
   opacity: 1;
@@ -95,4 +96,15 @@ body::before {
 }
 .monster-container:hover {
   width: 55px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
 }

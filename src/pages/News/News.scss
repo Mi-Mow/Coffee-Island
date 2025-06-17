@@ -1036,7 +1036,8 @@ input {
         }
 
         li {
-          padding-top: 8px;
+          font-size: 14px;
+          padding-top: 16px;
         }
       }
 
@@ -1182,6 +1183,7 @@ input {
   .article-share-container {
     position: fixed;
     width: 80px;
+    top: 10%;
     right: 2vw;
 
     @media ($media-1024) {
