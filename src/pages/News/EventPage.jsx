@@ -1,9 +1,13 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { events } from './Event'
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "../../context/LanguageContext";
 const base = import.meta.env.BASE_URL;
 
 function EventPage() {
+    const { t } = useTranslation();
+    const { language } = useLanguage();
 
     useEffect(() => {
         window.scrollTo(0, 0); // 捲動到頁面頂部
@@ -44,52 +48,52 @@ function EventPage() {
                     <nav className="breadcrumbs" aria-label="breadcrumb">
                         <ol style={{ listStyle: 'none', padding: 0, margin: '10px 0', display: 'flex', gap: '5px' }}>
                             <li>
-                                <Link to={`${base}`}>首頁</Link>
+                                <Link to={`${base}`}>{t("header.home")}</Link>
                             </li>
                             <li>&gt;</li>
                             <li>
-                                <Link to={`${base}news`}>島嶼月報</Link>
+                                <Link to={`${base}news`}>{t("header.news")}</Link>
                             </li>
                             <li>&gt;</li>
                             <li>
-                                <Link to={`${base}news/event`}>找活動</Link>
+                                <Link to={`${base}news/event`}>{t("news.event")}</Link>
                             </li>
                             <li>&gt;</li>
                             <li aria-current="page">
-                                {event.title} {/* 當前文章標題 */}
+                                { language === 'zh-TW' ? event.title : event.titleEN }{/* 當前文章標題 */}
                             </li>
                         </ol>
                     </nav>
                     <section>
                         <div className="title-container">
-                            <h1>{event.title}</h1>
+                            <h1>{ language === 'zh-TW' ? event.title : event.titleEN }</h1>
                             <div>
                                 <p>
-                                    {event.tags[0]}
+                                    { language === 'zh-TW' ? event.tags[0] : event.tagsEN[0] }
                                     {` `}
-                                    {event.tags[1]}</p>
+                                    { language === 'zh-TW' ? event.tags[1] : event.tagsEN[1] }</p>
                             </div>
                         </div>
                         <div className="content-container">
                             <figure>
                                 <img src={event.imgSrc} alt={event.title} />
                             </figure>
-                            <p><strong>活動日期：</strong>{event.date}{event.time && `｜時間：${event.time}`}</p>
-                            <p><strong>主辦單位：</strong>{event.organizer}</p>
-                            <p><strong>活動內容：</strong></p>
+                            <p><strong>{t("news.events.date")}</strong>{ language === 'zh-TW' ? event.date : event.dateEN }{event.time && `｜${ language === 'zh-TW' ? "時間" : "Event Time" }：${event.time}`}</p>
+                            <p><strong>{t("news.events.organizer")}</strong>{ language === 'zh-TW' ? event.organizer : event.organizerEN }</p>
+                            <p><strong>{t("news.events.details")}</strong></p>
                             {/* 文章段落 */}
-                            <p style={{ margin: '20px 0' }}>{event.content}</p>
+                            <p style={{ margin: '20px 0' }}>{ language === 'zh-TW' ? event.content : event.contentEN}</p>
 
                         </div>
                         <p>
-                            <strong>更多資訊：</strong>{event.p}
+                            <strong>{t("news.events.moreInfo")}</strong>{ language === 'zh-TW' ? event.p : event.pEN }
                             {event.link ? (
                                 <a href={event.link} target="_blank" rel="noopener noreferrer"
                                     style={{ textDecoration: "underline" }}
-                                >點此前往</a>
+                                >{t("news.events.go")}</a>
                             ) : (
                                 <div className="book-button">
-                                    <button onClick={() => alert('前往報名')}>點此預約</button>
+                                    <button onClick={() => alert('前往報名')}>{t("news.events.reservation")}</button>
                                 </div>
                             )}
 

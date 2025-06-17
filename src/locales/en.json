@@ -211,23 +211,56 @@
     "ok": "OK"
   },
   "register": {
-  "title": "Register",
-  "subtitle": "Join for Free",
-  "name": "Your Name*",
-  "namePlaceholder": "Enter your name",
-  "email": "Set Account*",
-  "emailPlaceholder": "Enter your email",
-  "password": "Set Password*",
-  "passwordPlaceholder": "Enter password (at least 6 characters)",
-  "confirmPassword": "Confirm Password*",
-  "confirmPasswordPlaceholder": "Re-enter your password",
-  "button": "Register",
-  "error": {
-    "nameRequired": "Please enter your name",
-    "invalidEmail": "Please enter a valid email address",
-    "passwordTooShort": "Password must be at least 6 characters",
-    "passwordMismatch": "Password and confirm password do not match"
+    "title": "Register",
+    "subtitle": "Join for Free",
+    "name": "Your Name*",
+    "namePlaceholder": "Enter your name",
+    "email": "Set Account*",
+    "emailPlaceholder": "Enter your email",
+    "password": "Set Password*",
+    "passwordPlaceholder": "Enter password (at least 6 characters)",
+    "confirmPassword": "Confirm Password*",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "button": "Register",
+    "error": {
+      "nameRequired": "Please enter your name",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordTooShort": "Password must be at least 6 characters",
+      "passwordMismatch": "Password and confirm password do not match"
+    }
+  },
+  "news": {
+    "read": "Articles",
+    "event": "Events",
+    "oldTaipei": "Old Taipei Special Feature",
+    "latest": "Latest Articles",
+    "popular": "Popular Picks",
+    "special": "Specialty Cafes",
+    "viewMore": "View More",
+    "viewMoreEvents": "View More Latest Events",
+    "articles": {
+      "author": "Author",
+      "storeInfo": "Store Information",
+      "noInfo": "Sorry, there is no more infomation",
+      "next": "Next",
+      "previous": "Previous",
+      "toArticles": "Go To Articles",
+      "toNews": "Go To News",
+      "all": "All Articles",
+      "hottest": "Hottest"
+    },
+    "events": {
+      "date": "Date：",
+      "organizer": "Organizer：",
+      "details": "Event details：",
+      "moreInfo": "More Information：",
+      "go": "Go to website",
+      "reservation": "Click to make a reservation",
+      "all": "All Events",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "month": "This Month",
+      "end": "Coming to an end"
+    }
   }
-}
-
 }

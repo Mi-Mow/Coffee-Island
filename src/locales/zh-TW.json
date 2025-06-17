@@ -1,6 +1,6 @@
 {
   "header": {
-    "home": "主頁",
+    "home": "首頁",
     "map": "地圖",
     "news": "島嶼月報",
     "products": "限定商品",
@@ -211,23 +211,56 @@
     "ok": "確定"
   },
   "register": {
-  "title": "會員註冊",
-  "subtitle": "免費加入",
-  "name": "您的名字*",
-  "namePlaceholder": "請輸入您的名字",
-  "email": "設定帳號*",
-  "emailPlaceholder": "請輸入電子郵件",
-  "password": "設定密碼*",
-  "passwordPlaceholder": "請輸入密碼，長度需6碼以上",
-  "confirmPassword": "確認密碼*",
-  "confirmPasswordPlaceholder": "請再輸入一次密碼",
-  "button": "註冊",
-  "error": {
-    "nameRequired": "請輸入您的名字",
-    "invalidEmail": "請輸入有效的電子郵件格式",
-    "passwordTooShort": "密碼長度須為6碼以上",
-    "passwordMismatch": "設定密碼與確認密碼不一致"
+    "title": "會員註冊",
+    "subtitle": "免費加入",
+    "name": "您的名字*",
+    "namePlaceholder": "請輸入您的名字",
+    "email": "設定帳號*",
+    "emailPlaceholder": "請輸入電子郵件",
+    "password": "設定密碼*",
+    "passwordPlaceholder": "請輸入密碼，長度需6碼以上",
+    "confirmPassword": "確認密碼*",
+    "confirmPasswordPlaceholder": "請再輸入一次密碼",
+    "button": "註冊",
+    "error": {
+      "nameRequired": "請輸入您的名字",
+      "invalidEmail": "請輸入有效的電子郵件格式",
+      "passwordTooShort": "密碼長度須為6碼以上",
+      "passwordMismatch": "設定密碼與確認密碼不一致"
+    }
+  },
+  "news": {
+    "read": "閱讀文章",
+    "event": "找活動",
+    "oldTaipei": "老臺北特輯",
+    "latest": "最新文章",
+    "popular": "人氣推薦",
+    "special": "特色咖啡廳",
+    "viewMore": "看更多",
+    "viewMoreEvents": "看更多最新活動",
+    "articles": {
+      "author": "文",
+      "storeInfo": "店家資訊",
+      "noInfo": "很抱歉，暫無資料。",
+      "next": "下一篇",
+      "previous": "上一頁",
+      "toArticles": "回到列表",
+      "toNews": "回到月報",
+      "all": "全部文章",
+      "hottest": "Hottest｜人氣推薦"
+    },
+    "events": {
+      "date": "活動日期：",
+      "organizer": "主辦單位：",
+      "details": "活動內容：",
+      "moreInfo": "更多資訊：",
+      "go": "點此前往",
+      "reservation": "點此預約",
+      "all": "全部活動",
+      "today": "今日",
+      "tomorrow": "明日",
+      "month": "當月",
+      "end": "將結束"
+    }
   }
-}
-
 }

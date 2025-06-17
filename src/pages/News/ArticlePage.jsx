@@ -3,10 +3,14 @@ import { useParams, useNavigate, Link } from "react-router-dom"
 import { articles, hotArticles } from './Article'
 import { useEffect } from "react";
 import shareIcon from "../../assets/news/icon-share.svg"
+import { useLanguage } from "../../context/LanguageContext";
+import { useTranslation } from "react-i18next";
 const base = import.meta.env.BASE_URL;
 
 
 function ArticlePage() {
+    const { language } = useLanguage();
+    const { t } = useTranslation();
 
     useEffect(() => {
         window.scrollTo(0, 0); // 捲動到頁面頂部
@@ -83,15 +87,15 @@ function ArticlePage() {
                         </li> */}
                         {/* <li>&gt;</li> */}
                         <li>
-                            <Link to={`${base}news`}>島嶼月報</Link>
+                            <Link to={`${base}news`}>{t("header.news")}</Link>
                         </li>
                         <li>&gt;</li>
                         <li>
-                            <Link to={`${base}news/article`}>閱讀文章</Link>
+                            <Link to={`${base}news/article`}>{t("news.read")}</Link>
                         </li>
                         <li>&gt;</li>
                         <li aria-current="page">
-                            {article.title.length > 10 ? article.title.slice(0, 10) + '…' : article.title} {/* 當前文章標題 */}
+                            { language === 'zh-TW' ? (article.title.length > 10 ? article.title.slice(0, 10) + '…' : article.title) : (article.titleEN.length > 10 ? article.titleEN.slice(0, 10) + '…' : article.titleEN) }
                         </li>
                     </ol>
                 </nav>
@@ -107,10 +111,10 @@ function ArticlePage() {
                 <section>
                     {/* 標題區 */}
                     <div className="title-container">
-                        <p>咖啡島 <span>{article.tag}</span></p>
+                        <p>{t("footer.title")} <span>{ language === 'zh-TW' ? article.tag : article.tagEN }</span></p>
                         {/* SEO h1 */}
-                        <h1>{article.title}</h1>
-                        <p>文 <span>{article.author}</span></p>
+                        <h1>{ language === 'zh-TW' ? article.title : article.titleEN }</h1>
+                        <p>{t("news.articles.author")} <span>{ language === 'zh-TW' ? article.author : article.authorEN }</span></p>
                     </div>
                     {/* 大圖 */}
                     <figure>
@@ -120,12 +124,12 @@ function ArticlePage() {
                     <div className="content-container">
 
                         {/* 文章段落 */}
-                        <p style={{ margin: '20px 0' }}>{article.content}</p>
+                        <p style={{ margin: '20px 0' }}>{ language === 'zh-TW' ? article.content : article.contentEN}</p>
 
                         {/* 根據 hotArticles 的格式渲染段落與圖片 */}
                         {article.paragraphs && (
                             <div className="article-paragraphs">
-                                {Object.values(article.paragraphs).map((p, idx) => {
+                                {Object.values( language === 'zh-TW' ? article.paragraphs : article.paragraphsEN).map((p, idx) => {
 
                                     const smImages = article.smImg || [];
                                     const hasImage = smImages[idx];
@@ -156,16 +160,16 @@ function ArticlePage() {
                     <div className="info-container">
 
                         <div className="info-text-container">
-                            <p>店家資訊</p>
+                            <p>{t("news.articles.storeInfo")}</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="315" height="2" viewBox="0 0 315 2" fill="none">
                                 <path d="M0 1.47754H315" stroke="#FFF1CB" />
                             </svg>
                             {Array.isArray(article.info) && article.info.length > 0 ? (
-                                article.info.map((line, idx) => (
+                                (language === 'zh-TW' ? article.info : article.infoEN).map((line, idx) => (
                                     <p key={idx}>{line}</p>
                                 ))
                             ) : (
-                                <p className="note">很抱歉，暫無資料。</p>
+                                <p className="note">{t("news.articles.noInfo")}</p>
                             )}
 
                         </div>
@@ -184,7 +188,7 @@ function ArticlePage() {
                             navigate(`${base}news/article/${nextArticle.id}`);
                             window.scrollTo(0, 0);
                         }}>
-                            下一篇：{nextArticle.title.length > 30 ? nextArticle.title.slice(0, 30) + '…' : nextArticle.title}
+                            {t("news.articles.next")}：{ language === 'zh-TW' ? (nextArticle.title.length > 30 ? nextArticle.title.slice(0, 30) + '…' : nextArticle.title) : (nextArticle.titleEN.length > 30 ? nextArticle.titleEN.slice(0, 30) + '…' : nextArticle.titleEN) }
                             <img src={nextArticle.image} alt={nextArticle.title} />
 
                         </a>
@@ -194,16 +198,16 @@ function ArticlePage() {
                 {/* 按鈕區 */}
                 <div className="article-buttonGroup-container">
                     <div className="article-button-container">
-                        <button onClick={handleGoBack}>上一頁</button>
+                        <button onClick={handleGoBack}>{t("news.articles.previous")}</button>
                     </div>
                     {/* <div className="article-button-container">
                         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>回到置頂</button>
                     </div> */}
                     <div className="article-button-container">
-                        <button onClick={handleGoArticle}>回到列表</button>
+                        <button onClick={handleGoArticle}>{t("news.articles.toArticles")}</button>
                     </div>
                     <div className="article-button-container">
-                        <button onClick={handleGoNews}>回到月報</button>
+                        <button onClick={handleGoNews}>{t("news.articles.toNews")}</button>
                     </div>
                 </div>
 
