@@ -1183,6 +1183,7 @@ input {
   .article-share-container {
     position: fixed;
     width: 80px;
+    top: 10%;
     right: 2vw;
 
     @media ($media-1024) {

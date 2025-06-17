@@ -1117,6 +1117,7 @@ input {
 .event-detail-page .article-share-container {
   position: fixed;
   width: 80px;
+  top: 10%;
   right: 2vw;
 }
 @media (max-width:1024px) {
