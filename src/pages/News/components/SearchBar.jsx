@@ -17,9 +17,17 @@ function SearchBar({ articles }) {
       return;
     }
 
-    const filtered = articles.filter(article =>
-      article.title.toLowerCase().includes(value.toLowerCase())
-    );
+    const filtered = articles.filter((article) => {
+      const lowerValue = value.toLowerCase();
+      return (
+        (article.title || '').toLowerCase().includes(lowerValue) ||
+        (article.content || '').toLowerCase().includes(lowerValue) ||
+        (article.titleEN || '').toLowerCase().includes(lowerValue) ||
+        (article.contentEN || '').toLowerCase().includes(lowerValue)
+
+      );
+    });
+
     setSuggestions(filtered);
   };
 
@@ -33,7 +41,7 @@ function SearchBar({ articles }) {
     <div className="search-container">
       <input
         type="search"
-        placeholder={ language === 'zh-TW' ? "有特定想找的文章嗎？例如：手沖咖啡" : "Are you looking for a specific article? For example, pour-over coffee?" }
+        placeholder={language === 'zh-TW' ? "有特定想找的文章嗎？例如：手沖咖啡" : "Are you looking for a specific article? For example, pour-over coffee?"}
         value={searchTerm}
         onChange={handleChange}
       />
@@ -41,7 +49,7 @@ function SearchBar({ articles }) {
         <ul className="suggestion-list">
           {suggestions.map((article) => (
             <li key={article.id} onClick={() => handleSelect(article.id)}>
-              {article.title}
+              {language === 'zh-TW' ? article.title : article.titleEN}
             </li>
           ))}
         </ul>

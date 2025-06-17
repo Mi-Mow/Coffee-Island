@@ -13,6 +13,18 @@ import { useLanguage } from '../../context/LanguageContext';
 import { useTranslation } from 'react-i18next';
 const base = import.meta.env.BASE_URL;
 
+// 防呆搜尋
+function normalizeText(text) {
+  if (typeof text !== 'string') return '';
+  return text
+    .trim()
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, (char) =>
+      String.fromCharCode(char.charCodeAt(0) - 65248)
+    )
+    .replace(/\s+/g, ' ')
+    .toLowerCase();
+}
+
 // data陣列
 export const events = [
   {
@@ -30,7 +42,7 @@ export const events = [
     content: `台灣年度最盛大的咖啡產業盛事——「台灣國際咖啡展」，將於2025年11月14日至17日盛大舉辦！這場展覽不僅吸引全台咖啡品牌與國際精品咖啡廠商齊聚一堂，更是消費者與專業人士探索咖啡產業趨勢、創新技術與風味體驗的最佳平台。
 活動涵蓋多元主題展區，包括精品咖啡、商用設備、烘焙器材、拉花工具、手沖配件與永續咖啡等。現場還將舉行「咖啡拉花比賽」、「感官杯測挑戰」、「咖啡師交流論壇」等專業競賽與講座活動，為參與者提供一站式的知識與技術提升機會。
 不論您是咖啡愛好者、業界創業者，或是單純想探索香氣迷人的咖啡世界，都不容錯過這場豐富又具國際水準的咖啡盛典！`,
-contentEN: `Taiwan’s Largest Annual Coffee Industry Event — “2025 Taiwan International Coffee Show” — Will Take Place from November 14 to 17, 2025! This grand exhibition brings together Taiwan’s top coffee brands and renowned international specialty coffee companies, offering an exceptional platform for both consumers and industry professionals to explore market trends, innovative technologies, and immersive flavor experiences. The event features a wide range of thematic zones, including specialty coffee, commercial coffee equipment, roasting tools, latte art accessories, pour-over gear, and sustainable coffee solutions.
+    contentEN: `Taiwan’s Largest Annual Coffee Industry Event — “2025 Taiwan International Coffee Show” — Will Take Place from November 14 to 17, 2025! This grand exhibition brings together Taiwan’s top coffee brands and renowned international specialty coffee companies, offering an exceptional platform for both consumers and industry professionals to explore market trends, innovative technologies, and immersive flavor experiences. The event features a wide range of thematic zones, including specialty coffee, commercial coffee equipment, roasting tools, latte art accessories, pour-over gear, and sustainable coffee solutions.
 A variety of interactive programs will also take place onsite, such as the Latte Art Competition, Sensory Cupping Challenge, and the Barista Exchange Forum, providing attendees with a one-stop opportunity to enhance both knowledge and hands-on skills. Whether you're a coffee lover, an industry entrepreneur, or simply someone curious about the aromatic world of coffee, this international-standard event is not to be missed!`,
     organizer: "社團法人台灣咖啡協會、展昭國際企業股份有限公司",
     organizerEN: "Taiwan Coffee Association, Chan Chao International Co., Ltd.",
@@ -212,6 +224,7 @@ function Event() {
   const [filterTime, setFilterTime] = useState('全部');
 
   // filter
+  
   const today = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
@@ -231,9 +244,19 @@ function Event() {
           return true;
       }
     })();
-    const matchKeyword = ev.title.includes(searchKeyword) || ev.content?.includes(searchKeyword);
+    // 關鍵字搜尋
+    // 防呆 + 雙語搜尋
+    const normalizedKeyword = normalizeText(searchKeyword);
+    const matchKeyword = !normalizedKeyword || [
+      ev.title,
+      ev.titleEN,
+      ev.content,
+      ev.contentEN,
+      ...(ev.tags || []),
+      ...(ev.tagsEN || [])
+   ].some(field => field && normalizeText(field).includes(normalizedKeyword));
 
-    return matchTime && (!searchKeyword || matchKeyword);
+    return matchTime && matchKeyword;
   });
 
   function isSameDay(date1, date2) {
@@ -283,7 +306,7 @@ function Event() {
             {/* 關鍵字搜尋 */}
             <div className="searchBar">
               <input type="text"
-                placeholder={ language === 'zh-TW' ? "想找什麼活動嗎？例如：咖啡展" : "Looking for an event? For example, a coffee exhibition?" }
+                placeholder={language === 'zh-TW' ? "想找什麼活動嗎？例如：咖啡展" : "Looking for an event? For example, a coffee exhibition?"}
                 onChange={(e) => setSearchKeyword(e.target.value)}
               />
             </div>
@@ -307,9 +330,9 @@ function Event() {
                   key={index}
                   onClick={() => onClickArea(event.id)}
                   imgSrc={event.imgSrc}
-                  tags={ language === 'zh-TW' ? event.tags : event.tagsEN }
-                  date={ language === 'zh-TW' ? event.date : event.dateEN }
-                  title={ language === 'zh-TW' ? event.title : event.titleEN }
+                  tags={language === 'zh-TW' ? event.tags : event.tagsEN}
+                  date={language === 'zh-TW' ? event.date : event.dateEN}
+                  title={language === 'zh-TW' ? event.title : event.titleEN}
                   link={event.link}
                 />
               ))}

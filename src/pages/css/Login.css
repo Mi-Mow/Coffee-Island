@@ -155,3 +155,58 @@
     gap: 0.5rem;
   }
 }
+.email-success-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #7b4519;
+  color: #fff1cb;
+  padding: 40px 32px;
+  border-radius: 16px;
+  text-align: center;
+  z-index: 9999;
+}
+
+.monster-img {
+  width: 350px;
+  margin: 0 auto 20px auto;
+  display: block;
+  animation: shakeX 1s ease-in-out infinite;
+}
+
+.popup-message {
+  font-size: 18px;
+  font-family: "Noto Serif TC";
+  margin-bottom: 20px;
+}
+
+.popup-btn {
+  font-family: "Noto Serif TC";
+  font-size: 16px;
+  background-color: #fff1cb;
+  color: #684412;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.popup-btn:hover {
+  background-color: #ffe580;
+}
+
+@keyframes shakeX {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
