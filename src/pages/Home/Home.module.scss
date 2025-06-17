@@ -1194,71 +1194,128 @@ main {
   }
 }
 
-@media (min-width: 1600px) {
-  .carouselSection {
-    height: 900px;
-    margin-top: 50px;
+// .fadeInUp {
+//   opacity: 0;
+//   transform: translateY(20px);
+//   animation: fadeUp 0.8s ease-out forwards;
+// }
 
-    .greatTime {
-      .greenBlockContainer {
-        width: 800px;
-      }
-      .textContainer {
-        // top: 30%;
-        // left: 20%;
+// @keyframes fadeUp {
+//   to {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// }
 
-        .deco {
-          top: -70px;
-          width: 100px;
-        }
+// .slideInRight {
+//   opacity: 0;
+//   transform: translateX(50px);
+//   animation: slideRight 0.8s ease-out forwards;
+// }
 
-        .title {
-          font-size: 24px;
-        }
-        .content {
-          font-size: 18px;
-          width: 250px;
-        }
-      }
-      .handheldContainer {
-        width: 350px;
-        right: 5%;
-      }
-      .hotCoffeeContainer {
-        width: 300px;
-        // top: 0;
-        // right: -150px;
-      }
-    }
+// @keyframes slideRight {
+//   to {
+//     opacity: 1;
+//     transform: translateX(0);
+//   }
+// }
+// .revealUp {
+//   opacity: 1;
+//   transform: translateY(0);
+//   transition: all 0.8s ease-out;
+// }
 
-    .maskContainer {
-      width: 400px;
-    }
+// .revealRight {
+//   opacity: 1;
+//   transform: translateX(0);
+//   transition: all 0.8s ease-out;
+// }
 
-    .coffeeIsland {
-      top: 23%;
-      left: 16%;
-      h1 {
-        font-size: 24px;
-      }
-      .content {
-        font-size: 18px;
-      }
-    }
+// .greatTime,
+// .coffeeIsland,
+// .mainCarousel {
+//   opacity: 0;
+//   &.revealUp {
+//     transform: translateY(0);
+//   }
+//   &.revealRight {
+//     transform: translateX(0);
+//   }
+// }
 
-    .mainCarousel {
-      .carousel {
-        .imageContainer {
-          width: 600px;
-        }
-      }
-    }
-  }
-  .road,
-  .car {
-    top: 15%;
-  }
-}
+// .greatTime,
+// .coffeeIsland {
+//   transform: translateY(40px);
+// }
+// .mainCarousel {
+//   transform: translateX(100px);
+// }
+
+// @media (min-width: 1600px) {
+//   .carouselSection {
+//     height: 900px;
+//     margin-top: 50px;
+
+//     .greatTime {
+//       .greenBlockContainer {
+//         width: 800px;
+//       }
+//       .textContainer {
+//         // top: 30%;
+//         // left: 20%;
+
+//         .deco {
+//           top: -70px;
+//           width: 100px;
+//         }
+
+//         .title {
+//           font-size: 24px;
+//         }
+//         .content {
+//           font-size: 18px;
+//           width: 250px;
+//         }
+//       }
+//       .handheldContainer {
+//         width: 350px;
+//         right: 5%;
+//       }
+//       .hotCoffeeContainer {
+//         width: 300px;
+//         // top: 0;
+//         // right: -150px;
+//       }
+//     }
+
+//     .maskContainer {
+//       width: 400px;
+//     }
+
+//     .coffeeIsland {
+//       top: 23%;
+//       left: 16%;
+//       h1 {
+//         font-size: 24px;
+//       }
+//       .content {
+//         font-size: 18px;
+//       }
+//     }
+
+//     .mainCarousel {
+//       .carousel {
+//         .imageContainer {
+//           width: 600px;
+//         }
+//       }
+//     }
+//   }
+//   .road,
+//   .car {
+//     top: 15%;
+//   }
+// }
 
 // @media (min-width: 1470px) {
 //   .road {
