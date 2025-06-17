@@ -206,6 +206,9 @@ We invite you to join us on this meaningful exploration into the heart of Taiwan
 function Event() {
   const { t } = useTranslation();
   const { language } = useLanguage();
+
+  localStorage.setItem("currentPath", location.pathname);
+  
   useEffect(() => {
     window.scrollTo(0, 0); // 捲動到頁面頂部
   }, []);

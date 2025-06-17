@@ -238,6 +238,8 @@ function Article() {
     const { language } = useLanguage();
     const { t } = useTranslation();
 
+    localStorage.setItem("currentPath", location.pathname);
+
     useEffect(() => {
         window.scrollTo(0, 0); // 捲動到頁面頂部
     }, []);
