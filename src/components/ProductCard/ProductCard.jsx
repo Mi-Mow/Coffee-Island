@@ -15,13 +15,20 @@ function ProductCard({ id, isFavorite, toggleFavorite }) {
       <div
         className="products-card"
         key={currentProduct.id}
-        onClick={() => navigate(`${base}products/${currentProduct.id}`)}
+        onClick={() => {
+          navigate(`${base}products/${currentProduct.id}`);
+          window.scrollTo(0, 0);
+        }}
         style={{ cursor: "pointer" }}
       >
         {/* <div className="tag">
           {language === "zh-TW" ? currentProduct.tagZH : currentProduct.tagEN}
         </div> */}
-        <img className="product-img" src={currentProduct.image} alt={currentProduct.name} />
+        <img
+          className="product-img"
+          src={currentProduct.image}
+          alt={currentProduct.name}
+        />
         {currentProduct.isNew && <div className="new-tag">NEW</div>}
         <div className="info">
           <p className="name">

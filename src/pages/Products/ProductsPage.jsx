@@ -62,7 +62,7 @@ function ProductPage() {
     JSON.parse(localStorage.getItem("currentUser")) || {}
   );
   const [favoriteProducts, setFavoriteProducts] = useState(
-    currentUser?.favorite.products || []
+    currentUser?.favorite?.products || []
   );
   const { snackbarMsg } = useContext(AuthContext);
   localStorage.setItem("currentPath", location.pathname);
@@ -83,7 +83,7 @@ function ProductPage() {
   // 處理愛心點擊
   const handleFavoriteClick = () => {
     if (!isLoggedIn) {
-      setMsg("要先登入會員唷！");
+      setMsg(t("snackbar.loginToAdd"));
       setOpenSnackbar(true);
       return;
     }
@@ -142,7 +142,7 @@ function ProductPage() {
   // 加入購物車（含動畫、未登入提示）
   const handleAddToCart = (e) => {
     if (!isLoggedIn) {
-      setMsg("要先登入會員唷！");
+      setMsg(t("snackbar.loginFirst"));
       setOpenSnackbar(true);
       return;
     }
@@ -190,7 +190,7 @@ function ProductPage() {
   // 直接購買
   const handleBuyNow = () => {
     if (!isLoggedIn) {
-      setMsg("要先登入會員唷！");
+      setMsg(t("snackbar.loginFirst"));
       setOpenSnackbar(true);
       return;
     }
@@ -346,14 +346,14 @@ function ProductPage() {
           </div>
 
         </div>
-      </div>
-      <div className="see-more-wrapper">
-        <span className="see-more-text">查看更多</span>
-        <img
-          src={`${base}products/arrow.svg`}
-          alt="arrow"
-          className="see-more-arrow"
-        />
+        <div className="see-more-wrapper">
+          <span className="see-more-text">查看更多</span>
+          <img
+            src={`${base}products/arrow.svg`}
+            alt="arrow"
+            className="see-more-arrow"
+          />
+        </div>
       </div>
 
 

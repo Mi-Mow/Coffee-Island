@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./Login.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import Dialog from "@mui/material/Dialog";
@@ -37,7 +37,9 @@ function Login() {
   const [showSuccessBox, setShowSuccessBox] = useState(false);
   const { t } = useTranslation();
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleLogin = () => {
     if (!email || !password) {

@@ -2,21 +2,22 @@
 .product-detail-page {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 95px 20px 55px 20px;
+  padding: 95px 20px 60px 20px;
   display: flex;
   width: 100%;
   box-sizing: border-box;
   align-items: flex-start;
+  position: relative;
 
   .left {
-    flex: 1.2;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-self: center;
     position: relative;
   
     .carousel {
-      width: 100%;
+      width: 85%;
       max-width: 500px;
       display: flex;
       justify-content: center;
@@ -246,33 +247,37 @@
       }
     }
   }
+  // 查看更多+箭頭的區塊
+  .see-more-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    .see-more-text {
+      font-size: 16px;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+  
+    .see-more-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      object-fit: contain;
+      animation: floatArrow 1.4s ease-in-out infinite;
+    }
+  }
 }
 
 
 
-// 查看更多+箭頭的區塊
-.see-more-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  .see-more-text {
-    font-size: 16px;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 6px;
-  }
-
-  .see-more-arrow {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    object-fit: contain;
-    animation: floatArrow 1.4s ease-in-out infinite;
-  }
-}
 
 @keyframes floatArrow {
   0% {
@@ -304,7 +309,7 @@
     max-width: 1240px;
     width: 100%;
     justify-content: space-between;
-    padding: 80px;
+    padding: 80px 50px;
 
     .description {
       flex: 1.2;

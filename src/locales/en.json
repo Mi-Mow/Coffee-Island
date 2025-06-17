@@ -240,6 +240,7 @@
     "favorite": "Added to Favorites",
     "remove": "Removed from Favorites",
     "loginToAdd": "Please log in to add to your favorites!",
+    "loginFirst": "Login required!",
     "usernameUpdated": "Username updated successfully!",
     "fillAllFields": "Please fill in all fields!",
     "newPasswordLength": "New password must be at least 6 characters",

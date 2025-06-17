@@ -96,6 +96,10 @@ body::before {
   z-index: 99;
   animation: pulse 5s infinite;
 
+  @media (max-width: 430px) {
+    width: 48px;
+  }
+
   &.show {
     opacity: 1;
     visibility: visible;

@@ -240,6 +240,7 @@
     "favorite": "已加入收藏",
     "remove": "已從收藏中移除",
     "loginToAdd": "要先登入才可以收藏哦！",
+    "loginFirst": "要先登入會員唷！",
     "usernameUpdated": "會員名稱更新成功！",
     "fillAllFields": "請填寫所有欄位！",
     "newPasswordLength": "新密碼長度須為6碼以上",
