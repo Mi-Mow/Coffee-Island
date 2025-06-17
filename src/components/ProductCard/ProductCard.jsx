@@ -21,7 +21,7 @@ function ProductCard({ id, isFavorite, toggleFavorite }) {
         {/* <div className="tag">
           {language === "zh-TW" ? currentProduct.tagZH : currentProduct.tagEN}
         </div> */}
-        <img className="product-img" src={currentProduct.hoverImage} alt={currentProduct.name} />
+        <img className="product-img" src={currentProduct.image} alt={currentProduct.name} />
         {currentProduct.isNew && <div className="new-tag">NEW</div>}
         <div className="info">
           <p className="name">

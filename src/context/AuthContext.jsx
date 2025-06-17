@@ -1,10 +1,12 @@
 import { createContext, useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 const base = import.meta.env.BASE_URL;
 
 export const AuthProvider = ({ children }) => {
+  const { t } = useTranslation();
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return JSON.parse(localStorage.getItem("isLoggedIn")) || false;
   });
@@ -34,18 +36,18 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("currentUser", JSON.stringify(user));
         navigate(localStorage.getItem("currentPath"));
-        setSnackbarMsg(`${user.userName}，歡迎回來！`);
+        setSnackbarMsg(`${user.userName}，${t("login.loginMsg")}`);
         setTimeout(() => {
           setSnackbarMsg(""); // 自動清除
         }, 4200);
-        return { success: true, message: `${user.userName}，歡迎回來！` };
+        return { success: true, message: `${user.userName}，${t("login.loginMsg")}` };
       } else {
         // password is wrong
-        return { success: false, message: "輸入密碼不正確" };
+        return { success: false, message: t("login.passwordWrong") };
       }
     } else {
       console.log("user doesn't exist");
-      return { success: false, message: "此帳號不存在，請註冊加入我們！" };
+      return { success: false, message: t("login.userNotFound") };
     }
   };
 
@@ -54,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     const user = users.find((user) => user.userEmail === email);
     if (user) {
       console.log("user exist");
-      return { success: false, message: "此帳號已經註冊過了，請前往登入呦！" };
+      return { success: false, message: t("login.registeredMsg") };
     } else {
       const newUser = {
         userName: name,
@@ -71,16 +73,16 @@ export const AuthProvider = ({ children }) => {
       navigate(localStorage.getItem("currentPath"));
       setIsLoggedIn(true);
       localStorage.setItem("isLoggedIn", true);
-      setSnackbarMsg(`${name}，歡迎加入！`);
+      setSnackbarMsg(`${name}，${t("login.welcome")}`);
       setTimeout(() => {
         setSnackbarMsg(""); // 自動清除
       }, 4200);
-      return { success: true, message: `${name}，歡迎加入！` };
+      return { success: true, message: `${name}，${t("login.welcome")}` };
     }
   };
 
   const logout = () => {
-    setSnackbarMsg("登出成功，下次見哦");
+    setSnackbarMsg(t("login.logoutMsg"));
     setTimeout(() => {
       setSnackbarMsg(""); // 自動清除
     }, 4200);

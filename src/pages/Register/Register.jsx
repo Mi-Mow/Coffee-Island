@@ -45,6 +45,7 @@ function Register() {
       setOpenSnackBar(true);
       return;
     }
+    return true;
   };
 
 

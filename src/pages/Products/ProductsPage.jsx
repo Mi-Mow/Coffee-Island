@@ -7,6 +7,7 @@ import Alert from "@mui/material/Alert";
 import { AuthContext, useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 const base = import.meta.env.BASE_URL;
 
@@ -16,29 +17,31 @@ const descData = [
   { img: `${base}products/gooseneck1Hover.jpg`, title: "金屬拋光開關", desc: "開關按鈕觸感升級" },
 ];
 
-const recommendData = [
-  {
-    id: "1-1",
-    img: `${base}products/gooseneck1.jpg`,
-    name: "咖啡島．島民手沖壺-300ml",
-    newPrice: 1200,
-    oldPrice: 1350
-  },
-  {
-    id: "1-2",
-    img: `${base}products/gooseneck2.jpg`,
-    name: "咖啡島．島民手沖壺-300ml",
-    newPrice: 1000,
-    oldPrice: 1350
-  },
-  {
-    id: "1-3",
-    img: `${base}products/gooseneck3.jpg`,
-    name: "咖啡島．島民手沖壺-300ml",
-    newPrice: 890,
-    oldPrice: 1350
-  }
-];
+// const recommendData = [
+//   {
+//     id: "1-1",
+//     img: `${base}products/gooseneck1.jpg`,
+//     name: "咖啡島．島民手沖壺-300ml",
+//     newPrice: 1200,
+//     oldPrice: 1350
+//   },
+//   {
+//     id: "1-2",
+//     img: `${base}products/gooseneck2.jpg`,
+//     name: "咖啡島．島民手沖壺-300ml",
+//     newPrice: 1000,
+//     oldPrice: 1350
+//   },
+//   {
+//     id: "1-3",
+//     img: `${base}products/gooseneck3.jpg`,
+//     name: "咖啡島．島民手沖壺-300ml",
+//     newPrice: 890,
+//     oldPrice: 1350
+//   }
+// ];
+
+const recommendData = [products[1], products[4], products[7]]
 
 function ProductPage() {
   const { id } = useParams();
@@ -48,7 +51,6 @@ function ProductPage() {
   const localizedIntro = language === "zh-TW" ? currentProduct.intro : currentProduct.introEN;
   const localizedDescription = language === "zh-TW" ? currentProduct.description : currentProduct.descriptionEN;
   const localizedSpecs = language === "zh-TW" ? currentProduct.specs : currentProduct.specsEN;
-
   const { isLoggedIn } = useAuth();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(currentProduct.colors?.[0] || "");
@@ -58,6 +60,9 @@ function ProductPage() {
   const [msg, setMsg] = useState("");
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || {}
+  );
+  const [favoriteProducts, setFavoriteProducts] = useState(
+    currentUser?.favorite.products || []
   );
   const { snackbarMsg } = useContext(AuthContext);
   localStorage.setItem("currentPath", location.pathname);
@@ -86,11 +91,11 @@ function ProductPage() {
     let updatedFavorite;
     if (favoriteList.includes(currentProduct.id)) {
       updatedFavorite = favoriteList.filter(id => id !== currentProduct.id);
-      setMsg("已從收藏中移除");
+      setMsg(t("snackbar.remove"));
       setOpenSnackbar(true);
     } else {
       updatedFavorite = [...favoriteList, currentProduct.id];
-      setMsg("已加入收藏");
+      setMsg(t("snackbar.favorite"));
       setOpenSnackbar(true);
     }
     const updatedUser = { ...currentUser };
@@ -232,6 +237,53 @@ function ProductPage() {
   const productImages = currentProduct.images || [currentProduct.image, currentProduct.hoverImage];
   const { t } = useTranslation();
 
+  const toggleFavorite = (cafe, event, type, productId) => {
+    const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+    event.stopPropagation();
+    if (isLoggedIn) {
+      const users = JSON.parse(localStorage.getItem("users"));
+      const updatedUser = { ...currentUser };
+      if (type === "product") {
+        let favoriteList =
+          JSON.parse(localStorage.getItem("favoriteProducts")) || [];
+        let updatedFavorite;
+        if (favoriteList.includes(productId)) {
+          updatedFavorite = favoriteList.filter((id) => id !== productId);
+          updatedUser.favorite.products = updatedUser.favorite.products.filter(
+            (item) => item !== productId
+          );
+          setFavoriteProducts(updatedUser.favorite.products);
+          setMsg(t("snackbar.remove"));
+          setOpenSnackbar(true);
+        } else {
+          updatedFavorite = [...favoriteList, productId];
+          setMsg(t("snackbar.favorite"));
+          setOpenSnackbar(true);
+        }
+        localStorage.setItem(
+          "favoriteProducts",
+          JSON.stringify(updatedFavorite)
+        );
+        updatedUser.favorite.products = updatedFavorite;
+      }
+      const updatedUsers = users.map((user) => {
+        if (user.userEmail === currentUser.userEmail) {
+          return {
+            ...updatedUser,
+          };
+        }
+        return user;
+      });
+      console.log(updatedUser);
+      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      setCurrentUser(updatedUser); // 觸發 re-render
+    } else {
+      setMsg(t("snackbar.loginToAdd"));
+      setOpenSnackbar(true);
+    }
+  };
+
   return (
     <>
       <div id="fly-bean" className="fly-bean"></div>
@@ -350,28 +402,25 @@ function ProductPage() {
 
       <section className="recommended-products">
         <div className="recommend-title">
-          咖啡人還會這樣搭配
+          {t("products.recommendTitle")}
           <img src={`${base}products/prodRecoMs.png`} alt="薦" className="prodRecoMs" />
         </div>
         <div className="recommend-cards">
-          {recommendData.map((item, idx) => (
-            <div
-              className="product-card"
-              key={idx}
-              onClick={() => navigate(`/products/${item.id}`)}
-              style={{ cursor: "pointer" }}
-            >
-              <span className="tag">優惠</span>
-              <img src={item.img} alt={item.name} />
-              <div className="info">
-                <div className="name">{item.name}</div>
-                <div className="price">
-                  <span className="new-price">NT${item.newPrice}</span>
-                  <span className="old-price">NT${item.oldPrice}</span>
-                </div>
-              </div>
-            </div>
-          ))}
+          {recommendData.map((product, index) =>{
+            const isFavorite =
+              currentUser.favorite?.products.some(
+                (item) => item === product.id
+              );
+
+            return (
+              <ProductCard
+                key={index}
+                id={product.id}
+                isFavorite={isFavorite}
+                toggleFavorite={toggleFavorite}
+              />
+            );
+          })}
         </div>
       </section>
 

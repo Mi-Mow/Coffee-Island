@@ -122,7 +122,7 @@ function Profile() {
             (item) => item.id !== cafe.id
           );
           setFavoriteCafes(updatedUser.favorite.cafes);
-          setMsg("已從收藏中移除");
+          setMsg(t("snackbar.remove"));
           setOpenSnackBar(true);
         }
       }
@@ -136,7 +136,7 @@ function Profile() {
             (item) => item !== productId
           );
           setFavoriteProducts(updatedUser.favorite.products);
-          setMsg("已從收藏中移除");
+          setMsg(t("snackbar.remove"));
           setOpenSnackBar(true);
         } else {
           updatedFavorite = [...favoriteList, productId];
@@ -159,7 +159,7 @@ function Profile() {
       localStorage.setItem("users", JSON.stringify(updatedUsers));
       setCurrentUser(updatedUser); // 觸發 re-render
     } else {
-      setMsg("要先登入才可以收藏哦！");
+      setMsg(t("snackbar.loginToAdd"));
       setOpenSnackBar(true);
     }
   };
@@ -208,7 +208,7 @@ function Profile() {
         localStorage.setItem("currentUser", JSON.stringify(updatedUser));
         localStorage.setItem("users", JSON.stringify(updatedUsers));
         setCurrentUser(updatedUser);
-        setMsg("會員名稱更新成功！");
+        setMsg(t("snackbar.usernameUpdated"));
         setOpenSnackBar(true);
       }
     }
@@ -226,7 +226,7 @@ function Profile() {
 
   const handlePasswordSubmit = () => {
     if (!passwordForm.current || !passwordForm.new || !passwordForm.confirm) {
-      setMsg("請填寫所有欄位！");
+      setMsg(t("snackbar.fillAllFields"));
       setOpenSnackBar(true);
       return;
     } else {
@@ -235,16 +235,16 @@ function Profile() {
       if (atob(updatedUser.userPassword) === passwordForm.current) {
         //
         if (passwordForm.new.length < 6) {
-          setMsg("新密碼長度須為6碼以上");
+          setMsg(t("snackbar.newPasswordLength"));
           setOpenSnackBar(true);
           return;
         } else {
           if (passwordForm.new !== passwordForm.confirm) {
-            setMsg("新密碼與確認新密碼不一致！");
+            setMsg(t("snackbar.passwordsNotMatch"));
             setOpenSnackBar(true);
             return;
           } else if (passwordForm.new === atob(updatedUser.userPassword)) {
-            setMsg("新密碼不得與舊密碼相同！");
+            setMsg(t("snackbar.newOldPassword"));
             setOpenSnackBar(true);
             return;
           } else {
@@ -262,7 +262,7 @@ function Profile() {
             localStorage.setItem("currentUser", JSON.stringify(updatedUser));
             localStorage.setItem("users", JSON.stringify(updatedUsers));
             setOpenPasswordDialog(false);
-            setMsg("密碼更新成功！");
+            setMsg(t("snackbar.newOldPassword"));
             setOpenSnackBar(true);
             setPasswordForm({
               current: "",
@@ -272,7 +272,7 @@ function Profile() {
           }
         }
       } else {
-        setMsg("目前密碼不正確！");
+        setMsg(t("snackbar.currentPasswordWrong"));
         setOpenSnackBar(true);
         return;
       }

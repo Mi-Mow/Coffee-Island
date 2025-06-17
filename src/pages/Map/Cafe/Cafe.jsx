@@ -173,12 +173,12 @@ function Cafe() {
         updatedUser.favorite.cafes = updatedUser.favorite.cafes.filter(
           (item) => item.id !== cafe.id
         );
-        setMsg("已從收藏中移除");
+        setMsg(t("snackbar.remove"));
         setOpenSnackBar(true);
       } else {
         // add cafe
         updatedUser.favorite.cafes.push(cafe);
-        setMsg("已加入收藏");
+        setMsg(t("snackbar.favorite"));
         setOpenSnackBar(true);
       }
       const updatedUsers = users.map((user) => {
@@ -193,7 +193,7 @@ function Cafe() {
       localStorage.setItem("users", JSON.stringify(updatedUsers));
       setCurrentUser(updatedUser); // 觸發 re-render
     } else {
-      setMsg("要先登入才可以收藏哦！");
+      setMsg(t("snackbar.loginToAdd"));
       setOpenSnackBar(true);
     }
   };

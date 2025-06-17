@@ -90,7 +90,8 @@
     "buy": "Buy Now",
     "addToCart": "Add to Cart",
     "feature": "Product Features",
-    "spec": "Product Spec."
+    "spec": "Product Spec.",
+    "recommendTitle": "Featured Products"
   },
   "cart": {
     "paymentMethod": "Pay Method",
@@ -187,7 +188,7 @@
   },
   "login": {
     "title": "Member Login",
-    "welcome": "Welcome Back",
+    "welcomeBack": "Welcome Back",
     "email": "Email*",
     "password": "Password*",
     "remember": "Remember Me",
@@ -199,7 +200,13 @@
     "success": "Login successful",
     "fail": "Login failed. Please check your credentials",
     "emailPlaceholder": "Enter your email",
-    "passwordPlaceholder": "Enter your password"
+    "passwordPlaceholder": "Enter your password",
+    "passwordWrong": "Incorrect password",
+    "userNotFound": "Account not found. Please register and join us!",
+    "registeredMsg": "This account has already been registered. Please proceed to log in!",
+    "welcome": "Welcome!",
+    "loginMsg": "Welcome Back!",
+    "logoutMsg": "Logged out successfully. See you next time!"
   },
   "forgot": {
     "title": "Forgot Password",
@@ -228,6 +235,18 @@
       "passwordTooShort": "Password must be at least 6 characters",
       "passwordMismatch": "Password and confirm password do not match"
     }
+  },
+  "snackbar": {
+    "favorite": "Added to Favorites",
+    "remove": "Removed from Favorites",
+    "loginToAdd": "Please log in to add to your favorites!",
+    "usernameUpdated": "Username updated successfully!",
+    "fillAllFields": "Please fill in all fields!",
+    "newPasswordLength": "New password must be at least 6 characters",
+    "passwordsNotMatch": "New password and confirm new password do not match!",
+    "newOldPassword": "New password cannot be the same as the old password!",
+    "passwordUpdated": "Password updated successfully!",
+    "currentPasswordWrong": "Current password incorrect!"
   },
   "news": {
     "read": "Articles",

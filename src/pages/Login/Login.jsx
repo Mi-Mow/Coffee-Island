@@ -61,7 +61,7 @@ function Login() {
       <div className="login-wrapper">
         <div className="login-card">
           <p className="sub-title">{t("login.title")}</p>
-          <h2 className="main-title">{t("login.welcome")}</h2>
+          <h2 className="main-title">{t("login.welcomeBack")}</h2>
 
           <div className="input-item">
             <label className="input-label" htmlFor="email">{t("login.email")}</label>
@@ -69,7 +69,7 @@ function Login() {
               className="login-input"
               type="email"
               id="email"
-              placeholder="請輸入電子郵件"
+              placeholder={t("login.emailPlaceholder")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -82,7 +82,7 @@ function Login() {
                 className="login-input"
                 type={showPassword ? "text" : "password"}
                 id="password"
-                placeholder="請輸入密碼"
+                placeholder={t("login.passwordPlaceholder")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -110,7 +110,7 @@ function Login() {
           </div>
 
 
-          <button className="login-btn" onClick={handleLogin}>登入</button>
+          <button className="login-btn" onClick={handleLogin}>{t("header.login")}</button>
 
           <div className="footer">
             <p>{t("login.notMember")}</p>
