@@ -726,6 +726,9 @@ input {
   line-height: normal;
   letter-spacing: 24px;
 }
+#news > main .recommendation .reco-cards {
+  cursor: pointer;
+}
 @media (max-width:640px) {
   #news > main .recommendation .reco-cards {
     width: 100%;
@@ -1130,6 +1133,7 @@ input {
   .article-detail-page .article-share-container,
   .event-detail-page .article-share-container {
     right: -8vw;
+    top: 12%;
   }
 }
 .article-detail-page .article-share-container button,
@@ -1759,4 +1763,4 @@ input {
   .top-btn svg {
     width: 30px;
   }
-}
+}/*# sourceMappingURL=News.css.map */
