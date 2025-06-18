@@ -670,6 +670,7 @@ input {
     }
 
     .reco-cards {
+      cursor: pointer;
       @media($media-640) {
         width: 100%;
         height: 100%;

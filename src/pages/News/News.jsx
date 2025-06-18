@@ -31,6 +31,10 @@ function News() {
     navigate(`${base}news/event/${id}`);
   }
 
+  const handleClickPopolar = (id) => {
+    navigate(`${base}news/article/${id}`);
+  }
+
   return (
     <>
       <div id='news'>
@@ -84,7 +88,7 @@ function News() {
                 <div className="reco-cards">
                   {/* reco-cards */}
                   {hotArticles.slice(0, 3).map((article) => (
-                    <a key={article.id} href={`${base}news/article/${article.id}`} className="reco-card">
+                    <div key={article.id} onClick={() => handleClickPopolar(article.id)} className="reco-card">
                       <div>
                         <img src={article.image} alt="人氣推薦咖啡廳照片" />
                       </div>
@@ -92,7 +96,7 @@ function News() {
                         <p className="tagName">{t("news.special")}</p>
                         <h3>{ language === 'zh-TW' ? article.title : article.titleEN}</h3>
                       </div>
-                    </a>
+                    </div>
                   ))}
                 </div>
 
