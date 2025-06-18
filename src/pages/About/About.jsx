@@ -9,6 +9,8 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { AuthContext } from '../../context/AuthContext';
 import { useTranslation } from "react-i18next";
+const base = import.meta.env.BASE_URL;
+
 function About() {
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [msg, setMsg] = useState("");
@@ -102,7 +104,7 @@ It also captures the unique charm of Taipei's own take on romance.`
         <img src={aboutImage} alt="LOGO" className="about__image" />
 
         <p>{aboutTexts.invite[lang]}</p>
-        <a href="/#map" className="about__button">{aboutTexts.button[lang]}</a>
+        <a href={`${base}`} className="about__button">{aboutTexts.button[lang]}</a>
       </div>
       <Snackbar
         open={openSnackBar}
