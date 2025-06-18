@@ -64,7 +64,7 @@ A variety of interactive programs will also take place onsite, such as the Latte
 專業咖啡農及烘焙師將分享咖啡品種、處理法及風味特色，讓你了解咖啡從產地到杯中的完整故事。
 特別邀請來自台灣與義大利的咖啡師，現場示範多種沖煮技巧，並帶來獨家城市風味手沖咖啡。
 這場融合國際文化與本地風情的咖啡體驗，將帶你探索台北獨有的咖啡魅力。`,
-    content: `You’re invited to explore hidden coffee gardens and roasteries tucked away in the heart of Taipei — a rare and refreshing coffee journey within the city. Professional coffee farmers and roasters will share insights into coffee varietals, processing methods, and flavor profiles, guiding you through the complete story of coffee — from origin to cup. We’ve specially invited baristas from Taiwan and Italy to demonstrate a variety of brewing techniques on-site, featuring exclusive city-inspired pour-over coffee creations. This unique coffee experience — blending international expertise with local culture — will lead you into the rich and distinctive charm of Taipei’s coffee scene.`,
+    contentEN: `You’re invited to explore hidden coffee gardens and roasteries tucked away in the heart of Taipei — a rare and refreshing coffee journey within the city. Professional coffee farmers and roasters will share insights into coffee varietals, processing methods, and flavor profiles, guiding you through the complete story of coffee — from origin to cup. We’ve specially invited baristas from Taiwan and Italy to demonstrate a variety of brewing techniques on-site, featuring exclusive city-inspired pour-over coffee creations. This unique coffee experience — blending international expertise with local culture — will lead you into the rich and distinctive charm of Taipei’s coffee scene.`,
     p: '咖啡島限定，免費報名。',
     pEN: 'Coffee Island Limited. Free Admission',
     organizer: "咖啡島、伯朗咖啡",
