@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Link } from "react-router-dom"
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom"
 // 文章資料
 import { articles, hotArticles } from './Article'
 import { useEffect } from "react";
@@ -11,6 +11,7 @@ const base = import.meta.env.BASE_URL;
 function ArticlePage() {
     const { language } = useLanguage();
     const { t } = useTranslation();
+    const location = useLocation();
 
     localStorage.setItem("currentPath", location.pathname);
 

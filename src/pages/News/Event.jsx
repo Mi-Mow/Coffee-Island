@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import EventCard from './components/EventCard';
 import { useEffect, useState } from 'react';
 import event1 from '../../assets/news/activities/01.jpg';
@@ -206,6 +206,7 @@ We invite you to join us on this meaningful exploration into the heart of Taiwan
 function Event() {
   const { t } = useTranslation();
   const { language } = useLanguage();
+  const location = useLocation();
 
   localStorage.setItem("currentPath", location.pathname);
   

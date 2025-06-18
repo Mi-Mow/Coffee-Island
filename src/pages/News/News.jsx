@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './News.scss'
 const base = import.meta.env.BASE_URL;
 // 活動資料
@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 function News() {
   const { language } = useLanguage();
   const { t } = useTranslation();
+  const location = useLocation();
 
   localStorage.setItem("currentPath", location.pathname);
 

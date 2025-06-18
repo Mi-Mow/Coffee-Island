@@ -8,6 +8,7 @@ const base = import.meta.env.BASE_URL;
 function EventPage() {
     const { t } = useTranslation();
     const { language } = useLanguage();
+    const location = useLocation();
 
     localStorage.setItem("currentPath", location.pathname);
 
@@ -24,7 +25,6 @@ function EventPage() {
     const event = events.find(ev => ev.id === Number(id));
     if (!event) return <div>找不到活動</div>;
 
-    const location = useLocation();
     const footerRef = useRef(null);
 
     useEffect(() => {

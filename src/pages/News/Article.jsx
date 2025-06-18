@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 const base = import.meta.env.BASE_URL;
 import cafe2_1 from '/news/cafe2-1.jpg'
 import cafe2_2 from '/news/cafe2-2.jpg'
@@ -237,6 +237,7 @@ export const hotArticles = [
 function Article() {
     const { language } = useLanguage();
     const { t } = useTranslation();
+    const location = useLocation();
 
     localStorage.setItem("currentPath", location.pathname);
 
