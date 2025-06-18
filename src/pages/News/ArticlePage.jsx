@@ -15,10 +15,6 @@ function ArticlePage() {
 
     localStorage.setItem("currentPath", location.pathname);
 
-    useEffect(() => {
-        window.scrollTo(0, 0); // 捲動到頁面頂部
-    }, []);
-
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -38,12 +34,18 @@ function ArticlePage() {
         navigate(`${base}news`);
     };
 
-
+    if (!article) return <div>找不到文章</div>;
     // 處理段落與圖片對應
     const paragraphArray = Object.values(article.paragraphs);
     const imageArray = Array.isArray(article.smImg) ? article.smImg : [article.smImg];
 
-    if (!article) return <div>找不到文章</div>;
+    useEffect(() => {
+        window.scrollTo(0, 0); // ✅ 第一次進來也置頂
+    }, []);
+    
+    useEffect(() => {
+        window.scrollTo(0, 0); // ✅ id 改變（換文章）時也置頂
+    }, [id]);
 
     // share
     const handleShare = async () => {
@@ -98,14 +100,14 @@ function ArticlePage() {
                         </li>
                         <li>&gt;</li>
                         <li aria-current="page">
-                            { language === 'zh-TW' ? (article.title.length > 10 ? article.title.slice(0, 10) + '…' : article.title) : (article.titleEN.length > 10 ? article.titleEN.slice(0, 10) + '…' : article.titleEN) }
+                            {language === 'zh-TW' ? (article.title.length > 10 ? article.title.slice(0, 10) + '…' : article.title) : (article.titleEN.length > 10 ? article.titleEN.slice(0, 10) + '…' : article.titleEN)}
                         </li>
                     </ol>
                 </nav>
 
                 <div className="article-share-container">
                     <button onClick={handleShare}>
-                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
                             <path d="M18.4434 18.7568H17.0352V19.9912H15.7852V21.457H5.78516V19.9912H4.55273V18.7402H5.80273V19.957H15.7852V18.7402H16.9434V13.8408H18.4434V18.7568ZM5.70312 8.66309V9.91309H4.55078V18.7568L3.05078 18.7559V9.89648H4.45312V8.66309H5.70312ZM14.127 3.79297H15.5898V5.04297H16.9258V6.29297H18.3086V7.54297H19.7422V8.41797H20.9492V9.66797H19.7422V10.543H18.3086V11.793H16.9258V13.043H15.5898V14.293H14.127V15.543H12.627V11.043H11.5352V12.0381H10.0703V13.0381H8.94531V14.2266H9.44531V15.4766H8.19531V14.293H7.44531V11.293H8.57031V10.0381H10.0352V8.03809H11.1309V7.04297H12.627V2.54297H14.127V3.79297ZM8.19531 8.6377H5.70312V7.1377H8.19531V8.6377Z" fill="#fff1cb" />
                         </svg>
                     </button>
@@ -114,10 +116,10 @@ function ArticlePage() {
                 <section>
                     {/* 標題區 */}
                     <div className="title-container">
-                        <p>{t("footer.title")} <span>{ language === 'zh-TW' ? article.tag : article.tagEN }</span></p>
+                        <p>{t("footer.title")} <span>{language === 'zh-TW' ? article.tag : article.tagEN}</span></p>
                         {/* SEO h1 */}
-                        <h1>{ language === 'zh-TW' ? article.title : article.titleEN }</h1>
-                        <p>{t("news.articles.author")} <span>{ language === 'zh-TW' ? article.author : article.authorEN }</span></p>
+                        <h1>{language === 'zh-TW' ? article.title : article.titleEN}</h1>
+                        <p>{t("news.articles.author")} <span>{language === 'zh-TW' ? article.author : article.authorEN}</span></p>
                     </div>
                     {/* 大圖 */}
                     <figure>
@@ -127,12 +129,12 @@ function ArticlePage() {
                     <div className="content-container">
 
                         {/* 文章段落 */}
-                        <p style={{ margin: '20px 0' }}>{ language === 'zh-TW' ? article.content : article.contentEN}</p>
+                        <p style={{ margin: '20px 0' }}>{language === 'zh-TW' ? article.content : article.contentEN}</p>
 
                         {/* 根據 hotArticles 的格式渲染段落與圖片 */}
                         {article.paragraphs && (
                             <div className="article-paragraphs">
-                                {Object.values( language === 'zh-TW' ? article.paragraphs : article.paragraphsEN).map((p, idx) => {
+                                {Object.values(language === 'zh-TW' ? article.paragraphs : article.paragraphsEN).map((p, idx) => {
 
                                     const smImages = article.smImg || [];
                                     const hasImage = smImages[idx];
@@ -182,19 +184,22 @@ function ArticlePage() {
 
 
 
-
                 <br />
 
                 {nextArticle && (
                     <div className="article-next">
-                        <a onClick={() => {
+                        <Link to={`${base}news/article/${nextArticle.id}`}>
+                            {t("news.articles.next")}：{language === 'zh-TW' ? (nextArticle.title.length > 30 ? nextArticle.title.slice(0, 30) + '…' : nextArticle.title) : (nextArticle.titleEN.length > 30 ? nextArticle.titleEN.slice(0, 30) + '…' : nextArticle.titleEN)}
+                            <img src={nextArticle.image} alt={nextArticle.title} />
+                        </Link>
+                        {/* <a onClick={() => {
                             navigate(`${base}news/article/${nextArticle.id}`);
-                            window.scrollTo(0, 0);
+                                window.scrollTo(0, 0);
                         }}>
-                            {t("news.articles.next")}：{ language === 'zh-TW' ? (nextArticle.title.length > 30 ? nextArticle.title.slice(0, 30) + '…' : nextArticle.title) : (nextArticle.titleEN.length > 30 ? nextArticle.titleEN.slice(0, 30) + '…' : nextArticle.titleEN) }
+                            {t("news.articles.next")}：{language === 'zh-TW' ? (nextArticle.title.length > 30 ? nextArticle.title.slice(0, 30) + '…' : nextArticle.title) : (nextArticle.titleEN.length > 30 ? nextArticle.titleEN.slice(0, 30) + '…' : nextArticle.titleEN)}
                             <img src={nextArticle.image} alt={nextArticle.title} />
 
-                        </a>
+                        </a> */}
                     </div>
                 )}
 
