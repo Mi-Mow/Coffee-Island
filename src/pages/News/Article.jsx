@@ -45,7 +45,7 @@ export const articles = [
         id: 2,
         title: '那些年，台灣喝的咖啡是什麼味',
         titleEN: "What was the taste of coffee in Taiwan back in those days?",
-        content: '明清時期-零星摸索種植最早可推前至1624-1662年，當時少數荷蘭人早已悄悄引進咖啡樹，但僅限於荷蘭人自己飲用，不具有真正的商業價值與推廣意義。 下面敘述是最早可考據的文字紀錄，18世紀清光緒年間台灣開放商港後，英國「德記洋行」來台經商貿易，選擇從馬尼拉引進阿拉比卡品種， 種植區域主要於北部商港附近山區，包括現今新北市海山地區與台北市文山區，但短短三年時間，莊園因一把不明火炬整個燒光， 同時因北部緯度過高栽植過程水土不服，德記洋行因兩個主要原因選擇放棄。',
+        content: '在明清時期，其實早在 1624 到 1662 年之間，荷蘭人就悄悄把咖啡樹帶來台灣了，不過那時只是給他們自己喝的，沒打算大規模推廣或做生意，算是種植史上的小試身手吧。真正比較有紀錄的咖啡種植，其實要等到清朝光緒年間，當時台灣開放了商港，英國的「德記洋行」就來到台灣做生意。他們從馬尼拉帶來阿拉比卡咖啡樹，想試試看在台灣種會不會成功。地點選在北部的山區，像是現在的新北市海山地區和台北市文山區。',
         contentEN: "The earliest known efforts to grow coffee in Taiwan can be traced back to the period between 1624 and 1662, during which a few Dutch settlers quietly introduced coffee plants to the island. However, the beans were reserved solely for Dutch consumption and held no real commercial value or promotional intent at the time.One of the earliest traceable written records dates to the 18th century, during the Guangxu reign of the Qing Dynasty. After Taiwan’s treaty ports were opened for trade, the British trading company 'Tait & Co.' established operations on the island. They chose to import Arabica coffee plants from Manila, selecting mountainous areas near northern commercial ports—mainly around what is now Haishan District in New Taipei City and Wenshan District in Taipei City—for cultivation. However, within just three years, the entire plantation was destroyed by an unexplained fire. Coupled with the region’s unsuitable climate and soil conditions due to its higher latitude, Tait & Co. eventually abandoned the venture for these two primary reasons",
         image: `${base}news/story2.jpg`,
         tag: '封面故事',
